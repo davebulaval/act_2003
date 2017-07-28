@@ -25,6 +25,9 @@
   down/.style={yshift=-7em}
 }
 
+%macro position tikz
+\newcommand{\tikzmark}[2]{\tikz[overlay, remember picture] \node[inner sep=0pt, outer sep=0pt, anchor=base] (#1) {#2};}
+
 
 %maccro tilde
 \def\utilde#1{\mathord{\vtop{\ialign{##\crcr
@@ -95,7 +98,7 @@ $\beta_0, \beta_1, ... \beta_n$ & Les paramètres à estimer & \\
 \bigskip
 Voici une illustration du concept de régression linéaire
 
-
+%%% fig for the concept of regression operation
 \begin{tikzpicture}
 \node[block] (operator) at (4,1){$Y = f(X_1,X_2,...,X_n) + \epsilon$};
 \node[text width = 2.3cm] at (0,3.5) {\textbf{Étape 1} \\
@@ -124,6 +127,21 @@ Voici une illustration du concept de régression linéaire
 \draw[->] (Y) --  (8, 0.8);
 \end{tikzpicture}
 
-Exemples:
+Voici les deux types de régressions qui seront à l'étude durant la session:
+
+\subsection*{Regression linéaire simple}
+On cherche à prédire le salaire future des actuaires selon le modèle linéaire suivant,
+
+\bigskip
+%%% fig for the concept of regression operation
+\begin{tikzpicture}[node distance=1.2cm]
+\node (function) at (current page.center) {$Y  = \beta_0 + \beta_1 \times X + \epsilon$};
+\coordinate[below of=function] (c);
+\node[text width = 2.3cm, left of=c]  (Y) {Salaire future};
+\draw[->] (Y) -- ([xshift=2mm, yshift=-3mm] function.west);
+%\node[text width = 2.3cm] (X) at (8, -2) {Nombre d'années de scolarité};
+%\draw[->] (X) --  (8,0);
+
+\end{tikzpicture}
 
 \end{document}
