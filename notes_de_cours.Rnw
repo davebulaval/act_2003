@@ -45,9 +45,8 @@ $\hfil\tilde{}\hfil$\crcr\noalign{\kern0.05pt}}}}}
 \date{\today}
 \def\versionnumber{Automne 2017}
 
-\usepackage{Sweave}
 \begin{document}
-\input{notes_de_cours-concordance}
+  \SweaveOpts{concordance=TRUE}
 
 \makeatletter
   \begin{titlepage}
@@ -147,7 +146,20 @@ On cherche à prédire l'âge des passagers du Titanic selon le prix du billet �
 \draw[->, line width=0.5mm] (E) -- ([xshift=-0.1cm, yshift=-3mm] function.east);
 \end{tikzpicture}
 
-\includegraphics{notes_de_cours-001}
+<<eval = TRUE, echo=FALSE, fig=TRUE>>=
+path <- paste(getwd(),"..",sep = "/")
+data <- read.csv('data/Titanic/train.csv', stringsAsFactors = F) # to midify
+
+#taille de l'échantillon
+n <- 25
+## le modèle
+resul <- lm( data$Age[1:n] ~ data$Fare[1:n])
+
+## affiche le modèle avec la droite de régression
+plot(data$Fare[1:n], data$Age[1:n], xlab = "Prix du billet ($)", ylab = "Âge du passager", main = "Âge prédit des passagers du Titanic")
+
+abline(resul, col="red")
+@
 
 
 \end{document}
