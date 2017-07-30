@@ -16,6 +16,8 @@
   \setlength{\parindent}{0pt} %% no indent
   \frenchbsetup{StandardItemLabels=true} % pour obtenir des puces par défaut dans les listes à puces A.B.
 
+%% set lenght figure
+\setlength{\abovecaptionskip}{5pt}
 %%abstract
 \usepackage{epigraph}
 
@@ -75,12 +77,47 @@ $\hfil\tilde{}\hfil$\crcr\noalign{\kern0.05pt}}}}}
 
 
 %%%%%%% Abstract %%%%%%%
-\include{section/abstract}
+\begin{abstract}
+\begin{itshape}
+abstrat
+\end{itshape}
+\end{abstract}
 
 %%%%%% Content %%%%%%%%
 
-\include{section/introduction} %% chpiatre 1
-%\include{section/regression_lin_sim} %% chapitre 2
+%%%%%%% Chapitre 1 %%%%%%%%
+\chapter{Introduction}
+L'établissement de prévisions joue un rôle central dans notre vie de tous les jours (prévisions météorologique, horoscope, etc.), et plus particulièrement dans celle des actuaires.
+
+\subsection*{Objectifs de la régression}
+Régulièrement en actuariat, on se questionne sur les effets de différentes variables sur d'autres. Par exemple,
+\begin{itemize}
+\item Quel est l'effet de l'âge sur la fréquence des sinistres automobiles ?
+\item Quel est l'effet du sexe sur la mortalité ?
+\end{itemize}
+
+On cherche à étuider et déterminer les relations entre des variables mesurables à partir de données.
+
+\subsection*{Deux grandes classes de variables mesurables :}
+\begin{itemize}
+\item Qualitatives : basées sur des opinions et/ou des intuitions.
+\item Quantitatives : basées sur des observations, un modèle et des arguments mathématiques.
+\end{itemize}
+
+\subsection*{Deux \textit{grandes étapes} pour établir des prévisions quantitatives}
+\begin{enumerate}
+\item Bâtir le modèle et estimer les paramètres:
+\begin{itemize}
+\item[ex:] $F = M \times a$ Qui représente un modèle déterministe
+\item[ex:] $Y =3 \times X + 6 + \epsilon_t \text{ ;où} \epsilon_t \sim N(0, 10)$ Qui représente un modèle probabiliste 
+\end{itemize}
+\item Calculer les prévisions à partir du modèle.
+\end{enumerate}
+
+\bigskip
+Dans le cadre du cours, seulement les modèles probabilistes linéaires seront étudiez. 
+
+%%%%%%%%%%%%%%% Chapitre 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Régression linéaire simple}
 
 \section{Introduction}
@@ -89,7 +126,7 @@ De façon générale, en régression, nous avons :
 
 \begin{tabularx}{\linewidth}{c|X|c}
 \hline
-y & Variable dépendante, ou de réponse & Output \\
+Y & Variable dépendante, ou de réponse & Output \\
 $X_1, X_2, ..., X_n$ & Soit n variables indépendantes ou explicatives, ou exogènes\footnote{Les variables $X_i$ sont indépendante par rapport à y, mais pas nécessairement entre elles.} & Input \\
 $\beta_0, \beta_1, ... \beta_n$ & Les paramètres à estimer & \\
 \hline
@@ -101,7 +138,7 @@ Voici une illustration du concept de régression linéaire
 
 %%% fig for the concept of regression operation
 \begin{tikzpicture}
-\node[block] (operator) at (4,1){$Y = f(X_1,X_2,...,X_n) + \epsilon$};
+\node[block] (operator) at (4,1){$Y = f(X_1,X_2,...,X_n) + \varepsilon$};
 \node[text width = 2.3cm] at (0,3.5) {\textbf{Étape 1} \\
 									Observation des $X_i$};
 \node[text width = 2.3cm] at (4.5,3.5) {\textbf{Étape 2} \\
@@ -129,25 +166,129 @@ Voici une illustration du concept de régression linéaire
 \end{tikzpicture}
 
 \pagebreak
-Voici les deux types de régressions qui seront à l'étude durant la session:
 
-\subsection*{Regression linéaire simple}
+\subsection{Regression linéaire simple}
+
 On cherche à prédire l'âge des passagers du Titanic selon le prix du billet à l'aide du modèle linéaire suivant,
 
 \bigskip
-%%% fig for the concept of regression operation
+
+%%% fig linéaire simple
 \begin{tikzpicture}[node distance=1.2cm]
-\node (function) at (current page.center) {$Y  = \beta_0 + \beta_1 \times X + \epsilon$};
+\node (function) at (current page.center) {$Y  = \beta_0 + \beta_1 \times X + \varepsilon$};
 \coordinate[below of=function] (c);
 \node[text width = 2.3cm, left of=c, xshift=-0.5cm]  (Y) {Âge du passager};
 \draw[->, line width=0.5mm] (Y) -- ([xshift=2mm, yshift=-3mm] function.west);
-\node[text width = 2.3cm, below of=c] (X) {Prix du billet};
+\node[text width = 2.3cm, below of=c, yshift=1cm] (X) {Prix du billet};
 \draw[->, line width=0.5mm] (X) -- ([xshift=0.8cm, yshift=-3mm] function.center);
 \node[text width = 2.3cm, right of=c, xshift=1.2cm] (E) {Erreur aléatoire};
 \draw[->, line width=0.5mm] (E) -- ([xshift=-0.1cm, yshift=-3mm] function.east);
 \end{tikzpicture}
 
+%% Graphe modèle linéaire simple
+
 \includegraphics{notes_de_cours-001}
+
+\subsection{Regression linéaire multiple}
+On cherche à prédire l'âge des passagers du Titanic selon le prix du billet et son sexe à l'aide du modèle linéaire suivant,
+
+\bigskip
+
+%%% fig linéaire multiples
+\begin{tikzpicture}[node distance=1.2cm]
+\node (function) at (current page.center) {$Y  = \beta_0 + \beta_1 \times X_1 + \beta_2 \times X_2 + \varepsilon$};
+\coordinate[below of=function] (c);
+\node[text width = 2.3cm, left of=c, xshift=-1.2cm]  (Y) {Âge du passager};
+\draw[->, line width=0.5mm] (Y) -- ([xshift=2mm, yshift=-3mm] function.west);
+\node[text width = 2.3cm, below of=c, yshift=-0.0001cm] (X) {Prix du billet};
+\draw[->, line width=0.5mm] (X) -- ([xshift=0cm, yshift=-3mm] function.center);
+\node[text width = 2.3cm, right of=c, xshift=0.5cm] (X2) {Sexe du passager};
+\draw[->, line width=0.5mm] (X2) -- ([xshift=-1cm, yshift=-3mm] function.east);
+\node[text width = 2.3cm, right of=c, xshift=3cm] (E) {Erreur aléatoire};
+\draw[->, line width=0.5mm] (E) -- ([ yshift=-1mm] function.east);
+\end{tikzpicture}
+
+
+%% fig 1 multilinear regression
+\includegraphics{notes_de_cours-002}
+
+
+Voici la régression sous un autre angle, on voit la surface plane de régression.
+%% fig 2
+\includegraphics{notes_de_cours-003}
+
+
+
+\subsection{Régression exponentielle}
+On cherche à prédire la sévérité d'un sinistre automobile en fonction du temps à l'aide du modèle exponentielle suivant,
+
+%%% fig exponentielle
+\begin{tikzpicture}[node distance=1.2cm]
+\node (function) at (current page.center) {$Y  = \beta_0 \times  e^{\beta_1 \times X} \times \varepsilon$};
+\coordinate[below of=function] (c);
+\node[text width = 2.3cm, left of=c, xshift=-0.5cm]  (Y) {Sévérité du sinistre};
+\draw[->, line width=0.5mm] (Y) -- ([xshift=2mm, yshift=-3mm] function.west);
+\node[text width = 2.3cm, below of=c, yshift=1cm] (X) {Temps};
+\draw[->, line width=0.5mm] (X) -- ([xshift=0.8cm, yshift=-1mm] function.center);
+\node[text width = 2.3cm, right of=c, xshift=1.2cm] (E) {Erreur aléatoire};
+\draw[->, line width=0.5mm] (E) -- ([xshift=-0.1cm, yshift=-2mm] function.east);
+\end{tikzpicture}
+
+%% Figure modèle exponentielle
+
+\includegraphics{notes_de_cours-004}
+
+
+\subsubsection*{Note}
+\label{note:exponentielle}
+On remarque que la régression exponentielle est similaire à une régression linéaire simple.
+\begin{align*}
+\ln (Y) &= \ln (\beta_0) + \beta_1 \times X + \ln (\varepsilon) \\
+Y^* &= \beta_0^* + \beta_1 \times X + \varepsilon^*\\
+\end{align*}
+Qu'on appel aussi une régression multiplicative ou log-linéaire.
+
+\subsection{Régression quadratique}
+On cherche à prédire la sévérité d'un sinistre automobile en fonction du temps et du temps au carré à l'aide du modèle quadratique suivant,
+
+%%% fig quadratique
+\begin{tikzpicture}[node distance=1.2cm]
+\node (function) at (current page.center) {$Y  = \beta_0 + \beta_1 \times X + \beta_2 \times X^2 + \varepsilon$};
+\coordinate[below of=function] (c);
+\node[text width = 2.3cm, left of=c, xshift=-1.2cm]  (Y) {Sévérité du sinistre};
+\draw[->, line width=0.5mm] (Y) -- ([xshift=2mm, yshift=-3mm] function.west);
+\node[text width = 2.3cm, below of=c, yshift=1cm, xshift = 0.5cm] (X) {Temps};
+\draw[->, line width=0.5mm] (X) -- ([xshift=0cm, yshift=-3mm] function.center);
+\draw[->, line width=0.5mm] (X) -- ([xshift=-1cm, yshift=-3mm] function.east);
+\node[text width = 2.3cm, right of=c, xshift=2cm] (E) {Erreur aléatoire};
+\draw[->, line width=0.5mm] (E) -- ([yshift=-1mm, xshift = -1mm] function.east);
+\end{tikzpicture}
+
+%% Graphe modèle quadratique
+\includegraphics{notes_de_cours-005}
+
+\subsubsection*{Note}
+\label{note:quadratique}
+On remarque que la régression quadratique est similaire à une régression linéaire multiple. En posant $X_1=X$ et $X_2 = X^2$
+\begin{align*}
+Y &= \beta_0 + \beta_1 \times X_1 + \beta_2 \times X_2 + \varepsilon\\
+\end{align*}
+Soit une régression linéaire multiple.
+
+Dans le cadre du cours, seulement les modèles linéaires seront à l'étude car,
+
+\begin{itemize}
+\item Plus simples
+\item Plusieurs modèles peuvent se ramener à un modèle linéaire simple ou multiple. (voir \ref{note:exponentielle} et \ref{note:quadratique})
+\item Constituent souvent une très bonne approximation de la réalité qui peut être très complexe, tel que l'assurance.
+\item Se généralisent faciment, tel que les \textit{Generalized Linear Models}.
+\end{itemize}
+
+Le principale problème de la modélisation linéaire est de trouver les différents paramètres $\beta_0, \beta_1, ..., \beta_n$ de tel sorte que
+\begin{equation}
+\varepsilon = Y - f(X_1,...,X_n; \beta_0, \beta_1,...,\beta_n)
+\end{equation}
+soit minimiser.
 
 
 \end{document}
