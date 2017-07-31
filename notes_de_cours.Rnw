@@ -95,18 +95,15 @@ $\hfil\tilde{}\hfil$\crcr\noalign{\kern0.05pt}}}}}
 %%%%license %%%%%
 \include{section/license}
 \pagebreak
+%%%%%%% Abstract %%%%%%%
+\include{section/abstract}
+
+%%%%Remerciements %%%%%
+\include{section/remerciements}
 
 \tableofcontents
 
 \newpage
-
-
-%%%%%%% Abstract %%%%%%%
-\begin{abstract}
-\begin{itshape}
-abstrat
-\end{itshape}
-\end{abstract}
 
 %%%%%% Content %%%%%%%%
 

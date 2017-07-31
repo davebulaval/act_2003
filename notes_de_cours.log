@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.7.10)  31 JUL 2017 15:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.7.10)  31 JUL 2017 16:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1442,7 +1442,7 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 105.
 (c:/texlive/2017/texmf-dist/tex/latex/ae/t1aer.fd
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))) (./notes_de_cours.aux
-(./section/license.aux))
+(./section/license.aux) (./section/abstract.aux) (./section/remerciements.aux))
 \openout1 = `notes_de_cours.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
@@ -1461,7 +1461,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
 LaTeX Font Info:    ... okay on input line 77.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 77.
- (c:/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
+(c:/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 77.
@@ -1571,134 +1571,143 @@ Package pdftex.def Info: Requested size: 31.29811pt x 31.29811pt on input line
 l.97 \include{section/license}
                                [1
 
- <./fig/by-sa.pdf> <./fig/by.pdf> <./fig/sa.pdf>] (./notes_de_cours.toc)
+ <./fig/by-sa.pdf> <./fig/by.pdf> <./fig/sa.pdf>]
+\openout2 = `section/abstract.aux'.
+
+ (./section/abstract.texpdfTeX warning (ext4): destination with the same identi
+fier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.5 \end{abstract}
+                   [1
+
+
+])
+\openout2 = `section/remerciements.aux'.
+
+ (./section/remerciements.tex)pdfTeX warning (ext4): destination with the same 
+identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.103 \include{section/remerciements}
+                                      [1
+
+
+] (./notes_de_cours.toc)
 \tf@toc=\write6
 \openout6 = `notes_de_cours.toc'.
 
  [2
 
 
-]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.110 \end{abstract}
-                     [1]
+]
 Chapitre 1.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.147 \chapter
-              {Régression linéaire simple} [1
+[3
 
 ]
 Chapitre 2.
 
-Overfull \hbox (9.6819pt too wide) in paragraph at lines 192--193
+Overfull \hbox (9.6819pt too wide) in paragraph at lines 189--190
 [][] 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.195 
-       [2
+[4
 
 ]
-<notes_de_cours-001.pdf, id=107, pagebox=cropbox, 325.215pt x 289.08pt>
+<notes_de_cours-001.pdf, id=113, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-001.pdf Graphic file (type pdf)
 <use notes_de_cours-001.pdf>
-Package pdftex.def Info: notes_de_cours-001.pdf  used on input line 218. on inp
-ut line 218.
+Package pdftex.def Info: notes_de_cours-001.pdf  used on input line 215. on inp
+ut line 215.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
- 218.
-<notes_de_cours-002.pdf, id=108, pagebox=cropbox, 325.215pt x 289.08pt>
+ 215.
+<notes_de_cours-002.pdf, id=114, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-002.pdf Graphic file (type pdf)
 <use notes_de_cours-002.pdf>
-Package pdftex.def Info: notes_de_cours-002.pdf  used on input line 242. on inp
-ut line 242.
+Package pdftex.def Info: notes_de_cours-002.pdf  used on input line 239. on inp
+ut line 239.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
- 242.
- [3 <./notes_de_cours-001.pdf>]
-<notes_de_cours-003.pdf, id=120, pagebox=cropbox, 325.215pt x 289.08pt>
+ 239.
+ [5 <./notes_de_cours-001.pdf>]
+<notes_de_cours-003.pdf, id=125, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-003.pdf Graphic file (type pdf)
 <use notes_de_cours-003.pdf>
-Package pdftex.def Info: notes_de_cours-003.pdf  used on input line 247. on inp
-ut line 247.
+Package pdftex.def Info: notes_de_cours-003.pdf  used on input line 244. on inp
+ut line 244.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
- 247.
- [4 <./notes_de_cours-002.pdf> <./notes_de_cours-003.pdf>]
-<notes_de_cours-004.pdf, id=139, pagebox=cropbox, 361.35pt x 252.945pt>
+ 244.
+ [6 <./notes_de_cours-002.pdf> <./notes_de_cours-003.pdf>]
+<notes_de_cours-004.pdf, id=144, pagebox=cropbox, 361.35pt x 252.945pt>
 File: notes_de_cours-004.pdf Graphic file (type pdf)
 <use notes_de_cours-004.pdf>
-Package pdftex.def Info: notes_de_cours-004.pdf  used on input line 269. on inp
-ut line 269.
+Package pdftex.def Info: notes_de_cours-004.pdf  used on input line 266. on inp
+ut line 266.
 Package pdftex.def Info: Requested size: 288.0011pt x 201.60364pt on input line
- 269.
- [5 <./notes_de_cours-004.pdf>]
-<notes_de_cours-005.pdf, id=151, pagebox=cropbox, 361.35pt x 252.945pt>
+ 266.
+ [7 <./notes_de_cours-004.pdf>]
+<notes_de_cours-005.pdf, id=156, pagebox=cropbox, 361.35pt x 252.945pt>
 File: notes_de_cours-005.pdf Graphic file (type pdf)
 <use notes_de_cours-005.pdf>
-Package pdftex.def Info: notes_de_cours-005.pdf  used on input line 300. on inp
-ut line 300.
+Package pdftex.def Info: notes_de_cours-005.pdf  used on input line 297. on inp
+ut line 297.
 Package pdftex.def Info: Requested size: 288.0011pt x 201.60364pt on input line
- 300.
- [6 <./notes_de_cours-005.pdf>]
-<notes_de_cours-006.pdf, id=166, pagebox=cropbox, 469.755pt x 271.0125pt>
+ 297.
+ [8 <./notes_de_cours-005.pdf>]
+<notes_de_cours-006.pdf, id=171, pagebox=cropbox, 469.755pt x 271.0125pt>
 File: notes_de_cours-006.pdf Graphic file (type pdf)
 <use notes_de_cours-006.pdf>
-Package pdftex.def Info: notes_de_cours-006.pdf  used on input line 344. on inp
-ut line 344.
+Package pdftex.def Info: notes_de_cours-006.pdf  used on input line 341. on inp
+ut line 341.
 Package pdftex.def Info: Requested size: 288.0011pt x 166.15271pt on input line
- 344.
- [7 <./notes_de_cours-006.pdf>] [8]
+ 341.
+
+[9 <./notes_de_cours-006.pdf>] [10]
 LaTeX Font Info:    Try loading font information for U+fontawesomeone on input 
-line 437.
+line 434.
 
 (c:/texlive/2017/texmf-dist/tex/latex/fontawesome/ufontawesomeone.fd
 File: ufontawesomeone.fd 2016/05/22 Font definitions for U/fontawesomeone.
-) [9]
-[10] [11]
-<notes_de_cours-007.pdf, id=231, pagebox=cropbox, 361.35pt x 289.08pt>
+) [11]
+[12] [13]
+<notes_de_cours-007.pdf, id=236, pagebox=cropbox, 361.35pt x 289.08pt>
 File: notes_de_cours-007.pdf Graphic file (type pdf)
 <use notes_de_cours-007.pdf>
-Package pdftex.def Info: notes_de_cours-007.pdf  used on input line 538. on inp
-ut line 538.
+Package pdftex.def Info: notes_de_cours-007.pdf  used on input line 535. on inp
+ut line 535.
 Package pdftex.def Info: Requested size: 288.0011pt x 230.40416pt on input line
- 538.
- [12]
-<notes_de_cours-008.pdf, id=241, pagebox=cropbox, 361.35pt x 289.08pt>
+ 535.
+ [14]
+<notes_de_cours-008.pdf, id=246, pagebox=cropbox, 361.35pt x 289.08pt>
 File: notes_de_cours-008.pdf Graphic file (type pdf)
 <use notes_de_cours-008.pdf>
-Package pdftex.def Info: notes_de_cours-008.pdf  used on input line 553. on inp
-ut line 553.
+Package pdftex.def Info: notes_de_cours-008.pdf  used on input line 550. on inp
+ut line 550.
 Package pdftex.def Info: Requested size: 288.0011pt x 230.40416pt on input line
- 553.
- [13 <./notes_de_cours-007.pdf>] [14 <./notes_de_cours-008.pdf>]
+ 550.
+ [15 <./notes_de_cours-007.pdf>] [16 <./notes_de_cours-008.pdf>]
 LaTeX Font Info:    Font shape `TS1/aer/bx/n' in size <10> not available
-(Font)              Font shape `TS1/cmr/bx/n' tried instead on input line 600.
+(Font)              Font shape `TS1/cmr/bx/n' tried instead on input line 597.
 
-[15] [16]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 640.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 640.
- (./notes_de_cours.aux (./section/license.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 640.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 640.
+[17] [18]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 643.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 643.
+ (./notes_de_cours.aux (./section/license.aux) (./section/abstract.aux) (./sect
+ion/remerciements.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 643.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 643.
 Package rerunfilecheck Info: File `notes_de_cours.out' has not changed.
 (rerunfilecheck)             Checksum: 88C07CF99C259BD9137F6BA33BF71C59;590.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 640.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 643.
  ) 
 Here is how much of TeX's memory you used:
- 31420 strings out of 492990
- 573349 string characters out of 6136334
- 634137 words of memory out of 5000000
- 34417 multiletter control sequences out of 15000+600000
+ 31437 strings out of 492990
+ 573701 string characters out of 6136334
+ 635532 words of memory out of 5000000
+ 34419 multiletter control sequences out of 15000+600000
  588975 words of font info for 129 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,13n,74p,10405b,961s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1727,10 +1736,10 @@ dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2017/texmf-dist/font
 s/type1/public/amsfonts/cm/cmti9.pfb><c:/texlive/2017/texmf-dist/fonts/type1/pu
 blic/cm-super/sfbx1000.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-su
 per/sfrm1000.pfb>
-Output written on notes_de_cours.pdf (20 pages, 328045 bytes).
+Output written on notes_de_cours.pdf (21 pages, 328347 bytes).
 PDF statistics:
- 364 PDF objects out of 1000 (max. 8388607)
- 292 compressed objects within 3 object streams
- 51 named destinations out of 1000 (max. 500000)
+ 369 PDF objects out of 1000 (max. 8388607)
+ 296 compressed objects within 3 object streams
+ 53 named destinations out of 1000 (max. 500000)
  136 words of extra memory for PDF output out of 10000 (max. 10000000)
 
