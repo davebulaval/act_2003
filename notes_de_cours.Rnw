@@ -198,7 +198,9 @@ On cherche à prédire l'âge des passagers du Titanic selon le prix du billet �
 \bigskip
 
 %%% fig linéaire simple
+\begin{center}
 \begin{tikzpicture}[node distance=1.2cm]
+\label{fig:linsimp}
 \node (function) at (current page.center) {$Y  = \beta_0 + \beta_1 \times X + \varepsilon$};
 \coordinate[below of=function] (c);
 \node[text width = 2.3cm, left of=c, xshift=-0.5cm]  (Y) {Âge du passager};
@@ -208,9 +210,9 @@ On cherche à prédire l'âge des passagers du Titanic selon le prix du billet �
 \node[text width = 2.3cm, right of=c, xshift=1.2cm] (E) {Erreur aléatoire};
 \draw[->, line width=0.5mm] (E) -- ([xshift=-0.1cm, yshift=-3mm] function.east);
 \end{tikzpicture}
+\end{center}
 
 %% Graphe modèle linéaire simple
-
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=4.5>>=
 path <- paste(getwd(),"..",sep = "/")
 data <- read.csv('data/Titanic/train.csv', stringsAsFactors = F) # to midify
@@ -241,6 +243,7 @@ On cherche à prédire l'âge des passagers du Titanic selon le prix du billet e
 \bigskip
 
 %%% fig linéaire multiples
+\begin{center}
 \begin{tikzpicture}[node distance=1.2cm]
 \node (function) at (current page.center) {$Y  = \beta_0 + \beta_1 \times X_1 + \beta_2 \times X_2 + \varepsilon$};
 \coordinate[below of=function] (c);
@@ -253,7 +256,7 @@ On cherche à prédire l'âge des passagers du Titanic selon le prix du billet e
 \node[text width = 2.3cm, right of=c, xshift=3cm] (E) {Erreur aléatoire};
 \draw[->, line width=0.5mm] (E) -- ([ yshift=-1mm] function.east);
 \end{tikzpicture}
-
+\end{center}
 
 %% fig 1 multilinear regression
 <<eval = TRUE, echo=FALSE, fig=TRUE , height=4,width=4.5>>=
@@ -284,6 +287,7 @@ fig2$plane3d(resul, col = "blue", draw_polygon =  TRUE, draw_lines = FALSE)
 On cherche à prédire la sévérité d'un sinistre automobile en fonction du temps à l'aide du modèle exponentielle suivant,
 
 %%% fig exponentielle
+\begin{center}
 \begin{tikzpicture}[node distance=1.2cm]
 \node (function) at (current page.center) {$Y  = \beta_0 \times  e^{\beta_1 \times X} \times \varepsilon$};
 \coordinate[below of=function] (c);
@@ -294,9 +298,9 @@ On cherche à prédire la sévérité d'un sinistre automobile en fonction du te
 \node[text width = 2.3cm, right of=c, xshift=1.2cm] (E) {Erreur aléatoire};
 \draw[->, line width=0.5mm] (E) -- ([xshift=-0.1cm, yshift=-2mm] function.east);
 \end{tikzpicture}
+\end{center}
 
 %% Figure modèle exponentielle
-
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=3.5,width=5>>=
 ## Les données simulées
 beta <- 0.051
@@ -327,6 +331,7 @@ Qu'on appel aussi une régression multiplicative ou log-linéaire.
 On cherche à prédire la sévérité d'un sinistre automobile en fonction du temps et du temps au carré à l'aide du modèle quadratique suivant,
 
 %%% fig quadratique
+\begin{center}
 \begin{tikzpicture}[node distance=1.2cm]
 \node (function) at (current page.center) {$Y  = \beta_0 + \beta_1 \times X + \beta_2 \times X^2 + \varepsilon$};
 \coordinate[below of=function] (c);
@@ -338,6 +343,7 @@ On cherche à prédire la sévérité d'un sinistre automobile en fonction du te
 \node[text width = 2.3cm, right of=c, xshift=2cm] (E) {Erreur aléatoire};
 \draw[->, line width=0.5mm] (E) -- ([yshift=-1mm, xshift = -1mm] function.east);
 \end{tikzpicture}
+\end{center}
 
 %% Graphe modèle quadratique
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=3.5,width=5>>=
@@ -574,7 +580,7 @@ Et à partir de \ref{eq:minimisationbeta1} :
 \end{align*}
 
 \begin{equation}
-\label{eq:beta1}
+\label{eq:beta0}
 \hat{\beta_1} =  \frac{\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \sum_{t=1}^n X_t}{\sum_{t=1}^n X_t^2}
 \end{equation}
 
@@ -598,7 +604,35 @@ En isolant $\hat{\beta_1}$, on obtient la définition suivante
 \end{equation}
 
 \subsubsection*{Remarques}
+\begin{enumerate}
+\item On note $\hat{\varepsilon}_t$ les résidus générés par le modèle estimé:
+\begin{align*}
+\hat{\varepsilon}_t &= Y_t - \hat{Y}_t \\
+\hat{\varepsilon}_t &= Y_t - (\hat{\beta}_0 - \hat{\beta}_1 X_t) \text{; pour t = 1,2,...,n} \\
+\end{align*}
+\end{enumerate}
+Si on illustre graphiquement les résidus, il s'agit du segment le plus court entre la droite de régression et la donnée observée. Si on reprend le graphique de la section \ref{fig:linsimp} :
 
+%% Graphe modèle linéaire simple
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=4.5>>=
+## le modèle
+resul <- lm(Age ~ Fare, data)
+
+## affiche le modèle avec la droite de régression
+plot(data$Fare, data$Age, xlab = "Prix du billet ($)", ylab = "Âge du passager", main = "Âge prédit des passagers du Titanic")
+
+abline(resul, col="red2", lwd = 1.5)
+epsi <- c(7, 17)
+segments(data$Fare[epsi], data$Age[epsi],  data$Fare[epsi], resul$coefficients[1] + resul$coefficients[2]* data$Fare[epsi], col = "gray8")
+
+## Affichage varepsilone 7
+text( x = (data$Fare[7] + data$Fare[7]) / 2, y = (data$Age[7] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[7]) / 2, col = "gray8", labels = "epsilone_7", pos = 4, cex = 1)
+
+## Affichage varepsilone 17
+text( x = (data$Fare[17] + data$Fare[17]) / 2, y = (data$Age[17] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[17]) / 2, col = "gray8", labels = "epsilone_17", pos = 4, cex = 1)
+@
+
+On observe facilement les résidus.
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
