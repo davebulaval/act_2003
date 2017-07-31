@@ -48,6 +48,7 @@ $\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern0.05pt\nointerlineskip}
 $\hfil\tilde{}\hfil$\crcr\noalign{\kern0.05pt}}}}}
 
 % Creation of environment to add additional informations
+% Provided from Samuel Cabral Cruz
 \mdfsetup{
 	linewidth=2pt,
 	nobreak=true,
@@ -498,20 +499,18 @@ Et à partir de \ref{eq:minimisationbeta1} :
 \end{align*}
 
 \begin{equation}
-\label{eq:beta0}
+\label{eq:beta}
 \hat{\beta_1} =  \frac{\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \sum_{t=1}^n X_t}{\sum_{t=1}^n X_t^2}
 \end{equation}
 
-On utilise l'équation \ref{eq:beta0} de $\hat{\beta_0}$ avec l'équation \ref{eq:beta1} de $\hat{\beta_1}$, on développe l'équation résultante afin d'isoler $\hat{\beta_1}$.
+On utilise l'équation \ref{eq:beta0} de $\hat{\beta_0}$ avec l'équation \ref{eq:beta} de $\hat{\beta_1}$, on développe l'équation résultante afin d'isoler $\hat{\beta_1}$.
 
 \begin{align*}
 \hat{\beta_1} &= \frac{\sum_{t=1}^n Y_t \times X_t - (\overline{Y} - \hat{\beta_1}\overline{X})\sum_{t=1}^n X_t}{\sum_{t=1}^n X_t^2} \\
 &= \frac{\sum_{t=1}^n Y_t \times X_t - (\overline{Y} - \hat{\beta_1}\overline{X})\times n \overline{X}}{\sum_{t=1}^n X_t^2} \\
 &= \frac{\sum_{t=1}^n Y_t X_t - n\overline{Y}\overline{X} + \hat{\beta_1}\times \overline{X}^2 \times n}{\sum_{t=1}^n X_t^2} \\
 \end{align*}
-En isolant $\hat{\beta_1}$, on obtient la définition suivante
-
-
+En isolant $\hat{\beta}_1$, on obtient la définition suivante
 
 \begin{equation}
 \label{eq:beta1}
@@ -522,19 +521,117 @@ En isolant $\hat{\beta_1}$, on obtient la définition suivante
 \end{equation}
 
 \subsubsection*{Remarques}
+
 \begin{enumerate}
 \item On note $\hat{\varepsilon}_t$ les résidus générés par le modèle estimé:
 \begin{align*}
 \hat{\varepsilon}_t &= Y_t - \hat{Y}_t \\
 \hat{\varepsilon}_t &= Y_t - (\hat{\beta}_0 - \hat{\beta}_1 X_t) \text{; pour t = 1,2,...,n} \\
 \end{align*}
-\end{enumerate}
-Si on illustre graphiquement les résidus, il s'agit du segment le plus court entre la droite de régression et la donnée observée. Si on reprend le graphique de la section \ref{fig:linsimp} :
+
+Si on illustre graphiquement les résidus, il s'agit du segment le plus court entre la droite de régression et la donnée observée. 
+
+\bigskip
+Si on reprend le graphique de la section \ref{fig:linsimp}, on observe facilement les résidus sur cette représentation graphique :
 
 %% Graphe modèle linéaire simple
 \includegraphics{notes_de_cours-007}
 
-On observe facilement les résidus.
+\item Le \emph{centre de gravité}\footnote{Qu'on appelle parfois centre de masse.} des données $(\overline{X}, \overline{Y})$ se trouve exactement sur la droite de régression.
+
+On peut facilement effectuer cette preuve à partir de l'équation \ref{eq:beta0},
+\begin{align*}
+\hat{\beta_0} &= \overline{Y} - \hat{\beta_1} \overline{X} \\
+\overline{Y} &=  \hat{\beta_0} + \hat{\beta_1} \overline{X} + 0 \\
+\end{align*}
+On note ainsi une absence de résidus pour le centre de masse.
+
+\bigskip
+Si on reprend (encore) le graphique de la section \ref{fig:linsimp}, on observe facilement le centre de masse sur le graphiqe. 
+
+%% Graphe modèle Xbarre et Ybarre
+\includegraphics{notes_de_cours-008}
+
+\item La somme des résidus de tout modèle de régression linéaire est nulle.
+\begin{align*}
+\sum_{t=1}^{n} \hat{\varepsilon}_t &= \sum_{t=1}^{n}\big( Y_t - (\hat{\beta}_0 + \hat{\beta}_1 X_t) \big) \\
+&\overset{\ref{eq:beta0}}{=} \sum_{t=1}^{n}\big( Y_t - (\overline{Y} - \hat{\beta}_1 \overline{X}) \big) \\
+&= \sum_{t=1}^{n} Y_t - \sum_{t=1}^{n}\overline{Y} + \hat{\beta}_1 \sum_{t=1}^{n}\overline{X} - \hat{\beta}_1\sum_{t=1}^{n}X_t \\
+&= n \overline{Y} - n \overline{Y} + \hat{\beta}_1 + n \overline{X} - \hat{\beta}_1 + n \overline{X} \\
+&= 0
+\end{align*}
+\end{enumerate}
+
+\subsubsection*{Notation}
+Afin de faciliter l'écriture, on intégre la notation suivante, $S_{xx}$ et  $S_{xy}$. Qui sont appelés respectivement la somme des carrées corrigée de $x$ et la somme des produits croisés corrigée de $x$ et de $y$.
+Voici le développement pour $S_{xx}$,
+\begin{align*}
+S_{xx} &= \sum_{t=1}^n (X_t - \overline{X})^2 \\
+&= \sum_{t=1}^n (X_t - \overline{X})^2 \\
+&= \sum_{t=1}^n (X_t^2 - 2X_t\overline{X} + \overline{X}^2) \\
+&= \sum_{t=1}^n X_t^2 - 2\overline{X}\sum_{t=1}^n X_t + n\overline{X}^2 \\
+&= \sum_{t=1}^n X_t^2 - 2\overline{X}n\overline{X} + n\overline{X}^2 \\
+&= \sum_{t=1}^n X_t^2 - n\overline{X}^2 \\
+\end{align*}
+
+On effectue le même type de développement pour $S_{xy}$, 
+\begin{align*}
+S_{xy} &= \sum_{t=1}^n (X_t - \overline{X}) (Y_t - \overline{Y}) \\
+&\vdots \\
+&= \sum_{t=1}^n X_tY_t - n\overline{X}\overline{Y}\\
+\end{align*}
+
+À l'aide des sommes de carrés corrigés, on peut réécrire la définition de $\hat{\beta}_1$
+
+%% beta_1 en fonction de Sxx et Sxy
+\begin{equation}
+\label{eq:beta1SXY}
+\color{blue}
+\boxed{\color{black}
+\hat{\beta_1} = \frac{S_{xy}}{S_{xy}}
+}
+\end{equation}
+
+\bigskip
+On poursuit avec un exemple pour assimiler l'information.
+
+\bigskip
+\begin{description}
+\item[•] On dispose des cinq observations suivantes du couple $(X_t, Y_t)$ dans le tableau de gauche ainsi que les éléments calculer nécessaire pour trouver les paramètres dans le tableau de droite.
+\end{description}
+
+\begin{minipage}[t]{.4\linewidth}
+\begin{tabular}{|c|c|c|}
+\hline
+t & $X_t$ & $Y_t$ \\
+\hline
+1 & 2 & 2 \\
+2 & 3 & 5 \\
+3 & 6 & 3 \\
+4 & 9 & 6 \\
+5 & 12 & 5 \\
+\hline
+Totaux : & 32 & 21 \\
+\hline
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.4\linewidth}
+\begin{tabular}{|c|c|c|}
+\hline
+t & $X_t^2$ & $X_tY_t$ \\
+\hline
+1 & 4 & 4 \\
+2 & 9 & 15 \\
+3 & 36 & 18 \\
+4 & 81 & 54 \\
+5 & 144 & 60 \\
+\hline
+Totaux : & 274 & 151 \\
+\hline
+\end{tabular}
+\end{minipage}
+
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
