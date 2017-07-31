@@ -1,21 +1,32 @@
 \documentclass[11pt,french]{report}
-  \usepackage{babel}
-  \usepackage{amsmath,amsfonts,amssymb}
+  \usepackage{babel} %%french
+  \usepackage{amsmath,amsfonts,amssymb} %%maths
   \usepackage[utf8]{inputenc}   % LaTeX
   \usepackage[T1]{fontenc}      % LaTeX
-  \usepackage[autolanguage]{numprint}
-  \usepackage{graphicx} %image
+  \usepackage{listings}
+  %% image
+  \usepackage{graphicx}
   	\graphicspath{{./fig/}} %fig path
-  \setcounter{secnumdepth}{3} %profondeur de la numérotation du TOC
-  \usepackage[colorlinks]{hyperref} %lien hypertex
-  \usepackage{titlesec}	%package pour modifier les chapitres #2
+  %%profondeur de la numérotation du TOC
+  \setcounter{secnumdepth}{3} 
+  %%lien hypertex
+  \usepackage[colorlinks, allcolors=blue]{hyperref} 
+  %% package pour modifier les chapitres #2
+  \usepackage{titlesec}
+  %% for number separation
   \usepackage[autolanguage]{numprint}
+  %% for tikz picture
   \usepackage{tikz}
+  %% for licence
   \usepackage{tabularx}
   \usepackage{multirow}
-  \setlength{\parindent}{0pt} %% no indent
+  %% no indent
+  \setlength{\parindent}{0pt}
   \frenchbsetup{StandardItemLabels=true} % pour obtenir des puces par défaut dans les listes à puces A.B.
-
+  %% for moreInfo    
+  \usepackage{fontawesome} %%also cool logo
+  \usepackage[framemethod=TikZ]{mdframed}
+  
 %% set lenght figure
 \setlength{\abovecaptionskip}{5pt}
 %%abstract
@@ -36,10 +47,24 @@
 $\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern0.05pt\nointerlineskip}
 $\hfil\tilde{}\hfil$\crcr\noalign{\kern0.05pt}}}}}
 
+% Creation of environment to add additional informations
+\mdfsetup{
+	linewidth=2pt,
+	nobreak=true,
+	backgroundcolor=blue!10,
+	roundcorner=10pt}	
+\newenvironment{moreInfo}[1]
+	{\begin{mdframed}
+	\textcolor{darkgray}{\huge \raisebox{-3.5pt}{\faInfo} 
+	\hspace{0.5cm} \large\bfseries #1}\\[5pt]
+	\normalsize
+	\makebox[0.1\textwidth][l]{}	
+	\begin{minipage}{10cm}}
+	{	\end{minipage}
+	\end{mdframed}}
 
 %maccro pour factoriel
 \newcommand{\fact}[1]{#1\mathpunct{}!}
-
 
 %% meta donnée document
 \title{ACT 2003 \\ Notes de cours \\ Modèles linéaires en actuariat}
@@ -290,5 +315,211 @@ Le principale problème de la modélisation linéaire est de trouver les différ
 \end{equation}
 soit minimiser.
 
+Il existe plusieurs méthode pour calcul l'erreur. Soit les erreurs suivants :
+\begin{itemize}
+\item Erreur totale
+\item Erreur absolue
+\item Erreur quadratique
+\end{itemize}
+
+Quel type d'erreur est suffisante pour déterminer $\varepsilon$ ?
+
+\subsubsection{Erreur totale}
+\begin{equation}
+\sum_{t=1}^n \varepsilon_t = \sum_{t=1}^n \Big( Y_t - (\beta_0 + \beta_1\times X_t) \Big) 
+\end{equation}
+\begin{itemize}
+\item Facile à mettre à 0
+\item Pas fiable à cause de la mise à zéro
+\end{itemize}
+
+%% Graphe modèle quadratique
+\includegraphics{notes_de_cours-006}
+
+
+\subsubsection{Erreur absolue}
+\begin{equation}
+\sum_{t=1}^n |\varepsilon_t| = \sum_{t=1}^n \Big| Y_t - (\beta_0 + \beta_1\times X_t) \Big| 
+\end{equation}
+\begin{itemize}
+\item Très robuste
+\item Très compliqué mathématiquement, pour minimiser $\sum_{t=1}^n |\varepsilon_t|$ cela implique de dériver la fonction.
+\end{itemize}
+
+\subsubsection{Erreur quadratique}
+\begin{equation}
+\sum_{t=1}^n \varepsilon_t^2 = \sum_{t=1}^n \Big[ Y_t - (\beta_0 + \beta_1\times X_t) \Big]^2 
+\end{equation}
+\begin{itemize}
+\item Mathématiquement plus simple que l'erreur quadratique.
+\item Donne beaucoup de poids aux grandes erreurs
+\end{itemize}
+
+\bigskip
+L'erreur quadratique semble donc l'option la plus simple dû à la facilité mathématique et ça fiabilité.
+
+\section{Le modèle de régression linéaire simple}
+Le modèle de régression linéaire simple tente d'expliquer le mieux possible la variable \href{https://fr.wikipedia.org/wiki/Variable_dépendante}{dépendante} \footnote{On appel parfois la variable dépendante une variable \href{https://fr.wikipedia.org/wiki/Endogène}{endogène}. Qui s'interpréte comme étant une variable qui est dû à une cause interne.}  Y à l'aide d'une variable \href{https://fr.wikipedia.org/wiki/Variable_indépendante}{indépendante}\footnote{On appel parfois les variables dépendantes des variables \href{https://fr.wikipedia.org/wiki/Exogène}{exogène}. Qui s'intrepréte comme étant extérieur à un système.} X . 
+
+Si on dispose de n paires d'observations $(X_1, Y_1), (X_2, Y_2),...,(X_n, Y_n)$ alors, le modèle s'exprime  comme suit :
+\begin{equation}
+\label{eq:simple}
+Y_i = \beta_0 + \beta_1\times X_i + \varepsilon_i \text{,  i = 1, ...,n.}
+\end{equation}
+
+Où $\beta_0$ est le paramètre associé à l'ordonnée à l'origine du modèle;
+$\beta_1$ est le paramètre associé à la pende de la droite;
+et $\varepsilon$ est le terme d'erreur.
+
+\subsubsection*{Quelques remarques sur le modèle}
+Dans l'équation \ref{eq:simple} du modèle, on remarque que 
+\begin{itemize}
+\item Les observations de $Y_i$ sont tiré d'une varaible aléatoire;
+\item Les observations de $X_i$ sont considérées comme des valeurs connues et non aléatoires;
+\item Les paramètres $\beta_0$ et $\beta_1$ sont inconnus au départ et doivent être estimer;
+\item $\varepsilon_i$ sont des réalisations inconnues d'une variable aléatoire.
+\end{itemize}
+
+\subsubsection*{Exemple d'un modèle de régression}
+\begin{align*}
+X_t &: \text{nombre d'années de scolarité de l'actuaire} t \\
+Y_t &: \text{Salaire de l'actuaire} t\\
+\end{align*}
+
+Comment résoudre le modèle pour prédire les salaires des actuaires en fonction du nombre d'années de scolarité ?
+
+\textbf{Raisonnement:}
+\begin{itemize}
+\item Pour $X_t = 0$; on a $Y_t = \beta_0$. Autrement dit, le salaire avec un nombre d'année de scolarité est \emph{en moyenne} de $\beta_0$. Par exemple, $\beta_0$ serait le salaire moyen d'un stagiaire.
+\item Par la suite, pour chaque année additionnelle de scolarité, le salaire augmente \emph{en moyenne }de $\beta_1$ unitées.
+\end{itemize}
+Ainsi, \emph{en moyenne} on a 
+\begin{align*}
+E[Y_t|X_t] &= \beta_0 + \beta_1\times X_t
+\end{align*}
+
+Habituellement, la relation n'est pas parfaitement exacte dans la réalité. On se retrouve ainsi avec une \emph{différence} dans notre variable exogène prédite. L'erreur est notée $\varepsilon_t$ et est tel que mentionnée plus tôt, assumée aléatoire.
+\begin{align*}
+\varepsilon_t &= Y_t - E[Y_t|X_t] \\
+&= Y_t - (\beta_0 + \beta_1\times X_t)\\
+\end{align*}
+
+En réoganisant, on retrouve l'équation \ref{eq:simple}.
+%%% fig linéaire simple 2
+\begin{center}
+\begin{tikzpicture}[node distance=1.2cm]
+\node (function) at (current page.center) {$Y  = \beta_0 + \beta_1 \times X + \varepsilon$};
+\coordinate[below of=function] (c);
+\node[text width = 2.3cm, left of=c, xshift=-0.5cm]  (Y) {Salaire};
+\draw[->, line width=0.5mm] (Y) -- ([xshift=2mm, yshift=-3mm] function.west);
+\node[text width = 2.3cm, left of=c, xshift=0.9cm]  (B) {Ordonnées à l'origine};
+\draw[->, line width=0.5mm] (B) -- ([xshift=1cm, yshift=-3mm] function.west);
+\node[text width = 2.5cm, above of=c, xshift=0.9cm, yshift=1cm]  (B2) {Taux de croissance du salaire};
+\draw[->, line width=0.5mm] (B2) -- ([xshift=2cm, yshift=3mm] function.west);
+\node[text width = 2.3cm, below of=c] (X) {Nombre d'années de scolarité};
+\draw[->, line width=0.5mm] (X) -- ([xshift=0.9cm, yshift=-3mm] function.center);
+\node[text width = 2.3cm, right of=c, xshift=1.2cm] (E) {Erreur aléatoire};
+\draw[->, line width=0.5mm] (E) -- ([xshift=-0.1cm, yshift=-3mm] function.east);
+\end{tikzpicture}
+\end{center}
+
+On doit maintenant trouver les paramètres $\beta_0$ et $\beta_1$ de manière à minimiser l'erreur $\varepsilon_t$.
+
+Si $\varepsilon_t$ est minimal, cela veut dire que $Y_t \approx \beta_0 + \beta_1\times X_t$. Ce qui signifie que la droite de régression est une bonne approximation de $Y_t$.
+
+\begin{moreInfo}{\emph{En résumé}}
+	En résumé, on cherche à minimiser nos résidus en optimisant les paramètres $\beta_i$. 
+\end{moreInfo}
+
+\subsubsection{Coefficients de régression}
+Les paramètres $\beta_0$ et $\beta_1$ sont déterminés en minimisant l'erreur quadratique à l'aide de la méthode des moindres carrées.
+
+\begin{align*}
+S(\beta_0, \beta_1) &= \sum_{t=1}^n \varepsilon_t^2 \\
+&= \sum_{t=1}^n \big( Y_t - (\beta_0 + \beta_1\times X_t) \big)^2 \\
+&= \sum_{t=1}^n \big( Y_t - \beta_0 - \beta_1\times X_t \big)^2 \\
+\end{align*}
+
+Où $S(\psi)$ peut être considéré comme une mesure de la \emph{distance} entre les données observées et le modèle théorique qui prédit ces données \footnote{Pour de plus ample information sur la méthode des moindres carrées et la fonction de \emph{distance}, la page \href{https://fr.wikipedia.org/wiki/Méthode_des_moindres_carrés}{Wikipédia} contient des bonnes explications sur le sujet.}.
+
+\bigskip
+Afin de minimiser la fonction $S(\beta_0, \beta_1)$ on dérive la fonction partiellement en fonction de chacun des paramètres.
+
+\subsubsection*{Minimisation de $\beta_0$}
+\begin{align*}
+\frac{\partial S(\hat{\beta_0}, \hat{\beta_1})}{\partial \beta_0} &= 0 \\
+\frac{\partial}{\partial \beta_0} \sum_{t=1}^n \big( Y_t - \hat{\beta_0} - \hat{\beta_1}\times X_t \big)^2 &= 0 \\
+-2\sum_{t=1}^n \big( Y_t - \hat{\beta_0} - \hat{\beta_1} \times X_t \big) &= 0 \\
+\end{align*}
+\begin{equation}
+\label{eq:minimisationbeta0}
+\sum_{t=1}^n Y_t - n \times \hat{\beta_0} - \hat{\beta_1} \sum_{t=1}^n X_t = 0 \\
+\end{equation}
+
+\subsubsection*{Minimisation de $\beta_1$}
+\begin{align*}
+\frac{\partial S(\hat{\beta_0}, \hat{\beta_1})}{\partial \beta_1} &= 0 \\
+\frac{\partial}{\partial \beta_1} \sum_{t=1}^n \big( Y_t - \hat{\beta_0} - \hat{\beta_1}\times X_t \big)^2 &= 0 \\
+-2\sum_{t=1}^n \big( Y_t - \hat{\beta_0} - \hat{\beta_1} \times X_t \big) \times X_t &= 0 \\
+\end{align*}
+\begin{equation}
+\label{eq:minimisationbeta1}
+\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \sum_{t=1}^n X_t - \hat{\beta_1} \sum_{t=1}^n X_t^2 = 0 \\
+\end{equation}
+
+À l'aide des équations \ref{eq:minimisationbeta0} et \ref{eq:minimisationbeta1}, on peut trouver les deux inconnus $\beta_0$ et $\beta_1$.
+
+À partir de \ref{eq:minimisationbeta0} :
+
+\begin{align*}
+\sum_{t=1}^n Y_t - n \times \hat{\beta_0} - \hat{\beta_1} \sum_{t=1}^n X_t &= 0 \\
+\sum_{t=1}^n Y_t - \hat{\beta_1} \sum_{t=1}^n X_t &=  n \times \hat{\beta_0} \\
+\frac{\sum_{t=1}^n Y_t}{n} - \hat{\beta_1} \frac{\sum_{t=1}^n X_t}{n} &=  \hat{\beta_0} \\
+\end{align*}
+
+\begin{equation}
+\label{eq:beta0}
+\color{blue}
+\boxed{\color{black}
+\hat{\beta_0} = \overline{Y} - \hat{\beta_1} \overline{X}}
+\end{equation}
+
+Et à partir de \ref{eq:minimisationbeta1} :
+
+\begin{align*}
+\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \sum_{t=1}^n X_t - \hat{\beta_1} \sum_{t=1}^n X_t^2 &= 0 \\
+\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \sum_{t=1}^n X_t &=  \hat{\beta_1} \sum_{t=1}^n X_t^2 \\
+\end{align*}
+
+\begin{equation}
+\label{eq:beta1}
+\hat{\beta_1} =  \frac{\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \sum_{t=1}^n X_t}{\sum_{t=1}^n X_t^2}
+\end{equation}
+
+On utilise l'équation \ref{eq:beta0} de $\hat{\beta_0}$ avec l'équation \ref{eq:beta1} de $\hat{\beta_1}$, on développe l'équation résultante afin d'isoler $\hat{\beta_1}$.
+
+\begin{align*}
+\hat{\beta_1} &= \frac{\sum_{t=1}^n Y_t \times X_t - (\overline{Y} - \hat{\beta_1}\overline{X})\sum_{t=1}^n X_t}{\sum_{t=1}^n X_t^2} \\
+&= \frac{\sum_{t=1}^n Y_t \times X_t - (\overline{Y} - \hat{\beta_1}\overline{X})\times n \overline{X}}{\sum_{t=1}^n X_t^2} \\
+&= \frac{\sum_{t=1}^n Y_t X_t - n\overline{Y}\overline{X} + \hat{\beta_1}\times \overline{X}^2 \times n}{\sum_{t=1}^n X_t^2} \\
+\end{align*}
+En isolant $\hat{\beta_1}$, on obtient la définition suivante
+
+
+
+\begin{equation}
+\label{eq:beta1}
+\color{blue}
+\boxed{\color{black}
+\hat{\beta_1} = \frac{\sum_{t=1}^n Y_t X_t - n\overline{Y}\overline{X}}{\sum_{t=1}^n X_t^2 - n\overline{X}^2}
+}
+\end{equation}
+
+\subsubsection*{Remarques}
+
+
+%%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\appendix
 
 \end{document}
