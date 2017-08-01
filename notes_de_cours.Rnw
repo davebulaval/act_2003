@@ -548,7 +548,7 @@ Si $\varepsilon_t$ est minimal, cela veut dire que $Y_t \approx \beta_0 + \beta_
 	En résumé, on cherche à minimiser nos résidus en optimisant les paramètres $\beta_i$. 
 \end{moreInfo}
 
-\subsubsection{Coefficients de régression}
+\subsection{Coefficients de régression}
 Les paramètres $\beta_0$ et $\beta_1$ sont déterminés en minimisant l'erreur quadratique à l'aide de la méthode des moindres carrées.
 
 \begin{align*}
@@ -809,11 +809,18 @@ t & $Y_t = \hat{\beta}_0 + \hat{\beta}_1X_t$ & $\hat{\varepsilon}_t$ \\
 4 & 4.8238 & 1.1762 \\
 5 & 5.5435 & -0.5435 \\
 \hline
- &  & $\sum_{t=1}^{5}\varepsilon_t \approx -0.0003$ \\
-\hline
 \end{tabular}
 \end{center}
 
+\begin{center}
+\begin{tikzpicture}[node distance=1.2cm]
+\node (E) at (10,0) {$\sum_{t=1}^{5}\varepsilon_t \approx -0.0003$};
+\draw[->, line width=0.5mm] (E) -- (11.5,1);
+\end{tikzpicture}
+\end{center}
+
+\bigskip
+\subsubsection*{Execution en R}
 %% script R
 \begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
 <<eval =FALSE>>=
@@ -834,9 +841,10 @@ residuals(reg)
 @
 \end{lstlisting}
 
+\bigskip
 %% info bull astuce calculatrice + reférence vers le guide
 \begin{moreInfo}{\emph{Astuce calculatrice}}
-	La calculatrice TI-30XZ Multiview permet de créé un tableau de donnée et de sortir rapidement et facilement différentes informations sur une régression à partir des données.
+	La calculatrice TI-30XZ Multiview permet de créé un tableau de donnée et de sortir rapidement et facilement différentes informations sur une régression à partir des données. Tel que :
 	\begin{itemize}
 	\item $\overline{X}$ et $\overline{Y}$ ;
 	\item $\sum{t=1}^n X_t$, $\sum{t=1}^n X_t^2$, $\sum{t=1}^n Y_t$, $\sum{t=1}^n Y_t^2$ et $\sum{t=1}^n X_tY_t$ ;
@@ -844,6 +852,74 @@ residuals(reg)
 	\end{itemize}
 	Pour de plus ample information, consulter le \href{https://github.com/alpa12/guide_calculatrice}{guide} sur les calculatrices.
 \end{moreInfo}
+\bigskip
+
+\subsection{Caractéristiques du terme d'erreur}
+On rappel que l'équation du modèle de régression correspond à 
+
+\begin{align*}
+Y_t &= \beta_0 + \beta_1\times X_t + \varepsilon_t \text{ (\ref{eq:simple})}
+\end{align*}
+De plus, on sait qu'il s'agit des valeurs moyennes de $Y_t$ en sachat $X_t$, soit
+\begin{align*}
+Y_t = E[Y_t|X_t] + \varepsilon_t 
+\end{align*}
+
+On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikipedia.org/wiki/Postulat}{postulat} est un principe non démontré mais utilisé dans la construction d'une théorie mathématique. } suivants,
+\begin{enumerate}
+\item \label{post1} $E[\varepsilon_t] = 0$, par définition pour que $E[Y_t] = E[Y_t|X_t]$. Il s'agit de l'hypothèse de linéarité ou d'exogénéité de la variable explicative. On dit qu'elle est exogène si elle n'est pas corrélée au terme d'erreur.
+\item \label{post2} $Var(\varepsilon_t) = \sigma^2$, la variance des termes d'erreurs est supposés constante. Il s'agit de l'hypothèse d'homoscédasticité.
+\item \label{post3} $Cov(\varepsilon_t, \varepsilon_s) = 0$, pour $t \neq s$,il n'y a pas de corrélation entre les termes d'erreurs. Il s'agit de l'hypothèse d'indépendance des erreurs.
+\end{enumerate}
+
+\bigskip
+%% info bull hypothèse implicite
+\begin{moreInfo}{\emph{Quatrième postulat}}
+	Les hypothèses de linéarité et d'homoscédasticité sont très intéressante, si on observe leurs définitions ensemble on remarque qu'il s'agit d'une distribution avec une espérance nulle et une variabilité supposé constante. Ce qui nous amène à une quatrième hypothése, les résidus sont distribués selon une loi normale.
+	\begin{align*}
+\hat{\varepsilon}_t|x_i ~ N(0, \sigma^2)
+	\end{align*}
+\end{moreInfo}
+\bigskip
+
+\subsection{Propriétés de l'estimateur des moindres carrées (EMC)}
+\subsubsection{Estimateur sans biais}
+On rappel qu'un estimateur est dit sans biais lorsque son espérance est égale à la valeur vrai du paramètre \footnote{note thomas}.
+
+\begin{align*}
+E[\hat{\beta}_1] &= E \Bigg[ \frac{\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg] \\
+&= \frac{\sum_{t=1}^n(X_t- \overline{X})E[Y_t - \overline{Y}]}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \frac{\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
+\end{align*}
+De l'équation \ref{eq:simple}, et avec le postulat \ref{post1}, on sait que 
+
+\begin{align*}
+Y_t &= \beta_0 + \beta_1\times X_t + \varepsilon_t \\
+E[Y_t] &= E[\beta_0 + \beta_1\times X_t] + E[\varepsilon_t] \\
+&\overset{\ref{post1}}{=} \beta_0 + \beta_1\times X_t + 0 \\
+\end{align*}
+On applique le même raisonement pour l'espérance de $\overline{Y}$. 
+
+\begin{align*}
+E[\hat{\beta}_1] &= \frac{\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \frac{\sum_{t=1}^n(X_t- \overline{X})(\beta_0 + \beta_1\times X_t - \beta_0 - \beta_1\overline{X_t})}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \frac{\sum_{t=1}^n(X_t- \overline{X})\beta_1 (X_t - \overline{X_t})}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \beta_1 \frac{\sum_{t=1}^n(X_t- \overline{X})^2}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
+E[\hat{\beta}_1] &= \beta_1
+\end{align*}
+\bigskip
+
+Par conséquent,
+\begin{align*}
+E[\hat{\beta}_0] &= E[\overline{Y} - \hat{\beta}_1 \overline{X}] \\
+&= E[\overline{Y}] - \overline{X} E[\hat{\beta}_1]  \\
+&= \beta_0 + \beta_1\overline{X} - \overline{X}\beta_1 \\
+E[\hat{\beta}_0]  &= \beta_0 \\
+\end{align*}
+
+On peut ainsi conclure que les deux estimateurs des paramètres sont sans biais.
+
+\subsubsection{Variances et covariances des estimateurs}
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
