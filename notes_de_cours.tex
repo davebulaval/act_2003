@@ -3,7 +3,16 @@
   \usepackage{amsmath,amsfonts,amssymb} %%maths
   \usepackage[utf8]{inputenc}   % LaTeX
   \usepackage[T1]{fontenc}      % LaTeX
+  \usepackage[dvipsnames,table,xcdraw]{xcolor}
+  %% Background code chunk
   \usepackage{listings}
+  \usepackage{color}
+ 
+  \definecolor{codegreen}{rgb}{0,0.6,0}
+  \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+  \definecolor{codepurple}{rgb}{0.58,0,0.82}
+  \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+  
   %% image
   \usepackage{graphicx}
   	\graphicspath{{./fig/}} %fig path
@@ -26,11 +35,33 @@
   %% for moreInfo    
   \usepackage{fontawesome} %%also cool logo
   \usepackage[framemethod=TikZ]{mdframed}
-  
-%% set lenght figure
-\setlength{\abovecaptionskip}{5pt}
-%%abstract
-\usepackage{epigraph}
+  %% set lenght figure
+  \setlength{\abovecaptionskip}{5pt}
+  %%abstract
+  \usepackage{epigraph}
+  %% background code chunk listing
+  \lstset{
+	language=R}
+  \lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
 
 %%maccro tikz bloc
 \tikzset{
@@ -590,6 +621,7 @@ S_{xy} &= \sum_{t=1}^n (X_t - \overline{X}) (Y_t - \overline{Y}) \\
 \end{equation}
 
 \bigskip
+\subsubsection*{Exemple}
 On poursuit avec un exemple pour assimiler l'information.
 
 \bigskip
@@ -629,12 +661,72 @@ Totaux : & 274 & 151 \\
 \end{tabular}
 \end{minipage}
 
+\bigskip
 %%calcul
+À partir des définitions \ref{eq:beta0} et  \ref{eq:beta1}, on trouve facilement la valeur de $\hat{\beta}_0$ et de $\hat{\beta}_1$.
+
+\begin{align*}
+\hat{\beta_1} &= \frac{\sum_{t=1}^n Y_t X_t - n\overline{Y}\overline{X}}{\sum_{t=1}^n X_t^2 - n\overline{X}^2} \\
+&= \frac{151 - (5)(\frac{21}{5})(\frac{32}{5})}{274 - (5)(\frac{32}{5})^2} \\
+&= \frac{83}{346} \\
+& \approx 0.2399 \\
+\end{align*}
+
+\begin{align*}
+\hat{\beta_0} &= \overline{Y} - \hat{\beta_1} \overline{X} \\
+&= \frac{21}{5} - (\frac{83}{346}) \times (\frac{32}{5}) \\
+& \approx 2.6647
+\end{align*}
+
+On obtient ainsi le modèle de régression suivant :
+\begin{align*}
+Y_t &= 2.6647 + 0.2399X_t + \varepsilon_t
+\end{align*}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+t & $Y_t = \hat{\beta}_0 + \hat{\beta}_1X_t$ & $\hat{\varepsilon}_t$ \\
+\hline
+1 & 3.1445 & -1.1445 \\
+2 & 3.3844 & 1.6156 \\
+3 & 4.1041 & -1.1041 \\
+4 & 4.8238 & 1.1762 \\
+5 & 5.5435 & -0.5435 \\
+\hline
+ &  & $\sum_{t=1}^{5}\varepsilon_t \approx -0.0003$ \\
+\hline
+\end{tabular}
+\end{center}
 
 %% script R
+\begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
+\begin{Schunk}
+\begin{Sinput}
+> # dataset
+> x <- c(2,3,6,9,12); y <- c(2,5,3,6,5)
+> # Estimations des parametres
+> reg <- lm(y ~ x)
+> # Resume de l'estimation
+> summary(reg)
+> # Valeurs de Yt
+> fitted(reg)
+> # Residus 
+> residuals(reg)
+\end{Sinput}
+\end{Schunk}
+\end{lstlisting}
 
 %% info bull astuce calculatrice + reférence vers le guide
-
+\begin{moreInfo}{\emph{Astuce calculatrice}}
+	La calculatrice TI-30XZ Multiview permet de créé un tableau de donnée et de sortir rapidement et facilement différentes informations sur une régression à partir des données.
+	\begin{itemize}
+	\item $\overline{X}$ et $\overline{Y}$ ;
+	\item $\sum{t=1}^n X_t$, $\sum{t=1}^n X_t^2$, $\sum{t=1}^n Y_t$, $\sum{t=1}^n Y_t^2$ et $\sum{t=1}^n X_tY_t$ ;
+	\item $\hat{\beta}_0$ et $\hat{\beta}_1$
+	\end{itemize}
+	Pour de plus ample information, consulter le \href{https://github.com/alpa12/guide_calculatrice}{guide} sur les calculatrices.
+\end{moreInfo}
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
