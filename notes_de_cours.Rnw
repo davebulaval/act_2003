@@ -428,7 +428,7 @@ Quel type d'erreur est suffisante pour déterminer $\varepsilon$ ?
 \end{itemize}
 
 %% Graphe modèle quadratique
-<<eval = TRUE, echo=FALSE, fig=TRUE, height=3.75,width=6.5>>=
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=6,width=7.5>>=
 ## Les données simulées
 beta <- 0.05
 n <- 100
@@ -505,6 +505,7 @@ Y_t &: \text{Salaire de l'actuaire} t\\
 
 Comment résoudre le modèle pour prédire les salaires des actuaires en fonction du nombre d'années de scolarité ?
 
+\bigskip
 \textbf{Raisonnement:}
 \begin{itemize}
 \item Pour $X_t = 0$; on a $Y_t = \beta_0$. Autrement dit, le salaire avec un nombre d'année de scolarité est \emph{en moyenne} de $\beta_0$. Par exemple, $\beta_0$ serait le salaire moyen d'un stagiaire.
@@ -844,10 +845,10 @@ residuals(reg)
 \bigskip
 %% info bull astuce calculatrice + reférence vers le guide
 \begin{moreInfo}{\emph{Astuce calculatrice}}
-	La calculatrice TI-30XZ Multiview permet de créé un tableau de donnée et de sortir rapidement et facilement différentes informations sur une régression à partir des données. Tel que :
+	La calculatrice TI-30XS Multiview permet de créé un tableau de donnée et de sortir rapidement et facilement différentes informations sur une régression à partir des données. Tel que :
 	\begin{itemize}
 	\item $\overline{X}$ et $\overline{Y}$ ;
-	\item $\sum{t=1}^n X_t$, $\sum{t=1}^n X_t^2$, $\sum{t=1}^n Y_t$, $\sum{t=1}^n Y_t^2$ et $\sum{t=1}^n X_tY_t$ ;
+	\item $\sum_{t=1}^n X_t$, $\sum_{t=1}^n X_t^2$, $\sum_{t=1}^n Y_t$, $\sum_{t=1}^n Y_t^2$ et $\sum_{t=1}^n X_tY_t$ ;
 	\item $\hat{\beta}_0$ et $\hat{\beta}_1$
 	\end{itemize}
 	Pour de plus ample information, consulter le \href{https://github.com/alpa12/guide_calculatrice}{guide} sur les calculatrices.
@@ -877,7 +878,7 @@ On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikiped
 \begin{moreInfo}{\emph{Quatrième postulat}}
 	Les hypothèses de linéarité et d'homoscédasticité sont très intéressante, si on observe leurs définitions ensemble on remarque qu'il s'agit d'une distribution avec une espérance nulle et une variabilité supposé constante. Ce qui nous amène à une quatrième hypothése, les résidus sont distribués selon une loi normale.
 	\begin{align*}
-\hat{\varepsilon}_t|x_i ~ N(0, \sigma^2)
+\hat{\varepsilon}_t|x_i \sim N(0, \sigma^2)
 	\end{align*}
 \end{moreInfo}
 \bigskip
