@@ -734,12 +734,13 @@ S_{xy} &= \sum_{t=1}^n (X_t - \overline{X}) (Y_t - \overline{Y}) \\
 \label{eq:beta1SXY}
 \color{blue}
 \boxed{\color{black}
-\hat{\beta_1} = \frac{S_{xy}}{S_{xy}}
+\hat{\beta_1} = \frac{S_{xy}}{S_{xx}}
 }
 \end{equation}
 
 \bigskip
 \subsubsection*{Exemple}
+\label{exemple1}
 On poursuit avec un exemple pour assimiler l'information.
 
 \bigskip
@@ -886,7 +887,8 @@ On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikiped
 \end{moreInfo}
 \bigskip
 
-\section{Propriétés de l'estimateur des moindres carrées (EMC)}
+\section{Propriétés de l'estimateur des moindres carrés (EMC)}
+\label{sec:EMC}
 
 \subsection{Estimateur sans biais}
 On rappel qu'un estimateur est dit sans biais lorsque son espérance est égale à la valeur vrai du paramètre, soit $E[\hat{\theta}] = \theta \Leftrightarrow b(\hat{\theta}) = 0$ \footnote{Notes de cours ACT-2000, chapitre 3, Thomas Landry, Hiver 2017.}.
@@ -1002,6 +1004,7 @@ Cov(\hat{\beta}_0, \hat{\beta}_1) = - \overline{X} \frac{\sigma^2}{\sum_{t=1}^n 
 \bigskip
 %% info bull postulat 4 et param.
 \begin{moreInfo}{\emph{Résumé des propriétés des estimateurs}}
+\label{res:estima}
 	Les équations \ref{eq:varbeta0} et \ref{eq:varbeta1}  ainsi que le postulat 4 à la section \ref{post4} nous permettent de conclure que 
 	\begin{align*}
 	     \hat{\beta_0} &\sim N\Bigg(\beta_0, \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)\Bigg) \\
@@ -1092,9 +1095,328 @@ abline(reg, col="red2", lwd = 1.5)
 \bigskip
 
 \section{Analyse de la variance}
+\label{sec:anaVar}
 Un tableau d'analyse de la variance permet d'évaluer la qualité de l'ajustement du modèle aux observations.
 
-%%idée
+\subsubsection*{Idée}
+\begin{enumerate}
+\item Si on décide de modéliser $Y_t$ sans la régression, autrement dit de l'analyse statistique \footnote{Cours ACT-2000}, alors Y est vu comme une variable aléatoire avec une certaine variance, soit $Var(y)$.
+\item En utilisant la régression pour modéliser $Y_t$ en fonction de $X_t$ une partie de la variance de $Y_t$ est \emph{expliquée} par la variance de $X_t$, alors que l'autre partie reste \emph{inexpliquée}.
+\item L'utilité de la régression est de trouver la proportion de la variance de $Y_t$ qui est expliquée par la variance de $X_t$.
+\end{enumerate}
+
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=5,width=6.5>>=
+# Exemple de mauvaise explication
+x <- seq(0, 9, 1)
+y <- c(1.99, 2.1, 1.9, 2, 2.1, 1.9, 2.1, 2, 2, 2)
+
+# Affichage graphe
+par(mfrow = c(1,2))
+
+resul <- lm(y ~x)
+plot(x, y, xlab = "X_t", ylab = "Y_t", main = "Échantillon 1")
+abline(resul, col="red2", lwd = 1.5)
+
+# Exemple de bonne explication
+x2 <- seq(0, 9, 1)
+y2 <- seq(0, 9, 1)
+
+resul2 <- lm(y2 ~ x2)
+plot(x2, y2, xlab = "X_t", ylab = "Y_t", main = "Échantillon 2")
+abline(resul2, col="red2", lwd = 1.5)
+@
+
+On voit que les résidus de l'échantillon 1 sont très mal expliquer par notre modèle, les résidus sont très élevé. Tandis que les résidus de l'échantillon 2 sont parfaitement expliquer par notre modèle.
+<<eval = TRUE, echo=FALSE>>=
+residusMauvais <- list()
+residusMauvais$residusMauvaisFit <- fitted(resul)[1:10]
+residusMauvais 
+
+residusBon <- list()
+residusBon$residusBonFit <- fitted(resul2)[1:10]
+residusBon 
+@
+
+Il y a peu d'intérêt de construire un modèle avec les donnèes de l'échantillon 1 car,
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.2cm]
+\node (function) at (current page.center) {$Var(Y_t) \approx 0\% \times Var(X_t) + 100\% \times Var(\varepsilon_t)$};
+\coordinate[below of=function] (c);
+\node[text width = 2.5cm, below of=c, yshift = 1.1cm]  (B2) {Expliquée};
+\draw[->, line width=0.5mm] (B2) -- ([xshift=3.3cm, yshift=-3mm] function.west);
+\node[text width = 2.3cm, right of=c, xshift = 1.5cm] (X) {Inexpliquée};
+\draw[->, line width=0.5mm] (X) -- ([xshift=2.5cm, yshift=-3mm] function.center);
+\end{tikzpicture}
+\end{center}
+Il est préférable dans ce cas-ci d'utiliser les modèles statistiques vue dans le cours ACT-2000.
+
+\bigskip
+Par contre, il y aun intérêt à utiliser un modèle avec les données de l'échantillon 2 car,
+$$
+Var(Y_t) = Var(X_t)
+$$
+Autrement dit, la variable X explique bien la variable Y.
+
+\subsubsection*{Note}
+Il est a noté que les modèles précenter on été ajusté pour bien représenter le concept, un modèle avec un fit parfait n'est pas réaliste dans la réalité.
+
+\subsection{Notions préliminaire : Somme des carrés}
+La variance totale des $Y_t$ est décomposable sous le modèle de régression linéaire, cette décomposition permet d'analyser l'ajustement du modèle. On la représente ainsi :
+$$
+SST = \sum_{t=1}^n(Y_t-\overline{Y})^2
+$$
+\bigskip
+\subsubsection*{Décomposition}
+\begin{align*}
+(Y_t - \overline{Y}) &= Y_t - \hat{Y}_t + \hat{Y}_t - \overline{Y} \\
+(Y_t - \overline{Y}) &= (Y_t - \hat{Y}_t) + (\hat{Y}_t - \overline{Y}) \\
+\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Saut de ligne tableau
+\begin{center}
+\begin{tabular}{ccc}
+$\underbrace{(Y_t - \overline{Y}) =} $ & $\underbrace{(Y_t - \hat{Y}_t) \  +}$ & $\underbrace{(\hat{Y}_t - \overline{Y})}$ \\
+Variation totale de $Y_t$ & Variation de $Y_t$ & Résidu \\
+& Variation expliquée par la régression & Variation inexpliquée par la régression \\
+\end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%% illustration
+
+Par conséquent, on a que
+\begin{align*}
+SST &= \sum_{t=1}^n \bigg[ (\hat{Y_t} - \overline{Y}) + (Y_t - \hat{Y}_t) \bigg]^2 \\
+&= \sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 + \sum_{t=1}^n(Y_t - \hat{Y}_t)^2 + 2 \sum_{t=1}^n (\hat{Y_t} - \overline{Y})(Y_t - \hat{Y}_t)\\
+\end{align*}
+\begin{center}
+\begin{tabular}{cccc}
+ = & $\underbrace{\sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 \  + }$ & $\underbrace{\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 \  +} $ & $\underbrace{2 \sum_{t=1}^n (\hat{Y_t} - \overline{Y})(Y_t - \hat{Y}_t)}$\\
+ & SSR & SSE & $\psi$ \\
+ & Régression & Erreur & \\
+\end{tabular}
+\end{center}
+
+\subsubsection*{Développement de $\psi$}
+\begin{align*}
+2 \sum_{t=1}^n (\hat{Y_t} - \overline{Y})(Y_t - \hat{Y}_t) &\Rightarrow 2 \sum_{t=1}^n (\hat{\beta}_0 + \hat{\beta}_1X_t - \hat{\beta}_0 - \hat{\beta}_1\overline{X})(Y_t - \overline{Y} + \overline{Y} - \hat{Y}_t) \\
+&= 2 \sum_{t=1}^n \hat{\beta}_1 (\hat{X_t} - \overline{X}) (Y_t - \overline{Y} + \hat{\beta}_0 + \hat{\beta}_1\overline{X} - \hat{\beta}_0 - \hat{\beta}_1 X_t) \\
+&= 2 \sum_{t=1}^n \hat{\beta}_1 (\hat{X_t} - \overline{X}) \bigg((Y_t - \overline{Y}) - \hat{\beta}_1(X_t - \overline{X}) \bigg)\\
+&= 2 \hat{\beta}_1 \sum_{t=1}^n  (\hat{X_t} - \overline{X})(Y_t - \overline{Y}) - 2 \hat{\beta}_1^2 \sum_{t=1}^n (X_t - \overline{X})^2\\
+&= 2 \hat{\beta}_1 (S_{xy} - \hat{\beta}_1S_{xx})\\
+& \overset{\ref{eq:beta1SXY}}{=} 2 \hat{\beta}_1 (S_{xy} - \frac{S_{xy}}{S_{xx}}S_{xx})\\
+&= 2 \hat{\beta}_1 (S_{xy} - S_{xy})\\
+&= 0 \\
+\end{align*}
+
+Ainsi, 
+
+
+\begin{equation}
+\label{eq:SST}
+\color{blue}
+\boxed{\color{black}
+\text{SST} = \text{SSR} + \text{SSE}}
+\end{equation}
+Où SSR est la variation expliqué par le modèle de régression linéaire et SSE signifie la variation inexpliquée, ou résiduelle du modèle de régression linéaire.
+\bigskip
+
+Intuitivement, 
+\begin{itemize}
+     \item Dans un bon modèle de régression, on aimerait que 
+          \begin{itemize}
+          \item $SST \approx SSR$, soit que $Var(Y_t) \approx Var(X_t)$ 
+          \item[ou]
+          \item $SSE \approx 0$, soit que la variation résiduelle soit très faible
+          \end{itemize}
+     \item On définit le coefficient de détermination par
+          \begin{itemize}
+          
+          \item[]\begin{equation}
+          \label{eq:R}
+          \color{blue}
+          \boxed{\color{black}
+          R^2 = \frac{\text{SSR}}{\text{SST}} \Leftrightarrow 1 - \frac{\text{SSE}}{\text{SST}}}
+          \end{equation}
+          Par rapport au ratio, $\frac{\text{SSR}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ expliquée par la régression et 
+          $1 - \frac{\text{SSE}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ qui n'est pas expliquée par la régression.
+          \item $R^2 \in [0,1] $
+          \item Si $R^2 = 100 \%$, la régression est parfaite et utile; si$R^2 = 0 \%$, la régression n'est pas parfaite et est inutile.
+          \end{itemize}
+\end{itemize}
+
+\subsection{Notions préliminaire : Degrés de liberté}
+Le nombre de \emph{degrés de liverté}\footnote{Courament l'abréviation $d.l.$ seras utiliser pour signifié \emph{degrés de liverté}.} d'une \emph{somme de carrés} est :
+\begin{itemize}
+     \item Le nombre de composants \emph{indépendants} dans la somme ;
+     \item[ou]
+     \item Le nombre minimal de fonctions de $Y_1, ..., Y_n$ qu'il faut connaitre pour obtenir la somme ;
+     \item[ou]
+     \item \textbf{Pour $SST$ et $SSE$ seulement}
+     $$
+     \text{d.l.} = \Big( \text{Nombre de termes dans la somme}\Big) - \Big( \text{Nombre de paramètres estimés dans cette somme}\Big)
+     $$
+\end{itemize}
+
+Ainsi, 
+\begin{itemize}
+\item $SST = \sum_{t=1}^n(Y_t-\overline{Y})^2 \rightarrow$ n termes - (1 paramètre estimé\footnote{$\overline{Y}$}) $= \color{blue}\boxed{\color{black} (n-1)d.l.}$
+\item $SSE = \sum_{t=1}^n(Y_t - \hat{Y}_t)^2 $
+$$
+\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 = \sum_{t=1}^n(Y_t - \hat{\beta}_0 - \hat{\beta}_1X_t )^2
+\rightarrow \text{ n termes } - (\text{2 paramètres estimé}\footnote{$\hat{\beta}_0 \text{ et } \hat{\beta}_1$}) = \color{blue}\boxed{\color{black} (n-2)d.l.}
+$$
+\item $SSR = \sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 $
+\begin{align*}
+\sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 &= \sum_{t=1}^n(\hat{\beta}_0 + \hat{\beta}_1X_t - \hat{\beta}_0 - \hat{\beta}_1\overline{X})^2 \\
+&= \underbrace{\hat{\beta}_1^2} \times \underbrace{\sum_{t=1}^n(X_t - \overline{X})^2} \\
+ f&(y_1,...y_n) \  f(x_1,...,x_n)
+\end{align*}
+Soit une seule fonction des $Y_1,...,Y_n$ doit être connue pour obternir $SSR \rightarrow  \color{blue}\boxed{\color{black} 1 \  d.l.}$ 
+\end{itemize}
+
+\subsubsection*{Remarque}
+On sait que 
+$$
+SST = SSE + SSR
+$$
+On note aussi que 
+\begin{align*}
+d.l.(SST) &= d.l.(SSE) + d.l.(SSR) \\
+(n-1) &= (n-2) + (1)
+\end{align*}
+On aurait donc pu retrouver $d.l.(SST) = d.l.(SSE) + d.l.(SSR)$
+
+\subsection{Tableau d'analyse de la variance}
+On appele courrament le tableau d'analyse de la variance le tableau ANOVA. Ce type de tableau est utilisé dans tous les logiciels de régression pour évaluer la qualité d'un modèle.
+
+\bigskip
+\begin{tabularx}{\linewidth}{|X|X|X|X|X|}
+\hline
+Source de la variance & Somme des carrés $(SS)$ & Degrés de liberté $(d.l.)$ & Carrés moyens $(MS)$ & Ratio de Fisher $(F)$ \\
+\hline
+Régression & $SSR$ & 1 & $MSR = \frac{SSR}{1}$ & $F = \frac{MSR}{MSE}$ \\
+Erreur & $SSE$ & n - 2 & $ MSE = \frac{SSE}{n-2}$ & \\
+\hline
+Total & $SST$ & n - 1 & & \\
+\hline
+\end{tabularx}
+
+\bigskip
+\subsubsection*{Exemple}
+On poursuit avec un exemple pour assimiler l'information, on reprend l'exemple de la section \ref{exemple1}.
+
+\bigskip
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+t & $X_t$ & $Y_t$  & $\hat{Y}_t = \hat{\beta}_0 + \hat{\beta}_1X_t$ & $\hat{\varepsilon}_t$\\
+\hline
+1 & 2 & 2 & 3.1445 & -1.1445\\
+2 & 3 & 5 & 3.3844 & 1.6156\\
+3 & 6 & 3 & 4.1041 & -1.1041\\
+4 & 9 & 6 & 4.8238 & 1.1762\\
+5 & 12 & 5 & 5.5435 & -0.5435\\
+\hline
+Totaux : & 32 & 21 & & \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{align*}
+SSE &= \sum_{t=1}^n (Y_t - \hat{Y}_t)^2 = \sum_{t=1}^n \varepsilon_t^2 = 6.8179 \\
+SSR &= \sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 = 3.9821 \\
+SST &= SSE + SSR = 6.8179 +3.9821 = 10.8000 \\
+\end{align*}
+
+\subsubsection*{ANOVA}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Source & $SS$ & $d.l.$ & $MS$ & $F$ \\
+\hline
+Régression & 3.9821 & 1 & 3.9821 & 1.7522 \\
+Erreur & 6.8179 & 3 & 2.2726 & \\
+\hline
+Total & 10.8000 & 4 & & \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection*{$R^2$}
+\begin{align*}
+R^2 &= \frac{SSR}{SST} = \frac{3.9821}{10.8000} = 36.87 \% \\
+R^2 &= 1 - \frac{SSE}{SST} = 1 - \frac{6.8179}{10.8000} = 36.87 \% \\
+\end{align*}
+Autrement dit, seulement 36.87 \% de la variabilité des $Y_t$ est expliquée par la variabilité des $X_t$. La régression n'est pas très efficace et utile.
+
+\subsubsection*{Code R}
+Voici le code R permettant de créé un modèle linéaire simple avec une droite passant par l'origine.
+
+\begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
+<<eval=FALSE>>=
+# dataset
+y <- c(2, 5, 3, 6, 5); x <- c(2, 3, 6, 9, 12)
+
+# Estimation des betas
+reg <- lm(y ~ x)
+anova(reg)
+@
+\end{lstlisting}
+\bigskip
+
+%%%%%%%%%%%%%% ANOVA CALCULATRICE ??? ASTUCE
+
+\section{Intervalles de confiance (I.C.) et test d'hypothèses}
+On poursuit l'objectif des sections \ref{sec:EMC} et \ref{sec:anaVar}m soit de valider la qualité du modèle de régression.
+
+\subsection{Distribution des variables aléatoires}
+On rappel qu'avec le postulat 4 (\ref{post4}), on suppose que les résidus suivent une loi normale d'espérance nulle et de variance de $\sigma^2$.
+	\begin{align*}
+\hat{\varepsilon}_t|x_i \overset{i.i.d.}{\sim} N(0, \sigma^2)
+	\end{align*}
+
+Les conséquences de ce postulat sont les suivantes :
+\begin{enumerate}
+\item $(Y_t = \beta_0 + \beta_1X_t + \varepsilon_t) \sim N(\beta_0 + \beta_1X_t, \sigma^2)$ (Postulat \ref{post1})
+\item Les propriétés de l'estimateur des moindes carrés avait permis de démontrer que (section \ref{sec:EMC})
+	\begin{align*}
+	     \hat{\beta_0} &\sim N\Bigg(\beta_0, \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)\Bigg) \\
+	     \hat{\beta_1} &\sim N\Bigg(\beta_1, \frac{\sigma^2}{\sum_{t=1}^n(X_t - \overline{X})^2})\Bigg)
+	\end{align*}
+	
+\begin{moreInfo}{\emph{Alternative}}
+	On peux tirer la même conclusion à partir de la propriété des fonctions linéaires de $\hat{\beta}_0$ et $\hat{\beta}_1$.
+\end{moreInfo}
+
+\item L'estimateur sans biais pour $\sigma^2$ est 
+\begin{align*}
+\sigma^2 &= S^2 = MSE \\
+MSE &= \frac{SSE}{d.l.(SSE)} \\
+\frac{SSE}{d.l.(SSE)} &= \frac{\sum_{t=1}^n (Y_t - \hat{Y}_t)^2}{n-2} \\
+\end{align*}
+
+\begin{equation}
+\label{eq:s2}
+\color{blue}
+\boxed{\color{black}
+\sigma^2 = \frac{\sum_{t=1}^n \varepsilon_t^2}{n-2}}
+\end{equation}
+
+\item On peut montrer que 
+\begin{equation}
+\label{eq:ssesigma}
+\color{blue}
+\boxed{\color{black}
+\bigg(\frac{SSE}{\sigma^2}\bigg) \sim \chi^2(n - 2) }
+\end{equation}
+
+\item Intervalle de confiance pour $\beta_1$ \footnote{Attention ici de ne pas confondre avec $\hat{\beta}_1$.}
+%%% intervalle
+
+
+\end{enumerate}
+
 
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%

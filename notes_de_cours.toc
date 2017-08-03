@@ -13,9 +13,14 @@
 \contentsline {section}{\numberline {2.2}Le mod\IeC {\`e}le de r\IeC {\'e}gression lin\IeC {\'e}aire simple}{10}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Coefficients de r\IeC {\'e}gression}{12}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Caract\IeC {\'e}ristiques du terme d'erreur}{19}{subsection.2.2.2}
-\contentsline {section}{\numberline {2.3}Propri\IeC {\'e}t\IeC {\'e}s de l'estimateur des moindres carr\IeC {\'e}es (EMC)}{20}{section.2.3}
+\contentsline {section}{\numberline {2.3}Propri\IeC {\'e}t\IeC {\'e}s de l'estimateur des moindres carr\IeC {\'e}s (EMC)}{20}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Estimateur sans biais}{20}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Variances et covariances des estimateurs}{21}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}Optimalit\IeC {\'e}}{24}{subsection.2.3.3}
 \contentsline {section}{\numberline {2.4}R\IeC {\'e}gression passant par l'origine}{24}{section.2.4}
 \contentsline {section}{\numberline {2.5}Analyse de la variance}{26}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Notions pr\IeC {\'e}liminaire : Somme des carr\IeC {\'e}s}{27}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Notions pr\IeC {\'e}liminaire : Degr\IeC {\'e}s de libert\IeC {\'e}}{30}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Tableau d'analyse de la variance}{31}{subsection.2.5.3}
+\contentsline {section}{\numberline {2.6}Intervalles de confiance (I.C.) et test d'hypoth\IeC {\`e}ses}{32}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Distribution des variables al\IeC {\'e}atoires}{32}{subsection.2.6.1}
