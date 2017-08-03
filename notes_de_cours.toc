@@ -24,3 +24,7 @@
 \contentsline {subsection}{\numberline {2.5.3}Tableau d'analyse de la variance}{31}{subsection.2.5.3}
 \contentsline {section}{\numberline {2.6}Intervalles de confiance (I.C.) et test d'hypoth\IeC {\`e}ses}{32}{section.2.6}
 \contentsline {subsection}{\numberline {2.6.1}Distribution des variables al\IeC {\'e}atoires}{32}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Intervalle de confiance pour $\beta _1$}{33}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}Intervalle de confiance pour $\beta _0$}{34}{subsection.2.6.3}
+\contentsline {subsection}{\numberline {2.6.4}Test d'hypoth\IeC {\`e}ses sur les param\IeC {\`e}tres}{34}{subsection.2.6.4}
+\contentsline {subsection}{\numberline {2.6.5}Test de la validit\IeC {\'e} \emph {globale} de la r\IeC {\'e}gression}{39}{subsection.2.6.5}

@@ -1288,6 +1288,7 @@ d.l.(SST) &= d.l.(SSE) + d.l.(SSR) \\
 On aurait donc pu retrouver $d.l.(SST) = d.l.(SSE) + d.l.(SSR)$
 
 \subsection{Tableau d'analyse de la variance}
+\label{seq:anova}
 On appele courrament le tableau d'analyse de la variance le tableau ANOVA. Ce type de tableau est utilisé dans tous les logiciels de régression pour évaluer la qualité d'un modèle.
 
 \bigskip
@@ -1410,14 +1411,244 @@ MSE &= \frac{SSE}{d.l.(SSE)} \\
 \boxed{\color{black}
 \bigg(\frac{SSE}{\sigma^2}\bigg) \sim \chi^2(n - 2) }
 \end{equation}
-
-\item Intervalle de confiance pour $\beta_1$ \footnote{Attention ici de ne pas confondre avec $\hat{\beta}_1$.}
-%%% intervalle
-
-
 \end{enumerate}
 
+\subsection{Intervalle de confiance pour $\beta_1$}
+Attention de ne pas confondre avec $\hat{\beta}_1$.
+\bigskip
+Puisque $ \hat{\beta}_1 \sim N(\beta_1, Var(\hat{\beta}_1))$, on a que 
+$$
+\Bigg(\frac{\hat{\beta}_1 - \beta_1}{\sqrt{Var(\hat{\beta}_1)}}\Bigg) \sim N(0,1)
+$$
 
+Si $\sigma^2$ était connu, l'intervalle de confiance serait de la forme suivante 
+$$
+\bigg[\hat{\beta}_1\pm Z_{\alpha/2} \times \sqrt{Var(\hat{\beta}_1)}\bigg]
+$$
+Par contre, $\sigma_2$ n'est pas souvent connu et il est nécessaire de l'estimer. Tel que mentionner plus haut, l'estimateur non biaisé correspond à l'équation \ref{eq:s2}. Mais cet estimateur ne suit pas une distribution normale. À l'aide des notions acquises en ACT-2000, il est possible de démontrer que si on utilise l'estimateur de $\sigma^2$, soit $S^2$, dans la formule de $Var(\hat{\beta}_1)$, c'est-à-dire :
+$$
+\widehat{Var}(\hat{\beta}_1) = \frac{S^2}{\sum_{t=1}^n (X_t - \overline{X})^2}
+$$
+Alors, on peut conclure que 
+$$
+\Bigg(\frac{\hat{\beta}_1 - \beta_1}{\sqrt{Var(\hat{\beta}_1)}}\Bigg) \sim t(n-2)
+$$
+
+On obtient ainsi l'intervalle de confiance suivant au niveau $100 \times (1 - \alpha)\%$ pour $\beta_1$ ,
+
+\begin{equation}
+\label{eq:intconfb1}
+\color{blue}
+\boxed{\color{black}
+\hat{\beta}_1 \pm t_{\frac{\alpha}{2}}(n-2) \times \sqrt{\frac{S^2}{\sum_{t=1}^n (X_t - \overline{X})^2}}}
+\end{equation}
+
+\subsection{Intervalle de confiance pour $\beta_0$}
+De manière similaire, un intervalle de confiance au niveau $100 \times (1 - \alpha)\%$ pour $\beta_0$ est,
+
+\begin{equation}
+\label{eq:intconfb0}
+\color{blue}
+\boxed{\color{black}
+\hat{\beta}_0 \pm t_{\frac{\alpha}{2}}(n-2) \times \sqrt{\frac{S^2}{n} + \frac{S^2\overline{X}^2}{\sum_{t=1}^n (X_t - \overline{X})^2}}}
+\end{equation}
+
+\subsection{Test d'hypothèses sur les paramètres}
+Principales questions auxquelles on aimerait répondre :
+\begin{enumerate}
+\item \label{hyp1} L'ordonnée à l'origine $(\beta_0)$ est-elle significativement différente de 0 ? \newline
+Sinon, on considère le modèle $Y_t = \beta_1\times X_t + \varepsilon_t$.
+\item  \label{hyp2} La pente $(\beta_1)$ est-elle significativement différente de 0 ? \newline
+Sinon, on considère le modèle $Y_t = \beta_0 + \varepsilon_t$.
+\end{enumerate}
+
+Pour tester la question \ref{hyp1} :
+\begin{align*}
+H_0 &: \beta_0 = 0 \\
+H_1 &: \beta_0 \neq 0 \\
+&\text{On utilise la statistique suivante, } \\
+t &= \frac{\hat{\beta}_0 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_0)}}
+\end{align*}
+
+Pour teste la question  \ref{hyp2} :
+
+\begin{align*}
+H_0 &: \beta_1 = 0 \\
+H_1 &: \beta_1 \neq 0 \\
+&\text{On utilise la statistique suivante, } \\
+t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}}
+\end{align*}
+
+On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ pour $\beta_0$ si :
+$$
+|t| > t_{\frac{\alpha}{2}(n-2)}
+$$
+
+%%%%%%%%%%%%%% Graphe student erreur
+
+Qui correspond à la probabilité de \emph{se tromper} en rejetant $H_0$.
+\bigskip
+
+De manière générale on utilise plutôt les test d'hypothèses suivants pour nos deux questions:
+
+Pour tester la question \ref{hyp1} :
+\begin{align*}
+H_0 &: \beta_0 = \beta_0^* \\
+H_1 &: \beta_0 \neq \beta_0^* \\
+&\text{On utilise la statistique suivante, } \\
+t &= \frac{\hat{\beta}_0 - \beta_0^* }{\sqrt{\widehat{Var}(\hat{\beta}_0)}}
+\end{align*}
+
+Pour teste la question  \ref{hyp2} :
+
+\begin{align*}
+H_0 &: \beta_1 = \beta_1^* \\
+H_1 &: \beta_1 \neq \beta_1^* \\
+&\text{On utilise la statistique suivante, } \\
+t &= \frac{\hat{\beta}_1 - \beta_1^* }{\sqrt{\widehat{Var}(\hat{\beta}_1)}}
+\end{align*}
+
+On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ pour $\beta_0$ si :
+$$
+|t| > t_{\frac{\alpha}{2}(n-2)}
+$$
+
+\bigskip
+On poursuit avec un exemple pour assimiler l'information.
+
+\subsubsection*{Exemple}
+Dans une régression sur un ensemble de 14 observations, on a obtenu :
+$$
+\hat{Y}_t = 68.494 - 0.468X_t
+$$
+ainsi que 
+\begin{align*}
+\widehat{Var}(\hat{\beta}) &= \widehat{Var}\Bigg(
+\begin{bmatrix}
+  \beta_0 \\
+  \beta_1 \\ 
+\end{bmatrix}\Bigg) \\
+&= 
+\begin{bmatrix}
+  \widehat{Var}(\hat{\beta}_0) & \widehat{Cov}(\hat{\beta}_0, \hat{\beta}_1)\\
+  \widehat{Cov}(\hat{\beta}_0, \hat{\beta}_1)  & \widehat{Var}(\hat{\beta}_1)\\ 
+\end{bmatrix} \\
+&= 
+\begin{bmatrix}
+  66.8511 & 1.2544\\
+  1.2544 & 0.0237\\ 
+\end{bmatrix} \\
+\end{align*}
+
+\subsubsection*{Question 1}
+Tester si $\beta_0$ est significativement différent de 0 à un taux de confiance de 95 \%.
+
+\begin{align*}
+H_0 &: \beta_0 = 0 \text{ Hypothèse nulle} \\
+H_1 &: \beta_0 \neq 0 \\
+&\text{On utilise la statistique suivante, } \\
+t &= \frac{\hat{\beta}_0 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_0)}} \\
+&= \frac{68.494 - 0}{\sqrt{66.8511}}
+&= 8.38
+t_{\frac{0.05}{2}(14-2)} &= 2.18
+\end{align*}
+Étant donner que $|8.38| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, l'ordonnée à l'origine est significative.
+
+\subsubsection*{Question 2}
+Tester si $\beta_1$ est significativement différent de 0 à un taux de confiance de 95 \%.
+
+\begin{align*}
+H_0 &: \beta_1 = 0\\
+H_1 &: \beta_1 \neq 0 \\
+&\text{On utilise la statistique suivante, } \\
+t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}} \\
+&= \frac{-0.468 - 0}{\sqrt{0.0237}}\\
+&= -3.040\\
+t_{\frac{0.05}{2}(14-2)} &= 2.18\\
+\end{align*}
+Étant donner que $|-3.040| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, il y a 96 \% de chance que la régression soit utile.
+
+\subsubsection*{Question 2}
+Tester si $\beta_1$ est significativement différent de 0 à un taux de confiance de 95 \%.
+
+\begin{align*}
+H_0 &: \beta_1 = 0\\
+H_1 &: \beta_1 \neq 0 \\
+&\text{On utilise la statistique suivante, } \\
+t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}} \\
+&= \frac{-0.468 - 0}{\sqrt{0.0237}}\\
+&= -3.040\\
+t_{\frac{0.05}{2}(14-2)} &= 2.18\\
+\end{align*}
+Étant donner que $|-3.040| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, il y a 95 \% de chance que la régression soit utile.
+
+\subsubsection*{Question 3}
+Tester si $\beta_1$ est significativement négatif à un taux de confiance de 95 \%.
+
+\begin{align*}
+H_0 &: \beta_1 = 0\\
+H_1 &: \beta_1 < 0 \\
+&\text{On utilise la statistique suivante, } \\
+t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}} \\
+&= \frac{-0.468 - 0}{\sqrt{0.0237}} \\
+&= -3.040 \\
+-t_{\frac{0.05}{2}(14-2)} &= -1.78 \\
+\end{align*}
+Il s'agit d'un test unilatéral, la zone de rejet est la suivante
+%%%% figure test bilatéral et unilatéral
+
+Étant donner que $|-3.040| < -1.78$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, la pente de la droite est significativement négative.
+
+\subsubsection*{Question 4}
+Obtenir un I.C. au niveau de confiance de 95 \% pour $\beta_0$.
+
+\begin{align*}
+\beta_0 &\in \hat{\beta}_0 \pm t_{\frac{0.05}{2}}(14-2)\sqrt{\widehat{Var}(\hat{\beta}_0)} \\
+& \in 68.494 \pm 2.18 \times \sqrt{66.8511} \\
+&\in \big] 50.670, 86.318 \big[
+\end{align*}
+L' I.C. permet de valider le test d'hypothèse de la question 1, car il ne comprend pas la valeur zéro.
+
+\subsubsection*{Question 5}
+Obtenir un I.C. au niveau de confiance de 95 \% pour $\beta_1$.
+
+\begin{align*}
+\beta_1 &\in \hat{\beta}_1 \pm t_{\frac{0.05}{2}}(14-2)\sqrt{\widehat{Var}(\hat{\beta}_1)} \\
+& \in -0.468 \pm 2.18 \times \sqrt{0.0237} \\
+&\in \big] -0.804, -0.132 \big[
+\end{align*}
+L'I.C. permet de valider le test d'hypothèse de la question 2 et 3, il ne comprend pas la valeur zéro et est strictement négatif.
+
+\subsection{Test de la validité \emph{globale} de la régression}
+Une régression linéaire simple est valide, ou significative si $\beta_1 \neq 0$. Le tableau ANOVA obtenue en \ref{seq:anova} peut être utilisé pour tester les hypothèses :
+\begin{align*}
+H_0 &: \beta_1 = 0\\
+H_1 &: \beta_1 < 0 \\
+&\text{avec la statistique de Fisher, } \\
+F &= \frac{MSR}{MSE} \\
+&= \frac{\frac{SSR}{1}}{\frac{SSE}{(n-2)}} \\
+\end{align*}
+Sous $H_0$, on a que $F \sim F(1, n-2)$. \\
+On rejette donc $H_0$ au niveau $100 \times (1 - \alpha) \%$ si
+\begin{equation}
+\label{eq:fisher}
+\color{blue}
+\boxed{\color{black}
+F > F_{\alpha}(1, n-2)}
+\end{equation}
+
+\begin{moreInfo}{\emph{Équivalent}}
+	En régression linéaire simple \textbf{seulement}, le test F est équivalent au test $t$ pour $\beta_1 = 0$
+	\begin{align*}
+	F &= \frac{\frac{SSR}{1}}{\frac{SSE}{(n-2)}} = \frac{SSR}{\sigma^2} = \frac{SSR}{S^2} = \frac{\sum_{t=1}^n (\hat{Y}_t - \overline{Y})^2}{S^2} \\
+	&= \frac{\sum_{t=1}^n(\hat{\beta}_0 + \hat{\beta}_1X_t - \hat{\beta}_0 - \hat{\beta}_1\overline{X})^2}{S^2} = \frac{\hat{\beta}_1^2 \times \sum_{t=1}^n(X_t - \overline{X})^2}{S^2} \\
+	&= \frac{\hat{\beta}_1^2}{\frac{S^2}{\sum_{t=1}^n(X_t - \overline{X})^2}} \\
+	&= \frac{(\hat{\beta}_1 - 0)^2}{\widehat{Var}(\hat{\beta}_1)} \\
+	&= t^2
+	\end{align*}
+\end{moreInfo}
+
+%%%%% Exemple
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
