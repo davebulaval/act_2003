@@ -889,7 +889,7 @@ On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikiped
 \section{Propriétés de l'estimateur des moindres carrées (EMC)}
 
 \subsection{Estimateur sans biais}
-On rappel qu'un estimateur est dit sans biais lorsque son espérance est égale à la valeur vrai du paramètre \footnote{note thomas}.
+On rappel qu'un estimateur est dit sans biais lorsque son espérance est égale à la valeur vrai du paramètre, soit $E[\hat{\theta}] = \theta \Leftrightarrow b(\hat{\theta}) = 0$ \footnote{Notes de cours ACT-2000, chapitre 3, Thomas Landry, Hiver 2017.}.
 
 \begin{align*}
 E[\hat{\beta}_1] &= E \Bigg[ \frac{\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg] \\
