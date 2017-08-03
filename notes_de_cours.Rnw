@@ -39,6 +39,7 @@
   \setlength{\abovecaptionskip}{5pt}
   %%abstract
   \usepackage{epigraph}
+  \usepackage{actuarialsymbol}
   %% background code chunk listing
   \lstset{
 	language=R}
@@ -499,7 +500,7 @@ Dans l'équation \ref{eq:simple} du modèle, on remarque que
 
 \subsubsection*{Exemple d'un modèle de régression}
 \begin{align*}
-X_t &: \text{nombre d'années de scolarité de l'actuaire} t \\
+X_t &: \text{Nombre d'années de scolarité de l'actuaire} t \\
 Y_t &: \text{Salaire de l'actuaire} t\\
 \end{align*}
 
@@ -549,6 +550,7 @@ Si $\varepsilon_t$ est minimal, cela veut dire que $Y_t \approx \beta_0 + \beta_
 \end{moreInfo}
 
 \subsection{Coefficients de régression}
+\label{subsec:coeffreg}
 Les paramètres $\beta_0$ et $\beta_1$ sont déterminés en minimisant l'erreur quadratique à l'aide de la méthode des moindres carrées.
 
 \begin{align*}
@@ -847,7 +849,7 @@ residuals(reg)
 	La calculatrice TI-30XZ Multiview permet de créé un tableau de donnée et de sortir rapidement et facilement différentes informations sur une régression à partir des données. Tel que :
 	\begin{itemize}
 	\item $\overline{X}$ et $\overline{Y}$ ;
-	\item $\sum{t=1}^n X_t$, $\sum{t=1}^n X_t^2$, $\sum{t=1}^n Y_t$, $\sum{t=1}^n Y_t^2$ et $\sum{t=1}^n X_tY_t$ ;
+	\item $\sum_{t=1}^n X_t$, $\sum_{t=1}^n X_t^2$, $\sum_{t=1}^n Y_t$, $\sum_{t=1}^n Y_t^2$ et $\sum_{t=1}^n X_tY_t$ ;
 	\item $\hat{\beta}_0$ et $\hat{\beta}_1$
 	\end{itemize}
 	Pour de plus ample information, consulter le \href{https://github.com/alpa12/guide_calculatrice}{guide} sur les calculatrices.
@@ -875,6 +877,7 @@ On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikiped
 \bigskip
 %% info bull hypothèse implicite
 \begin{moreInfo}{\emph{Quatrième postulat}}
+\label{post4}
 	Les hypothèses de linéarité et d'homoscédasticité sont très intéressante, si on observe leurs définitions ensemble on remarque qu'il s'agit d'une distribution avec une espérance nulle et une variabilité supposé constante. Ce qui nous amène à une quatrième hypothése, les résidus sont distribués selon une loi normale.
 	\begin{align*}
 \hat{\varepsilon}_t|x_i ~ N(0, \sigma^2)
@@ -882,9 +885,9 @@ On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikiped
 \end{moreInfo}
 \bigskip
 
-\subsection{Propriétés de l'estimateur des moindres carrées (EMC)}
+\section{Propriétés de l'estimateur des moindres carrées (EMC)}
 
-\subsubsection{Estimateur sans biais}
+\subsection{Estimateur sans biais}
 On rappel qu'un estimateur est dit sans biais lorsque son espérance est égale à la valeur vrai du paramètre \footnote{note thomas}.
 
 \begin{align*}
@@ -920,16 +923,178 @@ E[\hat{\beta}_0]  &= \beta_0 \\
 
 On peut ainsi conclure que les deux estimateurs des paramètres sont sans biais.
 
-\subsubsection{Variances et covariances des estimateurs}
+\subsection{Variances et covariances des estimateurs}
 On s'intéresse aux variances et aux covariances des estimateurs, cette deuxième propriété ainsi que la première nous permetteras de déduire une conclusion en lien avec le quatrième postulat.
 
 \begin{align*}
 Var(\hat{\beta}_1) &= Var\Bigg( \frac{\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg)\\
-&=
+&= \frac{Var\big( \sum_{t=1}^n(X_t- \overline{X})Y_t - \sum_{t=1}^n(X_t- \overline{X} \big)\overline{Y}\big)}{\big( \sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+&= \frac{Var\big( \sum_{t=1}^n(X_t- \overline{X})Y_t\big) + Var\big(\sum_{t=1}^n(X_t- \overline{X})\overline{Y}\big)}{\big( \sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+&= \frac{\sum_{t=1}^n(X_t- \overline{X})^2 Var(Y_t) + Var\big(\overline{Y}(n\overline{X}- n\overline{X})\big)}{\big( \sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+&= \frac{\sum_{t=1}^n(X_t- \overline{X})^2 Var(\beta_0 + \beta_1X_t + \varepsilon_t) + 0}{\big( \sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
 \end{align*}
-%% terminer variance
 
-%% Parler du postulat normale des notes supp.
+\begin{center}
+\begin{tikzpicture}[node distance=1.2cm]
+\node (function) at (current page.center) {$Var(\beta_0 + \beta_1X_t + \varepsilon_t)$};
+\coordinate[below of=function] (c);
+\node[text width = 2.3cm, left of=c]  (Y) {Constante};
+\draw[->, line width=0.5mm] (Y) -- ([xshift=1cm, yshift=-3mm] function.west);
+\draw[->, line width=0.5mm] (Y) -- ([xshift=1.8cm, yshift=-3mm] function.west);
+\node[text width = 2.5cm, above of=c, xshift=0.9cm, yshift=1cm]  (B2) {Non aléatoire};
+\draw[->, line width=0.5mm] (B2) -- ([xshift=2.21cm, yshift=3mm] function.west);
+\node[text width = 2.3cm, right of=c] (X) {Variable aléatoire};
+\draw[->, line width=0.5mm] (X) -- ([xshift=1.3cm, yshift=-3mm] function.center);
+\end{tikzpicture}
+\end{center}
+
+\begin{align*}
+&= \frac{\sum_{t=1}^n(X_t- \overline{X})^2 Var(\varepsilon_t)}{\big( \sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+& \overset{\ref{post2}}{=} \frac{\sum_{t=1}^n(X_t- \overline{X})^2 \sigma^2}{\big( \sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+\end{align*}
+
+\begin{equation}
+\label{eq:varbeta1}
+\color{blue}
+\boxed{\color{black}
+Var(\hat{\beta_1}) = \frac{\sigma^2}{\sum_{t=1}^n(X_t - \overline{X})^2}}
+\end{equation}
+
+\begin{align*}
+Var(\hat{\beta}_0) &= Var(\overline{Y} - \hat{\beta}_1\overline{X})\\
+&= Var(\overline{Y}) + Var(\hat{\beta}_1\overline{X}) -  2 Cov(\overline{Y}, \hat{\beta}_1\overline{X}) \\
+&= Var\Big(\frac{\sum_{t=1}^n Y_t}{n} \Big) + \overline{X}^2 Var(\hat{\beta}_1) -  2 \overline{X} Cov(\overline{Y}, \hat{\beta}_1) \\
+&= \frac{n \times Var(Y_t)}{n^2}  + \overline{X}^2 \Bigg(\frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg) -  2 \overline{X} Cov(\overline{Y}, \hat{\beta}_1) \\
+\end{align*}
+
+\begin{align*}
+Cov(\overline{Y}, \hat{\beta}_1) &= Cov \Bigg( \frac{\sum_{t=1}^n Y_t}{n}, \frac{\sum_{s=1}^n(X_s- \overline{X})(Y_s - \overline{Y})}{\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg) \\
+&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2} Cov\Bigg(\sum_{t=1}^n Y_t, \sum_{s=1}^n(X_s- \overline{X})Y_s - \overline{Y}\sum_{s=1}^n(X_s- \overline{X}) \Bigg) \\
+&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2} \sum_{t=1}^n \sum_{s=1}^n (X_s- \overline{X}) Cov(Y_t, Y_s) \\
+&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg( \mathop{\sum_{t=1}^n \sum_{s=1}^n}_{:t \neq s} (X_s- \overline{X}) \times 0 + \mathop{\sum_{t=1}^n \sum_{s=1}^n}_{:t = s} \sigma^2 \Bigg) \\
+&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2}\sigma^2 \bigg( \sum_{t=1}^n (X_t - \overline{X}) \bigg) \\
+&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2}\sigma^2 \bigg( \sum_{t=1}^n (n\overline{X}- n\overline{X}) \bigg) \\
+&= 0
+\end{align*}
+
+\begin{equation}
+\label{eq:varbeta0}
+\color{blue}
+\boxed{\color{black}
+Var(\hat{\beta}_0) = \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)}
+\end{equation}
+
+Finalement, pour la covariance entre $\hat{\beta}_0$ et $\hat{\beta}_1$
+\begin{align*}
+Cov(\hat{\beta}_0, \hat{\beta}_1) &= Cov(\overline{Y} - \hat{\beta}_1\overline{X}, \hat{\beta}_1) \\
+&= Cov(\overline{Y},  \hat{\beta}_1) - \overline{X} Var(\hat{\beta}_1) \\
+&= 0 - \overline{X} \frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2} \\
+\end{align*}
+
+\begin{equation}
+\label{eq:covariance}
+\color{blue}
+\boxed{\color{black}
+Cov(\hat{\beta}_0, \hat{\beta}_1) = - \overline{X} \frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}}
+\end{equation}
+
+\bigskip
+%% info bull postulat 4 et param.
+\begin{moreInfo}{\emph{Résumé des propriétés des estimateurs}}
+	Les équations \ref{eq:varbeta0} et \ref{eq:varbeta1}  ainsi que le postulat 4 à la section \ref{post4} nous permettent de conclure que 
+	\begin{align*}
+	     \hat{\beta_0} &\sim N\Bigg(\beta_0, \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)\Bigg) \\
+	     \hat{\beta_1} &\sim N\Bigg(\beta_1, \frac{\sigma^2}{\sum_{t=1}^n(X_t - \overline{X})^2})\Bigg)
+	\end{align*}
+
+\end{moreInfo}
+\bigskip
+
+\subsection{Optimalité}
+Le théorème de \href{https://fr.wikipedia.org/wiki/Théorème_de_Gauss-Markov}{Gauss-Markor} établit que l'estimateur des moindres carrés est l'estimateur non biaisé à variance minimale.
+
+\subsubsection*{Notions importantes de la preuve :}
+\begin{enumerate}
+\item Considérer l'estimateur $\Theta^* = \sum_{t=1}^n C_t \times Y_t$
+\item Minimiser $Var(\Theta^*)$ sous la contrainte que $E[\Theta^*] = \beta$; où
+$$ \beta =
+\begin{bmatrix}
+  \beta_0 \\
+  \beta_1 \\ 
+\end{bmatrix} $$
+\end{enumerate}
+
+\section{Régression passant par l'origine}
+Dans certaines situations, il est possible que l'on souhaite forcer la droite de régression à passer par l'origine.
+Voici un exemple de situation ou il est plus logique de forcer le modèle,
+\begin{align*}
+X_t &: \text{Nombre de Km parcouru} t \\
+Y_t &: \text{Consommation d'essence en L d'une voiture} t\\
+\end{align*}
+Il est plus logique d'avoir une consommation de 0 L pour une distance de 0 Km.
+
+Dans ce cas, on peut postuler le modèle suivant :
+\begin{equation}
+\label{eq:regzero}
+Y_t = \beta \times X_t + \varepsilon_t
+\end{equation}
+
+On peut démontrer par le même raisonnement qu'à la section \ref{subsec:coeffreg} que de minimisation du paramètre $\beta$ correspond à 
+
+\begin{equation}
+\label{eq:betasimp}
+\color{blue}
+\boxed{\color{black}
+\hat{\beta} = \frac{\sum_{t=1}^n X_t Y_t}{\sum_{t=1}^n X_t^2}}
+\end{equation}
+
+On reprent l'exemple énoncer plus haut, voici le modèle représenter graphiquement :
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=4.5>>=
+# dataset
+# X Km parcourus
+# Y consommation essence en L
+simul <- 500
+alpha <- 1
+beta <- alpha/5.1
+y <- rgamma(simul, alpha, beta)
+x <- runif(simul, 0, 550)
+# Estimation de beta. 
+reg <- lm(y ~ x - 1)
+
+plot(x, y, xlab = "Nombre de Km", ylab = "Consommation (L)", main= "Modèle d'analyse de la \n consommation d'essence")
+
+abline(reg, col="red2", lwd = 1.5)
+@
+
+\subsubsection*{Code R}
+Voici le code R permettant de créé un modèle linéaire simple avec une droite passant par l'origine.
+
+\begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
+<<eval=FALSE>>=
+# dataset
+# X Km parcourus
+# Y consommation essence en L
+simul <- 500
+alpha <- 1
+beta <- alpha/5.1
+y <- rgamma(simul, alpha, beta)
+x <- runif(simul, 0, 550)
+
+# Estimation de beta
+reg <- lm(y ~ x - 1)
+
+plot(x, y, xlab = "Nombre de Km", ylab = "Consommation (L)", main= "Modele d'analyse de la \n consommation d'essence")
+
+abline(reg, col="red2", lwd = 1.5)
+@
+\end{lstlisting}
+\bigskip
+
+\section{Analyse de la variance}
+Un tableau d'analyse de la variance permet d'évaluer la qualité de l'ajustement du modèle aux observations.
+
+%%idée
+
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
