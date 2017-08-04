@@ -27,7 +27,7 @@
 \contentsline {subsection}{\numberline {2.6.2}Intervalle de confiance pour $\beta _1$}{33}{subsection.2.6.2}
 \contentsline {subsection}{\numberline {2.6.3}Intervalle de confiance pour $\beta _0$}{34}{subsection.2.6.3}
 \contentsline {subsection}{\numberline {2.6.4}Test d'hypoth\IeC {\`e}ses sur les param\IeC {\`e}tres}{34}{subsection.2.6.4}
-\contentsline {subsection}{\numberline {2.6.5}Test de la validit\IeC {\'e} \emph {globale} de la r\IeC {\'e}gression}{39}{subsection.2.6.5}
-\contentsline {section}{\numberline {2.7}Pr\IeC {\'e}visions et intervalles de confiance}{40}{section.2.7}
-\contentsline {subsection}{\numberline {2.7.1}I.C. pour la pr\IeC {\'e}vision de type I (Valeur moyenne)}{41}{subsection.2.7.1}
-\contentsline {subsection}{\numberline {2.7.2}I.C. pour la pr\IeC {\'e}vision de type II (Vrai valeur)}{42}{subsection.2.7.2}
+\contentsline {subsection}{\numberline {2.6.5}Test de la validit\IeC {\'e} \emph {globale} de la r\IeC {\'e}gression}{40}{subsection.2.6.5}
+\contentsline {section}{\numberline {2.7}Pr\IeC {\'e}visions et intervalles de confiance}{41}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}I.C. pour la pr\IeC {\'e}vision de type I (Valeur moyenne)}{43}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}I.C. pour la pr\IeC {\'e}vision de type II (Vrai valeur)}{45}{subsection.2.7.2}

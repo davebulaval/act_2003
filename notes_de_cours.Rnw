@@ -1173,16 +1173,56 @@ $$
 (Y_t - \overline{Y}) &= (Y_t - \hat{Y}_t) + (\hat{Y}_t - \overline{Y}) \\
 \end{align*}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Saut de ligne tableau
 \begin{center}
-\begin{tabular}{ccc}
+\begin{tabularx}{\textwidth}{XXX}
 $\underbrace{(Y_t - \overline{Y}) =} $ & $\underbrace{(Y_t - \hat{Y}_t) \  +}$ & $\underbrace{(\hat{Y}_t - \overline{Y})}$ \\
 Variation totale de $Y_t$ & Variation de $Y_t$ & Résidu \\
-& Variation expliquée par la régression & Variation inexpliquée par la régression \\
-\end{tabular}
+& Variation expliquée \newline par la régression & Variation inexpliquée \newline par la régression \\
+\end{tabularx}
 \end{center}
 
-%%%%%%%%%%%%%%%%%%%%%%%% illustration
+%% figure représentation des variations
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=4.5>>=
+library(ggplot2)
+
+myfun <- function(xvar) {
+     -1*xvar + 5
+}
+
+# Ajout segment de droite (fonction)
+p <- ggplot(data.frame(x=c(0, 10)), aes(x=x)) + stat_function(fun=myfun, geom="line", color = "red")
+
+# Ajout texte et flèche
+p <- p + annotate("text", x=8.5, y=0, parse=TRUE, size=4,
+           label="'Droite de \n régression'") 
+p <- p + annotate("segment", x=8, xend=7.5, y=-0.5, yend=-2.5, color = "blue",
+             arrow=arrow())
+
+#Ajout texte sur axes
+p <- p + annotate("text", x=5, y=-5.5, parse=TRUE, size=4, label="bar(X)") + annotate("text", x=2.5, y=-5.5, parse=TRUE, size=4, label="X[t]")
+p <- p + annotate("text", x=0, y=0, parse=TRUE, size=4, label="bar(Y)") + annotate("text", x=0, y=4.5, parse=TRUE, size=4, label="Y[t]")
+
+# Ajout "accolade" sur le graphe et texte
+p <- p + annotate("segment", x=0.75, xend=0.75, y=0, yend=4.5,
+              arrow=arrow(ends="both", angle=90, length=unit(.2,"cm"))) + annotate("text", x=1.3, y=2, parse=TRUE, size=4,
+                                                                                   label="Y[t] -  bar(Y)") 
+p <- p + annotate("segment", x=2.5, xend=2.5, y=0, yend=2.5,
+                  arrow=arrow(ends="both", angle=90, length=unit(.2,"cm"))) + annotate("text", x=3.1, y=1, parse=TRUE, size=4,
+                                                                                       label="hat(Y)[t] -  bar(Y)") 
+p <- p + annotate("segment", x=2.5, xend=2.5, y=2.5, yend=4.5,
+                  arrow=arrow(ends="both", angle=90, length=unit(.2,"cm"))) + annotate("text", x=3.1, y=3.5, parse=TRUE, size=4,
+                                                                                       label="Y[t] - hat(Y)[t]") 
+# Ajout des segments pointilles 
+p <- p + geom_segment(aes(x=0.1, xend=5, y=0, yend=0), 
+                      arrow=arrow(length=unit(0.4,"cm"), ends="both", angle=360), linetype=2)
+p <- p + geom_segment(aes(x=5, xend=5, y=-6, yend=0), 
+                      arrow=arrow(length=unit(0.4,"cm"), ends="both", angle=360), linetype=2)
+
+# Ajout des points 
+p <- p + geom_point(aes(2.5, 2.5))  +  geom_point(aes(2.5, 4.5)) + geom_point(aes(5, 0)) + annotate("text", x=5.5, y=0.5, parse=TRUE, size=4,
+                                                                                                    label="(bar(X) * ', ' * bar(Y))") 
+p
+@
 
 Par conséquent, on a que
 \begin{align*}
@@ -1211,7 +1251,6 @@ SST &= \sum_{t=1}^n \bigg[ (\hat{Y_t} - \overline{Y}) + (Y_t - \hat{Y}_t) \bigg]
 
 Ainsi, 
 
-
 \begin{equation}
 \label{eq:SST}
 \color{blue}
@@ -1236,7 +1275,7 @@ Intuitivement,
           \label{eq:R}
           \color{blue}
           \boxed{\color{black}
-          R^2 = \frac{\text{SSR}}{\text{SST}} \Leftrightarrow 1 - \frac{\text{SSE}}{\text{SST}}}
+          R^2 = Corr^2(Y, \hat{Y}) = \frac{\text{SSR}}{\text{SST}} \Leftrightarrow 1 - \frac{\text{SSE}}{\text{SST}}}
           \end{equation}
           Par rapport au ratio, $\frac{\text{SSR}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ expliquée par la régression et 
           $1 - \frac{\text{SSE}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ qui n'est pas expliquée par la régression.
@@ -1485,11 +1524,33 @@ $$
 |t| > t_{\frac{\alpha}{2}(n-2)}
 $$
 
-%%%%%%%%%%%%%% Graphe student erreur
+Voici une représentation graphique de la zone de rejet bilatéral :
+
+%% Figure zone de rejet bilateral
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=4.5>>=
+dnorm_limit <- function(x) {
+     y <- dnorm(x)
+     y[x<2 & x > - 2] <- NA
+     return(y)
+}
+# Ajout graphe
+p <- ggplot(data.frame(x=c(-3, 3)), aes(x=x))
+
+# Ajout section de couleur et courbe
+p <- p + stat_function(fun=dnorm_limit, geom="area", fill="blue", alpha=0.45) + stat_function(fun=dnorm, size = 1)
+
+# Ajout text alpha/2
+p <- p + annotate("text", x=-2.5, y=0.05, parse=TRUE, size=3, label="frac(alpha, 2)") + annotate("text", x=2.5, y=0.05, parse=TRUE, size=3, label="frac(alpha, 2)")
+
+# Ajout droite au centre 
+p <- p + annotate("segment", x=0, xend=0, y=0, yend=0.42, size=1.5, arrow=arrow(length=unit(.35,"cm")))
+
+p
+@
 
 Qui correspond à la probabilité de \emph{se tromper} en rejetant $H_0$.
-\bigskip
 
+\subsubsection*{Remarques}
 De manière générale on utilise plutôt les test d'hypothèses suivants pour nos deux questions:
 
 Pour tester la question \ref{hyp1} :
@@ -1500,7 +1561,7 @@ H_1 &: \beta_0 \neq \beta_0^* \\
 t &= \frac{\hat{\beta}_0 - \beta_0^* }{\sqrt{\widehat{Var}(\hat{\beta}_0)}}
 \end{align*}
 
-Pour teste la question  \ref{hyp2} :
+Pour tester la question  \ref{hyp2} :
 
 \begin{align*}
 H_0 &: \beta_1 = \beta_1^* \\
@@ -1596,7 +1657,30 @@ t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}} \\
 -t_{\frac{0.05}{2}(14-2)} &= -1.78 \\
 \end{align*}
 Il s'agit d'un test unilatéral, la zone de rejet est la suivante
-%%%% figure test bilatéral et unilatéral
+
+%% figure test bilatéral et unilatéral
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=4.5>>=
+dnorm_limit <- function(x) {
+     y <- dnorm(x)
+     y[x > - 1.5] <- NA
+     return(y)
+}
+# Ajout graphe
+p <- ggplot(data.frame(x=c(-3, 3)), aes(x=x))
+
+# Ajout section de couleur et courbe
+p <- p + stat_function(fun=dnorm_limit, geom="area", fill="blue", alpha=0.45) + stat_function(fun=dnorm, size = 1)
+
+# Ajout text alpha/2
+p <- p + annotate("text", x=-2.5, y=0.05, parse=TRUE, size=3, label="alpha")
+
+# Ajout droite au centre 
+p <- p + annotate("segment", x=0, xend=0, y=0, yend=0.42, size=1.5, arrow=arrow(length=unit(.35,"cm")))
+
+p
+
+@
+
 
 Étant donner que $|-3.040| < -1.78$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, la pente de la droite est significativement négative.
 
@@ -1699,13 +1783,93 @@ E[\hat{\beta}_0 +  \hat{\beta}_1X^*] &= E[\hat{\beta}_0] + E[\hat{\beta}_1]X^* \
 \item Il y a deux sources d'erreur dans les prévisions,
 \begin{itemize}
 \item Parameter risk : Incertitude sur les estimateurs. Autrement dit, la variance des estimateurs des paramètres.
+
+%% Figure parameter risk
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=3,width=4>>=
+myfun <- function(xvar) {
+     1*xvar + 5
+}
+
+# Parameter risk
+# Ajout segment de droite (fonction)
+p <- ggplot(data.frame(x=c(0, 10)), aes(x=x)) + stat_function(fun=myfun, geom="line", color = "red")
+
+# Ajout des segments pointilles beta_0
+p <- p + geom_segment(aes(x=0, xend=10, y=7.5, yend=17.5), 
+                      arrow=arrow(length=unit(0,"cm"), angle=180), linetype=2)
+p <- p + geom_segment(aes(x=0, xend=10, y=2.5, yend=12.5), 
+                      arrow=arrow(length=unit(0,"cm"), angle=180), linetype=2)
+
+# Ajout segment pointile beta_1
+p <- p + geom_segment(aes(x=7.5, xend=10, y=12.5, yend=12.5), 
+                      arrow=arrow(length=unit(0,"cm"), angle=180), linetype=2, color = "red")
+
+# Ajout accolade I.C. beta_0 + texte
+p <- p + annotate("segment", x=2.5, xend=2.5, y=5, yend=10,
+                  arrow=arrow(ends="both", angle=90, length=unit(.1,"cm"))) + annotate("text", x=2.6, y=7.5, parse=TRUE, size=3,
+                                                                                       label="'I.C. de ' * beta[0]") 
+
+# Ajout accolade I.C. beta_1 + texte
+p <- p + annotate("segment", x=8.75, xend=8.75, y=12.5, yend=13.75,
+                  arrow=arrow(ends="both", angle=90, length=unit(.1,"cm"))) + annotate("text", x=8.9, y=13.25, parse=TRUE, size=3,
+                                                                                       label="'I.C. de ' * beta[1]") 
+# Nom axe X
+p <- p + xlab("Parameter risk")
+p
+@
 \item Process risk : Fluctuations autour de la droite de régression. Autrement dit, la variance des résidus.
+
+%% Figure process risk
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=3,width=4>>=
+# Process risk
+# Ajout segment de droite (fonction)
+p <- ggplot(data.frame(x=c(0, 10)), aes(x=x)) + stat_function(fun=myfun, geom="line", color = "red")
+
+# Ajout points
+p <- p + geom_point(aes(2.5, 10))  +  geom_point(aes(5, 7.5)) + geom_point(aes(7.5, 13.75)) 
+
+# Ajout accolades
+p <- p + annotate("segment", x=2.5, xend=2.5, y=7.5, yend=10, arrow=arrow(ends="both", angle=90, length=unit(.1,"cm"))) + 
+     annotate("segment", x=5, xend=5, y=7.5, yend=10, arrow=arrow(ends="both", angle=90, length=unit(.1,"cm"))) +
+     annotate("segment", x=7.5, xend=7.5, y=12.5, yend=13.75, arrow=arrow(ends="both", angle=90, length=unit(.1,"cm"))) 
+# Nom axe X
+p <- p + xlab("Process risk")
+p
+@
 \end{itemize}
 \end{enumerate}
-%%%%%%%% Figure sources d'erreur %%%%%%%%%%%%%
 
+Effet combiner des deux sources d'erreur dans les prévisions,
 
-%%%%%% Figure combinaison des 2 effets %%%%%%%%%%
+%%Figure combinaison des 2 effets
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=3,width=4>>=
+# Combinaison des deux effets
+# Ajout segment de droite (fonction)
+p <- ggplot(data.frame(x=c(0, 10)), aes(x=x)) + stat_function(fun=myfun, geom="line", color = "red")
+
+# Ajout segment pointile beta_1
+p <- p + geom_segment(aes(x=7.5, xend=10, y=12.5, yend=12.5), 
+                      arrow=arrow(length=unit(0,"cm"), angle=180), linetype=2, color = "red")
+
+# Ajout accolade beta_0 + texte
+p <- p + annotate("segment", x=2.5, xend=2.5, y=5, yend=10,
+                  arrow=arrow(ends="both", length=unit(.3,"cm"))) + annotate("text", x=2.6, y=7.5, parse=TRUE, size=3,
+                                                                                       label="'Parameter risk de ' * beta[0]") 
+
+# Ajout accolade beta_1 + texte
+p <- p + annotate("segment", x=8.75, xend=8.75, y=12.5, yend=13.75,
+                  arrow=arrow(ends="both", angle=90, length=unit(.1,"cm"))) + annotate("text", x=7.5, y=13.25, parse=TRUE, size=3,
+                                                                                       label="'Parameter risk de ' * beta[1]") 
+
+# Ajout points
+p <- p +  geom_point(aes(5, 7.5))
+
+# Ajout accolades
+p <- p + annotate("segment", x=5, xend=5, y=7.5, yend=10, arrow=arrow(ends="both", angle=90, length=unit(.1,"cm"))) + 
+     annotate("text", x=5.1, y=8.75, parse=TRUE, size=3, label="'Process risk'")
+
+p
+@
 
 \subsection{I.C. pour la prévision de type I (Valeur moyenne)}
 \label{sec:type1}
@@ -1763,7 +1927,30 @@ L'I.C. est donc,
 \end{equation}
 
 \subsubsection*{Remarque}
-%%%%%%%%%%%%%%%%%%%%% figure graphique IC
+
+%%figure graphique IC
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=3,width=4>>=
+# Parameter risk
+# Ajout segment de droite (fonction)
+p <- ggplot(data.frame(x=c(0, 10)), aes(x=x))  + geom_segment(aes(x=0, xend=15, y=5, yend=15), arrow=arrow(length=unit(0,"cm"), angle=180), linetype=1, color ="red")
+
+# Ajout des segments pointilles pour "parabolle"
+p <- p + geom_curve(aes(x=3.75, xend=15, y=5, yend=12.5), curvature = -0.2, 
+                      arrow=arrow(length=unit(0,"cm"), angle=180), linetype=2)
+p <- p + geom_curve(aes(x=0, xend=10, y=7, yend=15),  curvature = 0.2, 
+                      arrow=arrow(length=unit(0,"cm"), angle=180), linetype=2)
+
+# Ajout texte sur axes
+p <- p + annotate("text", x=7.5, y=5, parse=TRUE, size=3, label="bar(X)") + annotate("text", x=2.5, y=5, parse=TRUE, size=3, label="X^'*'")
+p <- p + annotate("text", x=0, y=10, parse=TRUE, size=3, label="bar(Y)") + annotate("text", x=0, y=6.685, parse=TRUE, size=3, label="'E[' * hat('Y'^'*') * ']' ")
+
+# Ajout texte droite de régression
+p <-  p + annotate("text", x = 11, y = 13,  parse=TRUE, size=3, label="'Y'[t] * '=' * hat(beta)[0] + hat(beta)[1] * 'X'[t]")
+# Ajout des points
+p <- p + geom_point(aes(7.5, 10)) + geom_point(aes(2.5, 6.685))
+p
+@
+
 \begin{enumerate}
 \item Plus $X^*$ s'éloigne de $\overline{X}$, plus l'I.C. est large, parceque l'incertitude augmente.
 \item Les limites de l'intervalle sont des \emph{hyperboles} centrées en $(\overline{X}, \overline{Y})$
@@ -1777,6 +1964,7 @@ L'I.C. est donc,
 \end{enumerate}
 
 \subsection{I.C. pour la prévision de type II (Vrai valeur)}
+\label{sec:type2}
 Aussi appelé I.C. pour les points de $Y^*$.
 \bigskip
 Pour obtenir un I.C. pour la vrai valeur de $Y^*$, il faut tenir compte du parameter risk $(Var(\hat{\beta}_i))$ ET du process risk $(Var(\varepsilon_t))$.On considère donc de manière équivalente à la section \ref{sec:type1},
@@ -1789,8 +1977,82 @@ En substituant $\sigma^2$ par $S^2$ dans $Var(Y^* - \hat{Y}^*)$, on a
 $$
 \frac{Y^* - \hat{Y}^*}{\sqrt{\widehat{Var}(Y^* - \hat{Y}^*)}} \sim t(n-2)
 $$
+Ainsi, un I.C. au niveau $100 \times (1 - \alpha)\%$ pour $\beta_1$  pour la vrai valeur de $Y^*$ est,
+$$
+\hat{Y}^* \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{\widehat{Var}(Y^* - \hat{Y}^*)}
+$$
 
+Or par hypothèse on as
+\begin{align*}
+Var(Y^* - \hat{Y}^*) &= Var(Y^*) + Var(\hat{Y}^*) \\
+&= \underbrace{\sigma^2} +\underbrace{\sigma^2\big( \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\sum_{t=1}^n (X_t - \overline{X}^*)^2}\big)}  \\
+&   \text{Process risk }\ \ \ \  \text{Parameter risk}
+\end{align*}
+D'où 
 
+\begin{equation}
+\label{eq:var2*}
+\color{blue}
+\boxed{\color{black}
+\widehat{Var}(Y^* - \hat{Y}^*) = S^2 \Bigg(1 + \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)  
+}
+\end{equation}
+L'I.C. est donc,
+\begin{equation}
+\label{eq:IC3}
+\color{blue}
+\boxed{\color{black}
+(\hat{\beta}_0 + \hat{\beta}_1X^*) \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{S^2 \Bigg(1 + \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)}  
+}
+\end{equation}
+
+\subsubsection*{Exemple en R}
+Il est possible d'obternir le résultats des formules des sections \ref{sec:type1} et \ref{sec:type2}.
+
+\subsubsection*{I.C. de type I pour tous les X dans les observations}
+<<echo = FALSE>>=
+# dataset
+x <- rnorm(15)
+y <- x + rnorm(15)
+xStar <- data.frame(x = seq(0, 2, by = 0.2)) 
+
+# Modèle de régression
+fit <- lm(y ~x)
+
+# I.C. de type 1
+predict(fit, interval = "confidence")[1:5,] # I.C. pour tous les X dans les observations
+@
+
+\subsubsection*{I.C. de type I pour un vecteur $X^*$}
+<<echo = FALSE>>=
+predict(fit, interval = "confidence", newdata = xStar)[1:5,] # I.C. pour un vecteur de X^*
+@
+
+\subsubsection*{I.C. de type II pour un vecteur $X^*$}
+<<echo = FALSE>>=
+# I.C. de type 2
+predict(fit, interval = "prediction", newdata = xStar)[1:5,] # I.C. pour un vecteur de x^*
+@
+
+\begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
+<<eval=FALSE>>=
+# dataset
+x <- rnorm(15)
+y <- x + rnorm(15)
+xStar <- data.frame(x = seq(0, 2, by = 0.2)) 
+
+# Modele de regression
+fit <- lm(y ~x)
+
+# I.C. de type 1
+predict(fit, interval = "confidence") # I.C. pour tous les X dans les observations
+predict(fit, interval = "confidence", newdata = xStar) # I.C. pour un vecteur de X^*
+
+# I.C. de type 2
+predict(fit, interval = "prediction", newdata = xStar) # I.C. pour un vecteur de x^*
+@
+\end{lstlisting}
+\bigskip
 
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
