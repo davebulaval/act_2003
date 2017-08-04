@@ -1228,6 +1228,7 @@ Voici le code R permettant de créé un modèle linéaire simple avec une droite
 On poursuit l'objectif des sections \ref{sec:EMC} et \ref{sec:anaVar}m soit de valider la qualité du modèle de régression.
 
 \subsection{Distribution des variables aléatoires}
+\label{sec:distri}
 On rappel qu'avec le postulat 4 (\ref{post4}), on suppose que les résidus suivent une loi normale d'espérance nulle et de variance de $\sigma^2$.
 	\begin{align*}
 \hat{\varepsilon}_t|x_i \overset{i.i.d.}{\sim} N(0, \sigma^2)
@@ -1281,7 +1282,7 @@ Si $\sigma^2$ était connu, l'intervalle de confiance serait de la forme suivant
 $$
 \bigg[\hat{\beta}_1\pm Z_{\alpha/2} \times \sqrt{Var(\hat{\beta}_1)}\bigg]
 $$
-Par contre, $\sigma_2$ n'est pas souvent connu et il est nécessaire de l'estimer. Tel que mentionner plus haut, l'estimateur non biaisé correspond à l'équation \ref{eq:s2}. Mais cet estimateur ne suit pas une distribution normale. À l'aide des notions acquises en ACT-2000, il est possible de démontrer que si on utilise l'estimateur de $\sigma^2$, soit $S^2$, dans la formule de $Var(\hat{\beta}_1)$, c'est-à-dire :
+Par contre, $\sigma^2$ n'est  souvent pas connu et il est nécessaire de l'estimer. Tel que mentionner plus haut, l'estimateur non biaisé correspond à l'équation \ref{eq:s2}. Mais cet estimateur ne suit pas une distribution normale. À l'aide des notions acquises en ACT-2000, il est possible de démontrer que si on utilise l'estimateur de $\sigma^2$, soit $S^2$, dans la formule de $Var(\hat{\beta}_1)$, c'est-à-dire :
 $$
 \widehat{Var}(\hat{\beta}_1) = \frac{S^2}{\sum_{t=1}^n (X_t - \overline{X})^2}
 $$
@@ -1404,9 +1405,9 @@ H_0 &: \beta_0 = 0 \text{ Hypothèse nulle} \\
 H_1 &: \beta_0 \neq 0 \\
 &\text{On utilise la statistique suivante, } \\
 t &= \frac{\hat{\beta}_0 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_0)}} \\
-&= \frac{68.494 - 0}{\sqrt{66.8511}}
-&= 8.38
-t_{\frac{0.05}{2}(14-2)} &= 2.18
+&= \frac{68.494 - 0}{\sqrt{66.8511}}\\
+&= 8.38\\
+t_{\frac{0.05}{2}(14-2)} &= 2.18 \\
 \end{align*}
 Étant donner que $|8.38| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, l'ordonnée à l'origine est significative.
 
@@ -1503,6 +1504,149 @@ F > F_{\alpha}(1, n-2)}
 	&= t^2
 	\end{align*}
 \end{moreInfo}
+
+\bigskip
+On poursuit avec un exemple pour assimiler l'information.
+
+\subsubsection*{Exemple}
+Soit le tableau ANOVA suivant :
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Source & $SS$ & $d.l.$ & $MS$ & $F$ \\
+\hline
+Régression & 48.845 & 1 & 48.845 & 9.249 \\
+Erreur & 63.374 & 12 & 5.281 & \\
+\hline
+Total & 112.219 & 13 & & \\
+\hline
+\end{tabular}
+\end{center}
+On cherche a vérifier la validité de la régression à l'aide du test $F$, \newline
+On a que $F = 9.249$, par contre $F_{0.05}(1, 12) = 4.75$ \newline
+Puisque $F>F_{0.05}(1, 12)$; on rejette $H_0$. La régression est significative au niveau de confiance de 95 \%.
+
+\section{Prévisions et intervalles de confiance}
+On peut utilisé la droite de régression pour faire des types de prévisions de $Y^*$ en sachant $X^*$ :
+\subsubsection*{Type 1}
+Prévision pour la \emph{valeur moyenne} de $Y^*$
+$$
+E[Y^*] = \beta_0 + \beta_1X^*
+$$
+
+\subsubsection*{Type 2}
+Prévision pour la \emph{vrai valeur} de $Y^*$
+$$
+Y^* = \beta_0 + \beta_1X^* + \varepsilon
+$$
+
+\subsubsection*{Remarques}
+\begin{enumerate}
+\item Dans les deux types, la prévision est le point sur la droite de régression
+\begin{align*}
+\widehat{E}[Y^*] &= \hat{Y}^* \\
+\hat{Y}^* &= \hat{\beta}_0 +  \hat{\beta}_1X^*
+\end{align*}
+\item La prévision est sans biais 
+\begin{align*}
+E[\hat{\beta}_0 +  \hat{\beta}_1X^*] &= E[\hat{\beta}_0] + E[\hat{\beta}_1]X^* \\
+&= \beta_0 +  \beta_1X^*
+\end{align*}
+\item Il y a deux sources d'erreur dans les prévisions,
+\begin{itemize}
+\item Parameter risk : Incertitude sur les estimateurs. Autrement dit, la variance des estimateurs des paramètres.
+\item Process risk : Fluctuations autour de la droite de régression. Autrement dit, la variance des résidus.
+\end{itemize}
+\end{enumerate}
+%%%%%%%% Figure sources d'erreur %%%%%%%%%%%%%
+
+
+%%%%%% Figure combinaison des 2 effets %%%%%%%%%%
+
+\subsection{I.C. pour la prévision de type I (Valeur moyenne)}
+\label{sec:type1}
+Aussi appelé intervalle de confiance pour la droite de régression.
+\bigskip
+
+Tel que vue à la section \ref{sec:distri}, on a que
+$$
+\big(\widehat{E}[Y^*] = \hat{\beta}_0 + \hat{\beta}_1X^* \big) \sim N(\beta_0 + \beta_1X^*; Var( \hat{\beta}_0 + \hat{\beta}_1X^*))
+$$
+Par conséquent,
+$$
+\frac{(\hat{\beta}_0 + \hat{\beta}_1X^*) - (\beta_0 + \beta_1X^*)}{\sqrt{Var( \hat{\beta}_0 + \hat{\beta}_1X^*)}} \sim N(0,1)
+$$
+En substituant $\sigma^2$ par $S^2$ dans la $Var(\hat{\beta}_0 + \hat{\beta}_1X^*)$; on a
+$$
+\frac{(\hat{\beta}_0 + \hat{\beta}_1X^*) - (\beta_0 + \beta_1X^*)}{\sqrt{\widehat{Var}( \hat{\beta}_0 + \hat{\beta}_1X^*)}} \sim t(n-2)
+$$
+Ainsi, un I.C. au niveau $100 \times(1 -\alpha)\%$ pour la valeur moyenne est
+
+\begin{equation}
+\label{eq:IC}
+\color{blue}
+\boxed{\color{black}
+(\hat{\beta}_0 + \hat{\beta}_1X^*)  \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{\widehat{Var}( \hat{\beta}_0 + \hat{\beta}_1X^*)}
+}
+\end{equation}
+On rappel que comme $\sigma^2$ n'est souvent pas connu, il est nécessaire d'utiliser son estimateur $S^2$.
+
+Or, 
+\begin{align*}
+Var(\hat{\beta}_0 + \hat{\beta}_1X^*)  &= Var(\overline{Y} - \overline{Y} + \hat{\beta}_0 + \hat{\beta}_1X^*) \\
+&= Var(\overline{Y} - (\hat{\beta}_0 + \hat{\beta}_1\overline{X}) + \hat{\beta}_0 + \hat{\beta}_1X^*) \\
+&= Var(\overline{Y} + \hat{\beta}_1( X^* - \overline{X})) \\
+&= Var(\overline{Y}) + Var(\hat{\beta}_1)( X^* - \overline{X})^2 \\
+&= \frac{\sigma^2}{n} + \frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}(X^* - \overline{X})^2 \\
+&=\sigma^2 \Bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg)  \\
+\end{align*}
+Et ainsi, on obtient,
+
+\begin{equation}
+\label{eq:var*}
+\color{blue}
+\boxed{\color{black}
+\widehat{Var}(\hat{\beta}_0 + \hat{\beta}_1X^*) = S^2 \Bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg)  
+}
+\end{equation}
+L'I.C. est donc,
+\begin{equation}
+\label{eq:IC2}
+\color{blue}
+\boxed{\color{black}
+(\hat{\beta}_0 + \hat{\beta}_1X^*) \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{S^2 \bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)}  
+}
+\end{equation}
+
+\subsubsection*{Remarque}
+%%%%%%%%%%%%%%%%%%%%% figure graphique IC
+\begin{enumerate}
+\item Plus $X^*$ s'éloigne de $\overline{X}$, plus l'I.C. est large, parceque l'incertitude augmente.
+\item Les limites de l'intervalle sont des \emph{hyperboles} centrées en $(\overline{X}, \overline{Y})$
+\item Cet I.C. peut être appelé :
+     \begin{itemize}
+     \item I.C. pour la valeur moyenne;
+     \item I.C. pour la droite de régression;
+     \item I.C. pour la tendance.
+     \end{itemize}
+\item Dans ce type d' I.C., on tient seulement compte du \textbf{risque de paramètre}.
+\end{enumerate}
+
+\subsection{I.C. pour la prévision de type II (Vrai valeur)}
+Aussi appelé I.C. pour les points de $Y^*$.
+\bigskip
+Pour obtenir un I.C. pour la vrai valeur de $Y^*$, il faut tenir compte du parameter risk $(Var(\hat{\beta}_i))$ ET du process risk $(Var(\varepsilon_t))$.On considère donc de manière équivalente à la section \ref{sec:type1},
+
+$$
+\frac{Y^* - \hat{Y}^*}{\sqrt{Var(Y^* - \hat{Y}^*)}} \sim N(0,1)
+$$
+En substituant $\sigma^2$ par $S^2$ dans $Var(Y^* - \hat{Y}^*)$, on a
+
+$$
+\frac{Y^* - \hat{Y}^*}{\sqrt{\widehat{Var}(Y^* - \hat{Y}^*)}} \sim t(n-2)
+$$
+
+
 
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
