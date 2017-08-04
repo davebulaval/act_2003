@@ -141,7 +141,7 @@ $\hfil\tilde{}\hfil$\crcr\noalign{\kern0.05pt}}}}}
 
 %%%%%%% Chapitre 1 %%%%%%%%
 \chapter{Introduction}
-L'établissement de prévisions joue un rôle central dans notre vie de tous les jours (prévisions météorologique, horoscope, etc.), et plus particulièrement dans celle des actuaires.
+L'établissement de prévisions joue un rôle central dans notre vie de tous les jours (prévisions météorologiques, horoscope, etc.), et plus particulièrement dans celle des actuaires.
 
 \subsection*{Objectifs de la régression}
 Régulièrement en actuariat, on se questionne sur les effets de différentes variables sur d'autres. Par exemple,
@@ -150,7 +150,7 @@ Régulièrement en actuariat, on se questionne sur les effets de différentes va
 \item Quel est l'effet du sexe sur la mortalité ?
 \end{itemize}
 
-On cherche à étuider et déterminer les relations entre des variables mesurables à partir de données.
+On cherche à étudier et déterminer les relations entre des variables mesurables à partir de données.
 
 \subsection*{Deux grandes classes de variables mesurables :}
 \begin{itemize}
@@ -169,7 +169,7 @@ On cherche à étuider et déterminer les relations entre des variables mesurabl
 \end{enumerate}
 
 \bigskip
-Dans le cadre du cours, seulement les modèles probabilistes linéaires seront étudiez. 
+Dans le cadre du cours, seulement les modèles probabilistes linéaires seront étudiés. 
 
 %%%%%%%%%%%%%%% Chapitre 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Régression linéaire simple}
@@ -181,7 +181,7 @@ De façon générale, en régression, nous avons :
 \begin{tabularx}{\linewidth}{c|X|c}
 \hline
 Y & Variable dépendante, ou de réponse & Output \\
-$X_1, X_2, ..., X_n$ & Soit n variables indépendantes ou explicatives, ou exogènes\footnote{Les variables $X_i$ sont indépendante par rapport à y, mais pas nécessairement entre elles.} & Input \\
+$X_1, X_2, ..., X_n$ & Soit n variables indépendantes ou explicatives, ou exogènes\footnote{Les variables $X_i$ sont indépendantes par rapport à y, mais pas nécessairement entre elles.} & Input \\
 $\beta_0, \beta_1, ... \beta_n$ & Les paramètres à estimer & \\
 \hline
 \end{tabularx}
@@ -245,29 +245,30 @@ On cherche à prédire l'âge des passagers du Titanic selon le prix du billet �
 %% Graphe modèle linéaire simple
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=4.5>>=
 path <- paste(getwd(),"..",sep = "/")
-data <- read.csv('data/Titanic/train.csv', stringsAsFactors = F) # to midify
+data <- read.csv('data/Titanic/train.csv', stringsAsFactors = F)
 
 n <- 25
 data <- data[1:n,]
 
-## le modèle
+# Le modele
 resul <- lm(Age ~ Fare, data)
 
-## affiche le modèle avec la droite de régression
+# Affiche le modele avec la droite de regression
 plot(data$Fare, data$Age, xlab = "Prix du billet ($)", ylab = "Âge du passager", main = "Âge prédit des passagers du Titanic")
 
 abline(resul, col="red2", lwd = 1.5)
 epsi <- c(7, 17)
 segments(data$Fare[epsi], data$Age[epsi],  data$Fare[epsi], resul$coefficients[1] + resul$coefficients[2]* data$Fare[epsi], col = "gray8")
 
-## Affichage varepsilone 7
+# Affichage varepsilone 7
 text( x = (data$Fare[7] + data$Fare[7]) / 2, y = (data$Age[7] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[7]) / 2, col = "gray8", labels = "epsilone_7", pos = 4, cex = 1)
 
-## Affichage varepsilone 17
+# Affichage varepsilone 17
 text( x = (data$Fare[17] + data$Fare[17]) / 2, y = (data$Age[17] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[17]) / 2, col = "gray8", labels = "epsilone_17", pos = 4, cex = 1)
 @
 
-\subsection{Regression linéaire multiple}
+\subsection{Régression linéaire multiple}
+\label{ex:multiple}
 On cherche à prédire l'âge des passagers du Titanic selon le prix du billet et son sexe à l'aide du modèle linéaire suivant,
 
 \bigskip
@@ -290,33 +291,30 @@ On cherche à prédire l'âge des passagers du Titanic selon le prix du billet e
 
 %% fig 1 multilinear regression
 <<eval = TRUE, echo=FALSE, fig=TRUE , height=4,width=4.5>>=
-## le modèle
+# Le modele
 resul <- lm(Age ~ Fare + Pclass, data)
 
-## affiche le modèle avec la droite de régression
+# Affiche le modele avec la droite de regression
 library(scatterplot3d)
 
-fig <- scatterplot3d(data$Fare, data$Age, data$Pclass, highlight.3d=TRUE, xlab = "Prix du billet ($)", ylab = "Âge du passager", zlab = "Classe du billet", main = "Âge predit des passagers du Titanic", angle=55, pch = 16)
+fig <- scatterplot3d(data$Fare, data$Age, data$Pclass, highlight.3d=TRUE, xlab = "Prix du billet ($)", ylab = "Âge du passager", zlab = "Classe du billet", main = "Âge prédit des passagers du Titanic", angle=55, pch = 16)
 fig$plane3d(resul, col = "blue", draw_polygon =  TRUE, draw_lines = FALSE)
 @
-
 
 Voici la régression sous un autre angle, on voit la surface plane de régression.
 %% fig 2
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=4.5>>=
-## affiche le modèle avec la droite de régression
+# Affiche le modele avec la droite de regression
 library(scatterplot3d)
 
-fig2 <- scatterplot3d(data$Fare, data$Age, data$Pclass, highlight.3d=TRUE, xlab = "Prix du billet ($)", ylab = "Âge du passager", zlab = "Classe du billet", main = "Âge predit des passagers du Titanic", angle=-55, pch = 16)
+fig2 <- scatterplot3d(data$Fare, data$Age, data$Pclass, highlight.3d=TRUE, xlab = "Prix du billet ($)", ylab = "Âge du passager", zlab = "Classe du billet", main = "Âge prédit des passagers du Titanic", angle=-55, pch = 16)
 fig2$plane3d(resul, col = "blue", draw_polygon =  TRUE, draw_lines = FALSE)
 @
 
-
-
 \subsection{Régression exponentielle}
-On cherche à prédire la sévérité d'un sinistre automobile en fonction du temps à l'aide du modèle exponentielle suivant,
+On cherche à prédire la sévérité d'un sinistre automobile en fonction du temps à l'aide du modèle exponentiel suivant,
 
-%%% fig exponentielle
+%%% fig exponentiel
 \begin{center}
 \begin{tikzpicture}[node distance=1.2cm]
 \node (function) at (current page.center) {$Y  = \beta_0 \times  e^{\beta_1 \times X} \times \varepsilon$};
@@ -330,20 +328,20 @@ On cherche à prédire la sévérité d'un sinistre automobile en fonction du te
 \end{tikzpicture}
 \end{center}
 
-%% Figure modèle exponentielle
+%% Figure modèle exponentiel
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=3.5,width=5>>=
-## Les données simulées
+# Les donnees simulees
 beta <- 0.051
 n <- 100
 temp <- data.frame(y = exp(beta * seq(n)) + rgamma(n, 5, 5/50), x = seq(n))
 
-# Affichage des données
+# Affichage des donnees
 plot(temp$x, temp$y, xlab = "Temps", ylab = "Sévérité des sinistres", main = "Modèle de prédiction de la sévérité des sinistres" )
 
-# fit non-linear model
+# Fit non-linear model
 mod <- nls(y ~ exp(a + b * x), data = temp, start = list(a = 0, b = 0))
 
-# add fitted curve
+# Add fitted curve
 lines(temp$x, predict(mod, list(x = temp$x)), col = "red2")
 @
 
@@ -355,7 +353,7 @@ On remarque que la régression exponentielle est similaire à une régression li
 \ln (Y) &= \ln (\beta_0) + \beta_1 \times X + \ln (\varepsilon) \\
 Y^* &= \beta_0^* + \beta_1 \times X + \varepsilon^*\\
 \end{align*}
-Qu'on appel aussi une régression multiplicative ou log-linéaire.
+Qu'on appelle aussi une régression multiplicative ou log linéaire.
 
 \subsection{Régression quadratique}
 On cherche à prédire la sévérité d'un sinistre automobile en fonction du temps et du temps au carré à l'aide du modèle quadratique suivant,
@@ -377,13 +375,13 @@ On cherche à prédire la sévérité d'un sinistre automobile en fonction du te
 
 %% Graphe modèle quadratique
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=3.5,width=5>>=
-# Affichage des données
+# Affichage des donnees
 plot(temp$x, temp$y, xlab = "Temps", ylab = "Sévérité des sinistres", main = "Modèle de prédiction de la sévérité des sinistres" )
 
-# fit non-linear model
+# Fit non-linear model
 mod <- nls(y ~ a + b * x + c * x^2, data = temp, start = list(a = 0, b = 0, c = 0))
 
-# add fitted curve
+# Add fitted curve
 lines(temp$x, predict(mod, list(x = temp$x)), col = "red2")
 @
 
@@ -395,22 +393,22 @@ Y &= \beta_0 + \beta_1 \times X_1 + \beta_2 \times X_2 + \varepsilon\\
 \end{align*}
 Soit une régression linéaire multiple.
 
-Dans le cadre du cours, seulement les modèles linéaires seront à l'étude car,
+Dans le cadre du cours, seulement les modèles linéaires seront à l'étude pour les différentes raisons suivantes
 
 \begin{itemize}
 \item Plus simples
 \item Plusieurs modèles peuvent se ramener à un modèle linéaire simple ou multiple. (voir \ref{note:exponentielle} et \ref{note:quadratique})
-\item Constituent souvent une très bonne approximation de la réalité qui peut être très complexe, tel que l'assurance.
-\item Se généralisent faciment, tel que les \textit{Generalized Linear Models}.
+\item Constituent souvent une très bonne approximation de la réalité qui peut être très complexe, telle que l'assurance.
+\item Se généralisent facilement, tels que les \textit{Generalized Linear Models}.
 \end{itemize}
 
-Le principale problème de la modélisation linéaire est de trouver les différents paramètres $\beta_0, \beta_1, ..., \beta_n$ de tel sorte que
+Le principal problème de la modélisation linéaire est de trouver les différents paramètres $\beta_0, \beta_1, ..., \beta_n$ de telle sorte que
 \begin{equation}
 \varepsilon = Y - f(X_1,...,X_n; \beta_0, \beta_1,...,\beta_n)
 \end{equation}
-soit minimiser.
+soit minimisé.
 
-Il existe plusieurs méthode pour calcul l'erreur. Soit les erreurs suivants :
+Il existe plusieurs méthodes pour calcul l'erreur. Soit les erreurs suivantes :
 \begin{itemize}
 \item Erreur totale
 \item Erreur absolue
@@ -425,35 +423,34 @@ Quel type d'erreur est suffisante pour déterminer $\varepsilon$ ?
 \end{equation}
 \begin{itemize}
 \item Facile à mettre à 0
-\item Pas fiable à cause de la mise à zéro
+\item Manque de fiabilité à cause de la mise à zéro
 \end{itemize}
 
 %% Graphe modèle quadratique
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=6,width=7.5>>=
-## Les données simulées
+# Les donnees simulees
 beta <- 0.05
 n <- 100
 temp <- data.frame(y = exp(beta * seq(n)) + rgamma(n, 5, 5/1), x = seq(n))
 temp2 <- data.frame(y = exp(beta * seq(n)) + rgamma(n, 5, 5/50), x = seq(n))
 
-# Affichage des données
+# Affichage des donnees
 par(mfrow = c(1,2))
 plot(temp2$x, temp2$y, xlab = "Temps", ylab = "Sévérité des sinistres", main = "Modèle de prédiction" )
-# fit non-linear model
+# Fit non-linear model
 mod <- nls(y ~ exp(a + b * x), data = temp2, start = list(a = 0, b = 0))
 
-# add fitted curve
+# Add fitted curve
 lines(temp2$x, predict(mod, list(x = temp2$x)), col = "red2")
 
 plot(temp$x, temp$y, xlab = "Temps", ylab = "Sévérité des sinistres", main = "Modèle de prédiction réajusté" )
 
-# fit non-linear model
+# Fit non-linear model
 mod <- nls(y ~ exp(a + b * x), data = temp, start = list(a = 0, b = 0))
 
-# add fitted curve
+# Add fitted curve
 lines(temp$x, predict(mod, list(x = temp$x)), col = "red2")
 @
-
 
 \subsubsection{Erreur absolue}
 \begin{equation}
@@ -461,7 +458,7 @@ lines(temp$x, predict(mod, list(x = temp$x)), col = "red2")
 \end{equation}
 \begin{itemize}
 \item Très robuste
-\item Très compliqué mathématiquement, pour minimiser $\sum_{t=1}^n |\varepsilon_t|$ cela implique de dériver la fonction.
+\item Très compliquée mathématiquement, pour minimiser $\sum_{t=1}^n |\varepsilon_t|$ cela implique de dériver la fonction.
 \end{itemize}
 
 \subsubsection{Erreur quadratique}
@@ -474,10 +471,10 @@ lines(temp$x, predict(mod, list(x = temp$x)), col = "red2")
 \end{itemize}
 
 \bigskip
-L'erreur quadratique semble donc l'option la plus simple dû à la facilité mathématique et ça fiabilité.
+L'erreur quadratique semble donc l'option la plus simple due à la facilité mathématique et sa fiabilité.
 
 \section{Le modèle de régression linéaire simple}
-Le modèle de régression linéaire simple tente d'expliquer le mieux possible la variable \href{https://fr.wikipedia.org/wiki/Variable_dépendante}{dépendante} \footnote{On appel parfois la variable dépendante une variable \href{https://fr.wikipedia.org/wiki/Endogène}{endogène}. Qui s'interpréte comme étant une variable qui est dû à une cause interne.}  Y à l'aide d'une variable \href{https://fr.wikipedia.org/wiki/Variable_indépendante}{indépendante}\footnote{On appel parfois les variables dépendantes des variables \href{https://fr.wikipedia.org/wiki/Exogène}{exogène}. Qui s'intrepréte comme étant extérieur à un système.} X . 
+Le modèle de régression linéaire simple tente d'expliquer le mieux possible la variable \href{https://fr.wikipedia.org/wiki/Variable_dépendante}{dépendante} \footnote{On appelle parfois la variable dépendante une variable \href{https://fr.wikipedia.org/wiki/Endogène}{endogène}. Qui s'interprète comme étant une variable qui est due à une cause interne.}  Y à l'aide d'une variable \href{https://fr.wikipedia.org/wiki/Variable_indépendante}{indépendante}\footnote{On appelle parfois les variables dépendantes des variables \href{https://fr.wikipedia.org/wiki/Exogène}{exogène}. Qui s'intreprète comme étant extérieur à un système.} X . 
 
 Si on dispose de n paires d'observations $(X_1, Y_1), (X_2, Y_2),...,(X_n, Y_n)$ alors, le modèle s'exprime  comme suit :
 \begin{equation}
@@ -486,15 +483,15 @@ Y_i = \beta_0 + \beta_1\times X_i + \varepsilon_i \text{,  i = 1, ...,n.}
 \end{equation}
 
 Où $\beta_0$ est le paramètre associé à l'ordonnée à l'origine du modèle;
-$\beta_1$ est le paramètre associé à la pende de la droite;
+$\beta_1$ est le paramètre associé à la pente de la droite;
 et $\varepsilon$ est le terme d'erreur.
 
 \subsubsection*{Quelques remarques sur le modèle}
-Dans l'équation \ref{eq:simple} du modèle, on remarque que 
+Dans l'équation \ref{eq:simple} du modèle, on remarque que :
 \begin{itemize}
-\item Les observations de $Y_i$ sont tiré d'une varaible aléatoire;
+\item Les observations de $Y_i$ son tirées d'une variable aléatoire;
 \item Les observations de $X_i$ sont considérées comme des valeurs connues et non aléatoires;
-\item Les paramètres $\beta_0$ et $\beta_1$ sont inconnus au départ et doivent être estimer;
+\item Les paramètres $\beta_0$ et $\beta_1$ sont inconnus au départ. Ils doivent être estimés;
 \item $\varepsilon_i$ sont des réalisations inconnues d'une variable aléatoire.
 \end{itemize}
 
@@ -509,7 +506,7 @@ Comment résoudre le modèle pour prédire les salaires des actuaires en fonctio
 \bigskip
 \textbf{Raisonnement:}
 \begin{itemize}
-\item Pour $X_t = 0$; on a $Y_t = \beta_0$. Autrement dit, le salaire avec un nombre d'année de scolarité est \emph{en moyenne} de $\beta_0$. Par exemple, $\beta_0$ serait le salaire moyen d'un stagiaire.
+\item Pour $X_t = 0$; on a $Y_t = \beta_0$. Autrement dit, le salaire avec un nombre d'années de scolarité est \emph{en moyenne} de $\beta_0$. Par exemple, $\beta_0$ serait le salaire moyen d'un stagiaire.
 \item Par la suite, pour chaque année additionnelle de scolarité, le salaire augmente \emph{en moyenne }de $\beta_1$ unitées.
 \end{itemize}
 Ainsi, \emph{en moyenne} on a 
@@ -517,13 +514,13 @@ Ainsi, \emph{en moyenne} on a
 E[Y_t|X_t] &= \beta_0 + \beta_1\times X_t
 \end{align*}
 
-Habituellement, la relation n'est pas parfaitement exacte dans la réalité. On se retrouve ainsi avec une \emph{différence} dans notre variable exogène prédite. L'erreur est notée $\varepsilon_t$ et est tel que mentionnée plus tôt, assumée aléatoire.
+Habituellement, la relation n'est pas parfaitement exacte dans la réalité. On se retrouve ainsi avec une \emph{différence} dans notre variable exogène prédite. L'erreur est notée $\varepsilon_t$ et est telle que mentionnée plus tôt, assumée aléatoire.
 \begin{align*}
 \varepsilon_t &= Y_t - E[Y_t|X_t] \\
 &= Y_t - (\beta_0 + \beta_1\times X_t)\\
 \end{align*}
 
-En réoganisant, on retrouve l'équation \ref{eq:simple}.
+En réorganisant, on retrouve l'équation \ref{eq:simple}.
 %%% fig linéaire simple 2
 \begin{center}
 \begin{tikzpicture}[node distance=1.2cm]
@@ -552,7 +549,7 @@ Si $\varepsilon_t$ est minimal, cela veut dire que $Y_t \approx \beta_0 + \beta_
 
 \subsection{Coefficients de régression}
 \label{subsec:coeffreg}
-Les paramètres $\beta_0$ et $\beta_1$ sont déterminés en minimisant l'erreur quadratique à l'aide de la méthode des moindres carrées.
+Les paramètres $\beta_0$ et $\beta_1$ sont déterminés en minimisant l'erreur quadratique à l'aide de la méthode des moindres carrés.
 
 \begin{align*}
 S(\beta_0, \beta_1) &= \sum_{t=1}^n \varepsilon_t^2 \\
@@ -560,10 +557,10 @@ S(\beta_0, \beta_1) &= \sum_{t=1}^n \varepsilon_t^2 \\
 &= \sum_{t=1}^n \big( Y_t - \beta_0 - \beta_1\times X_t \big)^2 \\
 \end{align*}
 
-Où $S(\psi)$ peut être considéré comme une mesure de la \emph{distance} entre les données observées et le modèle théorique qui prédit ces données \footnote{Pour de plus ample information sur la méthode des moindres carrées et la fonction de \emph{distance}, la page \href{https://fr.wikipedia.org/wiki/Méthode_des_moindres_carrés}{Wikipédia} contient des bonnes explications sur le sujet.}.
+Où $S(\psi)$ peut être considérée comme une mesure de la \emph{distance} entre les données observées et le modèle théorique qui prédit ces données \footnote{Pour de plus amples informations sur la méthode des moindres carrés et la fonction de \emph{distance}, la page \href{https://fr.wikipedia.org/wiki/Méthode_des_moindres_carrés}{Wikipédia} contient une bonne explication sur le sujet.}.
 
 \bigskip
-Afin de minimiser la fonction $S(\beta_0, \beta_1)$ on dérive la fonction partiellement en fonction de chacun des paramètres.
+Afin de minimiser la fonction $S(\beta_0, \beta_1)$, on dérive la fonction partiellement en fonction de chacun des paramètres.
 
 \subsubsection*{Minimisation de $\beta_0$}
 \begin{align*}
@@ -649,24 +646,24 @@ Si on reprend le graphique de la section \ref{fig:linsimp}, on observe facilemen
 
 %% Graphe modèle linéaire simple
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=5>>=
-## le modèle
+# Le modele
 resul <- lm(Age ~ Fare, data)
 
-## affiche le modèle avec la droite de régression
+# Affiche le modele avec la droite de regression
 plot(data$Fare, data$Age, xlab = "Prix du billet ($)", ylab = "Âge du passager", main = "Âge prédit des passagers du Titanic")
 
 abline(resul, col="red2", lwd = 1.5)
 epsi <- c(7, 17)
 segments(data$Fare[epsi], data$Age[epsi],  data$Fare[epsi], resul$coefficients[1] + resul$coefficients[2]* data$Fare[epsi], col = "gray8")
 
-## Affichage varepsilone 7
+# Affichage varepsilone 7
 text( x = (data$Fare[7] + data$Fare[7]) / 2, y = (data$Age[7] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[7]) / 2, col = "gray8", labels = "epsilone_7", pos = 4, cex = 1)
 
-## Affichage varepsilone 17
+# Affichage varepsilone 17
 text( x = (data$Fare[17] + data$Fare[17]) / 2, y = (data$Age[17] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[17]) / 2, col = "gray8", labels = "epsilone_17", pos = 4, cex = 1)
 @
 
-\item Le \emph{centre de gravité}\footnote{Qu'on appelle parfois centre de masse.} des données $(\overline{X}, \overline{Y})$ se trouve exactement sur la droite de régression.
+\item Le \emph{centre de gravité}\footnote{Qu'on appelle parfois le centre de masse.} des données $(\overline{X}, \overline{Y})$ se trouvent exactement sur la droite de régression.
 
 On peut facilement effectuer cette preuve à partir de l'équation \ref{eq:beta0},
 \begin{align*}
@@ -676,14 +673,14 @@ On peut facilement effectuer cette preuve à partir de l'équation \ref{eq:beta0
 On note ainsi une absence de résidus pour le centre de masse.
 
 \bigskip
-Si on reprend (encore) le graphique de la section \ref{fig:linsimp}, on observe facilement le centre de masse sur le graphiqe. 
+Si on reprend (encore) le graphique de la section \ref{fig:linsimp}, on observe facilement le centre de masse sur le graphique. 
 
 %% Graphe modèle Xbarre et Ybarre
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=5>>=
-## le modèle
+# Le modele
 resul <- lm(Age ~ Fare, data, na.action = na.omit)
 
-## affiche le modèle avec la droite de régression
+# Affiche le modele avec la droite de regression
 plot(data$Fare, data$Age, xlab = "Prix du billet ($)", ylab = "Âge du passager", main = "Représentation du \n centre de masse")
 xbarre <- sum(data$Fare) / length(data$Fare)
 ybarre <- sum(data$Age, na.rm = TRUE) / length(data$Age[!is.na(data$Age)]) ## Correction arbitraire pour les valeurs NA
@@ -691,10 +688,10 @@ abline(resul, col="red2", lwd = 1.5)
 points(xbarre, ybarre, pch = 20)
 segments(xbarre, ybarre,  xbarre, 0, col = "gray8")
 segments(xbarre, ybarre,  0, ybarre, col = "gray8")
-## Affichage varepsilone 7
+# Affichage varepsilone 7
 text( x = xbarre, y = 0, col = "blue", labels = "XBarre", pos = 3, cex = 1)
 
-## Affichage varepsilone 17
+# Affichage varepsilone 17
 text( x = 3, y = ybarre + 2, col = "blue", labels = "YBarre", pos = 4, cex = 1)
 @
 
@@ -709,7 +706,7 @@ text( x = 3, y = ybarre + 2, col = "blue", labels = "YBarre", pos = 4, cex = 1)
 \end{enumerate}
 
 \subsubsection*{Notation}
-Afin de faciliter l'écriture, on intégre la notation suivante, $S_{xx}$ et  $S_{xy}$. Qui sont appelés respectivement la somme des carrées corrigée de $x$ et la somme des produits croisés corrigée de $x$ et de $y$.
+Afin de faciliter l'écriture, on intègre la notation suivante; $S_{xx}$ et  $S_{xy}$. Les expressions précédantes sont appelées respectivement: la somme des carrés corrigée de $x$ et la somme des produits croisés corrigée de $x$ et de $y$.
 Voici le développement pour $S_{xx}$,
 \begin{align*}
 S_{xx} &= \sum_{t=1}^n (X_t - \overline{X})^2 \\
@@ -745,7 +742,7 @@ On poursuit avec un exemple pour assimiler l'information.
 
 \bigskip
 \begin{description}
-\item[•] On dispose des cinq observations suivantes du couple $(X_t, Y_t)$ dans le tableau de gauche ainsi que les éléments calculer nécessaire pour trouver les paramètres dans le tableau de droite.
+\item[•] On dispose des cinq observations suivantes du couple $(X_t, Y_t)$ dans le tableau de gauche ainsi que les éléments calculés nécessaires pour trouver les paramètres dans le tableau de droite.
 \end{description}
 
 \begin{minipage}[t]{.4\linewidth}
@@ -824,11 +821,11 @@ t & $Y_t = \hat{\beta}_0 + \hat{\beta}_1X_t$ & $\hat{\varepsilon}_t$ \\
 \end{center}
 
 \bigskip
-\subsubsection*{Execution en R}
+\subsubsection*{Exécution en R}
 %% script R
 \begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
 <<eval =FALSE>>=
-# dataset
+# Dataset
 x <- c(2,3,6,9,12); y <- c(2,5,3,6,5)
 
 # Estimations des parametres
@@ -848,7 +845,7 @@ residuals(reg)
 \bigskip
 %% info bull astuce calculatrice + reférence vers le guide
 \begin{moreInfo}{\emph{Astuce calculatrice}}
-	La calculatrice TI-30XS Multiview permet de créé un tableau de donnée et de sortir rapidement et facilement différentes informations sur une régression à partir des données. Tel que :
+	La calculatrice TI-30XS Multiview permet de créer un tableau de donnée et de sortir rapidement et facilement différentes informations sur une régression à partir des données. Tel que :
 	\begin{itemize}
 	\item $\overline{X}$ et $\overline{Y}$ ;
 	\item $\sum_{t=1}^n X_t$, $\sum_{t=1}^n X_t^2$, $\sum_{t=1}^n Y_t$, $\sum_{t=1}^n Y_t^2$ et $\sum_{t=1}^n X_tY_t$ ;
@@ -859,20 +856,20 @@ residuals(reg)
 \bigskip
 
 \subsection{Caractéristiques du terme d'erreur}
-On rappel que l'équation du modèle de régression correspond à 
+On rappelle que l'équation du modèle de régression correspond à 
 
 \begin{align*}
 Y_t &= \beta_0 + \beta_1\times X_t + \varepsilon_t \text{ (\ref{eq:simple})}
 \end{align*}
-De plus, on sait qu'il s'agit des valeurs moyennes de $Y_t$ en sachat $X_t$, soit
+De plus, on sait qu'il s'agit des valeurs moyennes de $Y_t$ en sachant $X_t$, soit
 \begin{align*}
 Y_t = E[Y_t|X_t] + \varepsilon_t 
 \end{align*}
 
-On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikipedia.org/wiki/Postulat}{postulat} est un principe non démontré mais utilisé dans la construction d'une théorie mathématique. } suivants,
+On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikipedia.org/wiki/Postulat}{postulat} est un principe non démontré, mais utilisé dans la construction d'une théorie mathématique. } suivants,
 \begin{enumerate}
-\item \label{post1} $E[\varepsilon_t] = 0$, par définition pour que $E[Y_t] = E[Y_t|X_t]$. Il s'agit de l'hypothèse de linéarité ou d'exogénéité de la variable explicative. On dit qu'elle est exogène si elle n'est pas corrélée au terme d'erreur.
-\item \label{post2} $Var(\varepsilon_t) = \sigma^2$, la variance des termes d'erreurs est supposés constante. Il s'agit de l'hypothèse d'homoscédasticité.
+\item \label{post1} $E[\varepsilon_t] = 0$, par définition pour que $E[Y_t] = E[Y_t|X_t]$. Il s'agit de l'hypothèse de linéarité de la variable explicative. On dit qu'elle est exogène si elle n'est pas corrélée au terme d'erreur.
+\item \label{post2} $Var(\varepsilon_t) = \sigma^2$, la variance des termes d'erreurs est supposée constante. Il s'agit de l'hypothèse d'homoscédasticité.
 \item \label{post3} $Cov(\varepsilon_t, \varepsilon_s) = 0$, pour $t \neq s$,il n'y a pas de corrélation entre les termes d'erreurs. Il s'agit de l'hypothèse d'indépendance des erreurs.
 \end{enumerate}
 
@@ -880,7 +877,7 @@ On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikiped
 %% info bull hypothèse implicite
 \begin{moreInfo}{\emph{Quatrième postulat}}
 \label{post4}
-	Les hypothèses de linéarité et d'homoscédasticité sont très intéressante, si on observe leurs définitions ensemble on remarque qu'il s'agit d'une distribution avec une espérance nulle et une variabilité supposé constante. Ce qui nous amène à une quatrième hypothése, les résidus sont distribués selon une loi normale.
+	Les hypothèses de linéarité et d'homoscédasticité sont très intéressantes, si on observe leurs définitions ensemble on remarque qu'il s'agit d'une distribution avec une espérance nulle et une variabilité supposée constante. Ce qui nous amène à une quatrième hypothèse, les résidus sont distribués selon une loi normale.
 	\begin{align*}
 \hat{\varepsilon}_t|x_i \sim N(0, \sigma^2)
 	\end{align*}
@@ -891,21 +888,21 @@ On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikiped
 \label{sec:EMC}
 
 \subsection{Estimateur sans biais}
-On rappel qu'un estimateur est dit sans biais lorsque son espérance est égale à la valeur vrai du paramètre, soit $E[\hat{\theta}] = \theta \Leftrightarrow b(\hat{\theta}) = 0$ \footnote{Notes de cours ACT-2000, chapitre 3, Thomas Landry, Hiver 2017.}.
+On rappelle qu'un estimateur est dit sans biais lorsque son espérance est égale à la valeur vraie du paramètre, soit $E[\hat{\theta}] = \theta \Leftrightarrow b(\hat{\theta}) = 0$ \footnote{Notes de cours ACT-2000, chapitre 3, Thomas Landry, Hiver 2017.}.
 
 \begin{align*}
 E[\hat{\beta}_1] &= E \Bigg[ \frac{\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg] \\
 &= \frac{\sum_{t=1}^n(X_t- \overline{X})E[Y_t - \overline{Y}]}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
 &= \frac{\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
 \end{align*}
-De l'équation \ref{eq:simple}, et avec le postulat \ref{post1}, on sait que 
+De l'équation \ref{eq:simple}, et avec le postulat \ref{post1}, on sait que,
 
 \begin{align*}
 Y_t &= \beta_0 + \beta_1\times X_t + \varepsilon_t \\
 E[Y_t] &= E[\beta_0 + \beta_1\times X_t] + E[\varepsilon_t] \\
 &\overset{\ref{post1}}{=} \beta_0 + \beta_1\times X_t + 0 \\
 \end{align*}
-On applique le même raisonement pour l'espérance de $\overline{Y}$. 
+On applique le même raisonnement pour l'espérance de $\overline{Y}$. 
 
 \begin{align*}
 E[\hat{\beta}_1] &= \frac{\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
@@ -927,7 +924,7 @@ E[\hat{\beta}_0]  &= \beta_0 \\
 On peut ainsi conclure que les deux estimateurs des paramètres sont sans biais.
 
 \subsection{Variances et covariances des estimateurs}
-On s'intéresse aux variances et aux covariances des estimateurs, cette deuxième propriété ainsi que la première nous permetteras de déduire une conclusion en lien avec le quatrième postulat.
+On s'intéresse aux variances et aux covariances des estimateurs, cette deuxième propriété ainsi que la première nous permettera de déduire une conclusion en lien avec le quatrième postulat.
 
 \begin{align*}
 Var(\hat{\beta}_1) &= Var\Bigg( \frac{\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg)\\
@@ -1030,7 +1027,7 @@ $$ \beta =
 
 \section{Régression passant par l'origine}
 Dans certaines situations, il est possible que l'on souhaite forcer la droite de régression à passer par l'origine.
-Voici un exemple de situation ou il est plus logique de forcer le modèle,
+Voici un exemple de situation où il est plus logique de forcer le modèle,
 \begin{align*}
 X_t &: \text{Nombre de Km parcouru} t \\
 Y_t &: \text{Consommation d'essence en L d'une voiture} t\\
@@ -1043,7 +1040,7 @@ Dans ce cas, on peut postuler le modèle suivant :
 Y_t = \beta \times X_t + \varepsilon_t
 \end{equation}
 
-On peut démontrer par le même raisonnement qu'à la section \ref{subsec:coeffreg} que de minimisation du paramètre $\beta$ correspond à 
+On peut démontrer par le même raisonnement qu'à la section \ref{subsec:coeffreg} que de minimisation du paramètre $\beta$ correspond à :
 
 \begin{equation}
 \label{eq:betasimp}
@@ -1052,7 +1049,7 @@ On peut démontrer par le même raisonnement qu'à la section \ref{subsec:coeffr
 \hat{\beta} = \frac{\sum_{t=1}^n X_t Y_t}{\sum_{t=1}^n X_t^2}}
 \end{equation}
 
-On reprent l'exemple énoncer plus haut, voici le modèle représenter graphiquement :
+On reprend l'exemple énoncer plus haut, voici le modèle représenter graphiquement :
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=4.5>>=
 # dataset
 # X Km parcourus
@@ -1071,7 +1068,7 @@ abline(reg, col="red2", lwd = 1.5)
 @
 
 \subsubsection*{Code R}
-Voici le code R permettant de créé un modèle linéaire simple avec une droite passant par l'origine.
+Voici le code R permettant de créer un modèle linéaire simple avec une droite passant par l'origine.
 
 \begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
 <<eval=FALSE>>=
@@ -1100,7 +1097,7 @@ Un tableau d'analyse de la variance permet d'évaluer la qualité de l'ajustemen
 
 \subsubsection*{Idée}
 \begin{enumerate}
-\item Si on décide de modéliser $Y_t$ sans la régression, autrement dit de l'analyse statistique \footnote{Cours ACT-2000}, alors Y est vu comme une variable aléatoire avec une certaine variance, soit $Var(y)$.
+\item Si on décide de modéliser $Y_t$ sans la régression, autrement dit de l'analyse statistique \footnote{Cours ACT-2000}, alors $Y$ est vue comme une variable aléatoire avec une certaine variance, soit $Var(y)$.
 \item En utilisant la régression pour modéliser $Y_t$ en fonction de $X_t$ une partie de la variance de $Y_t$ est \emph{expliquée} par la variance de $X_t$, alors que l'autre partie reste \emph{inexpliquée}.
 \item L'utilité de la régression est de trouver la proportion de la variance de $Y_t$ qui est expliquée par la variance de $X_t$.
 \end{enumerate}
@@ -1126,7 +1123,7 @@ plot(x2, y2, xlab = "X_t", ylab = "Y_t", main = "Échantillon 2")
 abline(resul2, col="red2", lwd = 1.5)
 @
 
-On voit que les résidus de l'échantillon 1 sont très mal expliquer par notre modèle, les résidus sont très élevé. Tandis que les résidus de l'échantillon 2 sont parfaitement expliquer par notre modèle.
+On voit que les résidus de l'échantillon 1 sont très mal expliqués par notre modèle, les résidus sont très élevés. Tandis que les résidus de l'échantillon 2 sont parfaitement expliqués par notre modèle.
 <<eval = TRUE, echo=FALSE>>=
 residusMauvais <- list()
 residusMauvais$residusMauvaisFit <- fitted(resul)[1:10]
@@ -1137,7 +1134,7 @@ residusBon$residusBonFit <- fitted(resul2)[1:10]
 residusBon 
 @
 
-Il y a peu d'intérêt de construire un modèle avec les donnèes de l'échantillon 1 car,
+Il y a peu d'intérêt de construire un modèle avec les données de l'échantillon 1 car,
 
 \begin{center}
 \begin{tikzpicture}[node distance=1.2cm]
@@ -1149,20 +1146,20 @@ Il y a peu d'intérêt de construire un modèle avec les donnèes de l'échantil
 \draw[->, line width=0.5mm] (X) -- ([xshift=2.5cm, yshift=-3mm] function.center);
 \end{tikzpicture}
 \end{center}
-Il est préférable dans ce cas-ci d'utiliser les modèles statistiques vue dans le cours ACT-2000.
+Il est préférable dans ce cas-ci d'utiliser les modèles statistiques vus dans le cours ACT-2000.
 
 \bigskip
-Par contre, il y aun intérêt à utiliser un modèle avec les données de l'échantillon 2 car,
+Par contre, il y a un intérêt à utiliser un modèle avec les données de l'échantillon 2 car,
 $$
 Var(Y_t) = Var(X_t)
 $$
 Autrement dit, la variable X explique bien la variable Y.
 
 \subsubsection*{Note}
-Il est a noté que les modèles précenter on été ajusté pour bien représenter le concept, un modèle avec un fit parfait n'est pas réaliste dans la réalité.
+Noter que les modèles précédents  ont été ajustés pour mieux représenter le concept, un modèle avec un fit parfait n'est pas réaliste dans la réalité.
 
-\subsection{Notions préliminaire : Somme des carrés}
-La variance totale des $Y_t$ est décomposable sous le modèle de régression linéaire, cette décomposition permet d'analyser l'ajustement du modèle. On la représente ainsi :
+\subsection{Notions préliminaires : Somme des carrés}
+La variance totale de $Y_t$ est décomposable sous le modèle de régression linéaire, cette décomposition permet d'analyser l'ajustement du modèle. On la représente ainsi :
 $$
 SST = \sum_{t=1}^n(Y_t-\overline{Y})^2
 $$
@@ -1192,13 +1189,13 @@ myfun <- function(xvar) {
 # Ajout segment de droite (fonction)
 p <- ggplot(data.frame(x=c(0, 10)), aes(x=x)) + stat_function(fun=myfun, geom="line", color = "red")
 
-# Ajout texte et flèche
+# Ajout texte et fleche
 p <- p + annotate("text", x=8.5, y=0, parse=TRUE, size=4,
            label="'Droite de \n régression'") 
 p <- p + annotate("segment", x=8, xend=7.5, y=-0.5, yend=-2.5, color = "blue",
              arrow=arrow())
 
-#Ajout texte sur axes
+# Ajout texte sur axes
 p <- p + annotate("text", x=5, y=-5.5, parse=TRUE, size=4, label="bar(X)") + annotate("text", x=2.5, y=-5.5, parse=TRUE, size=4, label="X[t]")
 p <- p + annotate("text", x=0, y=0, parse=TRUE, size=4, label="bar(Y)") + annotate("text", x=0, y=4.5, parse=TRUE, size=4, label="Y[t]")
 
@@ -1257,7 +1254,7 @@ Ainsi,
 \boxed{\color{black}
 \text{SST} = \text{SSR} + \text{SSE}}
 \end{equation}
-Où SSR est la variation expliqué par le modèle de régression linéaire et SSE signifie la variation inexpliquée, ou résiduelle du modèle de régression linéaire.
+Où SSR est la variation expliquée par le modèle de régression linéaire et SSE signifie la variation inexpliquée, ou résiduelle du modèle de régression linéaire.
 \bigskip
 
 Intuitivement, 
@@ -1277,15 +1274,15 @@ Intuitivement,
           \boxed{\color{black}
           R^2 = Corr^2(Y, \hat{Y}) = \frac{\text{SSR}}{\text{SST}} \Leftrightarrow 1 - \frac{\text{SSE}}{\text{SST}}}
           \end{equation}
-          Par rapport au ratio, $\frac{\text{SSR}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ expliquée par la régression et 
+          Par rapport au ratio, $\frac{\text{SSR}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ expliqué par la régression et 
           $1 - \frac{\text{SSE}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ qui n'est pas expliquée par la régression.
           \item $R^2 \in [0,1] $
           \item Si $R^2 = 100 \%$, la régression est parfaite et utile; si$R^2 = 0 \%$, la régression n'est pas parfaite et est inutile.
           \end{itemize}
 \end{itemize}
 
-\subsection{Notions préliminaire : Degrés de liberté}
-Le nombre de \emph{degrés de liverté}\footnote{Courament l'abréviation $d.l.$ seras utiliser pour signifié \emph{degrés de liverté}.} d'une \emph{somme de carrés} est :
+\subsection{Notions préliminaires : Degrés de liberté}
+Le nombre de \emph{degrés de liberté}\footnote{Couramment l'abréviation $d.l.$ sera utiliser pour signifié \emph{degrés de liverté}.} d'une \emph{somme de carrés} est :
 \begin{itemize}
      \item Le nombre de composants \emph{indépendants} dans la somme ;
      \item[ou]
@@ -1311,11 +1308,11 @@ $$
 &= \underbrace{\hat{\beta}_1^2} \times \underbrace{\sum_{t=1}^n(X_t - \overline{X})^2} \\
  f&(y_1,...y_n) \  f(x_1,...,x_n)
 \end{align*}
-Soit une seule fonction des $Y_1,...,Y_n$ doit être connue pour obternir $SSR \rightarrow  \color{blue}\boxed{\color{black} 1 \  d.l.}$ 
+Soit une seule fonction des $Y_1,...,Y_n$ doit être connue pour obtenir $SSR \rightarrow  \color{blue}\boxed{\color{black} 1 \  d.l.}$ 
 \end{itemize}
 
 \subsubsection*{Remarque}
-On sait que 
+On sait que :
 $$
 SST = SSE + SSR
 $$
@@ -1328,7 +1325,7 @@ On aurait donc pu retrouver $d.l.(SST) = d.l.(SSE) + d.l.(SSR)$
 
 \subsection{Tableau d'analyse de la variance}
 \label{seq:anova}
-On appele courrament le tableau d'analyse de la variance le tableau ANOVA. Ce type de tableau est utilisé dans tous les logiciels de régression pour évaluer la qualité d'un modèle.
+On appelle couramment le tableau d'analyse de la variance le tableau ANOVA. Ce type de tableau est utilisé dans tous les logiciels de régression pour évaluer la qualité d'un modèle.
 
 \bigskip
 \begin{tabularx}{\linewidth}{|X|X|X|X|X|}
@@ -1378,7 +1375,7 @@ Source & $SS$ & $d.l.$ & $MS$ & $F$ \\
 Régression & 3.9821 & 1 & 3.9821 & 1.7522 \\
 Erreur & 6.8179 & 3 & 2.2726 & \\
 \hline
-Total & 10.8000 & 4 & & \\
+Totaux & 10.8000 & 4 & & \\
 \hline
 \end{tabular}
 \end{center}
@@ -1391,11 +1388,11 @@ R^2 &= 1 - \frac{SSE}{SST} = 1 - \frac{6.8179}{10.8000} = 36.87 \% \\
 Autrement dit, seulement 36.87 \% de la variabilité des $Y_t$ est expliquée par la variabilité des $X_t$. La régression n'est pas très efficace et utile.
 
 \subsubsection*{Code R}
-Voici le code R permettant de créé un modèle linéaire simple avec une droite passant par l'origine.
+Voici le code R permettant de créer un modèle linéaire simple avec une droite passant par l'origine.
 
 \begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
 <<eval=FALSE>>=
-# dataset
+# Dataset
 y <- c(2, 5, 3, 6, 5); x <- c(2, 3, 6, 9, 12)
 
 # Estimation des betas
@@ -1420,17 +1417,17 @@ On rappel qu'avec le postulat 4 (\ref{post4}), on suppose que les résidus suive
 Les conséquences de ce postulat sont les suivantes :
 \begin{enumerate}
 \item $(Y_t = \beta_0 + \beta_1X_t + \varepsilon_t) \sim N(\beta_0 + \beta_1X_t, \sigma^2)$ (Postulat \ref{post1})
-\item Les propriétés de l'estimateur des moindes carrés avait permis de démontrer que (section \ref{sec:EMC})
+\item Les propriétés de l'estimateur des moindres carrés avaient permis de démontrer que (section \ref{sec:EMC}) :
 	\begin{align*}
 	     \hat{\beta_0} &\sim N\Bigg(\beta_0, \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)\Bigg) \\
 	     \hat{\beta_1} &\sim N\Bigg(\beta_1, \frac{\sigma^2}{\sum_{t=1}^n(X_t - \overline{X})^2})\Bigg)
 	\end{align*}
 	
 \begin{moreInfo}{\emph{Alternative}}
-	On peux tirer la même conclusion à partir de la propriété des fonctions linéaires de $\hat{\beta}_0$ et $\hat{\beta}_1$.
+	On peut tirer la même conclusion à partir de la propriété des fonctions linéaires de $\hat{\beta}_0$ et $\hat{\beta}_1$.
 \end{moreInfo}
 
-\item L'estimateur sans biais pour $\sigma^2$ est 
+\item L'estimateur sans biais pour $\sigma^2$ est :
 \begin{align*}
 \sigma^2 &= S^2 = MSE \\
 MSE &= \frac{SSE}{d.l.(SSE)} \\
@@ -1465,11 +1462,11 @@ Si $\sigma^2$ était connu, l'intervalle de confiance serait de la forme suivant
 $$
 \bigg[\hat{\beta}_1\pm Z_{\alpha/2} \times \sqrt{Var(\hat{\beta}_1)}\bigg]
 $$
-Par contre, $\sigma^2$ n'est  souvent pas connu et il est nécessaire de l'estimer. Tel que mentionner plus haut, l'estimateur non biaisé correspond à l'équation \ref{eq:s2}. Mais cet estimateur ne suit pas une distribution normale. À l'aide des notions acquises en ACT-2000, il est possible de démontrer que si on utilise l'estimateur de $\sigma^2$, soit $S^2$, dans la formule de $Var(\hat{\beta}_1)$, c'est-à-dire :
+Par contre, $\sigma^2$ n'est  souvent pas connu et il est nécessaire de l'estimer. Tel que mentionné plus haut, l'estimateur non biaisé correspond à l'équation \ref{eq:s2}. Mais cet estimateur ne suit pas une distribution normale. À l'aide des notions acquises en ACT-2000, il est possible de démontrer que si on utilise l'estimateur de $\sigma^2$, soit $S^2$, dans la formule de $Var(\hat{\beta}_1)$, c'est-à-dire :
 $$
 \widehat{Var}(\hat{\beta}_1) = \frac{S^2}{\sum_{t=1}^n (X_t - \overline{X})^2}
 $$
-Alors, on peut conclure que 
+Alors, on peut conclure que :
 $$
 \Bigg(\frac{\hat{\beta}_1 - \beta_1}{\sqrt{Var(\hat{\beta}_1)}}\Bigg) \sim t(n-2)
 $$
@@ -1510,7 +1507,7 @@ H_1 &: \beta_0 \neq 0 \\
 t &= \frac{\hat{\beta}_0 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_0)}}
 \end{align*}
 
-Pour teste la question  \ref{hyp2} :
+Pour tester la question  \ref{hyp2} :
 
 \begin{align*}
 H_0 &: \beta_1 = 0 \\
@@ -1551,7 +1548,7 @@ p
 Qui correspond à la probabilité de \emph{se tromper} en rejetant $H_0$.
 
 \subsubsection*{Remarques}
-De manière générale on utilise plutôt les test d'hypothèses suivants pour nos deux questions:
+De manière générale, on utilise plutôt les tests d'hypothèses suivants pour nos deux questions:
 
 Pour tester la question \ref{hyp1} :
 \begin{align*}
@@ -1614,7 +1611,7 @@ t &= \frac{\hat{\beta}_0 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_0)}} \\
 &= 8.38\\
 t_{\frac{0.05}{2}(14-2)} &= 2.18 \\
 \end{align*}
-Étant donner que $|8.38| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, l'ordonnée à l'origine est significative.
+Étant donné que $|8.38| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, l'ordonnée à l'origine est significative.
 
 \subsubsection*{Question 2}
 Tester si $\beta_1$ est significativement différent de 0 à un taux de confiance de 95 \%.
@@ -1628,7 +1625,7 @@ t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}} \\
 &= -3.040\\
 t_{\frac{0.05}{2}(14-2)} &= 2.18\\
 \end{align*}
-Étant donner que $|-3.040| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, il y a 96 \% de chance que la régression soit utile.
+Étant donné que $|-3.040| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, il y a 96 \% de chance que la régression soit utile.
 
 \subsubsection*{Question 2}
 Tester si $\beta_1$ est significativement différent de 0 à un taux de confiance de 95 \%.
@@ -1642,7 +1639,7 @@ t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}} \\
 &= -3.040\\
 t_{\frac{0.05}{2}(14-2)} &= 2.18\\
 \end{align*}
-Étant donner que $|-3.040| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, il y a 95 \% de chance que la régression soit utile.
+Étant donné que $|-3.040| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, il y a 95 \% de chance que la régression soit utile.
 
 \subsubsection*{Question 3}
 Tester si $\beta_1$ est significativement négatif à un taux de confiance de 95 \%.
@@ -1678,11 +1675,9 @@ p <- p + annotate("text", x=-2.5, y=0.05, parse=TRUE, size=3, label="alpha")
 p <- p + annotate("segment", x=0, xend=0, y=0, yend=0.42, size=1.5, arrow=arrow(length=unit(.35,"cm")))
 
 p
-
 @
 
-
-Étant donner que $|-3.040| < -1.78$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, la pente de la droite est significativement négative.
+Étant donné que $|-3.040| < -1.78$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, la pente de la droite est significativement négative.
 
 \subsubsection*{Question 4}
 Obtenir un I.C. au niveau de confiance de 95 \% pour $\beta_0$.
@@ -1750,12 +1745,12 @@ Total & 112.219 & 13 & & \\
 \hline
 \end{tabular}
 \end{center}
-On cherche a vérifier la validité de la régression à l'aide du test $F$, \newline
+On cherche a vérifier la validité de la régression à l'aide du test $F$. \newline
 On a que $F = 9.249$, par contre $F_{0.05}(1, 12) = 4.75$ \newline
 Puisque $F>F_{0.05}(1, 12)$; on rejette $H_0$. La régression est significative au niveau de confiance de 95 \%.
 
 \section{Prévisions et intervalles de confiance}
-On peut utilisé la droite de régression pour faire des types de prévisions de $Y^*$ en sachant $X^*$ :
+On peut utiliser la droite de régression pour faire des types de prévisions de $Y^*$ en sachant $X^*$ :
 \subsubsection*{Type 1}
 Prévision pour la \emph{valeur moyenne} de $Y^*$
 $$
@@ -1763,7 +1758,7 @@ E[Y^*] = \beta_0 + \beta_1X^*
 $$
 
 \subsubsection*{Type 2}
-Prévision pour la \emph{vrai valeur} de $Y^*$
+Prévision pour la \emph{vraie valeur} de $Y^*$
 $$
 Y^* = \beta_0 + \beta_1X^* + \varepsilon
 $$
@@ -1867,7 +1862,6 @@ p <- p +  geom_point(aes(5, 7.5))
 # Ajout accolades
 p <- p + annotate("segment", x=5, xend=5, y=7.5, yend=10, arrow=arrow(ends="both", angle=90, length=unit(.1,"cm"))) + 
      annotate("text", x=5.1, y=8.75, parse=TRUE, size=3, label="'Process risk'")
-
 p
 @
 
@@ -1897,7 +1891,7 @@ Ainsi, un I.C. au niveau $100 \times(1 -\alpha)\%$ pour la valeur moyenne est
 (\hat{\beta}_0 + \hat{\beta}_1X^*)  \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{\widehat{Var}( \hat{\beta}_0 + \hat{\beta}_1X^*)}
 }
 \end{equation}
-On rappel que comme $\sigma^2$ n'est souvent pas connu, il est nécessaire d'utiliser son estimateur $S^2$.
+On rappelle que comme $\sigma^2$ n'est souvent pas connu, il est nécessaire d'utiliser son estimateur $S^2$.
 
 Or, 
 \begin{align*}
@@ -1952,7 +1946,7 @@ p
 @
 
 \begin{enumerate}
-\item Plus $X^*$ s'éloigne de $\overline{X}$, plus l'I.C. est large, parceque l'incertitude augmente.
+\item Plus $X^*$ s'éloigne de $\overline{X}$, plus l'I.C. est large, parce que l'incertitude augmente.
 \item Les limites de l'intervalle sont des \emph{hyperboles} centrées en $(\overline{X}, \overline{Y})$
 \item Cet I.C. peut être appelé :
      \begin{itemize}
@@ -1963,11 +1957,11 @@ p
 \item Dans ce type d' I.C., on tient seulement compte du \textbf{risque de paramètre}.
 \end{enumerate}
 
-\subsection{I.C. pour la prévision de type II (Vrai valeur)}
+\subsection{I.C. pour la prévision de type II (Vraie valeur)}
 \label{sec:type2}
 Aussi appelé I.C. pour les points de $Y^*$.
 \bigskip
-Pour obtenir un I.C. pour la vrai valeur de $Y^*$, il faut tenir compte du parameter risk $(Var(\hat{\beta}_i))$ ET du process risk $(Var(\varepsilon_t))$.On considère donc de manière équivalente à la section \ref{sec:type1},
+Pour obtenir un I.C. pour la vraie valeur de $Y^*$, il faut tenir compte du parameter risk $(Var(\hat{\beta}_i))$ ET du process risk $(Var(\varepsilon_t))$. On considère donc de manière équivalente à la section \ref{sec:type1},
 
 $$
 \frac{Y^* - \hat{Y}^*}{\sqrt{Var(Y^* - \hat{Y}^*)}} \sim N(0,1)
@@ -1977,12 +1971,12 @@ En substituant $\sigma^2$ par $S^2$ dans $Var(Y^* - \hat{Y}^*)$, on a
 $$
 \frac{Y^* - \hat{Y}^*}{\sqrt{\widehat{Var}(Y^* - \hat{Y}^*)}} \sim t(n-2)
 $$
-Ainsi, un I.C. au niveau $100 \times (1 - \alpha)\%$ pour $\beta_1$  pour la vrai valeur de $Y^*$ est,
+Ainsi, un I.C. au niveau $100 \times (1 - \alpha)\%$ pour $\beta_1$  pour la vraie valeur de $Y^*$ est,
 $$
 \hat{Y}^* \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{\widehat{Var}(Y^* - \hat{Y}^*)}
 $$
 
-Or par hypothèse on as
+Or par hypothèse on a
 \begin{align*}
 Var(Y^* - \hat{Y}^*) &= Var(Y^*) + Var(\hat{Y}^*) \\
 &= \underbrace{\sigma^2} +\underbrace{\sigma^2\big( \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\sum_{t=1}^n (X_t - \overline{X}^*)^2}\big)}  \\
@@ -2007,7 +2001,7 @@ L'I.C. est donc,
 \end{equation}
 
 \subsubsection*{Exemple en R}
-Il est possible d'obternir le résultats des formules des sections \ref{sec:type1} et \ref{sec:type2}.
+Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1} et \ref{sec:type2}.
 
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 <<echo = FALSE>>=
@@ -2053,6 +2047,71 @@ predict(fit, interval = "prediction", newdata = xStar) # I.C. pour un vecteur de
 @
 \end{lstlisting}
 \bigskip
+
+\chapter{Régression multiple}
+Il n'est pas rare que plus d'une variable soit nécessaire pour expliquer un phénomène. 
+Tel que vue à la section \ref{ex:multiple}, voici un exemple de modèle de régression multiple :
+
+\bigskip
+
+%%% fig linéaire multiples
+\begin{center}
+\begin{tikzpicture}[node distance=1.2cm]
+\node (function) at (current page.center) {$Y  = \beta_0 + \beta_1 \times X_1 + \beta_2 \times X_2 + \varepsilon$};
+\coordinate[below of=function] (c);
+\node[text width = 2.3cm, left of=c, xshift=-1.2cm]  (Y) {Âge du passager};
+\draw[->, line width=0.5mm] (Y) -- ([xshift=2mm, yshift=-3mm] function.west);
+\node[text width = 2.3cm, below of=c, yshift=-0.0001cm] (X) {Prix du billet};
+\draw[->, line width=0.5mm] (X) -- ([xshift=0cm, yshift=-3mm] function.center);
+\node[text width = 2.3cm, right of=c, xshift=0.5cm] (X2) {Sexe du passager};
+\draw[->, line width=0.5mm] (X2) -- ([xshift=-1cm, yshift=-3mm] function.east);
+\node[text width = 2.3cm, right of=c, xshift=3cm] (E) {Erreur aléatoire};
+\draw[->, line width=0.5mm] (E) -- ([ yshift=-1mm] function.east);
+\end{tikzpicture}
+\end{center}
+
+De manière générale, la régression multiple considère le modèle général suivant :
+\begin{align*}
+Y_t &= \beta_0 + \beta_1X_{t,1} + \beta_2X_{t,2} + ... + \beta_pX_{t,p} + \varepsilon_t \text{ , pour } t = 1,...,n \\
+& \bullet \text{ n observations} \\
+& \bullet \text{ p variables exogènes }(X_1,...,X_p)\\
+& \bullet (p+1) \text{ paramètres à estimer} (\beta_0,\beta_1,...,\beta_p)
+\end{align*}
+
+\section*{Quelques éléments d'algèbre matricielle pour les vecteurs et matrices aléatoires}
+Soient $X_1,...X_n$ des variables aléatoires, on définit le vecteur aléatoire X suivant
+\begin{align*}
+\mathbb{X} &=
+\begin{bmatrix} 
+X_1 \\
+X_2 \\
+\vdots \\
+X_n \\
+\end{bmatrix}_{n \times 1}
+\end{align*}
+
+On définit le vecteur espérance de la façon suivante
+\begin{align*}
+E[X] &=
+\begin{bmatrix} 
+E[X_1] \\
+E[X_2 ]\\
+\vdots \\
+E[X_n] \\
+\end{bmatrix}_{n \times 1}
+\end{align*}
+
+et la matrice de variance-covariance
+\begin{align*}
+Var(X) &=\underbrace{E\Big[(X -E[X])(X-E[X])^\intercal\Big]}  =
+\begin{bmatrix} 
+Var(X_1) &\cdots & Cov(X_1,X_n) \\
+\vdots \\
+Cov(X_n,X_1) & \cdots & Var(X_n)\\
+\end{bmatrix}_{n \times 1}\\
+& \text{\ \ \ \ \ \ Produit matriciel}
+\end{align*}
+
 
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
