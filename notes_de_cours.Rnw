@@ -2113,6 +2113,144 @@ Cov(X_n,X_1) & \cdots & Var(X_n)\\
 & \text{\ \ \ \ \ \ Produit matriciel}
 \end{align*}
 
+\subsubsection*{Tréorème}
+Soit $\mathbb{X}$, un vecteur aléatoire et $\mathbb{A}$ une matrice de constantes telle que :
+$$
+\mathbb{X} = \mathbb{X}_{n \times 1} \text{ et } \mathbb{A} = \mathbb{A}_{p \times n}
+$$
+Alors,
+\begin{align*}
+E[\mathbb{AX}] &= \mathbb{A}E[\mathbb{X}] \\
+Var(\mathbb{A}\mathbb{X}) &= \mathbb{A} Var(\mathbb{X})\mathbb{A}^\intercal \\
+\end{align*}
+
+\subsubsection*{Exemple}
+\begin{align*}
+\mathbb{A} &= 
+     \begin{bmatrix} 
+     1 \\
+     1\\
+     \end{bmatrix}_{2 \times 1}^\intercal 
+  = \begin{bmatrix} 
+     1 & 1 \\
+     \end{bmatrix}_{1 \times 2} \\
+\mathbb{X} &= 
+     \begin{bmatrix} 
+     X_1 \\
+     X_2\\
+     \end{bmatrix}_{2 \times 1}\\
+\end{align*}
+
+Intuitivement,
+\begin{align*}
+\mathbb{A} \mathbb{X} &= X_1 + X_2  \\
+\Rightarrow & E[\mathbb{A} \mathbb{X}] = E[X_1 + X_2] = E[X_1] + E[X_2] \\
+\Rightarrow & Var(\mathbb{A} \mathbb{X})= Var(X_1 + X_2) = Var(X_1) + Var(X_2) + 2cov(X_1, X_2) \\
+\end{align*}
+
+En calcul matriciel,
+\begin{align*}
+E[\mathbb{A} \mathbb{X}] &= \mathbb{A} E[\mathbb{X}]  \\
+&= 
+\begin{bmatrix} 
+     1 & 1 \\
+\end{bmatrix} 
+\begin{bmatrix} 
+     E[X_1] \\
+     E[X_2]\\
+\end{bmatrix} \\
+&= E[X_1] + E[X_2] \\
+Var(\mathbb{A} \mathbb{X}) &= \mathbb{A}Var(\mathbb{X})\mathbb{A}^\intercal \\
+&= 
+\begin{bmatrix} 
+     1 & 1 \\
+\end{bmatrix}
+\begin{bmatrix} 
+Var(X_1)  & Cov(X_1,X_2) \\
+Cov(X_1,X_2) & Var(X_2)\\
+\end{bmatrix} 
+\begin{bmatrix} 
+     1  \\
+     1  \\
+\end{bmatrix}\\
+&= 
+\begin{bmatrix} 
+\big(Var(X_1)  + Cov(X_1,X_2) \big) &\big(Cov(X_1,X_2) + Var(X_2) \big) 
+\end{bmatrix}
+\begin{bmatrix} 
+     1  \\
+     1  \\
+\end{bmatrix}\\
+&= Var(X_1) + Var(X_2) + 2cov(X_1, X_2) \\
+\end{align*}
+
+\section{Le modèle sous forme matricielle}
+À partir du modèle général suivant, 
+\begin{align*}
+Y_t &= \beta_0 + \beta_1X_{t,1} + \beta_2X_{t,2} + ... + \beta_pX_{t,p} + \varepsilon_t, t = 1,...,n \\
+\end{align*}
+On représente les n formules suivantes
+\begin{align*}
+Y_1 &= \beta_0 + \beta_1X_{1,1} + ... + \beta_pX_{1,p} + \varepsilon_1 \\
+Y_2 &= \beta_0 + \beta_1X_{2,1} + ... + \beta_pX_{2,p} + \varepsilon_2 \\
+\vdots& \\
+Y_n &= \beta_0 + \beta_1X_{n,1} + ... + \beta_pX_{n,p} + \varepsilon_n \\
+\end{align*}
+Qu'il est possible de réécrire sous forme matricielle,
+\begin{align*}
+\begin{bmatrix} 
+Y_1  \\
+Y_2  \\
+\vdots \\
+Y_n \\
+\end{bmatrix}_{n\times 1} =
+\begin{bmatrix} 
+\beta_0 + \beta_1X_{1,1} + ... + \beta_pX_{1,p} \\
+\beta_0 + \beta_1X_{2,1} + ... + \beta_pX_{2,p}  \\
+\vdots \\
+\beta_0 + \beta_1X_{n,1} + ... + \beta_pX_{n,p} \\
+\end{bmatrix}_{n\times 1} + 
+\begin{bmatrix} 
+\varepsilon_1 \\
+\varepsilon_2 \\
+\vdots \\
+\varepsilon_n \\
+\end{bmatrix}_{n\times 1} 
+\end{align*}
+
+Ou encore de la façon suivante,
+
+\begin{align*}
+\begin{bmatrix} 
+Y_1  \\
+Y_2  \\
+\vdots \\
+Y_n \\
+\end{bmatrix}_{n\times 1} =
+\begin{bmatrix} 
+1 & X_{1,1} & ... & X_{1,p} \\
+1 & X_{2,1} & ... & X_{2,p}  \\
+\vdots & \vdots & \vdots & \vdots \\
+1 &  X_{n,1} & ... & X_{n,p} \\
+\end{bmatrix}_{n\times (p + 1)} 
+\begin{bmatrix} 
+\beta_1 \\
+\beta_2  \\
+\vdots \\
+\beta_p \\
+\end{bmatrix}_{(p + 1) \times 1}+ 
+\begin{bmatrix} 
+\varepsilon_1 \\
+\varepsilon_2 \\
+\vdots \\
+\varepsilon_n \\
+\end{bmatrix}_{n\times 1} 
+\end{align*}
+
+De manière plus compacte, on utilise la notation suivante
+$$
+\mathbb{Y} = \mathbb{X}  \mathbb{\beta}  + \mathbb{\varepsilon}  
+$$
 
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
