@@ -36,7 +36,7 @@
 \contentsline {subsection}{\numberline {3.1.1}Estimateur des moindes carr\IeC {\'e}s (EMC)}{53}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}R\IeC {\'e}sidus et tableau ANOVA}{55}{subsection.3.1.2}
 \contentsline {subsection}{\numberline {3.1.3}Estimateur de $\sigma ^2$}{56}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}Intervalles de confiance et tests d'hypoth\IeC {\`e}ses}{57}{subsection.3.1.4}
+\contentsline {subsection}{\numberline {3.1.4}Intervalles de confiance et tests d'hypoth\IeC {\`e}ses}{56}{subsection.3.1.4}
 \contentsline {subsection}{\numberline {3.1.5}Test de Student sur un seul param\IeC {\`e}tre}{57}{subsection.3.1.5}
 \contentsline {subsection}{\numberline {3.1.6}Test de Fisher pour la validit\IeC {\'e} globale de la r\IeC {\'e}gression}{58}{subsection.3.1.6}
 \contentsline {subsection}{\numberline {3.1.7}Test de Fisher partiel}{58}{subsection.3.1.7}
@@ -45,4 +45,4 @@
 \contentsline {subsection}{\numberline {3.2.2}Technique 2 : \IeC {\'E}limination r\IeC {\'e}gressive (\emph {Backward elimination})}{61}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}Technique 3 : S\IeC {\'e}lection progressive (\emph {forward selection})}{62}{subsection.3.2.3}
 \contentsline {subsection}{\numberline {3.2.4}Technique 4 : R\IeC {\'e}gression pas \IeC {\`a} pas (\emph {stepwise regression})}{62}{subsection.3.2.4}
-\contentsline {section}{\numberline {3.3}R\IeC {\'e}gression avec variables indicatrices}{64}{section.3.3}
+\contentsline {section}{\numberline {3.3}R\IeC {\'e}gression avec variables indicatrices}{66}{section.3.3}

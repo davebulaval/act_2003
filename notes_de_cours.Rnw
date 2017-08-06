@@ -2462,6 +2462,8 @@ Les sommes des carrés du tableau ANOVA sont données par les expressions suivan
 &= \sum_{t=1}^nY_t^2 - n\overline{Y}^2 \\
 &= \mathbb{Y}^\intercal\mathbb{Y} - n \overline{Y}^2 \\
 & \text{Avec $(n-1)$ degré de liberté} \\
+\end{align*}
+\begin{align*}
 \bullet SSE &= \sum_{t=1}^n(Y_t - \hat{Y})^2 \\
 &= \sum_{t=1}^n\varepsilon_t^2 \\
 &= \mathbb{\varepsilon}^\intercal\mathbb{\varepsilon}\\
@@ -2472,6 +2474,7 @@ Les sommes des carrés du tableau ANOVA sont données par les expressions suivan
 & \text{Avec $(p)$ degré de liberté}
 \end{align*}
 
+\bigskip
 Dans le cas de régression multiple, le tableau ANOVA est le suivant :
 
 \bigskip
@@ -2616,6 +2619,7 @@ $$
 \end{itemize}
 
 \section{Sélection d'un modèle optimal}
+\label{sec:optimal}
 Lorsque l'on dispose de plusieurs variables explicatives $(X_1,X_2,...,X_p)$, un modèle optimal est tel que :
 \begin{enumerate}
 \item Pouvoir prédictif \textbf{maximal}
@@ -2864,6 +2868,24 @@ On trouve le modèle suivant :
 $$
 Y = \beta_0 + \beta_1X_1 + \beta_2X_3 + \varepsilon
 $$
+
+\subsubsection*{Exemple en R}
+À l'aide du jeu de donnée \emph{mtcars}\footnote{Voici les \href{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html}{informations} sur les données.} de \emph{R}, construise un modèle pour prédire la consomation en gallon par miles à l'aide de la technique de régression pas à pas. 
+<<eval = TRUE, echo = FALSE>>=
+step(lm(mpg~wt+drat+disp+qsec+hp,data=mtcars),direction="both")
+@
+On remarque que la variable $disp$ et $hp$ n'on pas été retenue dans le modèle.
+
+%% script R
+\begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
+<<eval = FALSE>>=
+step(lm(mpg~wt+drat+disp+qsec+hp,data=mtcars),direction="both")
+@
+\end{lstlisting}
+
+\begin{moreInfo}{\emph{Technique de sélection \& \emph{R}}}
+	Toutes les techniques présentées à la section \ref{sec:optimal} sont intégrer dans le système de base de \emph{R}. Cette \href{https://cran.r-project.org/web/packages/olsrr/vignettes/variable_selection.html}{vignette} sur la sélection des variables comprends les différentes méthodes ainsi que des exemples utile.
+\end{moreInfo}
 
 \section{Régression avec variables indicatrices}
 Permettent de traiter des variables explicatives \emph{catégoriques} dans les modèles.

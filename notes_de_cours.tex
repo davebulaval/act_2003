@@ -1693,36 +1693,36 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-         fit        lwr         upr
-1 -2.4043032 -3.1783138 -1.63029270
-2  2.6922309  1.6932375  3.69122433
-3 -0.9688892 -1.4223764 -0.51540193
-4 -0.4461380 -0.8472440 -0.04503201
-5 -0.1058187 -0.5058344  0.29419697
+          fit         lwr        upr
+1 -0.04282992 -0.62845918  0.5427993
+2 -0.41130557 -0.94995247  0.1273413
+3 -1.31486075 -1.84225379 -0.7874677
+4 -1.23253540 -1.75438133 -0.7106895
+5  0.63646469 -0.07985857  1.3527879
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-          fit         lwr       upr
-1 -0.24373897 -0.64082821 0.1533503
-2  0.02474954 -0.38218394 0.4316830
-3  0.29323804 -0.13964263 0.7261187
-4  0.56172655  0.08944237 1.0340107
-5  0.83021506  0.30810889 1.3523212
+         fit         lwr       upr
+1 -0.1234201 -0.69703723 0.4501970
+2  0.1229158 -0.49008961 0.7359212
+3  0.3692517 -0.29023653 1.0287399
+4  0.6155876 -0.09608922 1.3272644
+5  0.8619235  0.09351402 1.6303330
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-          fit        lwr      upr
-1 -0.24373897 -1.8319335 1.344456
-2  0.02474954 -1.5659349 1.615434
-3  0.29323804 -1.3042812 1.890757
-4  0.56172655 -1.0469171 2.170370
-5  0.83021506 -0.7937544 2.454185
+         fit       lwr      upr
+1 -0.1234201 -2.190215 1.943374
+2  0.1229158 -1.955155 2.200987
+3  0.3692517 -1.723002 2.461506
+4  0.6155876 -1.493698 2.724873
+5  0.8619235 -1.267174 2.991021
 \end{Soutput}
 \end{Schunk}
 
@@ -2157,6 +2157,8 @@ Les sommes des carrés du tableau ANOVA sont données par les expressions suivan
 &= \sum_{t=1}^nY_t^2 - n\overline{Y}^2 \\
 &= \mathbb{Y}^\intercal\mathbb{Y} - n \overline{Y}^2 \\
 & \text{Avec $(n-1)$ degré de liberté} \\
+\end{align*}
+\begin{align*}
 \bullet SSE &= \sum_{t=1}^n(Y_t - \hat{Y})^2 \\
 &= \sum_{t=1}^n\varepsilon_t^2 \\
 &= \mathbb{\varepsilon}^\intercal\mathbb{\varepsilon}\\
@@ -2167,6 +2169,7 @@ Les sommes des carrés du tableau ANOVA sont données par les expressions suivan
 & \text{Avec $(p)$ degré de liberté}
 \end{align*}
 
+\bigskip
 Dans le cas de régression multiple, le tableau ANOVA est le suivant :
 
 \bigskip
@@ -2311,6 +2314,7 @@ $$
 \end{itemize}
 
 \section{Sélection d'un modèle optimal}
+\label{sec:optimal}
 Lorsque l'on dispose de plusieurs variables explicatives $(X_1,X_2,...,X_p)$, un modèle optimal est tel que :
 \begin{enumerate}
 \item Pouvoir prédictif \textbf{maximal}
@@ -2499,11 +2503,70 @@ F_{5 \%}(1.17) &= 4.49 \\
 4.79 &> 4.45
 \end{align*}
 On rejette $H_0$ et on n'exclut pas $X_3$. \newline
-on trouve le modèle suivant :
+On trouve le modèle suivant :
 $$
 Y = \beta_0 + \beta_1X_1 + \beta_2X_3 + \varepsilon
 $$
 
+\subsubsection*{Exemple en R}
+À l'aide du jeu de donnée \emph{mtcars}\footnote{Voici les \href{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html}{informations} sur les données.} de \emph{R}, construise un modèle pour prédire la consomation en gallon par miles à l'aide de la technique de régression pas à pas. 
+\begin{Schunk}
+\begin{Soutput}
+Start:  AIC=65.47
+mpg ~ wt + drat + disp + qsec + hp
+
+       Df Sum of Sq    RSS    AIC
+- disp  1     3.974 174.10 64.205
+<none>              170.13 65.466
+- hp    1    11.886 182.01 65.627
+- qsec  1    12.708 182.84 65.772
+- drat  1    15.506 185.63 66.258
+- wt    1    81.394 251.52 75.978
+
+Step:  AIC=64.21
+mpg ~ wt + drat + qsec + hp
+
+       Df Sum of Sq    RSS    AIC
+- hp    1     9.418 183.52 63.891
+- qsec  1     9.578 183.68 63.919
+<none>              174.10 64.205
+- drat  1    11.956 186.06 64.331
++ disp  1     3.974 170.13 65.466
+- wt    1   113.882 287.99 78.310
+
+Step:  AIC=63.89
+mpg ~ wt + drat + qsec
+
+       Df Sum of Sq    RSS    AIC
+<none>              183.52 63.891
+- drat  1    11.942 195.46 63.908
++ hp    1     9.418 174.10 64.205
++ disp  1     1.506 182.02 65.627
+- qsec  1    85.720 269.24 74.156
+- wt    1   275.686 459.21 91.241
+
+Call:
+lm(formula = mpg ~ wt + drat + qsec, data = mtcars)
+
+Coefficients:
+(Intercept)           wt         drat         qsec  
+    11.3945      -4.3978       1.6561       0.9462  
+\end{Soutput}
+\end{Schunk}
+On remarque que la variable $disp$ et $hp$ n'on pas été retenue dans le modèle.
+
+%% script R
+\begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
+\begin{Schunk}
+\begin{Sinput}
+> step(lm(mpg~wt+drat+disp+qsec+hp,data=mtcars),direction="both")
+\end{Sinput}
+\end{Schunk}
+\end{lstlisting}
+
+\begin{moreInfo}{\emph{Technique de sélection \& \emph{R}}}
+	Toutes les techniques présentées à la section \ref{sec:optimal} sont intégrer dans le système de base de \emph{R}. Cette \href{https://cran.r-project.org/web/packages/olsrr/vignettes/variable_selection.html}{vignette} sur la sélection des variables comprends les différentes méthodes ainsi que des exemples utile.
+\end{moreInfo}
 
 \section{Régression avec variables indicatrices}
 Permettent de traiter des variables explicatives \emph{catégoriques} dans les modèles.
