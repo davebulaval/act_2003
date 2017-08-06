@@ -1,0 +1,2 @@
+surface grise section 2.1.2 découpage de surface.
+vérifier exponentielle ca forme

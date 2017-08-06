@@ -1,35 +1,48 @@
 \select@language {french}
 \select@language {french}
-\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
-\contentsline {chapter}{\numberline {2}R\IeC {\'e}gression lin\IeC {\'e}aire simple}{4}{chapter.2}
-\contentsline {section}{\numberline {2.1}Introduction}{4}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Regression lin\IeC {\'e}aire simple}{5}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}R\IeC {\'e}gression lin\IeC {\'e}aire multiple}{5}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}R\IeC {\'e}gression exponentielle}{7}{subsection.2.1.3}
-\contentsline {subsection}{\numberline {2.1.4}R\IeC {\'e}gression quadratique}{7}{subsection.2.1.4}
-\contentsline {subsubsection}{\numberline {2.1.4.1}Erreur totale}{9}{subsubsection.2.1.4.1}
-\contentsline {subsubsection}{\numberline {2.1.4.2}Erreur absolue}{9}{subsubsection.2.1.4.2}
-\contentsline {subsubsection}{\numberline {2.1.4.3}Erreur quadratique}{10}{subsubsection.2.1.4.3}
-\contentsline {section}{\numberline {2.2}Le mod\IeC {\`e}le de r\IeC {\'e}gression lin\IeC {\'e}aire simple}{10}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Coefficients de r\IeC {\'e}gression}{12}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Caract\IeC {\'e}ristiques du terme d'erreur}{19}{subsection.2.2.2}
-\contentsline {section}{\numberline {2.3}Propri\IeC {\'e}t\IeC {\'e}s de l'estimateur des moindres carr\IeC {\'e}s (EMC)}{20}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Estimateur sans biais}{20}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Variances et covariances des estimateurs}{21}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Optimalit\IeC {\'e}}{24}{subsection.2.3.3}
-\contentsline {section}{\numberline {2.4}R\IeC {\'e}gression passant par l'origine}{24}{section.2.4}
-\contentsline {section}{\numberline {2.5}Analyse de la variance}{26}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Notions pr\IeC {\'e}liminaires : Somme des carr\IeC {\'e}s}{27}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}Notions pr\IeC {\'e}liminaires : Degr\IeC {\'e}s de libert\IeC {\'e}}{30}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}Tableau d'analyse de la variance}{31}{subsection.2.5.3}
-\contentsline {section}{\numberline {2.6}Intervalles de confiance (I.C.) et test d'hypoth\IeC {\`e}ses}{32}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}Distribution des variables al\IeC {\'e}atoires}{32}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Intervalle de confiance pour $\beta _1$}{33}{subsection.2.6.2}
-\contentsline {subsection}{\numberline {2.6.3}Intervalle de confiance pour $\beta _0$}{34}{subsection.2.6.3}
-\contentsline {subsection}{\numberline {2.6.4}Test d'hypoth\IeC {\`e}ses sur les param\IeC {\`e}tres}{34}{subsection.2.6.4}
-\contentsline {subsection}{\numberline {2.6.5}Test de la validit\IeC {\'e} \emph {globale} de la r\IeC {\'e}gression}{40}{subsection.2.6.5}
-\contentsline {section}{\numberline {2.7}Pr\IeC {\'e}visions et intervalles de confiance}{41}{section.2.7}
-\contentsline {subsection}{\numberline {2.7.1}I.C. pour la pr\IeC {\'e}vision de type I (Valeur moyenne)}{43}{subsection.2.7.1}
-\contentsline {subsection}{\numberline {2.7.2}I.C. pour la pr\IeC {\'e}vision de type II (Vraie valeur)}{45}{subsection.2.7.2}
-\contentsline {chapter}{\numberline {3}R\IeC {\'e}gression multiple}{48}{chapter.3}
-\contentsline {section}{\numberline {3.1}Le mod\IeC {\`e}le sous forme matricielle}{50}{section.3.1}
+\contentsline {chapter}{\numberline {1}Introduction}{4}{chapter.1}
+\contentsline {chapter}{\numberline {2}R\IeC {\'e}gression lin\IeC {\'e}aire simple}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Introduction}{5}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Regression lin\IeC {\'e}aire simple}{6}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}R\IeC {\'e}gression lin\IeC {\'e}aire multiple}{6}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}R\IeC {\'e}gression exponentielle}{8}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}R\IeC {\'e}gression quadratique}{8}{subsection.2.1.4}
+\contentsline {subsubsection}{\numberline {2.1.4.1}Erreur totale}{10}{subsubsection.2.1.4.1}
+\contentsline {subsubsection}{\numberline {2.1.4.2}Erreur absolue}{10}{subsubsection.2.1.4.2}
+\contentsline {subsubsection}{\numberline {2.1.4.3}Erreur quadratique}{11}{subsubsection.2.1.4.3}
+\contentsline {section}{\numberline {2.2}Le mod\IeC {\`e}le de r\IeC {\'e}gression lin\IeC {\'e}aire simple}{11}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Coefficients de r\IeC {\'e}gression}{13}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Caract\IeC {\'e}ristiques du terme d'erreur}{20}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Propri\IeC {\'e}t\IeC {\'e}s de l'estimateur des moindres carr\IeC {\'e}s (EMC)}{21}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Estimateur sans biais}{21}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Variances et covariances des estimateurs}{22}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Optimalit\IeC {\'e}}{25}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}R\IeC {\'e}gression passant par l'origine}{25}{section.2.4}
+\contentsline {section}{\numberline {2.5}Analyse de la variance}{27}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Notions pr\IeC {\'e}liminaires : Somme des carr\IeC {\'e}s}{28}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Notions pr\IeC {\'e}liminaires : Degr\IeC {\'e}s de libert\IeC {\'e}}{31}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Tableau d'analyse de la variance}{32}{subsection.2.5.3}
+\contentsline {section}{\numberline {2.6}Intervalles de confiance (I.C.) et test d'hypoth\IeC {\`e}ses}{33}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Distribution des variables al\IeC {\'e}atoires}{33}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Intervalle de confiance pour $\beta _1$}{34}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}Intervalle de confiance pour $\beta _0$}{35}{subsection.2.6.3}
+\contentsline {subsection}{\numberline {2.6.4}Test d'hypoth\IeC {\`e}ses sur les param\IeC {\`e}tres}{35}{subsection.2.6.4}
+\contentsline {subsection}{\numberline {2.6.5}Test de la validit\IeC {\'e} \emph {globale} de la r\IeC {\'e}gression}{41}{subsection.2.6.5}
+\contentsline {section}{\numberline {2.7}Pr\IeC {\'e}visions et intervalles de confiance}{42}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}I.C. pour la pr\IeC {\'e}vision de type I (Valeur moyenne)}{44}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}I.C. pour la pr\IeC {\'e}vision de type II (Vraie valeur)}{46}{subsection.2.7.2}
+\contentsline {chapter}{\numberline {3}R\IeC {\'e}gression multiple}{49}{chapter.3}
+\contentsline {section}{\numberline {3.1}Le mod\IeC {\`e}le sous forme matricielle}{51}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Estimateur des moindes carr\IeC {\'e}s (EMC)}{53}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}R\IeC {\'e}sidus et tableau ANOVA}{55}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Estimateur de $\sigma ^2$}{56}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Intervalles de confiance et tests d'hypoth\IeC {\`e}ses}{57}{subsection.3.1.4}
+\contentsline {subsection}{\numberline {3.1.5}Test de Student sur un seul param\IeC {\`e}tre}{57}{subsection.3.1.5}
+\contentsline {subsection}{\numberline {3.1.6}Test de Fisher pour la validit\IeC {\'e} globale de la r\IeC {\'e}gression}{58}{subsection.3.1.6}
+\contentsline {subsection}{\numberline {3.1.7}Test de Fisher partiel}{58}{subsection.3.1.7}
+\contentsline {section}{\numberline {3.2}S\IeC {\'e}lection d'un mod\IeC {\`e}le optimal}{59}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Technique 1: Essai de tous les mod\IeC {\`e}les}{60}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Technique 2 : \IeC {\'E}limination r\IeC {\'e}gressive (\emph {Backward elimination})}{61}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Technique 3 : S\IeC {\'e}lection progressive (\emph {forward selection})}{62}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Technique 4 : R\IeC {\'e}gression pas \IeC {\`a} pas (\emph {stepwise regression})}{62}{subsection.3.2.4}
+\contentsline {section}{\numberline {3.3}R\IeC {\'e}gression avec variables indicatrices}{64}{section.3.3}

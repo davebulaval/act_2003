@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.6.27)  5 AUG 2017 00:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.6.27)  5 AUG 2017 21:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1592,7 +1592,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--3
 
  []
 
-<./fig/by-sa.pdf, id=135, pagebox=cropbox, 121.45375pt x 43.16125pt>
+<./fig/by-sa.pdf, id=187, pagebox=cropbox, 121.45375pt x 43.16125pt>
 File: ./fig/by-sa.pdf Graphic file (type pdf)
 <use ./fig/by-sa.pdf>
 Package pdftex.def Info: ./fig/by-sa.pdf  used on input line 6. on input line 6
@@ -1634,24 +1634,33 @@ l.5 \end{abstract}
 ])
 \openout2 = `section/remerciements.aux'.
 
- (./section/remerciements.tex)pdfTeX warning (ext4): destination with the same 
-identifier (name{page.1}) has been already used, duplicate ignored
+ (./section/remerciements.tex
+<fig/signature.png, id=214, 381.425pt x 150.5625pt>
+File: fig/signature.png Graphic file (type png)
+<use fig/signature.png>
+Package pdftex.def Info: fig/signature.png  used on input line 10. on input lin
+e 10.
+Package pdftex.def Info: Requested size: 85.35713pt x 56.90648pt on input line 
+10.
+)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.135 \include{section/remerciements}
                                       [1
 
 
-] (./notes_de_cours.toc)
+ <./fig/signature.png>]
+(./notes_de_cours.toc [2
+
+
+])
 \tf@toc=\write6
 \openout6 = `notes_de_cours.toc'.
 
- [2
-
-
-]
+ [3]
 Chapitre 1.
-[3
+[4
 
 ]
 Chapitre 2.
@@ -1660,49 +1669,49 @@ Overfull \hbox (9.6819pt too wide) in paragraph at lines 221--222
 [][] 
  []
 
-[4
+[5
 
 ]
-<notes_de_cours-001.pdf, id=224, pagebox=cropbox, 325.215pt x 289.08pt>
+<notes_de_cours-001.pdf, id=296, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-001.pdf Graphic file (type pdf)
 <use notes_de_cours-001.pdf>
 Package pdftex.def Info: notes_de_cours-001.pdf  used on input line 247. on inp
 ut line 247.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
  247.
-<notes_de_cours-002.pdf, id=225, pagebox=cropbox, 325.215pt x 289.08pt>
+<notes_de_cours-002.pdf, id=297, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-002.pdf Graphic file (type pdf)
 <use notes_de_cours-002.pdf>
 Package pdftex.def Info: notes_de_cours-002.pdf  used on input line 272. on inp
 ut line 272.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
  272.
- [5 <./notes_de_cours-001.pdf>]
-<notes_de_cours-003.pdf, id=236, pagebox=cropbox, 325.215pt x 289.08pt>
+ [6 <./notes_de_cours-001.pdf>]
+<notes_de_cours-003.pdf, id=308, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-003.pdf Graphic file (type pdf)
 <use notes_de_cours-003.pdf>
 Package pdftex.def Info: notes_de_cours-003.pdf  used on input line 276. on inp
 ut line 276.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
  276.
- [6 <./notes_de_cours-002.pdf> <./notes_de_cours-003.pdf>]
-<notes_de_cours-004.pdf, id=255, pagebox=cropbox, 361.35pt x 252.945pt>
+ [7 <./notes_de_cours-002.pdf> <./notes_de_cours-003.pdf>]
+<notes_de_cours-004.pdf, id=327, pagebox=cropbox, 361.35pt x 252.945pt>
 File: notes_de_cours-004.pdf Graphic file (type pdf)
 <use notes_de_cours-004.pdf>
 Package pdftex.def Info: notes_de_cours-004.pdf  used on input line 296. on inp
 ut line 296.
 Package pdftex.def Info: Requested size: 288.0011pt x 201.60364pt on input line
  296.
- [7 <./notes_de_cours-004.pdf>]
-<notes_de_cours-005.pdf, id=267, pagebox=cropbox, 361.35pt x 252.945pt>
+ [8 <./notes_de_cours-004.pdf>]
+<notes_de_cours-005.pdf, id=340, pagebox=cropbox, 361.35pt x 252.945pt>
 File: notes_de_cours-005.pdf Graphic file (type pdf)
 <use notes_de_cours-005.pdf>
 Package pdftex.def Info: notes_de_cours-005.pdf  used on input line 327. on inp
 ut line 327.
 Package pdftex.def Info: Requested size: 288.0011pt x 201.60364pt on input line
  327.
- [8 <./notes_de_cours-005.pdf>]
-<notes_de_cours-006.pdf, id=281, pagebox=cropbox, 542.025pt x 433.62pt>
+ [9 <./notes_de_cours-005.pdf>]
+<notes_de_cours-006.pdf, id=354, pagebox=cropbox, 542.025pt x 433.62pt>
 File: notes_de_cours-006.pdf Graphic file (type pdf)
 <use notes_de_cours-006.pdf>
 Package pdftex.def Info: notes_de_cours-006.pdf  used on input line 371. on inp
@@ -1710,46 +1719,46 @@ ut line 371.
 Package pdftex.def Info: Requested size: 288.0011pt x 230.40637pt on input line
  371.
 
-[9 <./notes_de_cours-006.pdf>] [10]
+[10 <./notes_de_cours-006.pdf>] [11]
 LaTeX Font Info:    Try loading font information for U+fontawesomeone on input 
 line 464.
 
 (c:/texlive/2017/texmf-dist/tex/latex/fontawesome/ufontawesomeone.fd
 File: ufontawesomeone.fd 2016/05/22 Font definitions for U/fontawesomeone.
-) [11]
-[12] [13]
-<notes_de_cours-007.pdf, id=346, pagebox=cropbox, 361.35pt x 289.08pt>
+) [12]
+[13] [14]
+<notes_de_cours-007.pdf, id=418, pagebox=cropbox, 361.35pt x 289.08pt>
 File: notes_de_cours-007.pdf Graphic file (type pdf)
 <use notes_de_cours-007.pdf>
 Package pdftex.def Info: notes_de_cours-007.pdf  used on input line 566. on inp
 ut line 566.
 Package pdftex.def Info: Requested size: 288.0011pt x 230.40416pt on input line
  566.
- [14]
-<notes_de_cours-008.pdf, id=356, pagebox=cropbox, 361.35pt x 289.08pt>
+ [15]
+<notes_de_cours-008.pdf, id=428, pagebox=cropbox, 361.35pt x 289.08pt>
 File: notes_de_cours-008.pdf Graphic file (type pdf)
 <use notes_de_cours-008.pdf>
 Package pdftex.def Info: notes_de_cours-008.pdf  used on input line 581. on inp
 ut line 581.
 Package pdftex.def Info: Requested size: 288.0011pt x 230.40416pt on input line
  581.
- [15 <./notes_de_cours-007.pdf>] [16 <./notes_de_cours-008.pdf>]
+ [16 <./notes_de_cours-007.pdf>] [17 <./notes_de_cours-008.pdf>]
 LaTeX Font Info:    Font shape `TS1/aer/bx/n' in size <10> not available
 (Font)              Font shape `TS1/cmr/bx/n' tried instead on input line 630.
 
-[17] [18]
+[18] [19]
 LaTeX Font Info:    Font shape `TS1/aer/m/n' in size <10.95> not available
 (Font)              Font shape `TS1/cmr/m/n' tried instead on input line 732.
- [19] [20] [21] [22] [23] [24]
-<notes_de_cours-010.pdf, id=468, pagebox=cropbox, 325.215pt x 289.08pt>
+ [20] [21] [22] [23] [24] [25]
+<notes_de_cours-010.pdf, id=540, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-010.pdf Graphic file (type pdf)
 <use notes_de_cours-010.pdf>
 Package pdftex.def Info: notes_de_cours-010.pdf  used on input line 936. on inp
 ut line 936.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
  936.
- [25 <./notes_de_cours-010.pdf>]
-<notes_de_cours-012.pdf, id=491, pagebox=cropbox, 469.755pt x 361.35pt>
+ [26 <./notes_de_cours-010.pdf>]
+<notes_de_cours-012.pdf, id=563, pagebox=cropbox, 469.755pt x 361.35pt>
 File: notes_de_cours-012.pdf Graphic file (type pdf)
 <use notes_de_cours-012.pdf>
 Package pdftex.def Info: notes_de_cours-012.pdf  used on input line 972. on inp
@@ -1757,21 +1766,21 @@ ut line 972.
 Package pdftex.def Info: Requested size: 288.0011pt x 221.53696pt on input line
  972.
 
-[26 <./notes_de_cours-012.pdf>]
+[27 <./notes_de_cours-012.pdf>]
 LaTeX Font Info:    Try loading font information for T1+aett on input line 976.
 
 
 (c:/texlive/2017/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-) [27]
-<notes_de_cours-014.pdf, id=515, pagebox=cropbox, 325.215pt x 289.08pt>
+) [28]
+<notes_de_cours-014.pdf, id=589, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-014.pdf Graphic file (type pdf)
 <use notes_de_cours-014.pdf>
 Package pdftex.def Info: notes_de_cours-014.pdf  used on input line 1037. on in
 put line 1037.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
  1037.
- [28 <./notes_de_cours-014.pdf>] [29]
+ [29 <./notes_de_cours-014.pdf>] [30]
 Overfull \hbox (65.95055pt too wide) detected at line 1109
 [] \OT1/cmr/m/n/10 = [][][] \OMS/cmsy/m/n/10 ^^@ [][][]
  []
@@ -1784,7 +1793,7 @@ Overfull \hbox (32.28616pt too wide) detected at line 1119
 =[] []
  []
 
-[30]
+[31]
 Underfull \hbox (badness 10000) in paragraph at lines 1155--1155
 []|\T1/aer/m/n/10 Somme des
  []
@@ -1799,7 +1808,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1155--1155
 \T1/aer/m/n/10 moyens
  []
 
-[31] [32]
+[32] [33]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 1269.
@@ -1816,7 +1825,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 1269.
 
-[33]
+[34]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 1299.
@@ -1833,98 +1842,177 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 1299.
 
-[34]
-<notes_de_cours-016.pdf, id=590, pagebox=cropbox, 325.215pt x 289.08pt>
+[35]
+<notes_de_cours-016.pdf, id=662, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-016.pdf Graphic file (type pdf)
 <use notes_de_cours-016.pdf>
 Package pdftex.def Info: notes_de_cours-016.pdf  used on input line 1343. on in
 put line 1343.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
  1343.
- [35 <./notes_de_cours-016.pdf>] [36] [37]
-<notes_de_cours-017.pdf, id=614, pagebox=cropbox, 325.215pt x 289.08pt>
+ [36 <./notes_de_cours-016.pdf>] [37] [38]
+<notes_de_cours-017.pdf, id=686, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-017.pdf Graphic file (type pdf)
 <use notes_de_cours-017.pdf>
 Package pdftex.def Info: notes_de_cours-017.pdf  used on input line 1456. on in
 put line 1456.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
  1456.
- [38] [39 <./notes_de_cours-017.pdf>]
-Overfull \hbox (3.90349pt too wide) in paragraph at lines 1506--1506
+ [39] [40 <./notes_de_cours-017.pdf>]
+Overfull \hbox (3.90349pt too wide) in paragraph at lines 1507--1507
 [] 
  []
 
-[40]
-<notes_de_cours-018.pdf, id=641, pagebox=cropbox, 289.08pt x 216.81pt>
+[41]
+<notes_de_cours-018.pdf, id=714, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-018.pdf Graphic file (type pdf)
 <use notes_de_cours-018.pdf>
-Package pdftex.def Info: notes_de_cours-018.pdf  used on input line 1561. on in
-put line 1561.
+Package pdftex.def Info: notes_de_cours-018.pdf  used on input line 1562. on in
+put line 1562.
 Package pdftex.def Info: Requested size: 288.0011pt x 216.01216pt on input line
- 1561.
- [41]
-<notes_de_cours-019.pdf, id=649, pagebox=cropbox, 289.08pt x 216.81pt>
+ 1562.
+ [42]
+<notes_de_cours-019.pdf, id=722, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-019.pdf Graphic file (type pdf)
 <use notes_de_cours-019.pdf>
-Package pdftex.def Info: notes_de_cours-019.pdf  used on input line 1565. on in
-put line 1565.
+Package pdftex.def Info: notes_de_cours-019.pdf  used on input line 1566. on in
+put line 1566.
 Package pdftex.def Info: Requested size: 288.0011pt x 216.01216pt on input line
- 1565.
-<notes_de_cours-020.pdf, id=650, pagebox=cropbox, 289.08pt x 216.81pt>
+ 1566.
+<notes_de_cours-020.pdf, id=723, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-020.pdf Graphic file (type pdf)
 <use notes_de_cours-020.pdf>
-Package pdftex.def Info: notes_de_cours-020.pdf  used on input line 1572. on in
-put line 1572.
+Package pdftex.def Info: notes_de_cours-020.pdf  used on input line 1573. on in
+put line 1573.
 Package pdftex.def Info: Requested size: 288.0011pt x 216.01216pt on input line
- 1572.
- [42 <./notes_de_cours-018.pdf> <./notes_de_cours-019.pdf>] [43 <./notes_de_cou
+ 1573.
+ [43 <./notes_de_cours-018.pdf> <./notes_de_cours-019.pdf>] [44 <./notes_de_cou
 rs-020.pdf>]
-<notes_de_cours-021.pdf, id=678, pagebox=cropbox, 289.08pt x 216.81pt>
+<notes_de_cours-021.pdf, id=751, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-021.pdf Graphic file (type pdf)
 <use notes_de_cours-021.pdf>
-Package pdftex.def Info: notes_de_cours-021.pdf  used on input line 1632. on in
-put line 1632.
+Package pdftex.def Info: notes_de_cours-021.pdf  used on input line 1633. on in
+put line 1633.
 Package pdftex.def Info: Requested size: 288.0011pt x 216.01216pt on input line
- 1632.
- [44] [45 <./notes_de_cours-021.pdf>] [46]
+ 1633.
+ [45] [46 <./notes_de_cours-021.pdf>] [47]
 LaTeX Font Info:    Font shape `TS1/aer/m/n' in size <9> not available
-(Font)              Font shape `TS1/cmr/m/n' tried instead on input line 1739.
- [47]
+(Font)              Font shape `TS1/cmr/m/n' tried instead on input line 1740.
+ [48]
 Chapitre 3.
 
-Overfull \hbox (5.3231pt too wide) in paragraph at lines 1777--1777
+Overfull \hbox (5.3231pt too wide) in paragraph at lines 1778--1778
 |\T1/aer/bx/n/14.4 Quelques élé-ments d'al-gèbre ma-tri-cielle pour les vec-
  []
 
-[48
+[49
 
 ]
-Overfull \hbox (1.33357pt too wide) in paragraph at lines 1809--1809
+Overfull \hbox (1.33357pt too wide) in paragraph at lines 1810--1810
 [] 
  []
 
-[49] [50] [51]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1955.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1955.
- (./notes_de_cours.aux (./section/license.aux)
-(./section/abstract.aux) (./section/remerciements.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1955.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1955.
+[50] [51] [52] [53] [54]
+Underfull \hbox (badness 10000) in paragraph at lines 2150--2152
+
+ []
+
+[55]
+Underfull \hbox (badness 10000) in paragraph at lines 2182--2182
+[]|\T1/aer/m/n/10 Somme des
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2182--2182
+[]|\T1/aer/m/n/10 Carrés
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2182--2182
+\T1/aer/m/n/10 moyens
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 2184.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\sigma' on input line 2184.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `superscript' on input line 2184.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 2184.
+
+[56] [57]
+Underfull \hbox (badness 10000) in paragraph at lines 2257--2258
+
+ []
+
+
+Overfull \hbox (22.37445pt too wide) in paragraph at lines 2265--2265
+[] 
+ []
+
+[58]
+Underfull \hbox (badness 10000) in paragraph at lines 2284--2285
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2324--2325
+
+ []
+
+[59] [60]
+<notes_de_cours-026.pdf, id=889, pagebox=cropbox, 361.35pt x 216.81pt>
+File: notes_de_cours-026.pdf Graphic file (type pdf)
+<use notes_de_cours-026.pdf>
+Package pdftex.def Info: notes_de_cours-026.pdf  used on input line 2396. on in
+put line 2396.
+Package pdftex.def Info: Requested size: 288.0011pt x 172.80312pt on input line
+ 2396.
+ [61 <./notes_de_cours-026.pdf>]
+<notes_de_cours-027.pdf, id=900, pagebox=cropbox, 361.35pt x 216.81pt>
+File: notes_de_cours-027.pdf Graphic file (type pdf)
+<use notes_de_cours-027.pdf>
+Package pdftex.def Info: notes_de_cours-027.pdf  used on input line 2416. on in
+put line 2416.
+Package pdftex.def Info: Requested size: 288.0011pt x 172.80312pt on input line
+ 2416.
+<notes_de_cours-028.pdf, id=903, pagebox=cropbox, 361.35pt x 216.81pt>
+File: notes_de_cours-028.pdf Graphic file (type pdf)
+<use notes_de_cours-028.pdf>
+Package pdftex.def Info: notes_de_cours-028.pdf  used on input line 2442. on in
+put line 2442.
+Package pdftex.def Info: Requested size: 288.0011pt x 172.80312pt on input line
+ 2442.
+ [62 <./notes_de_cours-027.pdf>]
+[63 <./notes_de_cours-028.pdf>] [64] [65]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2558.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2558.
+ (./notes_de_cours.aux
+(./section/license.aux) (./section/abstract.aux) (./section/remerciements.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2558.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2558.
 
 Package rerunfilecheck Info: File `notes_de_cours.out' has not changed.
-(rerunfilecheck)             Checksum: C4A7A20F95199D93E01EEECE2F5BB2EF;2562.
-
+(rerunfilecheck)             Checksum: 0CA6B1DA5D660F5322048BE12401A718;3813.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1955.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2558.
  ) 
 Here is how much of TeX's memory you used:
- 33268 strings out of 492990
- 595590 string characters out of 6136334
- 717565 words of memory out of 5000000
- 36054 multiletter control sequences out of 15000+600000
- 593840 words of font info for 142 fonts, out of 8000000 for 9000
+ 33369 strings out of 492990
+ 597061 string characters out of 6136334
+ 717567 words of memory out of 5000000
+ 36099 multiletter control sequences out of 15000+600000
+ 597414 words of font info for 144 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,19n,74p,10441b,2621s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
@@ -1938,34 +2026,34 @@ t/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2017/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmbxti10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmcsc10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmex10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cme
-xtra/cmex8.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi1
-0.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:
-/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2
-017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2017/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2017/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2017/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi9.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5
-.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/te
-xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2017/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2017/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2017/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy7.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy8.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb
-><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texl
-ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb><c:/texlive/2017/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2017/texmf-dist
-/fonts/type1/public/amsfonts/symbols/msam7.pfb><c:/texlive/2017/texmf-dist/font
-s/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2017/texmf-dist/fonts/ty
-pe1/public/cm-super/sfbx1000.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public
-/cm-super/sfrm0900.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/
-sfrm1000.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.p
-fb>
-Output written on notes_de_cours.pdf (54 pages, 603044 bytes).
+xtra/cmex7.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cmextra/
+cmex8.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texl
+ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2017/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2017/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2017/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi9.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb>
+<c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive
+/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2017/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2017/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2017/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy7.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+8.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/
+texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2
+017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb><c:/texlive/2017/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2017/texmf-dist/font
+s/type1/public/amsfonts/symbols/msam7.pfb><c:/texlive/2017/texmf-dist/fonts/typ
+e1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/p
+ublic/cm-super/sfbx1000.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-s
+uper/sfrm0900.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1
+000.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on notes_de_cours.pdf (68 pages, 672105 bytes).
 PDF statistics:
- 896 PDF objects out of 1000 (max. 8388607)
- 746 compressed objects within 8 object streams
- 193 named destinations out of 1000 (max. 500000)
- 357 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1099 PDF objects out of 1200 (max. 8388607)
+ 921 compressed objects within 10 object streams
+ 242 named destinations out of 1000 (max. 500000)
+ 481 words of extra memory for PDF output out of 10000 (max. 10000000)
 

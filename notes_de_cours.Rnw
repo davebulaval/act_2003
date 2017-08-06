@@ -173,7 +173,7 @@ Dans le cadre du cours, seulement les modèles probabilistes linéaires seront �
 
 %%%%%%%%%%%%%%% Chapitre 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Régression linéaire simple}
-
+\label{chap:2}
 \section{Introduction}
 
 De façon générale, en régression, nous avons :
@@ -466,7 +466,7 @@ lines(temp$x, predict(mod, list(x = temp$x)), col = "red2")
 \sum_{t=1}^n \varepsilon_t^2 = \sum_{t=1}^n \Big[ Y_t - (\beta_0 + \beta_1\times X_t) \Big]^2 
 \end{equation}
 \begin{itemize}
-\item Mathématiquement plus simple que l'erreur quadratique.
+\item Mathématiquement plus simple que l'erreur absolue
 \item Donne beaucoup de poids aux grandes erreurs
 \end{itemize}
 
@@ -506,7 +506,7 @@ Comment résoudre le modèle pour prédire les salaires des actuaires en fonctio
 \bigskip
 \textbf{Raisonnement:}
 \begin{itemize}
-\item Pour $X_t = 0$; on a $Y_t = \beta_0$. Autrement dit, le salaire avec un nombre d'années de scolarité est \emph{en moyenne} de $\beta_0$. Par exemple, $\beta_0$ serait le salaire moyen d'un stagiaire.
+\item Pour $X_t = 0$; on a $Y_t = \beta_0$. Autrement dit, le salaire avec un nombre d'années nulle de scolarité est \emph{en moyenne} de $\beta_0$. Par exemple, $\beta_0$ serait le salaire moyen d'un stagiaire.
 \item Par la suite, pour chaque année additionnelle de scolarité, le salaire augmente \emph{en moyenne }de $\beta_1$ unitées.
 \end{itemize}
 Ainsi, \emph{en moyenne} on a 
@@ -971,9 +971,9 @@ Var(\hat{\beta}_0) &= Var(\overline{Y} - \hat{\beta}_1\overline{X})\\
 Cov(\overline{Y}, \hat{\beta}_1) &= Cov \Bigg( \frac{\sum_{t=1}^n Y_t}{n}, \frac{\sum_{s=1}^n(X_s- \overline{X})(Y_s - \overline{Y})}{\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg) \\
 &= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2} Cov\Bigg(\sum_{t=1}^n Y_t, \sum_{s=1}^n(X_s- \overline{X})Y_s - \overline{Y}\sum_{s=1}^n(X_s- \overline{X}) \Bigg) \\
 &= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2} \sum_{t=1}^n \sum_{s=1}^n (X_s- \overline{X}) Cov(Y_t, Y_s) \\
-&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg( \mathop{\sum_{t=1}^n \sum_{s=1}^n}_{:t \neq s} (X_s- \overline{X}) \times 0 + \mathop{\sum_{t=1}^n \sum_{s=1}^n}_{:t = s} \sigma^2 \Bigg) \\
+&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg( \mathop{\sum_{t=1}^n \sum_{s=1}^n}_{:t \neq s} (X_s- \overline{X}) \times 0 + \mathop{\sum_{t=1}^n \sum_{s=1}^n}_{:t = s} (X_s- \overline{X}) \sigma^2 \Bigg) \\
 &= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2}\sigma^2 \bigg( \sum_{t=1}^n (X_t - \overline{X}) \bigg) \\
-&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2}\sigma^2 \bigg( \sum_{t=1}^n (n\overline{X}- n\overline{X}) \bigg) \\
+&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2}\sigma^2 (n\overline{X}- n\overline{X}) \\
 &= 0
 \end{align*}
 
@@ -1012,9 +1012,9 @@ Cov(\hat{\beta}_0, \hat{\beta}_1) = - \overline{X} \frac{\sigma^2}{\sum_{t=1}^n 
 \bigskip
 
 \subsection{Optimalité}
-Le théorème de \href{https://fr.wikipedia.org/wiki/Théorème_de_Gauss-Markov}{Gauss-Markor} établit que l'estimateur des moindres carrés est l'estimateur non biaisé à variance minimale.
+Le théorème de \href{https://fr.wikipedia.org/wiki/Théorème_de_Gauss-Markov}{Gauss-Markor} nous permet d'établit que l'estimateur des moindres carrés est l'estimateur non biaisé à variance minimale. 
 
-\subsubsection*{Notions importantes de la preuve :}
+\subsubsection*{Notions importantes à retenir du théorème:}
 \begin{enumerate}
 \item Considérer l'estimateur $\Theta^* = \sum_{t=1}^n C_t \times Y_t$
 \item Minimiser $Var(\Theta^*)$ sous la contrainte que $E[\Theta^*] = \beta$; où
@@ -1275,14 +1275,14 @@ Intuitivement,
           R^2 = Corr^2(Y, \hat{Y}) = \frac{\text{SSR}}{\text{SST}} \Leftrightarrow 1 - \frac{\text{SSE}}{\text{SST}}}
           \end{equation}
           Par rapport au ratio, $\frac{\text{SSR}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ expliqué par la régression et 
-          $1 - \frac{\text{SSE}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ qui n'est pas expliquée par la régression.
+          $1 - \frac{\text{SSR}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ qui n'est pas expliquée par la régression.
           \item $R^2 \in [0,1] $
           \item Si $R^2 = 100 \%$, la régression est parfaite et utile; si$R^2 = 0 \%$, la régression n'est pas parfaite et est inutile.
           \end{itemize}
 \end{itemize}
 
 \subsection{Notions préliminaires : Degrés de liberté}
-Le nombre de \emph{degrés de liberté}\footnote{Couramment l'abréviation $d.l.$ sera utiliser pour signifié \emph{degrés de liverté}.} d'une \emph{somme de carrés} est :
+Le nombre de \emph{degrés de liberté}\footnote{Couramment l'abréviation $d.l.$ sera utiliser pour signifié \emph{degrés de liberté}.} d'une \emph{somme de carrés} est :
 \begin{itemize}
      \item Le nombre de composants \emph{indépendants} dans la somme ;
      \item[ou]
@@ -1718,6 +1718,7 @@ F > F_{\alpha}(1, n-2)}
 \end{equation}
 
 \begin{moreInfo}{\emph{Équivalent}}
+\label{equivalent}
 	En régression linéaire simple \textbf{seulement}, le test F est équivalent au test $t$ pour $\beta_1 = 0$
 	\begin{align*}
 	F &= \frac{\frac{SSR}{1}}{\frac{SSE}{(n-2)}} = \frac{SSR}{\sigma^2} = \frac{SSR}{S^2} = \frac{\sum_{t=1}^n (\hat{Y}_t - \overline{Y})^2}{S^2} \\
@@ -2113,7 +2114,9 @@ Cov(X_n,X_1) & \cdots & Var(X_n)\\
 & \text{\ \ \ \ \ \ Produit matriciel}
 \end{align*}
 
-\subsubsection*{Tréorème}
+\subsubsection*{Théorème}
+\label{sec:theo}
+
 Soit $\mathbb{X}$, un vecteur aléatoire et $\mathbb{A}$ une matrice de constantes telle que :
 $$
 \mathbb{X} = \mathbb{X}_{n \times 1} \text{ et } \mathbb{A} = \mathbb{A}_{p \times n}
@@ -2251,6 +2254,661 @@ De manière plus compacte, on utilise la notation suivante
 $$
 \mathbb{Y} = \mathbb{X}  \mathbb{\beta}  + \mathbb{\varepsilon}  
 $$
+, avec :
+\begin{itemize}
+\item $Y$ est un vecteur de de dimension $n \times 1$ des variables réponses.
+\item $X$ est une matrice schéma de dimension $n \times (p+1)$ qui correspond au variables explicatives.
+\item $\beta$ est un vecteur de dimension $(p+1) \times 1$ des coefficients à estimer.
+\item $\varepsilon$ est un vecteur de dimension $n \times 1$ des erreurs de telle sorte que
+     \begin{itemize}
+     \item $E[\varepsilon] = \mathbb{O}_{n\times 1}$, où $\mathbb{O}$ correspond à une matrice nulle.
+     \item $Var(\varepsilon) = \sigma^2 \mathbb{I}_{n \times n}$, où $\mathbb{I}$ correspond à une matrice identité.
+     \end{itemize}
+\end{itemize}
+
+\subsubsection*{Remarques}
+\begin{enumerate}
+\item \label{remarque1} On suppose que $(\mathbb{X}^\intercal \mathbb{X})^{-1}$ existe, que $\mathbb{X}$ est de rang complet et que $\bigg((\mathbb{X}^\intercal \mathbb{X})^{-1}\bigg)^\intercal = (\mathbb{X}^\intercal \mathbb{X})^{-1}$
+\item Pour un modèle de régression linéaire simple, il suffit de définir la matrice schéma de la façon suivante:
+$$
+\mathbb{X} = 
+\begin{bmatrix} 
+1 & X_{1} \\
+1 & X_{2} \\
+\vdots & \vdots  \\
+1 &  X_{n} \\
+\end{bmatrix}_{n\times 2} 
+$$
+\item Pour un modèle passant par l'origine, il n'y a pas de colonne de \emph{1} dans la matrice schéma :
+\begin{align*}
+\mathbb{X} = 
+\begin{bmatrix} 
+X_{1,1} & ... & X_{1,p} \\
+X_{2,1} & ... & X_{2,p}  \\
+\vdots & \vdots & \vdots \\
+X_{n,1} & ... & X_{n,p} \\
+\end{bmatrix}_{n\times (p)} 
+\end{align*}
+\item Pour un modèle du type $ Y_t = \beta_0 + \beta_1X_{t} + \beta_2X_{t}^2 + \varepsilon_t $, il ne suffit que de définir la matrice schéma telle que :
+\begin{align*}
+\mathbb{X} &= 
+\begin{bmatrix} 
+1 & X_{1} & ... & X_{1}^2 \\
+\vdots & \vdots & \vdots & \vdots \\
+1 &  X_{n} & ... & X_{n}^2 \\
+\end{bmatrix}_{n\times (p)} \\
+X_{t,1} &= X_t \\
+X_{t,2} &= X_t^2
+\end{align*}
+\end{enumerate}
+
+\subsection{Estimateur des moindes carrés (EMC)}
+On peut démontrer que l'estimateur $\hat{\beta}$ de $\hat{\beta}$ qui minimise la somme résiduelle des carrés correspond à l'équation suviante :
+\begin{align*}
+S(\beta) &= \sum_{t=1}^n (Y_t - \hat{Y}_t)^2 \\
+&= \sum_{t=1}^n \varepsilon_t^2 \\
+&= \utilde{\varepsilon}^\intercal \varepsilon \\
+&= (\mathbb{Y} - \mathbb{X} \beta)^\intercal(\mathbb{Y} - \mathbb{X}\beta)
+\end{align*}
+est donné par
+\begin{equation}
+\label{eq:betamulti}
+\color{blue}
+\boxed{\color{black}
+\hat{\beta} = (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y}}
+\end{equation}
+
+\subsubsection*{Exemple}
+On poursuit avec un exemple en régression linéaire simple pour assimiler l'information. \newline
+À l'aide des matrices suivantes, déterminer les paramètres de la droite de régression.
+%% matrice initiale
+\begin{align*}
+\mathbb{Y} =
+\begin{bmatrix} 
+Y_{1} \\
+\vdots  \\
+Y_{n} \\ 
+\end{bmatrix}; 
+\mathbb{X} =
+\begin{bmatrix} 
+1 & X_{1} \\
+\vdots & \vdots  \\
+1 & X_{n} \\ 
+\end{bmatrix};
+\mathbb{X}^\intercal =
+\begin{bmatrix} 
+1 & \cdots & 1 \\
+X_1  & \cdots & X_{n} \\ 
+\end{bmatrix}
+\end{align*}
+
+%% X'X
+\begin{align*}
+\mathbb{X}^\intercal \mathbb{X} &=
+\begin{bmatrix} 
+1 & \cdots & 1 \\
+X_1  & \cdots & X_{n} \\ 
+\end{bmatrix}
+\begin{bmatrix} 
+1 & X_{1} \\
+\vdots & \vdots  \\
+1 & X_{n} \\ 
+\end{bmatrix} \\
+&= 
+\begin{bmatrix} 
+n & \sum_{t=1}^n X_{t} \\
+\sum_{t=1}^n X_{t} & \sum_{t=1}^n X_{t}^2 \\ 
+\end{bmatrix}
+\end{align*}
+
+%% X'X ^-1
+\begin{align*}
+(\mathbb{X}^\intercal \mathbb{X})^{-1} &=
+\frac{1}{n X_{t}^2 - (n \overline{X})^2}
+\begin{bmatrix} 
+\sum_{t=1}^n X_{t}^2  & n \overline{X} \\
+n \overline{X} & n \\ 
+\end{bmatrix}
+\end{align*}
+
+%% X'Y
+\begin{align*}
+\mathbb{X}^\intercal \mathbb{Y} &=
+\begin{bmatrix} 
+1 & \cdots & 1 \\
+X_1  & \cdots & X_{n} \\ 
+\end{bmatrix} 
+\begin{bmatrix} 
+Y_{1} \\
+\vdots  \\
+Y_{n} \\ 
+\end{bmatrix} \\
+&=
+\begin{bmatrix} 
+\sum_{t=1}^n Y_{t} \\
+\sum_{t=1}^n X_t Y_{t} \\ 
+\end{bmatrix} \\
+&= 
+\begin{bmatrix} 
+n \overline{Y} \\
+\sum_{t=1}^n X_t Y_{t} \\ 
+\end{bmatrix} \\
+\end{align*}
+
+Ainsi,
+\begin{align*}
+\hat{\beta} &= 
+\begin{bmatrix} 
+\hat{\beta}_0 \\
+\hat{\beta}_1 \\
+\end{bmatrix} \\
+&= (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y} \\
+&= 
+\begin{bmatrix} 
+\frac{n \overline{Y} \sum_{t=1}^n X_t^2 - n \overline{X} \sum_{t=1}^n X_tY_t}{n \sum_{t=1}^n X_t^2 - (n \overline{X})^2} \\
+\frac{n\sum_{t=1}^n X_tY_t - (n \overline{Y})(n \overline{X}) }{n \sum_{t=1}^n X_t^2 - (n \overline{X})^2} \\
+\end{bmatrix} \\
+&=
+\begin{bmatrix} 
+\frac{\overline{Y} \sum_{t=1}^n X_t^2 - \overline{X} \sum_{t=1}^n X_tY_t + n\overline{X}^2\overline{Y} - n\overline{X}^2\overline{Y}}{n \sum_{t=1}^n X_t^2 - (n \overline{X})^2} \\
+\frac{\sum_{t=1}^n X_tY_t - n\overline{Y}\overline{X}}{\sum_{t=1}^n X_t^2 - n \overline{X}^2} \\
+\end{bmatrix} \\
+&=
+\begin{bmatrix} 
+\overline{Y} - \hat{\beta}_1\overline{X} \\
+\hat{\beta}_1 \\
+\end{bmatrix} \\
+\end{align*}
+Qui corresponde bien aux estimateurs de $\hat{\beta}_0$ (\ref{eq:beta0}) et $\hat{\beta}_1$ (\ref{eq:beta1}) trouver précédament.
+
+\subsection*{Propriétés des estimateurs}
+\begin{enumerate}
+\item Sans biais
+\begin{align*}
+E[\hat{\beta}] &= E\big[ (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y} \big] \\
+&\overset{\ref{sec:theo}}{=} (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal E[\mathbb{Y}] \\
+&= (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal (\mathbb{X}\beta) \\
+&= (\mathbb{X}^\intercal\mathbb{X})^{-1}(\mathbb{X}^\intercal\mathbb{X}) \beta \\
+&= \mathbb{I} \beta \\
+&= \beta \\
+\end{align*}
+\item Variance-covariance
+\begin{align*}
+Var\hat{\beta}) &= Var\big((\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y} \big) \\
+&\overset{\ref{sec:theo}}{=} (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal Var(\mathbb{Y}) \big[ (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \big]^\intercal \\
+&= (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \sigma^2 \mathbb{I} \bigg[ \mathbb{X} \big[(\mathbb{X}^\intercal\mathbb{X})^{-1} \big]^\intercal \bigg] \\
+& \overset{\ref{remarque1}}{=}\sigma^2 (\mathbb{X}^\intercal\mathbb{X})^{-1} \mathbb{X}^\intercal \bigg[ \mathbb{X} \big[(\mathbb{X}^\intercal\mathbb{X})^{-1} \big] \bigg] \\
+&= \sigma^2 (\mathbb{X}^\intercal\mathbb{X})^{-1} (\mathbb{X}^\intercal\mathbb{X}) (\mathbb{X}^\intercal\mathbb{X})^{-1} \\
+&= \sigma^2 \mathbb{I} (\mathbb{X}^\intercal\mathbb{X})^{-1} \\
+&= \sigma^2 (\mathbb{X}^\intercal\mathbb{X})^{-1} \\
+\end{align*}
+\end{enumerate}
+
+\subsection{Résidus et tableau ANOVA}
+On définit les résidus comme ceci,
+\begin{align*}
+\varepsilon_{n \times 1} &= \mathbb{Y} - \hat{\mathbb{Y}} \\
+&= \mathbb{Y} - \mathbb{X} \hat{\beta} \\
+&= \mathbb{Y} - \mathbb{X}(\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y} \\
+&= \mathbb{Y} (\mathbb{I} - \mathbb{X}(\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal) \\
+&= \mathbb{Y} (\mathbb{I} - \mathbb{H}) \\
+\end{align*}
+Où $\mathbb{H}$ correspond à la matrice de projection (Hat matrix).\newline
+
+Les sommes des carrés du tableau ANOVA sont données par les expressions suivantes :
+
+\begin{align*}
+\bullet SST &= \sum_{t=1}^n(Y_t - \overline{Y})^2 \\
+&= \sum_{t=1}^nY_t^2 - n\overline{Y}^2 \\
+&= \mathbb{Y}^\intercal\mathbb{Y} - n \overline{Y}^2 \\
+& \text{Avec $(n-1)$ degré de liberté} \\
+\bullet SSE &= \sum_{t=1}^n(Y_t - \hat{Y})^2 \\
+&= \sum_{t=1}^n\varepsilon_t^2 \\
+&= \mathbb{\varepsilon}^\intercal\mathbb{\varepsilon}\\
+& \text{Avec $(n-(p+1))$ degré de liberté} \\
+\bullet SSR &= \sum_{t=1}^n(\hat{Y_t} - \hat{Y})^2 \\
+&= \sum_{t=1}^n\hat{Y_t}^2 - n\overline{Y}^2 \\
+&= \mathbb{\hat{Y}}^\intercal\mathbb{\hat{Y}} - n \overline{Y}^2\\
+& \text{Avec $(p)$ degré de liberté}
+\end{align*}
+
+Dans le cas de régression multiple, le tableau ANOVA est le suivant :
+
+\bigskip
+\begin{tabularx}{\linewidth}{|X|X|X|X|X|}
+\hline
+Source de la variance & Somme des carrés $(SS)$ & Degrés de liberté $(d.l.)$ & Carrés moyens $(MS)$ & Ratio de Fisher $(F)$ \\
+\hline
+Régression & $SSR$ & p & $\frac{SSR}{p}$ & $\frac{MSR}{MSE}$ \\
+Erreur & $SSE$ & n - (p+1) & $ \frac{SSE}{n-(p+1)}$ & \\
+\hline
+Total & $SST$ & n - 1 & & \\
+\hline
+\end{tabularx}
+
+\subsection{Estimateur de $\sigma^2$}
+Dans le cas de la régression multiple, on peut démontrer qu'un bon estimateur sans biaais de $\sigma^2$ est $S^2$ sous la forme suivante :
+\begin{align*}
+S^2 &= MSE \\
+&= \frac{SSE}{n -(p+1)}
+\end{align*}
+
+\subsection{Intervalles de confiance et tests d'hypothèses}
+Essentiellement, on a la même chose qu'au chapitre \ref{chap:2} pour les tests $t$ et $F$, sauf qu'il faut adapter les degrés de liberté. \newline
+On rappel qu'avec le postulat 4 (\ref{post4}), on suppose que les résidus suivent une loi normale d'espérance nulle et de variance de $\sigma^2$.
+\begin{align*}
+\varepsilon_t &\overset{i.i.d.}{\sim} N(0, \sigma^2) \\
+\utilde{\varepsilon}_{n \times 1} &\sim N(\mathbb{O}, \sigma^2\mathbb{I}_{n\times n}) \\
+\end{align*}
+Ainsi on a que $ (\mathbb{Y} = \mathbb{X}  \mathbb{\beta}  + \mathbb{\varepsilon}) \sim N_n(\mathbb{X}\mathbb{\beta}; \sigma^2 \mathbb{I}_{n\times n})$ \newline
+et que $\hat{\beta} \sim N_n(\mathbb{\beta}; (\mathbb{X}^\intercal\mathbb{X})^{-1}\sigma^2)$.
+
+\subsection{Test de Student sur un seul paramètre}
+On effectue le test suivant, 
+\begin{align*}
+H_0 &: \beta_i = \beta_i^* \\
+H_1 &: \beta_i \neq \beta_i^* \\
+&\text{Où $\beta_i^*$ est une constante.} \\
+&\text{On teste l'hypothèse à l'aide de la statistique suivante, } \\
+t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[{Var}(\hat{\beta})]_{i+1 \times i+1}}} \sim N(0, 1) \\
+&\text{et en remplacant $\sigma^2$ par $S^2$ dans la matrice de la variance, on obtient }\\
+t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[\widehat{Var}(\hat{\beta})]_{i+1 \times i+1}}} \sim t(n-(p+1)) \\
+\end{align*}
+On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ pour si :
+$$
+|t| > t_{\frac{\alpha}{2}(n-(p+1))}
+$$
+Or, on a que $Var(\hat{\mathbb(\beta)}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}\sigma^2$ \newline
+Ainsi
+\begin{equation}
+\label{eq:varmulti}
+\color{blue}
+\boxed{\color{black}
+\widehat{Var}(\hat{\mathbb(\beta)}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}S^2}
+\end{equation}
+
+Avec un peu d'algèbre, on transforme ce test d'hypothèse en un intervalle de confiance pour $\beta_i$. L'I.C. marginal est donc le suivant :
+\begin{equation}
+\label{eq:ICmulti}
+\color{blue}
+\boxed{\color{black}
+\hat{\beta}_i \pm t_{\frac{\alpha}{n}}(n - (p+1)) \times \sqrt{[(\mathbb{X}^\intercal\mathbb{X})^{-1}S^2]}_{i+1 \times i+1} }
+\end{equation}
+
+\subsection{Test de Fisher pour la validité globale de la régression}
+\label{sec:fisherT}
+Dans le cas de la régression multiple, on teste 
+\begin{align*}
+H_0 &: \beta_1 = \beta_2 = ... = \beta_p = 0 \\
+H_1 &: \text{Au moins un coefficient parmi $\beta_1,...,\beta_p$ est $\neq 0$.} \\
+&\text{On teste l'hypothèse à l'aide de la statistique suivante, } \\
+F &= \frac{MSR}{MSE} \sim F(\text{d.l. de SSR, d.l. de SSE}) \\
+F &= \frac{MSR}{MSE} \sim F(p, n - (p+1)) \\
+\end{align*}
+On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ pour si :
+$$
+F > F_{\alpha}(p, n-(p+1))
+$$
+
+\subsubsection*{Remarque importante}
+De manière générale, avec p variables explicatives, on a que :
+$$
+F \neq t^2
+$$
+L'égalité ne survient que lorsque $p=1$ (Voir la section \ref{equivalent}).
+
+\subsection{Test de Fisher partiel}
+\label{sec:testFpartiel}
+À la section \ref{sec:fisherT} on a testé si \textbf{tous les} $\beta_1, \beta_2,...,\beta_p$ étaient nuls. \newline
+
+Dans cette section, on teste simultanément si certains $\beta_i$ parmi $\beta_1, \beta_2,...,\beta_p$ sont nuls.
+
+On teste donc :
+\begin{align*}
+H_0 &: \text{Un modèle \emph{réduit}, noté $M_0$ dont certains $\beta_i =0$ parmi $\beta_1, \beta_2,...,\beta_p$ est acceptable.} \\
+H_1 &: \text{On doit utiliser le modèle \emph{complet}, noté $M_1$ avec les $p$ variables.} \\
+\end{align*}
+On utilise la statistique de Fisher partielle suivante,
+\begin{equation}
+\label{eq:fisherpartiel}
+\color{blue}
+\boxed{\color{black}
+F^* = \frac{\frac{[SSE(M_0) - SSE(M_1)]}{[d.l.(SSE(M_0)) - d.l.(SSE(M_1))]}}{\frac{SSE(M_1)}{d.l.(SSE(M_1))}}
+}
+\end{equation}
+
+On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ si :
+$$
+F^* > F_{\alpha}\Big( d.l.(SSE(M_0)) - d.l.(SSE(M_1)); d.l.(SSE(M_1)) \Big)
+$$
+
+\subsubsection*{Remarque}
+Si le modèle réduit de $H_0$ ne consiste qu'à $\beta_i =0$, autrement dit un seul paramètre, alors on aura que $F^* = t^2$. Dans ce cas \textbf{seulement}, le test Fisher partiel est équivalent au test de Student.
+
+\subsubsection*{Exemple}
+On poursuit avec un exemple pour assimiler l'information. \newline
+
+Soit le modèle de régression multiple suivant :
+$$
+Y_t = \beta_0 + \beta_1X_{t,1} + \beta_2X_{t,2} + \beta_3X_{t,3} + \beta_4X_{t,4} + \varepsilon_t
+$$
+
+On teste donc :
+\begin{align*}
+H_0 &: \beta_2 = \beta_3 = 0 \\
+H_1 &: \beta_2 \neq 0 \text{ et/ou } \beta_3 \neq 0 \\
+\end{align*}
+
+Afin d'effectuer le test, on effectue les étapes suivantes :
+\begin{itemize}
+\item[\textbf{Étape 1}] Obtenir le tableau ANOVA pour le modèle sous le modèle complet $M_0$. Extraire $SSE(M_0)$ et $d.l.(SSE(M_0)) \Rightarrow n - 3$
+
+\item[\textbf{Étape 2}] Obtenir le tableau ANOVA pour le modèle sous le modèle complet $M_1$. Extraire $SSE(M_1)$ et $d.l.(SSE(M_1)) \Rightarrow n - 5$ 
+
+\item[\textbf{Étape 3}] Calculer la valeur de la statistique de Fisher partielle.
+$$
+F^* = \frac{\frac{[SSE(M_0) - SSE(M_1)]}{[(n-3) - (n-5)]}}{\frac{SSE(M_1)}{(n-5)}}
+$$
+Puis rejeter $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ si :
+$$
+F^* > F_{\alpha}\Big( 2; n-5 \Big)
+$$
+\end{itemize}
+
+\section{Sélection d'un modèle optimal}
+Lorsque l'on dispose de plusieurs variables explicatives $(X_1,X_2,...,X_p)$, un modèle optimal est tel que :
+\begin{enumerate}
+\item Pouvoir prédictif \textbf{maximal}
+\item Avec un nombre de variables \textbf{minimal}
+\end{enumerate}
+En régression, il existe plusieurs algorithmes pou obtenir un modèle optimal.
+
+\subsection{Technique 1: Essai de tous les modèles}
+\label{tech1}
+
+La stratégie la plus simple consiste à examiner tous les modèles possibles, soit les $2^p$ combinaisons existantes. \newline
+
+On choisi le modèle ayant le plus grand $R^2_{adj}$, qui correspond à l'une des expresions suivantes :
+
+\begin{equation}
+\color{blue}
+\boxed{\color{black}
+R^2_{adj} = 1 - \frac{\frac{SSE}{(n-p-1)}}{\frac{SST}{(n-1)}} 
+}
+\end{equation}
+\begin{equation}
+\color{blue}
+\boxed{\color{black}
+R^2_{adj} = 1 - (1 - R^2) \Big(\frac{n-1}{n-p-1} \Big) 
+}
+\end{equation}
+
+On note que contrairement au $R^2$, le $R^2_{adj}$ pénalise pour l'ajout de variables dans le modèle.
+
+\bigskip
+\subsubsection*{Exemple}
+Si on dispose de $X_1, X_2$ et $X_3$, on ajuste les $2^3$ modèles possibles :
+\begin{enumerate}
+\item $Y = \beta_0 + \varepsilon$
+\item $Y = \beta_0 + \beta_1X_1 + \varepsilon$
+\item $Y = \beta_0 + \beta_1X_2 + \varepsilon$
+\item $Y = \beta_0 + \beta_1X_3 + \varepsilon$
+\item $Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \varepsilon$
+\item $Y = \beta_0 + \beta_1X_1 + \beta_2X_3 + \varepsilon$
+\item $Y = \beta_0 + \beta_1X_2 + \beta_2X_3 + \varepsilon$
+\item $Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \beta_3X_3 + \varepsilon$
+\end{enumerate}
+On fait le calcul du $R^2_{adj}$ pour chaque modèle et on choisit le modèle avec le plus grand $R^2_{adj}$.
+
+\subsubsection*{Remarque}
+En pratique cette méthode n'est pas \emph{efficiente}, car le temps d'exécution devient énorme lorsque p augmente :
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+p & $2^p$ \\
+\hline
+1 & 2 \\
+2 & 4 \\
+3 & 8 \\
+\vdots & \\
+10 & 1024 \\
+\vdots & \\
+25 & 33554432 \\
+\vdots & \\
+100 & $1.26\times 10^{30}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Technique 2 : Élimination régressive (\emph{Backward elimination})}
+\label{tech2}
+
+\begin{itemize}
+\item [Étape 1] Débuter avec toutes les variables disponibles dans le modèle.
+
+\item [Étape 2] Chercher la variable qui génère la plus faible augmentation de SSE lorsqu'exclue du modèle. Autrement dit, la pire variable.
+
+\item [Étape 3] Utiliser les test Fisher partiels (\ref{sec:testFpartiel}) pour tester s'il est possible d'exclure la variable de l'étape 2.
+
+\item [Étape 4] Continuer les étapes 2 et 3 jusqu'à ce qu'il n'y ait plus de variables à éliminer selon les tests Fisher partiels.
+\end{itemize}
+\bigskip
+
+Voici une illustrations de l'élimination régressive.
+
+%% Figure élimination régressive
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=3,width=5>>=
+# Ajout graphe
+p <- ggplot(data.frame(x=c(0, 6)), aes(x=x))
+
+# Ajout du segment
+p <- p + geom_segment(aes(x=0, xend=3, y=8, yend=5), 
+               arrow=arrow(length=unit(0,"cm"),  angle=360), linetype=1)
+
+# Ajout des points 
+p <- p + geom_point(aes(0, 8))  +  geom_point(aes(1, 7)) + geom_point(aes(2, 6)) + geom_point(aes(3, 5))
+p <- p + xlab("Itérations") + ylab("Nombre de variables")
+
+# Ajout texte sur axes
+p <- p + annotate("text", x=2.9, y=0, parse=TRUE, size=3, label="'Modèle \n optimal'")
+p
+@
+
+\subsubsection*{Remarque}
+Le principal inconvénient de cette technique est qu'une variable éliminée ne peut jamais être réintégrée. 
+
+\subsection{Technique 3 : Sélection progressive (\emph{forward selection})}
+\label{tech3}
+
+\begin{itemize}
+\item [Étape 1] Débuter avec le modèle $Y = \beta_0 + \varepsilon$
+
+\item [Étape 2] Chercher la variable qui génère la plus grande diminution de SSE lorsqu'incluse dans le modèle. Autrement dit, la meilleure variable.
+
+\item [Étape 3] Utiliser les test Fisher partiels (\ref{sec:testFpartiel}) pour tester s'il est possible d'inclure la variable de l'étape 2.
+
+\item [Étape 4] Continuer les étapes 2 et 3 jusqu'à ce qu'il n'y ait plus de variables à inclures selon les tests Fisher partiels.
+\end{itemize}
+\bigskip
+
+%% Figure forward technique
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=3,width=5>>=
+# Ajout graphe
+p <- ggplot(data.frame(x=c(0, 6)), aes(x=x))
+
+# Ajout du segment
+p <- p + geom_segment(aes(x=0, xend=3, y=0, yend=3), 
+               arrow=arrow(length=unit(0,"cm"),  angle=360), linetype=1)
+
+# Ajout des points 
+p <- p + geom_point(aes(0, 0))  +  geom_point(aes(1, 1)) + geom_point(aes(2, 2)) + geom_point(aes(3, 3))
+p <- p + xlab("Itérations") + ylab("Nombre de variables")
+
+# Ajout texte sur axes
+p <- p + annotate("text", x=2.9, y=0, parse=TRUE, size=3, label="'Modèle \n optimal'")
+p
+@
+
+\subsubsection*{Remarque}
+Le principal inconvénient de cette technique est qu'une variable incluse ne peut jamais être éliminée par la suite. 
+
+\subsection{Technique 4 : Régression pas à pas (\emph{stepwise regression})}
+\label{tech4}
+
+Il s'agit d'une combinaison de l'élimination régressive et de la sélection progressive.
+
+\begin{itemize}
+\item [Étape 1] Débuter avec le modèle $Y = \beta_0 + \varepsilon$
+
+\item [Étape 2] Chercher la variable qui génère la plus grande diminution de SSE si incluse dans le modèle. Autrement dit, la meilleure variable.
+
+\item [Étape 3] Utiliser les test Fisher partiels (\ref{sec:testFpartiel}) pour tester s'il est possible d'inclure la variable de l'étape 2.
+
+\item [Étape 4] Chercher la variable qui génère la plus faible diminution de SSE si incluse dans le modèle. Autrement dit, la pire variable.
+
+\item [Étape 5] Utiliser les test Fisher partiels (\ref{sec:testFpartiel}) pour tester s'il est possible d'exclure la variable de l'étape 4.
+
+\item [Étape 6] Continuer les étapes 2 à 5 jusqu'à ce que l'algorithme élimine la variable qui vient d'entrer.
+\end{itemize}
+\bigskip
+
+%% Figure forward technique
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=3,width=5>>=
+# Ajout graphe
+p <- ggplot(data.frame(x=c(0, 6)), aes(x=x))
+
+# Ajout des segments
+p <- p + geom_segment(aes(x=0, xend=2, y=0, yend=2), 
+               arrow=arrow(length=unit(0,"cm"),  angle=360), linetype=1) + 
+     geom_segment(aes(x=2, xend=3, y=2, yend=1), 
+               arrow=arrow(length=unit(0,"cm"),  angle=360), linetype=1) +
+     geom_segment(aes(x=3, xend=5, y=1, yend=3), 
+               arrow=arrow(length=unit(0,"cm"),  angle=360), linetype=1) +
+     geom_segment(aes(x=5, xend=6, y=3, yend=2), 
+               arrow=arrow(length=unit(0,"cm"),  angle=360), linetype=1) +
+     geom_segment(aes(x=6, xend=7, y=2, yend=3), 
+               arrow=arrow(length=unit(0,"cm"),  angle=360), linetype=1) +
+     geom_segment(aes(x=7, xend=8, y=3, yend=2), 
+               arrow=arrow(length=unit(0,"cm"),  angle=360), linetype=1)
+
+# Ajout des points 
+p <- p + geom_point(aes(0, 0))  +  geom_point(aes(1, 1)) + geom_point(aes(2, 2)) + geom_point(aes(3, 1)) + geom_point(aes(4, 2)) +
+     geom_point(aes(5, 3)) + geom_point(aes(6, 2))  + geom_point(aes(7, 3)) + geom_point(aes(8, 2))
+p <- p + xlab("Itérations") + ylab("Nombre de variables")
+
+# Ajout texte sur axes
+p <- p + annotate("text", x=7.9, y=0, parse=TRUE, size=3, label="'Modèle \n optimal'")
+p
+@
+
+\bigskip
+\subsubsection*{Exemple}
+On poursuit avec un exemple pour assimiler l'information. \newline
+À partir des informations suivantes on cherche à trouver le meilleur modèle de régression des 20 observations.
+\bigskip
+
+\begin{tabularx}{\linewidth}{|X|c|c|c|c|}
+\hline
+Variables dans le modèle & $SSE$ & $SSR$ & $SST$ & $R^2_{adj}$ \\
+\hline
+$\phi$ & 10 & 0 & 10 & 0 \% \\
+$X_1$ & 5 & 5 & 10 & 47.2 \% \\
+$X_2$ & 9 & 1 & 10 & 5 \% \\
+$X_3$ & 8 & 2 & 10 & 15.5 \% \\
+$X_1, X_2$ & 4 & 6 & 10 & 55.3 \% \\
+$X_1, X_3$ & 3.9 & 6.1 & 10 & 56.4 \% \\
+$X_2, X_3$ & 8.5 & 1.5 & 10 & 5 \% \\
+$X_1, X_2, X_3$ & 3.8 & 6.2 & 10 & 54.9 \% \\
+\hline
+\end{tabularx}
+
+\subsubsection*{Technique 1}
+Avec la technique 1 (\ref{tech1}), on trouve le modèle suivant :
+$$
+Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \varepsilon
+$$
+
+\subsubsection*{Technique 2}
+Avec la technique 2 (\ref{tech2}), on débute avec le modèle initial suivant :
+$$
+Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + + \beta_3X_3 + \varepsilon
+$$
+La pire variable est $X_2$, on effectue le test de Fisher partiel (\ref{eq:fisherpartiel}) avec modèle $M_0$ sans la variable $X_2$ et $M_1$ avec le modèle complet. 
+
+\begin{align*}
+H_0 &: \text{ Modèle avec $X_1$ et $X_3$} \\
+H_1 &: \text{ Modèle avec $X_1$, $X_2$ et $X_3$} \\
+\end{align*}
+\begin{align*}
+F &= \frac{\frac{3.9-3.8}{1}}{\frac{3.8}{16}} \\
+&= 0.4211 \\
+F_{5 \%}(1.16) &= 4.49 \\
+0.4211 &< 4.49
+\end{align*}
+On accepte $H_0$ et on exclut $X_2$. \newline
+La prochaine pire variable est la variable $X_1$.
+
+\begin{align*}
+H_0 &: \text{ Modèle avec $X_3$} \\
+H_1 &: \text{ Modèle avec $X_1$ et $X_3$} \\
+\end{align*}
+\begin{align*}
+F &= \frac{\frac{5 - 3.9}{1}}{\frac{3.9}{17}} \\
+&= 4.79 \\
+F_{5 \%}(1.17) &= 4.49 \\
+4.79 &> 4.45
+\end{align*}
+On rejette $H_0$ et on n'exclut pas $X_3$. \newline
+On trouve le modèle suivant :
+$$
+Y = \beta_0 + \beta_1X_1 + \beta_2X_3 + \varepsilon
+$$
+
+\section{Régression avec variables indicatrices}
+Permettent de traiter des variables explicatives \emph{catégoriques} dans les modèles.
+\subsubsection*{Exemples}
+\begin{itemize}
+\item Couleur des yeux (bleu, brun, vert et autres)
+\item Type de véhicule (sport et autres)
+\item emploi (ACT, ETUm RTR, GOU et autres)
+\end{itemize}
+
+Pour inclure une variable catégorique ayant $r$ valeurs possibles, on doit créér $(r-1)$ variables indicatrices.
+\subsubsection*{Exemple}
+\begin{itemize}
+\item Couleur des yeux : 
+\begin{align*}
+X_{t,1} &= 1_{\{Couleur_t = Bleu\}} \\
+X_{t,2} &= 1_{\{Couleur_t = Brun\}} \\
+X_{t,3} &= 1_{\{Couleur_t = Vert\}} \\
+\end{align*}
+\item Type de véhicule :
+\begin{align*}
+X_{t,4} &= 1_{\{Type_t = Sport\}} \\
+\end{align*}
+\item Emploi :
+\begin{align*}
+X_{t,5} &= 1_{\{Emploi_t = ACT\}} \\
+X_{t,6} &= 1_{\{Emploi_t = ETU\}} \\
+X_{t,7} &= 1_{\{Emploi_t = RTR\}} \\
+X_{t,8} &= 1_{\{Emploi_t = GOU\}} \\
+\end{align*}
+; où 
+\begin{align*}
+1_{\{A\}} &= 
+\left \lbrace
+     \begin{array}{rl}
+     1 &, \text{si A vrai} \\
+     0 &, \text{sinon}
+     \end{array}
+     \right.
+\end{align*}
+
+\end{itemize}
+
+\subsubsection*{Exemple de modèle de régression avec indicatrice}
+
 
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
