@@ -223,6 +223,7 @@ Voici une illustration du concept de régression linéaire
 \pagebreak
 
 \subsection{Regression linéaire simple}
+\label{sec:linsimple}
 
 On cherche à prédire l'âge des passagers du Titanic selon le prix du billet à l'aide du modèle linéaire suivant,
 
@@ -261,7 +262,7 @@ On cherche à prédire l'âge des passagers du Titanic selon le prix du billet e
 \draw[->, line width=0.5mm] (Y) -- ([xshift=2mm, yshift=-3mm] function.west);
 \node[text width = 2.3cm, below of=c, yshift=-0.0001cm] (X) {Prix du billet};
 \draw[->, line width=0.5mm] (X) -- ([xshift=0cm, yshift=-3mm] function.center);
-\node[text width = 2.3cm, right of=c, xshift=0.5cm] (X2) {Sexe du passager};
+\node[text width = 2.3cm, right of=c, xshift=0.5cm] (X2) {Type de billet};
 \draw[->, line width=0.5mm] (X2) -- ([xshift=-1cm, yshift=-3mm] function.east);
 \node[text width = 2.3cm, right of=c, xshift=3cm] (E) {Erreur aléatoire};
 \draw[->, line width=0.5mm] (E) -- ([ yshift=-1mm] function.east);
@@ -1693,24 +1694,24 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-          fit         lwr        upr
-1 -0.04282992 -0.62845918  0.5427993
-2 -0.41130557 -0.94995247  0.1273413
-3 -1.31486075 -1.84225379 -0.7874677
-4 -1.23253540 -1.75438133 -0.7106895
-5  0.63646469 -0.07985857  1.3527879
+         fit        lwr        upr
+1 -0.8570430 -1.5038168 -0.2102692
+2 -1.3730068 -2.1228340 -0.6231795
+3  0.8296159 -0.6538466  2.3130784
+4 -1.6694325 -2.5587897 -0.7800752
+5 -2.1571042 -3.3399441 -0.9742644
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-         fit         lwr       upr
-1 -0.1234201 -0.69703723 0.4501970
-2  0.1229158 -0.49008961 0.7359212
-3  0.3692517 -0.29023653 1.0287399
-4  0.6155876 -0.09608922 1.3272644
-5  0.8619235  0.09351402 1.6303330
+         fit        lwr       upr
+1 -0.3264939 -1.1056047 0.4526169
+2 -0.0905779 -0.9853241 0.8041683
+3  0.1453381 -0.8850154 1.1756915
+4  0.3812540 -0.7978074 1.5603155
+5  0.6171700 -0.7193342 1.9536743
 \end{Soutput}
 \end{Schunk}
 
@@ -1718,11 +1719,11 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \begin{Schunk}
 \begin{Soutput}
          fit       lwr      upr
-1 -0.1234201 -2.190215 1.943374
-2  0.1229158 -1.955155 2.200987
-3  0.3692517 -1.723002 2.461506
-4  0.6155876 -1.493698 2.724873
-5  0.8619235 -1.267174 2.991021
+1 -0.3264939 -2.948447 2.295459
+2 -0.0905779 -2.749185 2.568030
+3  0.1453381 -2.561921 2.852597
+4  0.3812540 -2.386021 3.148529
+5  0.6171700 -2.220764 3.455104
 \end{Soutput}
 \end{Schunk}
 
@@ -2610,12 +2611,417 @@ X_{t,8} &= 1_{\{Emploi_t = GOU\}} \\
 
 \end{itemize}
 
-\subsubsection*{Exemple de modèle de régression avec indicatrice}
+\subsubsection*{Exemple}
+À partir des 5 observations suivantes, définir la matrice des variables réponses et la matrice schéma.
 
+\bigskip
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$Y_t$ & $Couleur_t$ & $Type_t$ & $Emploi_t$ \\
+\hline
+70 & Bleu & Autres & ETU \\
+75 & Brun & Sport & GOU \\
+50 & Vert & Autres & Autres \\
+55 & Autres & Autres & Autres \\
+85 & Brun & Sport & ACT \\
+\hline
+\end{tabular}
+\end{center}
+\bigskip
+
+On utilise le modèle de régression multiple à partir du modèle d'indicatrice précédent. On obtient le modèle de régression suivant:
+
+\begin{align*}
+Y_t &= \beta_0 + \beta_1X_{t,1} + \beta_2X_{t,2} + \beta_3X_{t,3} 
++ \beta_4X_{t,4} + \beta_5X_{t,5} + \beta_6X_{t,6} + \beta_7X_{t,7} + \beta_8X_{t,8} + \varepsilon_t \\
+\mathbb{Y} &= \mathbb{X}\mathbb{\beta} + \mathbb{\varepsilon}
+\end{align*}
+
+La matrice des variables réponses correspond à :
+\begin{align*}
+\mathbb{Y} &= 
+\begin{bmatrix}
+70 \\
+75 \\
+50 \\
+55 \\
+85 \\
+\end{bmatrix}
+\end{align*}
+
+La matrice schéma correspond à :
+
+\begin{align*}
+\mathbb{X}
+=
+\bordermatrix { 
+& &  X_1  & X_2 & X_3 & X_4 & X_5  & X_6 & X_7 & X_8 \cr 
+& 1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \cr 
+& 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 \cr 
+& 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \cr 
+& 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \cr 
+& 1 & 0 & 1 & 0 & 1 & 1 & 0 & 0 & 0 \cr 
+}
+\end{align*}
+
+\section{Analyse qualitative des résidus}
+Même si les test $t$ et $F$ sont concluents, le modèle choisi peut ne pas être adéquat. En effet, l'analyse qualitative des résidus est la principale façon de valider un modèle sélectionné. 
+
+\subsubsection*{Distribution \emph{uniforme}}
+\includegraphics{notes_de_cours-031}
+
+\bigskip
+On remarque que les résidus sont uniformément distribués autour de l'axe des $x$. Il s'agit d'une situation idéal.
+
+\subsection{Problèmes possibles dans la distribution des résidus}
+Plusieurs problèmes de distribution des résidus peuvent être observés, voici leurs représentations graphiques et leurs possibles significations :
+
+\subsubsection{Distribution \emph{uniforme} avec rotation}
+Cette distribution des résidus est très similaire à la distribution \emph{uniforme}, par contre les résidus ne sont pas distribués autour de l'axe des $x$. La distribution semble avoir effectué une rotation. Il manque probalement un terme linéaire dans $X$.
+
+\bigskip
+\includegraphics{notes_de_cours-032}
+\bigskip
+
+\subsubsection{Distribution \emph{quadratique}}
+Cette distribution des résidus semble suivre une distribution quadratique. Il manue probablement une variable quadratique dans $X$.
+
+\bigskip
+\includegraphics{notes_de_cours-033}
+
+\subsubsection{Distribution \emph{conique}}
+Cette distribution des résidus semble suivre être distribuer dans un cone. La variance n'est probablement pas constante. Il y a violation de l'hypothèse \ref{post2}. 
+
+\bigskip
+\includegraphics{notes_de_cours-034}
+
+\subsection{Quantiles normaux}
+On appel parfois le diagramme Quantile-Quantile ou Q-Q plot. Il s'agit d'un outil permettant d'évaluer la pertinence de l'ajustement d'une distribution. \newline
+
+On ajuste selon une loi normale la fonction empirique des résidus par rapport aux résidus. \newline
+
+On cherche à avoir une droite à $45^\circ$. Dans cette situation, cela signifie $\varepsilon_t \sim N(0,1)$.
+
+\includegraphics{notes_de_cours-035}
+
+\subsection{Exemple complet}
+\label{ex:chapitre3}
+
+On poursuit avec un exemple complet pour synthétiser l'information du chapitre 3. \newline
+
+On reprend le scénario du Titanic de la section \ref{ex:multiple}, cette fois on va utiliser un modèle complet avec des catégories et déterminer le meilleur modèle avec la technique de régression pas à pas \footnote{Le code source complet de l'exemple est disponible à l'annexe \ref{codesour:chap3}}.  \newline
+
+Tout d'abord, voici la signification des variables :
+\begin{center}
+\begin{tabularx}{\textwidth}{XX}
+\hline
+Variable & Définition \\
+\hline
+Survival & Survie du passager au naufrage du Titanic \\
+Pclass & Catégorie du billet \\
+Sex & Sexe \\
+Age & Âge \\
+sibsp & Nombre se frères et sœurs / époux à bord du Titanic \\
+parch & Nombre de parents / enfants à bord du Titanic \\
+ticket & Numéro du billet \\
+fare & Prix du billet \\
+cabin & Numéro de la cabine \\
+embarked & Port d'embarquement \\
+\hline
+\end{tabularx}
+\end{center}
+
+L'étape suivante consiste à analyser notre jeu de donnée et de retirer les variables inutiles:
+\begin{Schunk}
+\begin{Soutput}
+  PassengerId       Survived          Pclass     
+ Min.   :  1.0   Min.   :0.0000   Min.   :1.000  
+ 1st Qu.:223.5   1st Qu.:0.0000   1st Qu.:2.000  
+ Median :446.0   Median :0.0000   Median :3.000  
+ Mean   :446.0   Mean   :0.3838   Mean   :2.309  
+ 3rd Qu.:668.5   3rd Qu.:1.0000   3rd Qu.:3.000  
+ Max.   :891.0   Max.   :1.0000   Max.   :3.000  
+                                                 
+                                    Name         Sex           Age       
+ Abbing, Mr. Anthony                  :  1   female:314   Min.   : 0.42  
+ Abbott, Mr. Rossmore Edward          :  1   male  :577   1st Qu.:20.12  
+ Abbott, Mrs. Stanton (Rosa Hunt)     :  1                Median :28.00  
+ Abelson, Mr. Samuel                  :  1                Mean   :29.70  
+ Abelson, Mrs. Samuel (Hannah Wizosky):  1                3rd Qu.:38.00  
+ Adahl, Mr. Mauritz Nils Martin       :  1                Max.   :80.00  
+ (Other)                              :885                NA's   :177    
+     SibSp           Parch             Ticket         Fare       
+ Min.   :0.000   Min.   :0.0000   1601    :  7   Min.   :  0.00  
+ 1st Qu.:0.000   1st Qu.:0.0000   347082  :  7   1st Qu.:  7.91  
+ Median :0.000   Median :0.0000   CA. 2343:  7   Median : 14.45  
+ Mean   :0.523   Mean   :0.3816   3101295 :  6   Mean   : 32.20  
+ 3rd Qu.:1.000   3rd Qu.:0.0000   347088  :  6   3rd Qu.: 31.00  
+ Max.   :8.000   Max.   :6.0000   CA 2144 :  6   Max.   :512.33  
+                                  (Other) :852                   
+         Cabin     Embarked
+            :687    :  2   
+ B96 B98    :  4   C:168   
+ C23 C25 C27:  4   Q: 77   
+ G6         :  4   S:644   
+ C22 C26    :  3           
+ D          :  3           
+ (Other)    :186           
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+Certaine variable ne son d'auncun intérêt pour estimer l'âge d'un passager, tel que :
+\begin{itemize}
+\item \emph{PassengerId}, car il s'agit d'un numéro unique pour chaque passager. (Max. : 891 pour 891 observations)
+\item \emph{Name}, dans son étât actuel le nom du passager n'est pas très utile car il s'agit d'observation unique.
+\item \emph{Ticket}, car il s'agit d'un numéro unique pour chaque passager.
+\item \emph{SibSP}, \emph{Parch} et \emph{Cabin} sont retirer pour de fins de simplification. 
+\end{itemize}
+
+\bigskip
+On cherche maintenant à transformer une donnée pour en tirer de l'information. On observe que le nom du passager est unique dans son format actuel, mais avec un peu de manipulation de donnée, il est très facile d'extraire son nom de famille.
+
+
+\begin{Schunk}
+\begin{Sinput}
+> # Visualiser les 6 premières observations par catégorie
+> head(summary(data$Surname))
+\end{Sinput}
+\begin{Soutput}
+Andersson      Sage    Carter   Goodwin   Johnson    Panula 
+        9         7         6         6         6         6 
+\end{Soutput}
+\end{Schunk}
+
+On obtient ainsi le modèle complet suivant :
+\begin{align*}
+\text{Âge}_t = \beta_0 + \beta_1 \times \text{Survived}_t + \beta_2 \times \text{Pclass}_t + \beta_3  \times \text{Sex}_t + \beta_4  \times \text{Fare}_t + \beta_5  \times \text{Embarked}_t + \beta_6  \times \text{Surname}_t + \varepsilon_t
+\end{align*}
+
+On peut maintenant trouver le meilleur modèle,
+
+\begin{Schunk}
+\begin{Sinput}
+> fit <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname, data), 
++             direction = "both")
+\end{Sinput}
+\begin{Soutput}
+Start:  AIC=3796.05
+Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname
+
+            Df Sum of Sq    RSS    AIC
+- Surname  533     87709 119664 3672.8
+- Pclass     1         3  31958 3794.1
+- Fare       1        43  31997 3795.0
+<none>                    31955 3796.0
+- Embarked   2       336  32291 3799.5
+- Sex        1       379  32334 3802.5
+- Survived   1      2616  34571 3850.2
+
+Step:  AIC=3672.79
+Age ~ Survived + Pclass + Sex + Fare + Embarked
+
+            Df Sum of Sq    RSS    AIC
+- Embarked   3       664 120328 3670.7
+- Sex        1       187 119851 3671.9
+<none>                   119664 3672.8
+- Fare       1      1574 121238 3680.1
+- Survived   1      4062 123726 3694.6
++ Surname  533     87709  31955 3796.0
+- Pclass     1     25962 145626 3811.0
+
+Step:  AIC=3670.74
+Age ~ Survived + Pclass + Sex + Fare
+
+            Df Sum of Sq    RSS    AIC
+- Sex        1       145 120473 3669.6
+<none>                   120328 3670.7
++ Embarked   3       664 119664 3672.8
+- Fare       1      1747 122075 3679.0
+- Survived   1      4200 124528 3693.2
++ Surname  534     88037  32291 3799.5
+- Pclass     1     26337 146664 3810.1
+
+Step:  AIC=3669.61
+Age ~ Survived + Pclass + Fare
+
+            Df Sum of Sq    RSS    AIC
+<none>                   120473 3669.6
++ Sex        1       145 120328 3670.7
++ Embarked   3       623 119851 3671.9
+- Fare       1      1850 122323 3678.5
+- Survived   1      6913 127386 3707.4
++ Surname  534     87812  32662 3805.7
+- Pclass     1     26875 147349 3811.4
+\end{Soutput}
+\begin{Sinput}
+> fit
+\end{Sinput}
+\begin{Soutput}
+Call:
+lm(formula = Age ~ Survived + Pclass + Fare, data = data)
+
+Coefficients:
+(Intercept)     Survived       Pclass         Fare  
+   54.14124     -6.81709     -9.12040     -0.03671  
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+On observe que le Q-Q plot suivant pour le modèle
+
+\begin{Schunk}
+\begin{Sinput}
+> # Q-Q plot 
+> plot(fit, which=2)
+\end{Sinput}
+\end{Schunk}
+\includegraphics{notes_de_cours-040}
+
+\bigskip
+Notre modèle prédit assez bien l'âge, par contre pour des valeurs extrêmes notre prédiction est moins précise. \newline
+
+On va maintenant tester une variable modifier, le log-Fare. En appliquant un log à une valeur numérique, on réduit l'échelle d'écart entre les variables et certaines peuvent mieux prédire après avoir être transformer.
+
+\begin{Schunk}
+\begin{Soutput}
+Start:  AIC=3796.92
+Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname + LogFare
+
+            Df Sum of Sq    RSS    AIC
+- Surname  533     84253 116157 3653.6
+- Pclass     1         6  31910 3795.0
+- LogFare    1        51  31955 3796.0
+<none>                    31904 3796.9
+- Fare       1        93  31997 3797.0
+- Embarked   2       374  32278 3801.2
+- Sex        1       409  32313 3804.0
+- Survived   1      2614  34518 3851.1
+
+Step:  AIC=3653.56
+Age ~ Survived + Pclass + Sex + Fare + Embarked + LogFare
+
+            Df Sum of Sq    RSS    AIC
+- Sex        1         6 116163 3651.6
+- Embarked   3       682 116839 3651.7
+- Fare       1       116 116274 3652.3
+<none>                   116157 3653.6
+- LogFare    1      3507 119664 3672.8
+- Survived   1      4214 120372 3677.0
++ Surname  533     84253  31904 3796.9
+- Pclass     1     28085 144242 3806.2
+
+Step:  AIC=3651.59
+Age ~ Survived + Pclass + Fare + Embarked + LogFare
+
+            Df Sum of Sq    RSS    AIC
+- Embarked   3       677 116840 3649.7
+- Fare       1       120 116283 3650.3
+<none>                   116163 3651.6
++ Sex        1         6 116157 3653.6
+- LogFare    1      3687 119851 3671.9
+- Survived   1      5931 122094 3685.1
++ Surname  533     83850  32313 3804.0
+- Pclass     1     29036 145199 3808.9
+
+Step:  AIC=3649.74
+Age ~ Survived + Pclass + Fare + LogFare
+
+            Df Sum of Sq    RSS    AIC
+- Fare       1        99 116939 3648.3
+<none>                   116840 3649.7
++ Embarked   3       677 116163 3651.6
++ Sex        1         1 116839 3651.7
+- LogFare    1      3633 120473 3669.6
+- Survived   1      5953 122794 3683.2
+- Pclass     1     29179 146019 3806.9
++ Surname  534     84180  32660 3807.6
+
+Step:  AIC=3648.35
+Age ~ Survived + Pclass + LogFare
+
+            Df Sum of Sq    RSS    AIC
+<none>                   116939 3648.3
++ Fare       1        99 116840 3649.7
++ Embarked   3       656 116283 3650.3
++ Sex        1         2 116937 3650.3
+- LogFare    1      5384 122323 3678.5
+- Survived   1      5953 122892 3681.8
+- Pclass     1     29081 146021 3804.9
++ Surname  534     84275  32664 3805.7
+\end{Soutput}
+\begin{Soutput}
+Call:
+lm(formula = Age ~ Survived + Pclass + LogFare, data = data)
+
+Coefficients:
+(Intercept)     Survived       Pclass      LogFare  
+     69.419       -6.354      -11.201       -4.060  
+\end{Soutput}
+\end{Schunk}
+\includegraphics{notes_de_cours-041}
+
+On obtient une légère amélioration de notre modèle et on retient ce modèle. \newline
+
+On cherche maintenant à prédire à partir d'un autre échantillon des données.
+
+\begin{Schunk}
+\begin{Sinput}
+> head(predict(fitL, dataTest))
+\end{Sinput}
+\begin{Soutput}
+       1        2        3        4        5        6 
+21.10578 21.56033 37.79596 27.04870 19.27570 20.43965 
+\end{Soutput}
+\end{Schunk}
+
+\begin{moreInfo}{\emph{Segmentation des données}}
+      En analyse des données, il est primordial de fragmenter les données. On utilise habituellement réduit l'algorithme suivant :
+      \begin{enumerate}
+      \item 80 \% des données pour l'entraînement (training) et 20 \% pour le test (testing);
+      \item 80 \% des données de test pour l'entraînement  (training) et 20 \% pour la validation (validation). 
+      \end{enumerate}
+      On segmente les données afin d'éviter le surapprentissage (overfitting). Il s'agit de la situation ou toutes les situations possibles sont incluses dans le modèle et celui-ci perd de la qualité prédictive. 
+      Dans le cadre du cours, seulement l'étape 1 est suffisante. \newline
+      
+      Des méthodes plus \href{https://fr.wikipedia.org/wiki/Validation_croisée}{élaborée} et complexe existent pour les données massives et l'apprentissage automatique.
+\end{moreInfo}
 
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+
 \appendix
+
+\chapter{Code source de l'exemple chapitre 3}
+\label{codesour:chap3}
+(Section \ref{ex:chapitre3})
+
+\begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
+\begin{Schunk}
+\begin{Sinput}
+> # Import data
+> data <- read.csv('data/Titanic/train.csv', stringsAsFactors = T)
+> summary(data)
+> # Ajout de la variable nom de famille
+> data$Surname <- as.factor(sapply(as.character(data$Name),  
++                        function(x) strsplit(x, split = '[,]')[[1]][1]))
+> # Modele de regression stepwise
+> fit <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname, data), direction = "both")
+> fit
+> # Q-Q plot 
+> plot(fit, which=2)
+> # Ajout de la variable Log - Fare
+> data$LogFare <- log(data$Fare)
+> data$LogFare[data$LogFare == -Inf] <- 0
+> fitL <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname + LogFare, data), direction = "both")
+> fitL
+> # Import data
+> dataTest <- read.csv('data/Titanic/test.csv', stringsAsFactors = T)
+> head(predict(fitL, dataTest))
+\end{Sinput}
+\end{Schunk}
+\end{lstlisting}
 
 \end{document}

@@ -46,3 +46,11 @@
 \contentsline {subsection}{\numberline {3.2.3}Technique 3 : S\IeC {\'e}lection progressive (\emph {forward selection})}{62}{subsection.3.2.3}
 \contentsline {subsection}{\numberline {3.2.4}Technique 4 : R\IeC {\'e}gression pas \IeC {\`a} pas (\emph {stepwise regression})}{62}{subsection.3.2.4}
 \contentsline {section}{\numberline {3.3}R\IeC {\'e}gression avec variables indicatrices}{66}{section.3.3}
+\contentsline {section}{\numberline {3.4}Analyse qualitative des r\IeC {\'e}sidus}{68}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Probl\IeC {\`e}mes possibles dans la distribution des r\IeC {\'e}sidus}{68}{subsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.1.1}Distribution \emph {uniforme} avec rotation}{68}{subsubsection.3.4.1.1}
+\contentsline {subsubsection}{\numberline {3.4.1.2}Distribution \emph {quadratique}}{69}{subsubsection.3.4.1.2}
+\contentsline {subsubsection}{\numberline {3.4.1.3}Distribution \emph {conique}}{70}{subsubsection.3.4.1.3}
+\contentsline {subsection}{\numberline {3.4.2}Quantiles normaux}{71}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Exemple complet}{72}{subsection.3.4.3}
+\contentsline {chapter}{\numberline {A}Code source de l'exemple chapitre 3}{80}{appendix.A}

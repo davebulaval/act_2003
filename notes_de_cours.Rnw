@@ -222,6 +222,7 @@ Voici une illustration du concept de régression linéaire
 \pagebreak
 
 \subsection{Regression linéaire simple}
+\label{sec:linsimple}
 
 On cherche à prédire l'âge des passagers du Titanic selon le prix du billet à l'aide du modèle linéaire suivant,
 
@@ -245,7 +246,7 @@ On cherche à prédire l'âge des passagers du Titanic selon le prix du billet �
 %% Graphe modèle linéaire simple
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=4.5>>=
 path <- paste(getwd(),"..",sep = "/")
-data <- read.csv('data/Titanic/train.csv', stringsAsFactors = F)
+data <- read.csv('data/Titanic/train.csv', stringsAsFactors = T)
 
 n <- 25
 data <- data[1:n,]
@@ -282,7 +283,7 @@ On cherche à prédire l'âge des passagers du Titanic selon le prix du billet e
 \draw[->, line width=0.5mm] (Y) -- ([xshift=2mm, yshift=-3mm] function.west);
 \node[text width = 2.3cm, below of=c, yshift=-0.0001cm] (X) {Prix du billet};
 \draw[->, line width=0.5mm] (X) -- ([xshift=0cm, yshift=-3mm] function.center);
-\node[text width = 2.3cm, right of=c, xshift=0.5cm] (X2) {Sexe du passager};
+\node[text width = 2.3cm, right of=c, xshift=0.5cm] (X2) {Type de billet};
 \draw[->, line width=0.5mm] (X2) -- ([xshift=-1cm, yshift=-3mm] function.east);
 \node[text width = 2.3cm, right of=c, xshift=3cm] (E) {Erreur aléatoire};
 \draw[->, line width=0.5mm] (E) -- ([ yshift=-1mm] function.east);
@@ -2929,12 +2930,346 @@ X_{t,8} &= 1_{\{Emploi_t = GOU\}} \\
 
 \end{itemize}
 
-\subsubsection*{Exemple de modèle de régression avec indicatrice}
+\subsubsection*{Exemple}
+À partir des 5 observations suivantes, définir la matrice des variables réponses et la matrice schéma.
 
+\bigskip
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$Y_t$ & $Couleur_t$ & $Type_t$ & $Emploi_t$ \\
+\hline
+70 & Bleu & Autres & ETU \\
+75 & Brun & Sport & GOU \\
+50 & Vert & Autres & Autres \\
+55 & Autres & Autres & Autres \\
+85 & Brun & Sport & ACT \\
+\hline
+\end{tabular}
+\end{center}
+\bigskip
+
+On utilise le modèle de régression multiple à partir du modèle d'indicatrice précédent. On obtient le modèle de régression suivant:
+
+\begin{align*}
+Y_t &= \beta_0 + \beta_1X_{t,1} + \beta_2X_{t,2} + \beta_3X_{t,3} 
++ \beta_4X_{t,4} + \beta_5X_{t,5} + \beta_6X_{t,6} + \beta_7X_{t,7} + \beta_8X_{t,8} + \varepsilon_t \\
+\mathbb{Y} &= \mathbb{X}\mathbb{\beta} + \mathbb{\varepsilon}
+\end{align*}
+
+La matrice des variables réponses correspond à :
+\begin{align*}
+\mathbb{Y} &= 
+\begin{bmatrix}
+70 \\
+75 \\
+50 \\
+55 \\
+85 \\
+\end{bmatrix}
+\end{align*}
+
+La matrice schéma correspond à :
+
+\begin{align*}
+\mathbb{X}
+=
+\bordermatrix { 
+& &  X_1  & X_2 & X_3 & X_4 & X_5  & X_6 & X_7 & X_8 \cr 
+& 1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \cr 
+& 1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 \cr 
+& 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \cr 
+& 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \cr 
+& 1 & 0 & 1 & 0 & 1 & 1 & 0 & 0 & 0 \cr 
+}
+\end{align*}
+
+\section{Analyse qualitative des résidus}
+Même si les test $t$ et $F$ sont concluents, le modèle choisi peut ne pas être adéquat. En effet, l'analyse qualitative des résidus est la principale façon de valider un modèle sélectionné. 
+
+\subsubsection*{Distribution \emph{uniforme}}
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=3.5,width=4>>=
+x <- runif(15, 0, 5)
+y <- runif(15, -2, 4) 
+
+# Ajout graphe
+p <- ggplot(data.frame(x=c(0, 6)), aes(x=x))
+
+# Ajout point
+p <- qplot(x, y)
+
+# Ajout des segments
+p <- p + geom_segment(aes(x=-1, xend=7, y=4, yend=4), 
+               arrow=arrow(length=unit(0,"cm"),  angle=360), linetype=2) + 
+     geom_segment(aes(x=-1, xend=7, y=-2, yend=-2), 
+               arrow=arrow(length=unit(0,"cm"),  angle=360), linetype=2) 
+
+# Ajout des axes
+p <- p + xlab(expression(hat(Y)[t])) + ylab(expression(epsilon[t])) + coord_cartesian(xlim=c(-1, 6), ylim=c(-3, 5))
+p
+@
+
+\bigskip
+On remarque que les résidus sont uniformément distribués autour de l'axe des $x$. Il s'agit d'une situation idéal.
+
+\subsection{Problèmes possibles dans la distribution des résidus}
+Plusieurs problèmes de distribution des résidus peuvent être observés, voici leurs représentations graphiques et leurs possibles significations :
+
+\subsubsection{Distribution \emph{uniforme} avec rotation}
+Cette distribution des résidus est très similaire à la distribution \emph{uniforme}, par contre les résidus ne sont pas distribués autour de l'axe des $x$. La distribution semble avoir effectué une rotation. Il manque probalement un terme linéaire dans $X$.
+
+\bigskip
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=3.5,width=4>>=
+set.seed(2017)
+x <- runif(15, 0, 5)
+y <- runif(15) * x/1.3
+# Ajout graphe
+p <- ggplot(data.frame(x=c(0, 6)), aes(x=x))
+
+# Ajout point
+p <- qplot(x, y)
+
+# Ajout des segments
+p <- p + geom_segment(aes(x=0, xend=5, y=2, yend=4), 
+               arrow=arrow(length=unit(0,"cm"),  angle=360), linetype=2) + 
+     geom_segment(aes(x=0, xend=5, y=-1, yend=1), 
+               arrow=arrow(length=unit(0,"cm"),  angle=360), linetype=2) 
+
+# Ajout des axes
+p <- p + xlab(expression(hat(Y)[t])) + ylab(expression(epsilon[t]))
+p
+@
+\bigskip
+
+\subsubsection{Distribution \emph{quadratique}}
+Cette distribution des résidus semble suivre une distribution quadratique. Il manue probablement une variable quadratique dans $X$.
+
+\bigskip
+<<eval = TRUE, echo=FALSE, fig=TRUE>>=
+set.seed(2017)
+x <- c(runif(8, 0, 4), runif(30, 4, 10), runif(8, 10, 15))
+y <- c(c(4.25, 3.2, 3.5, 4, 4.1, 4.2, 4.38, 3.5), runif(30, 1.5, 3.83), c(4.128, 4, 4.4, 4.1, 4.1, 4.05, 4.7, 3.9999))
+
+# Ajout graphe
+p <- ggplot(data.frame(x=c(0, 15)), aes(x=x))
+
+# Ajout point
+p <- qplot(x, y)
+
+# Ajout des segments
+p <- p + geom_curve(aes(x=0, xend=15, y=8, yend=8), curvature = 1, 
+                   arrow=arrow(length=unit(0,"cm"), angle=180), linetype=2) + 
+        geom_curve(aes(x=0, xend=15, y=5, yend=5), curvature = 1, 
+                   arrow=arrow(length=unit(0,"cm"), angle=180), linetype=2) 
+
+# Ajout des axes
+p <- p + xlab(expression(hat(Y)[t])) + ylab(expression(epsilon[t])) + coord_cartesian(xlim=c(0, 15), ylim=c(0, 9))
+p
+@
+
+\subsubsection{Distribution \emph{conique}}
+Cette distribution des résidus semble suivre être distribuer dans un cone. La variance n'est probablement pas constante. Il y a violation de l'hypothèse \ref{post2}. 
+
+\bigskip
+<<eval = TRUE, echo=FALSE, fig=TRUE>>=
+set.seed(2017)
+x <- runif(100, 0, 15) + rnorm(100, 0, 4)
+y <- runif(100, 2.5, 5.5) * x/8
+
+# Ajout graphe
+p <- ggplot(data.frame(x=c(0, 15)), aes(x=x))
+
+# Ajout point
+p <- qplot(x, y)
+
+# Ajout des segments
+p <- p + geom_segment(aes(x=0, xend=15, y=0, yend=10), 
+                    arrow=arrow(length=unit(0,"cm"), angle=180), linetype=2) +
+     geom_segment(aes(x=0, xend=16, y=0, yend=4.5), 
+                  arrow=arrow(length=unit(0,"cm"), angle=180), linetype=2)
+
+# Ajout des axes
+p <- p + xlab(expression(hat(Y)[t])) + ylab(expression(epsilon[t])) + coord_cartesian(xlim=c(0, 15), ylim=c(0, 9))
+p
+@
+
+\subsection{Quantiles normaux}
+On appel parfois le diagramme Quantile-Quantile ou Q-Q plot. Il s'agit d'un outil permettant d'évaluer la pertinence de l'ajustement d'une distribution. \newline
+
+On ajuste selon une loi normale la fonction empirique des résidus par rapport aux résidus. \newline
+
+On cherche à avoir une droite à $45^\circ$. Dans cette situation, cela signifie $\varepsilon_t \sim N(0,1)$.
+
+<<eval = TRUE, echo=FALSE, fig=TRUE>>=
+x <- seq(0, 5, 0.5)
+y <- c(0, 0.6, 0.9, 1.43, 2.12, 2.5, 3.09, 3.468, 4, 4.5123, 5.05656)
+
+# Ajout graphe
+p <- ggplot(data.frame(x=c(0, 15)), aes(x=x))
+
+# Ajout des points
+p <- qplot(x, y)
+
+# Ajout des segments
+p <- p + geom_segment(aes(x=0, xend=5, y=0, yend=5), 
+                    arrow=arrow(length=unit(0,"cm"), angle=180), linetype=2)
+
+# Ajout des points
+p <- p + xlab(expression(hat(Y)[t])) + ylab(expression(phi1^{-1} *(F[epsilon[t]]())) ) + coord_cartesian(xlim=c(0, 5), ylim=c(0, 5))
+p
+@
+
+\subsection{Exemple complet}
+\label{ex:chapitre3}
+
+On poursuit avec un exemple complet pour synthétiser l'information du chapitre 3. \newline
+
+On reprend le scénario du Titanic de la section \ref{ex:multiple}, cette fois on va utiliser un modèle complet avec des catégories et déterminer le meilleur modèle avec la technique de régression pas à pas \footnote{Le code source complet de l'exemple est disponible à l'annexe \ref{codesour:chap3}}.  \newline
+
+Tout d'abord, voici la signification des variables :
+\begin{center}
+\begin{tabularx}{\textwidth}{XX}
+\hline
+Variable & Définition \\
+\hline
+Survival & Survie du passager au naufrage du Titanic \\
+Pclass & Catégorie du billet \\
+Sex & Sexe \\
+Age & Âge \\
+sibsp & Nombre se frères et sœurs / époux à bord du Titanic \\
+parch & Nombre de parents / enfants à bord du Titanic \\
+ticket & Numéro du billet \\
+fare & Prix du billet \\
+cabin & Numéro de la cabine \\
+embarked & Port d'embarquement \\
+\hline
+\end{tabularx}
+\end{center}
+
+L'étape suivante consiste à analyser notre jeu de donnée et de retirer les variables inutiles:
+<<echo = FALSE>>=
+data <- read.csv('data/Titanic/train.csv', stringsAsFactors = T)
+summary(data)
+@
+
+\bigskip
+Certaine variable ne son d'auncun intérêt pour estimer l'âge d'un passager, tel que :
+\begin{itemize}
+\item \emph{PassengerId}, car il s'agit d'un numéro unique pour chaque passager. (Max. : 891 pour 891 observations)
+\item \emph{Name}, dans son étât actuel le nom du passager n'est pas très utile car il s'agit d'observation unique.
+\item \emph{Ticket}, car il s'agit d'un numéro unique pour chaque passager.
+\item \emph{SibSP}, \emph{Parch} et \emph{Cabin} sont retirer pour de fins de simplification. 
+\end{itemize}
+
+\bigskip
+On cherche maintenant à transformer une donnée pour en tirer de l'information. On observe que le nom du passager est unique dans son format actuel, mais avec un peu de manipulation de donnée, il est très facile d'extraire son nom de famille.
+
+<<echo = FALSE >>=
+data$Surname <- as.factor(sapply(as.character(data$Name),  
+                       function(x) strsplit(x, split = '[,]')[[1]][1]))
+@
+
+<<>>=
+# Visualiser les 6 premières observations par catégorie
+head(summary(data$Surname))
+@
+
+On obtient ainsi le modèle complet suivant :
+\begin{align*}
+\text{Âge}_t = \beta_0 + \beta_1 \times \text{Survived}_t + \beta_2 \times \text{Pclass}_t + \beta_3  \times \text{Sex}_t + \beta_4  \times \text{Fare}_t + \beta_5  \times \text{Embarked}_t + \beta_6  \times \text{Surname}_t + \varepsilon_t
+\end{align*}
+
+On peut maintenant trouver le meilleur modèle,
+
+<<>>=
+fit <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname, data), 
+            direction = "both")
+fit
+@
+
+\bigskip
+On observe que le Q-Q plot suivant pour le modèle
+
+<<fig = TRUE>>=
+# Q-Q plot 
+plot(fit, which=2)
+@
+
+\bigskip
+Notre modèle prédit assez bien l'âge, par contre pour des valeurs extrêmes notre prédiction est moins précise. \newline
+
+On va maintenant tester une variable modifier, le log-Fare. En appliquant un log à une valeur numérique, on réduit l'échelle d'écart entre les variables et certaines peuvent mieux prédire après avoir être transformer.
+
+<<echo=FALSE, fig = TRUE>>=
+data$LogFare <- log(data$Fare)
+data$LogFare[data$LogFare == -Inf] <- 0
+fitL <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname + LogFare, data), direction = "both")
+fitL
+plot(fitL, which=2)
+@
+
+On obtient une légère amélioration de notre modèle et on retient ce modèle. \newline
+
+On cherche maintenant à prédire à partir d'un autre échantillon des données.
+<<echo = FALSE>>=
+# Import data
+dataTest <- read.csv('data/Titanic/test.csv', stringsAsFactors = T)
+@
+
+<<>>=
+head(predict(fitL, dataTest))
+@
+
+\begin{moreInfo}{\emph{Segmentation des données}}
+      En analyse des données, il est primordial de fragmenter les données. On utilise habituellement réduit l'algorithme suivant :
+      \begin{enumerate}
+      \item 80 \% des données pour l'entraînement (training) et 20 \% pour le test (testing);
+      \item 80 \% des données de test pour l'entraînement  (training) et 20 \% pour la validation (validation). 
+      \end{enumerate}
+      On segmente les données afin d'éviter le surapprentissage (overfitting). Il s'agit de la situation ou toutes les situations possibles sont incluses dans le modèle et celui-ci perd de la qualité prédictive. 
+      Dans le cadre du cours, seulement l'étape 1 est suffisante. \newline
+      
+      Des méthodes plus \href{https://fr.wikipedia.org/wiki/Validation_croisée}{élaborée} et complexe existent pour les données massives et l'apprentissage automatique.
+\end{moreInfo}
 
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+
 \appendix
+
+\chapter{Code source de l'exemple chapitre 3}
+\label{codesour:chap3}
+(Section \ref{ex:chapitre3})
+
+\begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
+<<eval =FALSE>>=
+# Import data
+data <- read.csv('data/Titanic/train.csv', stringsAsFactors = T)
+summary(data)
+
+# Ajout de la variable nom de famille
+data$Surname <- as.factor(sapply(as.character(data$Name),  
+                       function(x) strsplit(x, split = '[,]')[[1]][1]))
+
+# Modele de regression stepwise
+fit <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname, data), direction = "both")
+fit
+
+# Q-Q plot 
+plot(fit, which=2)
+
+# Ajout de la variable Log - Fare
+data$LogFare <- log(data$Fare)
+data$LogFare[data$LogFare == -Inf] <- 0
+fitL <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname + LogFare, data), direction = "both")
+fitL
+
+# Import data
+dataTest <- read.csv('data/Titanic/test.csv', stringsAsFactors = T)
+
+head(predict(fitL, dataTest))
+@
+\end{lstlisting}
 
 \end{document}
