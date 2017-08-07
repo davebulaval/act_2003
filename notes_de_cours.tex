@@ -1695,35 +1695,35 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \begin{Schunk}
 \begin{Soutput}
          fit        lwr        upr
-1  0.2976408 -0.2114559  0.8067376
-2  0.9660814  0.2381737  1.6939890
-3  0.2179559 -0.2766808  0.7125925
-4  0.8036262  0.1406114  1.4666410
-5 -1.1900871 -1.9723959 -0.4077784
+1  2.6439086  1.6893246  3.5984925
+2  0.9232698  0.4385055  1.4080340
+3 -0.7324702 -1.2330250 -0.2319153
+4  0.8762661  0.4004240  1.3521083
+5  1.8000986  1.0990848  2.5011124
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-          fit         lwr       upr
-1 -0.12109949 -0.59563924 0.3534403
-2  0.05605478 -0.42020540 0.5323150
-3  0.23320904 -0.26393382 0.7303519
-4  0.41036330 -0.12458509 0.9453117
-5  0.58751757  0.00110472 1.1739304
+         fit         lwr       upr
+1 0.04295184 -0.35943041 0.4453341
+2 0.24265089 -0.16020308 0.6455049
+3 0.44234993  0.02740751 0.8572924
+4 0.64204898  0.20436284 1.0797351
+5 0.84174803  0.37220874 1.3112873
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-          fit       lwr      upr
-1 -0.12109949 -2.012965 1.770766
-2  0.05605478 -1.836243 1.948353
-3  0.23320904 -1.664452 2.130870
-4  0.41036330 -1.497551 2.318278
-5  0.58751757 -1.335461 2.510496
+         fit        lwr      upr
+1 0.04295184 -1.5618830 1.647787
+2 0.24265089 -1.3623022 1.847604
+3 0.44234993 -1.1656801 2.050380
+4 0.64204898 -0.9719995 2.256097
+5 0.84174803 -0.7812278 2.464724
 \end{Soutput}
 \end{Schunk}
 
@@ -3000,15 +3000,249 @@ Le modèle de régression linéaire multiple étudié lors des derniers chapitre
 Le modèle linéaire généralisé, parfois appeler GLM pour \emph{Generalized Linear Models}, est une généralisation de la régression linéaire multiple dont l'objectif est de palier aux limitations précédentes.
 
 \begin{moreInfo}{\emph{Reformulation}}
-	Le modèle linéaire généralisé (MLG) est une généralisation souple de la régression linéaire. Le GLM généralise la régression linéaire en permettant au modèle linéaire d'être relié à la variable réponse via une fonction lien et en autorisant l'amplitude de la variance de chaque mesure d'être une fonction de sa valeur prévue.
+     On peut voir le GLM comme une généralisation souple de la régression linéaire. Cette généralisation de la régression linéaire permet au modèle linéaire d'être relié aux variables réponses via une fonction de lien. De plus, le GLM autorise l'amplitude de la variance de chaque mesure en étant une fonction de sa valeur prévue.
 \end{moreInfo}
 
 \section{Notions préliminaires : La famille exponentielle}
 De manière générale, une variable aléatoire y obéit à une distribution faisant partie de la famille exponentielle si :
 \begin{align*}
-f_Y(y) &= exp\bigg\lbrace \frac{y \times \theta - b(\theta)}{a(\phi)} - c(y, \phi) \bigg\rbrace
+f_Y(y) &= \exp\bigg\lbrace \frac{y \times \theta - b(\theta)}{a(\phi)} - c(y, \phi) \bigg\rbrace \\
+\text{; où } 
+\end{align*}
+\begin{itemize}
+     \item $\theta$ : Paramètre canonique
+     \item $\phi $ : Paramètre de dispersion
+     \item $a(\phi), b(\theta)$ et $c(y, \phi)$ : 3 fonctions générales de $y, \theta$ et $\phi$.
+\end{itemize}
+
+\subsection{Loi Normale}
+En posant,
+\begin{itemize}
+     \item $\theta = \mu$
+     \item $\phi = \sigma^2$
+     \item $b(\theta) = \frac{\theta^2}{2}$
+     \item $a(\phi) = \phi$
+     \item $c(y, \phi) = \frac{-1}{2}\bigg(\frac{y^2}{\sigma^2} + \ln(2 \pi \sigma^2) \bigg)$
+     \item[] alors,
+     \begin{align*}
+          f_Y(y) &= \frac{1}{\sqrt{2 \pi \sigma^2}}e^{\frac{-1}{2}\times \big(\frac{y - \mu}{\sigma} \big)^2}
+     \end{align*}
+     \item[] et
+     \begin{align*}
+          Y \sim N(\mu, \sigma^2)
+     \end{align*}
+\end{itemize}
+
+\subsubsection*{Preuve}
+\begin{align*}
+f_Y(y) &= \exp\Bigg\lbrace \frac{y \times \mu - \frac{\mu^2}{2}}{\sigma^2} + \frac{-1}{2} \bigg( \frac{y^2}{\sigma^2} + \ln(2 \pi \sigma^2) \bigg) \Bigg\rbrace \\
+&= \exp\Bigg\lbrace \frac{-y^2}{2\sigma^2} + \frac{y \times \mu}{\sigma^2} - \frac{\mu^2}{2\sigma^2} - \frac{\ln(2 \pi \sigma^2)}{2} \Bigg\rbrace \\
+&= \exp\Bigg\lbrace \frac{-1}{2\sigma^2}(y - \mu)^2 - \frac{1}{2} \ln(2\pi \sigma^2)\Bigg\rbrace \\
+&= \frac{1}{\sqrt{2 \pi \sigma^2}}e^{\frac{-1}{2}\times \big(\frac{y - \mu}{\sigma} \big)^2}
 \end{align*}
 
+\subsection{Loi Poisson}
+En posant,
+\begin{itemize}
+     \item $\theta = \ln(\mu)$
+     \item $\phi = 1$
+     \item $b(\theta) = e^{\theta}$
+     \item $a(\phi) = \phi$
+     \item $c(y, \phi) = -\ln(\fact{y})$
+     \item[] alors,
+     \begin{align*}
+          f_Y(y) &= \frac{e^{-\mu}\mu^y}{\fact{y}}
+     \end{align*}
+     \item[] et
+     \begin{align*}
+          Y \sim \text{Poisson}(\mu)
+     \end{align*}
+\end{itemize}
+
+\subsubsection*{Preuve}
+\begin{align*}
+f_Y(y) &= \exp\Bigg\lbrace \frac{y \ln(\mu) - e^{\ln(\mu)}}{1} + (-1) \ln(\fact{y}) \Bigg\rbrace \\
+&= \exp\Bigg\lbrace y \ln(\mu) - \mu + \ln(\frac{1}{\fact{y}}) \Bigg\rbrace \\
+&= \frac{e^{-\mu}\mu^y}{\fact{y}}
+\end{align*}
+
+\subsection{Loi Bernouilli}
+En posant,
+\begin{itemize}
+     \item $\theta = \ln(\frac{\pi}{(1 -\pi)})$
+     \item $\phi = 1$
+     \item $b(\theta) = \ln(1 + e^{\theta})$
+     \item $a(\phi) = \phi$
+     \item $c(y, \phi) = \emptyset$
+     \item[] alors,
+     \begin{align*}
+          f_Y(y) &= \pi^y \times (1 - \pi)^{1 - y}
+     \end{align*}
+     \item[] et
+     \begin{align*}
+          Y \sim \text{Bern}(\pi)
+     \end{align*}
+\end{itemize}
+
+\subsubsection*{Preuve}
+\begin{align*}
+f_Y(y) &= \exp\Bigg\lbrace \frac{y \times \ln\big(\frac{\pi}{(1 -\pi)}\big) - \ln\big( 1 + e^{\ln\big(\frac{\pi}{(1 -\pi)}\big)}\big)}{1} + 0 \Bigg\rbrace \\
+&= \exp\Bigg\lbrace y \times \ln(\pi) - y \ln(1 -\pi) + \ln( 1 -\pi) \Bigg\rbrace \\
+&= \exp\Bigg\lbrace y \times \ln(\pi) + (1 - y) \ln(1 -\pi) \Bigg\rbrace \\
+&= \pi^y \times (1 - \pi)^{1 - y}
+\end{align*}
+
+\subsection{Autres lois}
+\begin{itemize}
+\item Loi beta
+\item Loi binomiale
+\item Loi gamma
+\item Loi inverse-Gaussienne
+\item Loi binomiale négative
+\item Loi pareto
+\item Loi weibull
+\end{itemize}
+
+sont aussi des distributions qui appartiennent à la famille exponentielle.
+
+\section{Généralités sur les modèles de régression avec la famille exponentielle}
+
+\subsection{Contexte}
+Le contexte est très similaire à celui de la régression multiple :
+\subsection{Autres lois}
+\begin{itemize}
+\item $\mathbb{Y}_{n \times 1}$ : Vecteur des observations de $Y_i$, où $i = 1,...,n$.
+\item $\mathbb{X}_{n \times (p+1)}$ : Matrice schéma contenant n lignes d'observations et $(p+1)$ colonnes de variables explicatives.
+\item $\mathbb{\beta}_{(p+1) \times 1}$ : Vecteur des $(p+1)$ paramètres $\beta_0, \beta_1,...,\beta_p$ à estimer. 
+\end{itemize}
+
+\subsection{Structure du modèle}
+On suppose maintenant que 
+$$
+(Y_i|X_i) \sim \text{ Famille exponentielle}
+$$
+et que
+\begin{align*}
+g(E[Y_i|X_i]) &= X_i\beta \\
+&= \beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}\\
+\end{align*}
+où $g(\bullet)$ est une fonction continue appelée une \textbf{fonction de lien}.
+
+\subsection{Propriété de la fonction de lien}
+\subsubsection{Domaine de $g(\bullet)$}
+Domaine des valeurs possible de $\mu = \varphi(\mu)$ \newline
+
+Voici quelques exemple de domaine de la fonction de lien :
+\begin{itemize}
+\item Loi gamma $\Rightarrow \varphi(\mu) = [0, \infty[$
+\item Loi bernouilli $\Rightarrow \varphi(\mu) = [0, 1]$
+\end{itemize}
+
+\subsubsection{Image de $g(\bullet)$}
+L'image de la fonction de lien est $\mathbb{R} = ] - \infty, \infty [$
+
+\subsubsection{Conclusion}
+Le but de la fonction de lien est d'obtenir des valeurs de $\mu$ qui correspond bien au contexte du modèle à parti du prédicteur linéaire $X_i\beta$ qui peut prendre des valeurs dans $\mathbb{R}$. Autrement dit, on défini un domaine cohérent pour les valeurs réponses et on ne restreint pas les valeurs possibles des observations.\newline
+
+Ainsi, on obtient $\mu$ en inversant $g(\bullet)$ :
+\begin{align*}
+g(E[Y_i|X_i]) &= X_i\beta \\
+\end{align*}
+\begin{equation}
+\label{eq:fonctionlien}
+\color{blue}
+\boxed{\color{black}
+E[Y_i|X_i] = g^{-1}(X_i\beta]
+}
+\end{equation}
+Il est donc nécessaire de choisir une fonction inversible pour la fonction de lien.
+
+\section{Approche générale}
+\subsection{Procédure avec les GLM}
+\begin{itemize}
+\item Choisir une distribution pour $Y$ dans la famille exponentielle.
+\item Choisir une fonction de lien $g(\bullet)$.
+\item Estimer les paramètres $\utilde{\beta}$ et $\phi$.
+\item Valider le modèle.
+\end{itemize}
+
+\subsection{Estimation des paramètres}
+Dans le cas des GLM, on estime les paramètres en utilisant la méthode du maximum de vraisemblance. \newline
+
+On souhaite choisir $\utilde{\beta}$ qui maximise la fonction de vraisemblance suivante qui sera notre nouvelle métrique de distance:
+$$
+l(\utilde{\beta}) = \sum_{i=1}^n ln(f_Y(y_i))
+$$
+
+En pratique, il est d'usage d'utiliter la méthode de Newton-Raphson pour maximiser numériquement $l(\utilde{\beta})$. \newline
+
+Pour ce faire, on pose $\hat{\utilde{\beta}}^{(k)}$, le vecteur contenant les valeurs estimés pour $\utilde{\beta}$ après la $k^e$ itératopm de l'algorithme. \newline
+
+En supposant que l'algorithme ait convergé après l'itération (i+1), alors on a que :
+$$
+\frac{\partial}{\partial \utilde{\beta}} l(\utilde{\beta}^{(i+1)}) = 0
+$$
+ou encore que
+\begin{equation}
+\label{eq:score}
+S(\utilde{\beta}^{(i+1)}) = 0
+\end{equation}
+
+où $S(\bullet)$ est appelé le vecteur score et est défini ainsi :
+$$
+S(\utilde{\beta}^{(i+1)}) = 
+\begin{bmatrix}
+  \frac{\partial}{\partial\beta_0}  l(\utilde{\beta}) \\
+  \frac{\partial}{\partial\beta_1}  l(\utilde{\beta}) \\
+  \vdots \\
+  \frac{\partial}{\partial\beta_p}  l(\utilde{\beta}) \\
+\end{bmatrix}_{(p+1) \times 1}
+$$
+
+Pour obtenir un algorithme permettant d'obtenir un estimateur récursivement, à partir de $\hat{\utilde{\beta}}^{(i)}$, il faut développer $S(\utilde{\beta}^{(i+1)}) $ autour de $\hat{\utilde{\beta}}^{(i)}$ à l'aide d'une série de Taylor :
+\begin{align*}
+S(\utilde{\beta}^{(i+1)}) &= S(\utilde{\beta}^{(i)}) + \Bigg[ \frac{\partial}{\partial\utilde{\beta}}(S(\utilde{\beta}^{(i)})) \Bigg]\Bigg(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Bigg)
+\end{align*}
+En substituant cette expresion dans l'équation \ref{eq:score}, on obtient le développement suivant:
+\begin{align*}
+ S(\utilde{\beta}^{(i)}) + \frac{\partial}{\partial\utilde{\beta}}(S(\utilde{\beta}^{(i)})) \Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) &= 0
+\end{align*}
+
+ou encore,
+\begin{align*}
+ S(\utilde{\beta}^{(i)}) + (- I(\hat{\utilde{\beta}}^{(i)}))\Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) &= 0
+\end{align*}
+
+où $I(\utilde{\beta})$ correspond à la matrice d'information de Fisher et est donnée par :
+$$
+I(\utilde{\beta}) = 
+\begin{bmatrix}
+  \frac{\partial^2}{\partial\beta_0^2}  l(\utilde{\beta}) & \frac{\partial^2}{\partial\beta_0\partial\beta_1}  l(\utilde{\beta}) & \cdots \frac{\partial^2}{\partial\beta_0\partial\beta_p}  l(\utilde{\beta})\\
+  \vdots & \vdots & \vdots\\
+  \frac{\partial^2}{\partial\beta_0\partial\beta_p}  l(\utilde{\beta}) & \frac{\partial^2}{\partial\beta_1\partial\beta_p}  l(\utilde{\beta}) & \cdots \frac{\partial^2}{\partial\beta_p^2}  l(\utilde{\beta})\\
+\end{bmatrix}_{(p+1) \times (p+1)}
+$$
+Ainsi, on peut réécrire l'expression de la façon suivante:
+\begin{align*}
+S(\utilde{\beta}^{(i)}) &= I(\hat{\utilde{\beta}}^{(i)}) \Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) \\
+I^{-1}(\hat{\utilde{\beta}}^{(i)}) S(\utilde{\beta}^{(i)}) &= \hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \\
+\end{align*}
+
+\begin{equation}
+\label{eq:glmbeta}
+\color{blue}
+\boxed{\color{black}
+\hat{\utilde{\beta}}^{(i+1)} = \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)}) S(\utilde{\beta}^{(i)})
+}
+\end{equation}
+Cette équation correspond à 
+\begin{align*}
+\text{Vecteur de paramètre mis à jour} &= \text{Ancien vecteur de paramètre} \\
+&+ \text{Produit matriciel entre l'inverse de la  matrice Fisher et le vecteur score}
+\end{align*}
+
+\subsection{Validation \emph{global} du modèle avec la \emph{déviance}}
+En réécrivant la fonction de vraisembalnce 
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage

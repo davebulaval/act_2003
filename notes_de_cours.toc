@@ -56,4 +56,20 @@
 \contentsline {chapter}{\numberline {4}Les mod\IeC {\`e}les lin\IeC {\'e}aires g\IeC {\'e}n\IeC {\'e}ralis\IeC {\'e}s}{80}{chapter.4}
 \contentsline {section}{\numberline {4.1}Introduction}{80}{section.4.1}
 \contentsline {section}{\numberline {4.2}Notions pr\IeC {\'e}liminaires : La famille exponentielle}{81}{section.4.2}
-\contentsline {chapter}{\numberline {A}Code source de l'exemple chapitre 3}{82}{appendix.A}
+\contentsline {subsection}{\numberline {4.2.1}Loi Normale}{81}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Loi Poisson}{82}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Loi Bernouilli}{82}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Autres lois}{83}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s sur les mod\IeC {\`e}les de r\IeC {\'e}gression avec la famille exponentielle}{83}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Contexte}{83}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Autres lois}{83}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Structure du mod\IeC {\`e}le}{83}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Propri\IeC {\'e}t\IeC {\'e} de la fonction de lien}{84}{subsection.4.3.4}
+\contentsline {subsubsection}{\numberline {4.3.4.1}Domaine de $g(\bullet )$}{84}{subsubsection.4.3.4.1}
+\contentsline {subsubsection}{\numberline {4.3.4.2}Image de $g(\bullet )$}{84}{subsubsection.4.3.4.2}
+\contentsline {subsubsection}{\numberline {4.3.4.3}Conclusion}{84}{subsubsection.4.3.4.3}
+\contentsline {section}{\numberline {4.4}Approche g\IeC {\'e}n\IeC {\'e}rale}{84}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Proc\IeC {\'e}dure avec les GLM}{84}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Estimation des param\IeC {\`e}tres}{85}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Validation \emph {global} du mod\IeC {\`e}le avec la \emph {d\IeC {\'e}viance}}{86}{subsection.4.4.3}
+\contentsline {chapter}{\numberline {A}Code source de l'exemple chapitre 3}{87}{appendix.A}
