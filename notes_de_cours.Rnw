@@ -3415,7 +3415,7 @@ Dans le cas des GLM, on estime les paramètres en utilisant la méthode du maxim
 
 On souhaite choisir $\utilde{\beta}$ qui maximise la fonction de vraisemblance suivante qui sera notre nouvelle métrique de distance:
 $$
-l(\utilde{\beta}) = \sum_{i=1}^n ln(f_Y(y_i))
+l(\utilde{\beta}) = \sum_{i=1}^n \ln(f_Y(y_i))
 $$
 
 En pratique, il est d'usage d'utiliter la méthode de Newton-Raphson pour maximiser numériquement $l(\utilde{\beta})$. \newline
@@ -3486,7 +3486,79 @@ Cette équation correspond à
 \end{align*}
 
 \subsection{Validation \emph{global} du modèle avec la \emph{déviance}}
-En réécrivant la fonction de vraisembalnce 
+En réécrivant la fonction de vraisemblance $l(\utilde{\beta})$ comme suit :
+\begin{align*}
+l(\utilde{\beta}) &= \sum_{i=1}^n \ln(f_Y(y_i)) \\
+&= \sum_{i=1}^n \ln(f_Y(y_i; \mu_i)) \text{ ; où } \mu_i = g^{-1}(X_i \utilde{\beta}) \\
+&= l(\utilde{y}, \utilde{\beta}) \\
+\end{align*}
+On peut définir la statistique de déviance $D(\utilde{\beta})$ comme suit :
+
+\begin{align*}
+D(\utilde{\beta}) &= 2 \times \Big( \underbrace{l(\utilde{y}, \utilde{y})} - \underbrace{l(\utilde{y}, \utilde{\beta})} \Big) \\ 
+& \text{Log vraissemblance} \text{Log vraissemblance} \\
+& \text{sous un modèle parfait}  \text{du modèle obtenu} \\
+\end{align*}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{cXX}
+$D(\utilde{\beta})$ &= $2 \times \Big( \underbrace{l(\utilde{y}, \utilde{y})}$ & $- \underbrace{l(\utilde{y}, \utilde{\beta})} \Big)$ \\
+& Log vraissemblance \newline sous un modèle parfait & Log vraissemblance \newline du modèle obtenu\\
+\end{tabularx}
+\end{center}
+
+On remarque que dans le cas de la famille exponentielle, on aura 
+
+\begin{equation}
+\label{eq:deviance}
+\color{blue}
+\boxed{\color{black}
+D(\utilde{\beta}) = 2 \times \sum_{i=1}^n \Big\lbrace y_i \times \big( \theta(y_i) - \theta(\mu_i) \big) - b(\theta(y_i)) + b(\theta(\mu_i)) \Big\rbrace
+}
+\end{equation}
+
+\subsubsection{Loi normale}
+\begin{align*}
+D(\utilde{\beta}) &= 2 \times \sum_{i=1}^n \Big\lbrace y_i (y_i - \mu_i) - \frac{y_i^2}{2} + \frac{\mu_i^2}{2} \Big\rbrace \\
+&= \sum_{i=1}^n \Big\lbrace 2y_i^2 - y_i\times\mu_i - y_i^2 + \mu_i^2 \Big\rbrace \\
+&= \sum_{i=1}^n \Big\lbrace y_i^2 - 2y_i\times\mu_i  + \mu_i^2 \Big\rbrace \\
+&= \sum_{i=1}^n (y_i - \mu_i)^2\\
+&= \sum_{i=1}^n \varepsilon_t^2\\
+&= SSE
+\end{align*}
+\subsubsection*{Conclusion}
+Dans le cas de la loi Normale, la déviance est égale à SSE. \newline
+
+De ce fait, $D(\utilde{\beta})$ constitue une généralisation de SSE qui sera valide avec toutes les sous-cas de la famille exponentielle.
+
+\subsubsection{Loi de Poisson}
+\begin{align*}
+D(\utilde{\beta}) &= 2 \times \sum_{i=1}^n \Big\lbrace y_i \ln\big( \frac{y_i}{\mu_i}\big) - (y_i - \mu_i) \Big\rbrace \\
+&\neq SSE
+\end{align*}
+
+\subsubsection{Loi binomiale$(m_i, \mu_i)$}
+\begin{align*}
+D(\utilde{\beta}) &= 2 \times \sum_{i=1}^n \Big\lbrace y_i \ln\big( \frac{y_i}{\mu_i}\big) + (m_i - y_i)\times \ln\big( \frac{m_i - y_i}{m_i - \mu_i}\big) \Big\rbrace \\
+&\neq SSE
+\end{align*}
+
+\subsubsection{Loi gamma}
+\begin{align*}
+D(\utilde{\beta}) &= 2 \times \sum_{i=1}^n \Big\lbrace -\ln\big( \frac{y_i}{\mu_i}\big) + \frac{y_i - \mu_i}{\mu_i} \Big\rbrace \\
+&\neq SSE
+\end{align*}
+
+\subsubsection{Loi inverse Gausienne}
+\begin{align*}
+D(\utilde{\beta}) &= \times \sum_{i=1}^n \frac{(y_i - \mu_i)^2}{\frac{\mu_i^2}{y_i}}\\
+&\neq SSE
+\end{align*}
+
+\subsubsection*{Conclusion}
+La déviance correspond à SSE seulement pour la distribution Normale. Dans les autres cas, on a une mesure plus générale.
+
+\subsection{Validation \emph{local} du modèle avec des tests d'hypothèses et intervalles de confiances}
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
