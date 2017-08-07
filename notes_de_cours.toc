@@ -53,4 +53,7 @@
 \contentsline {subsubsection}{\numberline {3.4.1.3}Distribution \emph {conique}}{70}{subsubsection.3.4.1.3}
 \contentsline {subsection}{\numberline {3.4.2}Quantiles normaux}{71}{subsection.3.4.2}
 \contentsline {subsection}{\numberline {3.4.3}Exemple complet}{72}{subsection.3.4.3}
-\contentsline {chapter}{\numberline {A}Code source de l'exemple chapitre 3}{80}{appendix.A}
+\contentsline {chapter}{\numberline {4}Les mod\IeC {\`e}les lin\IeC {\'e}aires g\IeC {\'e}n\IeC {\'e}ralis\IeC {\'e}s}{80}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{80}{section.4.1}
+\contentsline {section}{\numberline {4.2}Notions pr\IeC {\'e}liminaires : La famille exponentielle}{81}{section.4.2}
+\contentsline {chapter}{\numberline {A}Code source de l'exemple chapitre 3}{82}{appendix.A}

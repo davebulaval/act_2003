@@ -1695,35 +1695,35 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \begin{Schunk}
 \begin{Soutput}
          fit        lwr        upr
-1 -0.8570430 -1.5038168 -0.2102692
-2 -1.3730068 -2.1228340 -0.6231795
-3  0.8296159 -0.6538466  2.3130784
-4 -1.6694325 -2.5587897 -0.7800752
-5 -2.1571042 -3.3399441 -0.9742644
+1  0.2976408 -0.2114559  0.8067376
+2  0.9660814  0.2381737  1.6939890
+3  0.2179559 -0.2766808  0.7125925
+4  0.8036262  0.1406114  1.4666410
+5 -1.1900871 -1.9723959 -0.4077784
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-         fit        lwr       upr
-1 -0.3264939 -1.1056047 0.4526169
-2 -0.0905779 -0.9853241 0.8041683
-3  0.1453381 -0.8850154 1.1756915
-4  0.3812540 -0.7978074 1.5603155
-5  0.6171700 -0.7193342 1.9536743
+          fit         lwr       upr
+1 -0.12109949 -0.59563924 0.3534403
+2  0.05605478 -0.42020540 0.5323150
+3  0.23320904 -0.26393382 0.7303519
+4  0.41036330 -0.12458509 0.9453117
+5  0.58751757  0.00110472 1.1739304
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-         fit       lwr      upr
-1 -0.3264939 -2.948447 2.295459
-2 -0.0905779 -2.749185 2.568030
-3  0.1453381 -2.561921 2.852597
-4  0.3812540 -2.386021 3.148529
-5  0.6171700 -2.220764 3.455104
+          fit       lwr      upr
+1 -0.12109949 -2.012965 1.770766
+2  0.05605478 -1.836243 1.948353
+3  0.23320904 -1.664452 2.130870
+4  0.41036330 -1.497551 2.318278
+5  0.58751757 -1.335461 2.510496
 \end{Soutput}
 \end{Schunk}
 
@@ -2987,6 +2987,27 @@ On cherche maintenant à prédire à partir d'un autre échantillon des données
       
       Des méthodes plus \href{https://fr.wikipedia.org/wiki/Validation_croisée}{élaborée} et complexe existent pour les données massives et l'apprentissage automatique.
 \end{moreInfo}
+
+\chapter{Les modèles linéaires généralisés}
+\section{Introduction}
+Le modèle de régression linéaire multiple étudié lors des derniers chapitres peut parfois avoir certaines limitations : 
+\begin{itemize}
+\item On suppose une distribution normale. Dans la plupart des contextes, cette distribution est innaproprié car elle permet des valeurs négatives. On comprend qu'en actuariat, cette situation n'est pas désirable.
+\item Hypothèse contraignante de variance constante.
+\item Le domaine des variables réponses permet des valeurs entre $-\infty$ et $\infty$. Plusieurs contexte ne se retrouve que dans un domaine non négatifs. De plus, certaine situation pourrait être une variable réponse discrète.
+\end{itemize}
+
+Le modèle linéaire généralisé, parfois appeler GLM pour \emph{Generalized Linear Models}, est une généralisation de la régression linéaire multiple dont l'objectif est de palier aux limitations précédentes.
+
+\begin{moreInfo}{\emph{Reformulation}}
+	Le modèle linéaire généralisé (MLG) est une généralisation souple de la régression linéaire. Le GLM généralise la régression linéaire en permettant au modèle linéaire d'être relié à la variable réponse via une fonction lien et en autorisant l'amplitude de la variance de chaque mesure d'être une fonction de sa valeur prévue.
+\end{moreInfo}
+
+\section{Notions préliminaires : La famille exponentielle}
+De manière générale, une variable aléatoire y obéit à une distribution faisant partie de la famille exponentielle si :
+\begin{align*}
+f_Y(y) &= exp\bigg\lbrace \frac{y \times \theta - b(\theta)}{a(\phi)} - c(y, \phi) \bigg\rbrace
+\end{align*}
 
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%

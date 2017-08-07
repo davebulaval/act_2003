@@ -3232,6 +3232,27 @@ head(predict(fitL, dataTest))
       Des méthodes plus \href{https://fr.wikipedia.org/wiki/Validation_croisée}{élaborée} et complexe existent pour les données massives et l'apprentissage automatique.
 \end{moreInfo}
 
+\chapter{Les modèles linéaires généralisés}
+\section{Introduction}
+Le modèle de régression linéaire multiple étudié lors des derniers chapitres peut parfois avoir certaines limitations : 
+\begin{itemize}
+\item On suppose une distribution normale. Dans la plupart des contextes, cette distribution est innaproprié car elle permet des valeurs négatives. On comprend qu'en actuariat, cette situation n'est pas désirable.
+\item Hypothèse contraignante de variance constante.
+\item Le domaine des variables réponses permet des valeurs entre $-\infty$ et $\infty$. Plusieurs contexte ne se retrouve que dans un domaine non négatifs. De plus, certaine situation pourrait être une variable réponse discrète.
+\end{itemize}
+
+Le modèle linéaire généralisé, parfois appeler GLM pour \emph{Generalized Linear Models}, est une généralisation de la régression linéaire multiple dont l'objectif est de palier aux limitations précédentes.
+
+\begin{moreInfo}{\emph{Reformulation}}
+	Le modèle linéaire généralisé (MLG) est une généralisation souple de la régression linéaire. Le GLM généralise la régression linéaire en permettant au modèle linéaire d'être relié à la variable réponse via une fonction lien et en autorisant l'amplitude de la variance de chaque mesure d'être une fonction de sa valeur prévue.
+\end{moreInfo}
+
+\section{Notions préliminaires : La famille exponentielle}
+De manière générale, une variable aléatoire y obéit à une distribution faisant partie de la famille exponentielle si :
+\begin{align*}
+f_Y(y) &= exp\bigg\lbrace \frac{y \times \theta - b(\theta)}{a(\phi)} - c(y, \phi) \bigg\rbrace
+\end{align*}
+
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
