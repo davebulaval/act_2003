@@ -1695,36 +1695,36 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-          fit        lwr      upr
-1  0.92508849  0.3917690 1.458408
-2  0.87225880  0.3457344 1.398783
-3  2.92558851  1.7606537 4.090523
-4  1.09188164  0.5312566 1.652507
-5 -0.01452348 -0.5789770 0.549930
+         fit         lwr       upr
+1 -0.2700664 -1.06462307 0.5244903
+2 -0.3053291 -1.11216523 0.5015071
+3 -0.4116011 -1.25779339 0.4345912
+4  0.7379300  0.04923046 1.4266295
+5  0.5353902 -0.13020186 1.2009822
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit        lwr       upr
-1 0.4008632 -0.1101084 0.9118348
-2 0.6088357  0.1013496 1.1163217
-3 0.8168081  0.2963868 1.3372293
-4 1.0247805  0.4761635 1.5733975
-5 1.2327529  0.6428638 1.8226420
+         fit         lwr       upr
+1 0.05432778 -0.64949424 0.7581498
+2 0.24836510 -0.42453512 0.9212653
+3 0.44240242 -0.22034286 1.1051477
+4 0.63643974 -0.03785636 1.3107358
+5 0.83047706  0.12398821 1.5369659
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit        lwr      upr
-1 0.4008632 -1.6273503 2.429077
-2 0.6088357 -1.4185026 2.636174
-3 0.8168081 -1.2138067 2.847423
-4 1.0247805 -1.0132428 3.062804
-5 1.2327529 -0.8167659 3.282272
+         fit       lwr      upr
+1 0.05432778 -2.607177 2.715832
+2 0.24836510 -2.405130 2.901860
+3 0.44240242 -2.208536 3.093340
+4 0.63643974 -2.017410 3.290289
+5 0.83047706 -1.831734 3.492688
 \end{Soutput}
 \end{Schunk}
 
@@ -3373,6 +3373,7 @@ Ainsi un intervalle de confiance au niveau $100 \times (1 - \alpha)\%$ pour $\be
 \end{equation}
 
 \section{Modèle de régression normale}
+\label{sec:normale}
 Sachant maintenant les résultats les plus généraux des GLM, il est intéressant de retrouver les concepts de la régression multiple. \newline
 
 Dans ce cas, on a que 
@@ -3472,6 +3473,8 @@ $$
 Soit le test de Fisher partiel de la section \ref{sec:testFpartiel}.
 
 \section{Modèle de régression logistique}
+\label{sec:logistique}
+
 \subsection{Contexte motivant l'utilisation de ce modèle}
 On utilise la régression logistique lorsqu'il y a un phénomène dichotomique. C'est-à-dire que $Y_i$ peut prendre seulement deux valeurs. \newline
 \begin{itemize}
@@ -3536,7 +3539,8 @@ $\beta_0$ : le log du rapport de cote lorsque toutes les variables explicatives 
 \subsubsection{}
 $\beta_j$ : Si $X_{i,j}$ augmente de une unité, alors que les autres variables explicatives sont fixés, alors le log du rapport de cote augmente de $\beta_j$ unité pour l'individu $i$.
 
-\subsection{Paramétrisation}
+\subsection{Optimisation}
+\label{sec:optim}
 Sous la méthode du maximum de vraisemblane, on a
 \begin{align*}
 l(\utilde{\beta}) &= \sum_{i=1}^n \ln\bigg( Pr(Y_i = y_i|\utilde{X_i}) \bigg) \\
@@ -3548,6 +3552,310 @@ l(\utilde{\beta}) &= \sum_{i=1}^n \ln\bigg( Pr(Y_i = y_i|\utilde{X_i}) \bigg) \\
 \end{align*}
 
 Par conséquent,
+\begin{align*}
+S(\utilde{\beta}) &= \frac{\partial}{\partial\beta} l(\beta) \\
+&= ?
+\end{align*}
+On cherche le jieme élément du vecteur score, soit
+\begin{align*}
+S(\utilde{\beta}) &= \frac{\partial}{\partial\beta_j} l(\beta) \\
+&= \sum_{i=1}^nX_{i,j}Y_i - \big(X_{i,j}\times \frac{e^{\utilde{X_i}\utilde{\beta}}}{1 + e^{\utilde{X_i}\utilde{\beta}}}\big) \\
+&= \sum_{i=1}^nX_{i,j}\big(Y_i - \frac{e^{\utilde{X_i}\utilde{\beta}}}{1 + e^{\utilde{X_i}\utilde{\beta}}}\big) \\
+X_j^\intercal(Y - M(\utilde{X_i}\utilde{\beta}))
+\end{align*}
+où $M(\utilde{X_i}\utilde{\beta})$ correspond à 
+$$
+M(\utilde{X_i}\utilde{\beta}) =
+\begin{bmatrix}
+  \frac{e^{\utilde{X_1}\utilde{\beta}}}{1 + e^{\utilde{X_1}\utilde{\beta}}}\\
+  \vdots \\
+  \frac{e^{\utilde{X_n}\utilde{\beta}}}{1 + e^{\utilde{X_n}\utilde{\beta}}}\\ 
+\end{bmatrix} 
+$$
+Ainsi, on déduit que
+\begin{equation}
+\label{eq:logits}
+\color{blue}
+\boxed{\color{black}
+S(\utilde{\beta}) = \mathbb{X}^\intercal(\mathbb{Y} - M(\utilde{X_i}\utilde{\beta}))
+}
+\end{equation}
+On peut maintenant trouver $I(\utilde{\beta})$, 
+\begin{align*}
+I(\utilde{\beta}) &= -\frac{\partial^2}{\partial\beta^2} l(\beta) \\
+&= -\frac{\partial}{\partial\beta} S(\beta) \\
+\end{align*}
+On cherche l'élément $(j,k)$ de cette matrice, soit:
+\begin{align*}
+[I(\utilde{\beta})]_{j,k} &= -\frac{\partial^2}{\partial\beta^2} l(\beta) \\
+&= -\frac{\partial}{\partial\beta_k} \bigg( \frac{\partial}{\partial\beta_j} l(\beta)\bigg) \\
+&= -\frac{\partial}{\partial\beta_k} [S(\beta)]_j \\
+&= \sum_{i=1}^nX_{i,j}X_{i,k} \times \Bigg(\frac{e^{\utilde{X_i}\utilde{\beta}}\bigg(1 + e^{\utilde{X_i}\utilde{\beta}}\bigg) - (e^{\utilde{X_i}\utilde{\beta}})^2}{(1 + e^{\utilde{X_i}\utilde{\beta}})^2}\Bigg) \\
+&= \sum_{i=1}^nX_{i,j}X_{i,k} \times \frac{e^{\utilde{X_i}\utilde{\beta}}}{\bigg(1 + e^{\utilde{X_i}\utilde{\beta}}\bigg)^2} \\
+&= \sum_{i=1}^nX_{i,j}\times X_{i,k} \times W_i
+\end{align*}
+où $W_i$ correspond à
+$$
+\frac{e^{\utilde{X_i}\utilde{\beta}}}{\bigg(1 + e^{\utilde{X_i}\utilde{\beta}}\bigg)^2}
+$$
+
+Ainsi, on arrive à la déduction que
+\begin{align*}
+I(\utilde{\beta}) &= \mathbb{X}^\intercal \mathbb{W} \mathbb{X} \\
+&\text{avec,} \\
+\mathbb{W} &= 
+\begin{bmatrix}
+w_1 & 0 & \cdots & 0 \\
+0 & w_2 & \cdots & 0 \\
+0 & 0 & \cdots & 0 \\
+\vdots&\vdots& \vdots & \vdots \\
+0 & 0 & \cdots & w_n \\
+\end{bmatrix} _{n \times n}
+\end{align*}
+
+\bigskip
+En appliquant maintenant l'algorithme de Newton-Raphson (section \ref{sec:newtonR}), on a donc
+\begin{align*}
+\hat{\utilde{\beta}}^{(i+1)} &= \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)}) \\
+&= \hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} \mathbb{X}^\intercal (\mathbb{Y} - M(\utilde{X_i}\utilde{\beta})) \\
+&\overset{\times I}{=} I\hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} \mathbb{X}^\intercal I(\mathbb{Y} - M(\utilde{X_i}\utilde{\beta})) \\
+&= (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}(\mathbb{X}^\intercal \mathbb{W} \mathbb{X})\hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} (\mathbb{Y} - M)\\
+&= \big[(\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{W}\big]\underbrace{\big[\mathbb{X}\hat{\utilde{\beta}}^{(i)} + \mathbb{W}^{-1} (\mathbb{Y} - M)\big]}\\
+&\ \ \ \ \ \ \ \ \ \text{\ \ \ $Z^{(i)}$: transformation sur $Y$}
+\end{align*}
+
+\begin{equation}
+\label{eq:logbeta}
+\color{blue}
+\boxed{\color{black}
+\hat{\utilde{\beta}}^{(i+1)} = (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{W}Z^{(i)}
+}
+\end{equation}
+\subsubsection{Remarque}
+L'algorithme itératif permettant d'obtenir l'estimateur de $\hat{\beta}$ peut être vu comme une succession d'estimations de régressions linéaires de $\utilde{Z}^{(i)}$ sur $\utilde{X}$, pondérés par $\utilde{W}$.
+
+\subsection{Formule de déviance-régression logistique}
+\begin{align*}
+D(\utilde{\beta}) = 2 \times \sum_{i=1}^n \Big\lbrace y_i \times \ln\bigg( \frac{y_i}{\pi_i}\bigg) + (1 -y_i) \times\ln\bigg( \frac{1 - y_i}{1 - \pi_i}\bigg) \Big\rbrace \\
+&\text{où,} \\
+\pi_i &= \frac{e^{X_i\beta}}{1+e^{X_i\beta}}
+\end{align*}
+
+\subsection{Test d'hypothèse général}
+$$
+\chi_{obs}^2 = D(\utilde{\beta_{H_0}}) -D(\utilde{\beta_{H_1}})
+$$
+
+\subsection{Intervalle de confiance}
+On obtient ainsi l'intervalle de confiance suivant au niveau $100 \times (1 - \alpha)\%$ pour $\beta_i$,
+\begin{equation}
+\label{eq:IClog}
+\color{blue}
+\boxed{\color{black}
+\hat{\beta_i} = Z_{1 - \frac{\alpha}{2}} \times \sqrt{[(\mathbb{X}^\intercal\mathbb{W}\mathbb{X})^{-1}]_{i+1 i+1}}
+}
+\end{equation}
+
+\section{Régression de Poisson}
+\label{sec:poisson}
+
+\subsection{Contexte motivant l'utilisation de ce modèle}
+Phénomène où la varaible aléatoire $Y$ est positive et discrète $(Y_i \in \{0, 1, 2,... \})$. Voici quelques exemples de contexte :
+\begin{itemize}
+\item Nombre de sinistre d'un assuré au cours de la prochaine année.
+\item Nombre de défauts de fabrication d'un produit.
+\end{itemize}
+
+Dans ce cas, on postule que,
+\begin{align*}
+(Y_i|\utilde{X_i}) &\sim \text{Poisson}(\lambda_i) \\
+&\text{Où, } \\
+\lambda_i &= E[Y_i|\utilde{X_i}] \\
+&\text{avec, } \\
+g(\lambda_i) &= \utilde{X_i}\utilde{\beta} \\
+\end{align*}
+Puisque $\lambda_i \in [0, \infty[$ est non négatif et que $\utilde{X_i}\utilde{\beta} \in \mathbb{R}$, il faut utiliser une fonction $g(\bullet)$ telle que :
+$$
+g: [0, \infty[ \rightarrow \mathbb{R}
+$$
+Bien que plusieurs candidats peuvent satisfaire cette condition, il est d'usage d'utiliser la fonction logarithmique dans le contexte de la régression de Poisson :
+$$
+g(x) = \ln(x)
+$$
+\subsection{Conséquences}
+\begin{align*}
+g(\lambda_i) &=  \utilde{X_i}\utilde{\beta} \\
+\ln(\lambda_i) &- \utilde{X_i}\utilde{\beta} \\
+\lambda_i &= e^{\utilde{X_i}\utilde{\beta}} \\
+\end{align*}
+En conclusion, sous cette spécification on a que :
+$$
+(Y_i|\utilde{X_i}) \sim \text{Poisson}(e^{\utilde{X_i}\utilde{\beta}})
+$$
+Puisque $\utilde{X_i}\utilde{\beta} = \beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}$, on a que
+\begin{align*}
+(Y_i|\utilde{X_i}) &\sim \text{Poisson}(e^{\beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}}) \\
+(Y_i|\utilde{X_i}) &\sim \text{Poisson}(\underbrace{e^{\beta_0} \times e^{\beta_1X_{i,1}}\times  ... \times e^{\beta_pX_{i,p}}}) \\
+&\ \ \ \ \ \ \text{\ \ \ Modèle multiplicatif}
+\end{align*}
+
+\subsection{Interprétations}
+\subsubsection{}
+$\ln(\lambda_i) = \utilde{X_i}\utilde{\beta}$, qui correspond au log de l'espérane est linéaire.
+
+\subsubsection{}
+$\beta_0$: Lorsque toutes les variables explicatives $X_i$ on une valeur de zéro, alors l'espérance de $Y_i$ est $e^{\beta_0}$.
+
+\subsubsection{}
+$\beta_i$ : Si $X_{i,j}$ augmente d'une unité, alors que les autres variables explicatives restent fixés, alors l'espérance de $Y_i$ est multiplié par $e^{\beta_j}$
+
+\subsection{Optimisation}
+Sous la méthode du maximum de vraisemblance, on a que :
+\begin{align*}
+l(\utilde{\beta}) &= \sum_{i=1}^n \ln(Pr(Y_i= y_i |\utilde{X_i})) \\
+&= \sum_{i=1}^n \ln\bigg( \frac{e^{-\lambda_i}\lambda_i^{y_i}}{\fact{y_i}}\bigg) \\
+&= \sum_{i=1}^n \ln\bigg( y_i\times \ln(\lambda_i) - \lambda_i^ -\ln(\fact{y_i}) \bigg) \\
+&= \sum_{i=1}^n \ln\bigg( y_i\times \utilde{X_i}\utilde{\beta} - e^{\utilde{X_i}\utilde{\beta}} -\ln(\fact{y_i}) \bigg) \\
+\end{align*}
+Par conséquent,
+$$
+S(\utilde{\beta}) = \frac{\partial}{\partial \utilde{\beta}} l(\utilde{\beta}) = ?
+$$
+On cherche le jieme élément de ce vecteur $S(\utilde{\beta})$ :
+\begin{align*}
+[S(\utilde{\beta})]_j &= \frac{\partial}{\partial \utilde{\beta}_i} l(\utilde{\beta}) \\
+&= \sum_{i =1}^n \bigg(Y_iX_{i,j} - X_{i,j} e^{\utilde{X_i}\utilde{\beta}} \bigg)\\
+&= \sum_{i =1}^n X_{i,j}\bigg(Y_i -  e^{\utilde{X_i}\utilde{\beta}} \bigg)\\
+&= X_{j}^\intercal\bigg(Y -  M(\utilde{X_i}\utilde{\beta}) \bigg)\\
+\end{align*}
+où $M(\utilde{X_i}\utilde{\beta})$ correspond à 
+$$
+M(\utilde{X_i}\utilde{\beta}) =
+\begin{bmatrix}
+  e^{\utilde{X_1}\utilde{\beta}}\\
+  \vdots \\
+  e^{\utilde{X_n}\utilde{\beta}}\\ 
+\end{bmatrix} 
+$$
+et donc,
+
+\begin{equation}
+\label{eq:spoisson}
+\color{blue}
+\boxed{\color{black}
+S(\utilde{\beta}) = \mathbb{X}^\intercal\bigg(\mathbb{Y} -  M(\utilde{X_i}\utilde{\beta}) \bigg)
+}
+\end{equation}
+
+On peut maintenant trouver $I(\utilde{\beta})$, 
+\begin{align*}
+I(\utilde{\beta}) &= -\frac{\partial^2}{\partial\beta^2} l(\beta) \\
+&= -\frac{\partial}{\partial\beta} S(\beta) \\
+\end{align*}
+On cherche l'élément $(j,k)$ de cette matrice, soit:
+\begin{align*}
+[I(\utilde{\beta})]_{j,k} &= -\frac{\partial^2}{\partial\beta^2} l(\beta) \\
+&= -\frac{\partial}{\partial\beta_k} \bigg( \frac{\partial}{\partial\beta_j} l(\beta)\bigg) \\
+&= -\frac{\partial}{\partial\beta_k} [S(\beta)]_j \\
+&= \sum_{i=1}^nX_{i,j}X_{i,k} \times e^{\utilde{X_i}\utilde{\beta}}\\
+&= \sum_{i=1}^nX_{i,j}\times X_{i,k} \times W_i
+\end{align*}
+où $W_i$ correspond à
+$$
+e^{\utilde{X_i}\utilde{\beta}}
+$$
+
+Ainsi, on arrive à la déduction que
+\begin{align*}
+I(\utilde{\beta}) &= \mathbb{X}^\intercal \mathbb{W} \mathbb{X} \\
+&\text{avec,} \\
+\mathbb{W} &= 
+\begin{bmatrix}
+w_1 & 0 & \cdots & 0 \\
+0 & w_2 & \cdots & 0 \\
+0 & 0 & \cdots & 0 \\
+\vdots&\vdots& \vdots & \vdots \\
+0 & 0 & \cdots & w_n \\
+\end{bmatrix} _{n \times n}
+\end{align*}
+
+\bigskip
+En utilisant une méhtode similaire à celle qui a été appliquée pour le cas de la régression logistique à la section \ref{sec:optim}, on peut montrer que l'algorithme de Newton-Raphon est le suivant :
+
+\begin{align*}
+\hat{\utilde{\beta}}^{(i+1)} &= \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)}) \\
+\end{align*}
+Qui peut être simplifié sous la forme suivante,
+$$
+\hat{\utilde{\beta}}^{(i+1)} = (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{W}\mathbb{Z}^{(i)}
+$$
+où $\mathbb{Z}^{(i)} = \mathbb{X}\hat{\beta}^{(i)} + \mathbb{W}^{-1}(\mathbb{Y} - M(\utilde{X},\utilde{\beta})$
+
+\section{Autres notions importantes avec les GLM}
+\subsection{Autres distributions}
+La procédure illustrée aux sections \ref{sec:normale}, \ref{sec:logistique} et \ref{sec:logistique} s'applique à toutes les distributions de la famille exponentielle. Les cas les plus célèbres sont :
+
+\subsubsection{Loi Binomiale négative}
+Permet d'obtenir une variance plus grande que la moyenne, ce qui n'est pas possible avec la loi de Poisson.
+
+\begin{itemize}
+\item Fonction de log-vraisemblance
+$$
+(Y_i|\utilde{X_i}, \Theta_i) \sim \text{Poisson}(\lambda_i \Theta_i)
+$$
+où
+\begin{align*}
+\ln(\lambda_i) &= \utilde{X}\utilde{\beta} \\
+\lambda_i &= e^{\utilde{X}\utilde{\beta}}\\
+\end{align*}
+
+et,
+\begin{align*}
+\Theta_i &\sim \Gamma(\alpha, \alpha) \\
+E[\Theta] &= 1 \\
+Var(\Theta) & = \frac{1}{\alpha} \\
+\end{align*}
+De plus, si $\alpha \rightarrow \infty$, alor NegBin $\rightarrow$ Poisson.
+\begin{align*}
+P(Y_i = y_i | \utilde{X_i}) &= \int_0^\infty \frac{e^{-\lambda_i\theta}(\lambda_i\theta_i)^y_i}{\fact{y_i}} \times \frac{\alpha^\alpha \Theta^{\alpha-1}e^{-\alpha\Theta}}{\Gamma(\alpha)}d\Theta \\
+&= \frac{\alpha^\alpha \lambda^{y_i}}{\Gamma(\alpha)\Gamma(y_i + 1)} \int_0^\infty \Theta^{(y_i + \alpha) - 1}e^{-(\alpha + \lambda_i)\Theta} d\Theta \\
+&= \frac{\alpha^\alpha \lambda^{y_i}}{\Gamma(\alpha)\Gamma(y_i + 1)} \times \frac{\Gamma(y_i+\alpha)}{(\alpha+\lambda_i)^{y_i + \alpha}} \\
+&= \frac{\Gamma(y_i+\alpha)}{\Gamma(\alpha)\Gamma(y_i + 1)} (\frac{\alpha}{\alpha + \lambda_i})^\alpha (\frac{\lambda_i}{\alpha+\lambda_i})^{y_i}
+\end{align*} 
+
+\item $l(\utilde{\beta}) = \sum_{i=1}^n\ln(Pr(Y_i = y_i|\utilde{X_i}))$
+\item $S(\utilde{\beta}) = \frac{\partial}{\partial\utilde{\beta}} l(\utilde{\beta})$
+\item $I(\utilde{\beta}) = \frac{\partial^2}{\partial\utilde{\beta^2}} l(\utilde{\beta})$
+\item $\hat{\utilde{\beta}}^{(i+1)} = \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)})$
+\end{itemize}
+
+\subsubsection{Test de surdispersion}
+
+\begin{align*}
+H_0 &: \text{Il n'y a pas de surdispersion, la variance de $Y$ est égale à l'espérance de $Y$.} \\
+H_1 &: \text{Il y a de la surdispersion} \\
+\end{align*}
+
+\begin{align*}
+Var(Y) &= E[Var(Y|\Theta)] + Var(E[Y|\Theta]) \\
+&= E[\lambda\times \Theta] + Var(\lambda\times\Theta) \\
+&= \lambda \times 1 + \lambda^2 \times \frac{1}{\alpha} \\
+&= \lambda \times (1 + \frac{\lambda}{\alpha}) \\
+\end{align*}
+
+\subsubsection*{Procédure}
+\begin{enumerate}
+\item Obtenir $l_{Poisson}(\utilde{\beta})$ avec une régression Poisson.
+\item Obtenir $l_{NB}(\utilde{\beta})$ avec une régression Binomiale négative.
+\item Calculer $\chi_{obs}^2 = 2 \times (l_{NB}(\utilde{\beta}) - l_{Poisson}(\utilde{\beta}))$
+\item On rejette $H_0$ au niveau de confiance $100 \times (1 0 \alpha)\%$ si 
+$$
+\chi_{obs}^2 \geq \chi_{1 - 2\times \alpha}^2(1)
+$$
+Il s'agit d'un test unilatéral.
+\end{enumerate}
+
+\subsection{Loi Gamma}
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
