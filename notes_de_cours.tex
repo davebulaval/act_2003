@@ -1478,7 +1478,7 @@ Obtenir un I.C. au niveau de confiance de 95 \% pour $\beta_1$.
 \end{align*}
 L'I.C. permet de valider le test d'hypothèse de la question 2 et 3, il ne comprend pas la valeur zéro et est strictement négatif.
 
-\subsection{Test de la validité \emph{globale} de la régression}
+\subsection{Test de la validité globale de la régression}
 Une régression linéaire simple est valide, ou significative si $\beta_1 \neq 0$. Le tableau ANOVA obtenue en \ref{seq:anova} peut être utilisé pour tester les hypothèses :
 \begin{align*}
 H_0 &: \beta_1 = 0\\
@@ -1694,36 +1694,36 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-          fit         lwr       upr
-1 -1.04193251 -2.19692700 0.1130620
-2  0.53665146 -0.06161401 1.1349169
-3  0.36536496 -0.23811573 0.9688456
-4  1.15624754  0.42288794 1.8896071
-5  0.02261482 -0.64787851 0.6931081
+          fit         lwr        upr
+1  1.20557083  0.67828437  1.7328573
+2  0.10858637 -0.26520821  0.4823810
+3  0.09468333 -0.28168534  0.4710520
+4 -0.83944738 -1.53416005 -0.1447347
+5  0.36391374  0.01655729  0.7112702
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit         lwr       upr
-1 0.2717674 -0.34293768 0.8864724
-2 0.5556604 -0.04327315 1.1545939
-3 0.8395533  0.20220518 1.4769015
-4 1.1234463  0.40210294 1.8447896
-5 1.4073393  0.57002685 2.2446517
+        fit        lwr       upr
+1 0.3815049 0.03439102 0.7286188
+2 0.5144554 0.16233479 0.8665759
+3 0.6474058 0.27872999 1.0160816
+4 0.7803563 0.38502483 1.1756877
+5 0.9133067 0.48309266 1.3435207
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit       lwr      upr
-1 0.2717674 -2.123241 2.666776
-2 0.5556604 -1.835349 2.946669
-3 0.8395533 -1.561366 3.240473
-4 1.1234463 -1.301124 3.548016
-5 1.4073393 -1.054224 3.868903
+        fit        lwr      upr
+1 0.3815049 -1.0067868 1.769797
+2 0.5144554 -0.8750967 1.904007
+3 0.6474058 -0.7464334 2.041245
+4 0.7803563 -0.6207693 2.181482
+5 0.9133067 -0.4980579 2.324671
 \end{Soutput}
 \end{Schunk}
 
@@ -3167,6 +3167,7 @@ Il est donc nécessaire de choisir une fonction inversible pour la fonction de l
 \end{itemize}
 
 \subsection{Estimation des paramètres}
+\label{sec:newtonR}
 Dans le cas des GLM, on estime les paramètres en utilisant la méthode du maximum de vraisemblance. \newline
 
 On souhaite choisir $\utilde{\beta}$ qui maximise la fonction de vraisemblance suivante qui sera notre nouvelle métrique de distance:
@@ -3241,7 +3242,7 @@ Cette équation correspond à
 &+ \text{Produit matriciel entre l'inverse de la  matrice Fisher et le vecteur score}
 \end{align*}
 
-\subsection{Validation \emph{global} du modèle avec la \emph{déviance}}
+\subsection{Validation globale du modèle avec la \emph{déviance}}
 En réécrivant la fonction de vraisemblance $l(\utilde{\beta})$ comme suit :
 \begin{align*}
 l(\utilde{\beta}) &= \sum_{i=1}^n \ln(f_Y(y_i)) \\
@@ -3274,6 +3275,7 @@ D(\utilde{\beta}) = 2 \times \sum_{i=1}^n \Big\lbrace y_i \times \big( \theta(y_
 \end{equation}
 
 \subsubsection{Loi normale}
+\label{sec:sec:normale}
 \begin{align*}
 D(\utilde{\beta}) &= 2 \times \sum_{i=1}^n \Big\lbrace y_i (y_i - \mu_i) - \frac{y_i^2}{2} + \frac{\mu_i^2}{2} \Big\rbrace \\
 &= \sum_{i=1}^n \Big\lbrace 2y_i^2 - y_i\times\mu_i - y_i^2 + \mu_i^2 \Big\rbrace \\
@@ -3314,7 +3316,160 @@ D(\utilde{\beta}) &= \times \sum_{i=1}^n \frac{(y_i - \mu_i)^2}{\frac{\mu_i^2}{y
 \subsubsection*{Conclusion}
 La déviance correspond à SSE seulement pour la distribution Normale. Dans les autres cas, on a une mesure plus générale.
 
-\subsection{Validation \emph{local} du modèle avec des tests d'hypothèses et intervalles de confiances}
+\subsection{Validation locale du modèle avec des tests d'hypothèses et intervalles de confiances}
+\subsubsection{Test d'hypothèse très général}
+On introduit ici une version généralisée des tests de Fisher partiels introduits à la section \ref{sec:testFpartiel}.
+
+\subsubsection*{Hypothèses à considérer}
+\begin{align*}
+H_0 &: \text{Un modèle \emph{réduit}, noté $M_0$, qui est un sous-modèle de $M_1$, le modèle complet, est statistiquement acceptable.} \\
+H_1 &: \text{On doit utiliser le modèle plus \emph{complet}, noté $M_1$.} \\
+\end{align*}
+On utilise la statistique suivante pour tester les hypothèses,
+\begin{equation}
+\label{eq:deviance}
+\color{blue}
+\boxed{\color{black}
+\chi^2_{obs} = D(\utilde{\beta}_{H_0}) - D(\utilde{\beta}_{H_1})
+}
+\end{equation}
+\begin{equation}
+\label{eq:deviance2}
+\color{blue}
+\boxed{\color{black}
+\chi^2_{obs} = 2 \times \bigg( l(\utilde{\beta}_{H_1}) - l(\utilde{\beta}_{H_0} \bigg)
+}
+\end{equation}
+
+On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ si :
+\begin{equation}
+\label{eq:deviance2}
+\color{blue}
+\boxed{\color{black}
+\chi^2_{obs} \geq \chi^2_{\alpha} \bigg( \text{Nombre de paramètres dans $M_1$ - Nombre de paramètres dans $M_0$}\bigg)
+}
+\end{equation}
+
+\subsubsection{Intervalles de confiances}
+Selon la théorie du maximum de vraisemblance, on a que la loi asymptotique de $\hat{\utilde{\beta}}$ est une loi normale multi-dimensionnelle :
+$$
+\hat{\beta}_{(p+1) \times 1} \longrightarrow N_{p+1} \bigg(\utilde{\beta}; Var(\hat{\utilde{\beta}}) \bigg)
+$$
+avec,
+
+$$
+Var(\hat{\beta}) = I^{-1}(\hat{\utilde{\beta}})
+$$
+Qui correspond à la borne inférieur de Cramer-Rao. \newline
+
+Ainsi un intervalle de confiance au niveau $100 \times (1 - \alpha)\%$ pour $\beta_1$ pour $beta_i$ est donné par :
+\begin{equation}
+\label{eq:deviance2}
+\color{blue}
+\boxed{\color{black}
+\beta_i \pm Z_{1 - \frac{\alpha}{2}} \times \sqrt{[Var(\hat{\utilde{\beta}})]_{i+1, i+1}}
+}
+\end{equation}
+
+\section{Modèle de régression normale}
+Sachant maintenant les résultats les plus généraux des GLM, il est intéressant de retrouver les concepts de la régression multiple. \newline
+
+Dans ce cas, on a que 
+$$
+(Y_i | \utilde{X}_i) \sim N(\mu, \sigma^2)
+$$
+avec,
+$$
+\mu_i = \utilde{X}_i\beta \Rightarrow g(x) = x
+$$
+Soit la fonction de lien identité.\newline
+
+On obtient donc,
+\begin{align*}
+l(\utilde{\beta}) &= \sum_{i =1}^n \ln \big( f_{Y_i}(y_i) \big) \\
+&= - \frac{1}{2} \sum_{i =1}^n\big\lbrace \ln(2\pi\sigma^2) + \frac{1}{\sigma^2}(Y_i - X_i \beta)^2 \big\rbrace \\
+\end{align*}
+On remarque que de maximiser $l(\utilde{\beta})$ revient à minimiser $\sum_{i =1}^n (Y_i - X_i \beta)^2$ qui correspond à $SSE$. \newline
+
+Par conséquent, 
+$$
+S(\utilde{\beta}) = \frac{\partial}{\partial \utilde{\beta}} l(\utilde{\beta}) = ?
+$$
+On cherche le jieme élément de ce vecteur $S(\utilde{\beta})$ :
+\begin{align*}
+[S(\utilde{\beta})]_j &= \frac{\partial}{\partial \utilde{\beta}_i} l(\utilde{\beta}) \\
+&= \frac{2}{2\sigma^2} \sum_{i =1}^n (Y_i - X_i \beta)^2X_{i,j} \\
+&= \frac{1}{\sigma^2} \Bigg( \sum_{i =1}^nX_{i,j}Y_i -  \big(\sum_{i =1}^n X_i\times X_{i,j} \big)\beta \Bigg) \\
+&= \frac{1}{\sigma^2} \Bigg( X_j^\intercal Y_i -   X_j^\intercal X\beta \Bigg) \\
+\end{align*}
+Ainsi, on déduit que 
+$$
+S(\utilde{\beta}) = \frac{1}{\sigma^2} \Bigg( \mathbb{X}^\intercal \mathbb{Y} -   \mathbb{X}^\intercal \mathbb{X}\mathbb{\beta} \Bigg)
+$$
+Et donc, 
+\begin{align*}
+I(\beta) &= \frac{-\partial^2}{\partial \utilde{\beta}^2} l(\utilde{\beta}) \\
+&= \frac{-\partial}{\partial \utilde{\beta}} S(\utilde{\beta}) \\
+&= ?
+\end{align*}
+
+On cherche l'élément $(j, k)$ de la matrice $I(\beta)$
+\begin{align*}
+[I(\beta)]_{j,k} &= \frac{-\partial^2}{\partial \utilde{\beta}_j\partial \utilde{\beta}_i} l(\utilde{\beta}) \\
+&= \frac{-\partial}{\partial \utilde{\beta}_k} \bigg( \frac{-\partial}{\partial \utilde{\beta}_j} l(\utilde{\beta}) \bigg) \\
+&= \frac{-\partial}{\partial \utilde{\beta}_k} \bigg( [S(\utilde{\beta})]_j \bigg) \\
+&= \frac{1}{\sigma^2} \sum_{i =1}^nX_{i,j}\times X_{i,k} \\
+&= \frac{1}{\sigma^2} (X_{i}^\intercal\times X_{j}) \\
+\end{align*}
+Ainsi, on déduit que :
+$$
+I(\utilde{\beta}) = \frac{1}{\sigma^2} (\mathbb{X}^\intercal\mathbb{X})
+$$
+
+En appliquant maintenant l'algorithme de Newton-Raphson (section \ref{sec:newtonR}), on a donc
+\begin{align*}
+\hat{\utilde{\beta}}^{(i+1)} &= \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)}) \\
+&= \hat{\utilde{\beta}}^{(i)} + \Bigg[ \frac{1}{\sigma^2} (\mathbb{X}^\intercal\mathbb{X})\Bigg]^{-1} \frac{1}{\sigma^2} \Bigg( \mathbb{X}^\intercal \mathbb{Y} -   \mathbb{X}^\intercal \mathbb{X}\mathbb{\beta} \Bigg) \\
+&= \hat{\utilde{\beta}}^{(i)} + \sigma^2 (\mathbb{X}^\intercal\mathbb{X})^{-1} \frac{1}{\sigma^2} \Bigg( \mathbb{X}^\intercal \mathbb{Y} -   \mathbb{X}^\intercal \mathbb{X}\mathbb{\beta} \Bigg) \\
+&= \hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{Y} - (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{X}\mathbb{\beta} \Bigg) \\
+&= (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{Y} \\
+\end{align*}
+
+\subsection{Conclusion intéressante}
+L'approche GLM basée sur la méthode du maximum de vraisemblance et utilisant l'algorithme de Newton-Raphson donne le même résultat pour $\hat{\beta}$ que l'approche de la régression multiple basée sur la minimisation de la distance quadratique.
+
+\subsection{Remarque sur la validation globale et locale du modèle sous la loi Normale}
+Tel que vu à la section \ref{sec:sec:normale},
+\begin{align*}
+D(\utilde{\beta}) &= SSE \\
+&= \sum_{i=1}^n \hat{\varepsilon}_i^2 \\
+&= \text{Somme de $N(0,1)$ au carré} \\
+& \sim \chi^2(n -(p+1))
+\end{align*}
+Ainsi, la statistique $\chi_{obs}^2$ est donnée par :
+\begin{align*}
+\chi_{obs}^2 &= D(\utilde{\beta}_{H_0}) -  D(\utilde{\beta}_{H_1}) \\
+&= SSE(M_0) - SSE(M_1)
+\end{align*}
+Or, puisque
+\begin{align*}
+SSE(M_0) &\sim \chi^2(n -(P_{h_0}+1)) \\
+&\text{et} \\
+SSE(M_1) &\sim \chi^2(n -(P_{h_1}+1))
+\end{align*}
+On peut ainsi dire que cela revient à tester,
+\begin{align*}
+\chi_{obs}^2 &\geq \chi_{\alpha}^2([n - (P_{h_0}+1)] - [n -(P_{h_1}+1]) \\
+\Rightarrow \chi_{obs}^2 &\geq \chi_{\alpha}^2( \underbrace{P_{h_1} - P_{h_0}}) \\
+& \text{Différence entre le nombre de paramètre entre $M_0$ et $M_1$}
+\end{align*}
+Ce qui reviens à teste si :
+$$
+F^* = \frac{\frac{[SSE(M_0) - SSE(M_1)]}{[P_{h_1} - P_{h_0}]}}{\frac{SSE(M_1)}{n - P_{h_1}}} \geq \chi_{\alpha}^2( \underbrace{P_{h_1} - P_{h_0}})
+$$
+Soit le test de Fisher partiel de la section \ref{sec:testFpartiel}.
+
+\section{Modèle de régression logistique}
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage

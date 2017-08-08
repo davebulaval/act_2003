@@ -27,7 +27,7 @@
 \contentsline {subsection}{\numberline {2.6.2}Intervalle de confiance pour $\beta _1$}{34}{subsection.2.6.2}
 \contentsline {subsection}{\numberline {2.6.3}Intervalle de confiance pour $\beta _0$}{35}{subsection.2.6.3}
 \contentsline {subsection}{\numberline {2.6.4}Test d'hypoth\IeC {\`e}ses sur les param\IeC {\`e}tres}{35}{subsection.2.6.4}
-\contentsline {subsection}{\numberline {2.6.5}Test de la validit\IeC {\'e} \emph {globale} de la r\IeC {\'e}gression}{41}{subsection.2.6.5}
+\contentsline {subsection}{\numberline {2.6.5}Test de la validit\IeC {\'e} globale de la r\IeC {\'e}gression}{41}{subsection.2.6.5}
 \contentsline {section}{\numberline {2.7}Pr\IeC {\'e}visions et intervalles de confiance}{42}{section.2.7}
 \contentsline {subsection}{\numberline {2.7.1}I.C. pour la pr\IeC {\'e}vision de type I (Valeur moyenne)}{44}{subsection.2.7.1}
 \contentsline {subsection}{\numberline {2.7.2}I.C. pour la pr\IeC {\'e}vision de type II (Vraie valeur)}{46}{subsection.2.7.2}
@@ -71,11 +71,17 @@
 \contentsline {section}{\numberline {4.4}Approche g\IeC {\'e}n\IeC {\'e}rale}{84}{section.4.4}
 \contentsline {subsection}{\numberline {4.4.1}Proc\IeC {\'e}dure avec les GLM}{84}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}Estimation des param\IeC {\`e}tres}{85}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Validation \emph {global} du mod\IeC {\`e}le avec la \emph {d\IeC {\'e}viance}}{86}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.3}Validation globale du mod\IeC {\`e}le avec la \emph {d\IeC {\'e}viance}}{86}{subsection.4.4.3}
 \contentsline {subsubsection}{\numberline {4.4.3.1}Loi normale}{87}{subsubsection.4.4.3.1}
 \contentsline {subsubsection}{\numberline {4.4.3.2}Loi de Poisson}{88}{subsubsection.4.4.3.2}
 \contentsline {subsubsection}{\numberline {4.4.3.3}Loi binomiale$(m_i, \mu _i)$}{88}{subsubsection.4.4.3.3}
 \contentsline {subsubsection}{\numberline {4.4.3.4}Loi gamma}{88}{subsubsection.4.4.3.4}
 \contentsline {subsubsection}{\numberline {4.4.3.5}Loi inverse Gausienne}{88}{subsubsection.4.4.3.5}
-\contentsline {subsection}{\numberline {4.4.4}Validation \emph {local} du mod\IeC {\`e}le avec des tests d'hypoth\IeC {\`e}ses et intervalles de confiances}{88}{subsection.4.4.4}
-\contentsline {chapter}{\numberline {A}Code source de l'exemple chapitre 3}{89}{appendix.A}
+\contentsline {subsection}{\numberline {4.4.4}Validation locale du mod\IeC {\`e}le avec des tests d'hypoth\IeC {\`e}ses et intervalles de confiances}{88}{subsection.4.4.4}
+\contentsline {subsubsection}{\numberline {4.4.4.1}Test d'hypoth\IeC {\`e}se tr\IeC {\`e}s g\IeC {\'e}n\IeC {\'e}ral}{88}{subsubsection.4.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.4.2}Intervalles de confiances}{89}{subsubsection.4.4.4.2}
+\contentsline {section}{\numberline {4.5}Mod\IeC {\`e}le de r\IeC {\'e}gression normale}{90}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Conclusion int\IeC {\'e}ressante}{92}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Remarque sur la validation globale et locale du mod\IeC {\`e}le sous la loi Normale}{92}{subsection.4.5.2}
+\contentsline {section}{\numberline {4.6}Mod\IeC {\`e}le de r\IeC {\'e}gression logistique}{93}{section.4.6}
+\contentsline {chapter}{\numberline {A}Code source de l'exemple chapitre 3}{94}{appendix.A}
