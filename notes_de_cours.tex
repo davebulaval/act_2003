@@ -1694,36 +1694,36 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-          fit         lwr        upr
-1  1.20557083  0.67828437  1.7328573
-2  0.10858637 -0.26520821  0.4823810
-3  0.09468333 -0.28168534  0.4710520
-4 -0.83944738 -1.53416005 -0.1447347
-5  0.36391374  0.01655729  0.7112702
+         fit        lwr         upr
+1 -0.1038216 -0.6735078  0.46586468
+2 -0.2801632 -0.8659870  0.30566058
+3  1.4268280  0.7149610  2.13869506
+4 -0.4740372 -1.0848910  0.13681651
+5 -0.6724914 -1.3159629 -0.02901983
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit        lwr       upr
-1 0.3815049 0.03439102 0.7286188
-2 0.5144554 0.16233479 0.8665759
-3 0.6474058 0.27872999 1.0160816
-4 0.7803563 0.38502483 1.1756877
-5 0.9133067 0.48309266 1.3435207
+          fit          lwr       upr
+1 -0.01913694 -0.583493601 0.5452197
+2  0.17634916 -0.382004532 0.7347029
+3  0.37183526 -0.189488125 0.9331587
+4  0.56732137 -0.005804919 1.1404477
+5  0.76280747  0.169572083 1.3560429
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit        lwr      upr
-1 0.3815049 -1.0067868 1.769797
-2 0.5144554 -0.8750967 1.904007
-3 0.6474058 -0.7464334 2.041245
-4 0.7803563 -0.6207693 2.181482
-5 0.9133067 -0.4980579 2.324671
+          fit       lwr      upr
+1 -0.01913694 -2.253574 2.215300
+2  0.17634916 -2.056579 2.409278
+3  0.37183526 -1.861838 2.605508
+4  0.56732137 -1.669347 2.803990
+5  0.76280747 -1.479098 3.004713
 \end{Soutput}
 \end{Schunk}
 
@@ -3461,11 +3461,12 @@ On peut ainsi dire que cela revient à tester,
 \begin{align*}
 \chi_{obs}^2 &\geq \chi_{\alpha}^2([n - (P_{h_0}+1)] - [n -(P_{h_1}+1]) \\
 \Rightarrow \chi_{obs}^2 &\geq \chi_{\alpha}^2( \underbrace{P_{h_1} - P_{h_0}}) \\
-& \text{Différence entre le nombre de paramètre entre $M_0$ et $M_1$}
+& \text{Différence entre le nombre} \\ 
+& \text{de paramètres entre $M_0$ et $M_1$}
 \end{align*}
 Ce qui reviens à teste si :
 $$
-F^* = \frac{\frac{[SSE(M_0) - SSE(M_1)]}{[P_{h_1} - P_{h_0}]}}{\frac{SSE(M_1)}{n - P_{h_1}}} \geq \chi_{\alpha}^2( \underbrace{P_{h_1} - P_{h_0}})
+F^* = \frac{\frac{[SSE(M_0) - SSE(M_1)]}{[P_{h_1} - P_{h_0}]}}{\frac{SSE(M_1)}{n - P_{h_1}}} \geq \chi_{\alpha}^2(P_{h_1} - P_{h_0})
 $$
 Soit le test de Fisher partiel de la section \ref{sec:testFpartiel}.
 

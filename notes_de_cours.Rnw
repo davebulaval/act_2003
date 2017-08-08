@@ -3705,11 +3705,12 @@ On peut ainsi dire que cela revient à tester,
 \begin{align*}
 \chi_{obs}^2 &\geq \chi_{\alpha}^2([n - (P_{h_0}+1)] - [n -(P_{h_1}+1]) \\
 \Rightarrow \chi_{obs}^2 &\geq \chi_{\alpha}^2( \underbrace{P_{h_1} - P_{h_0}}) \\
-& \text{Différence entre le nombre de paramètre entre $M_0$ et $M_1$}
+& \text{Différence entre le nombre} \\ 
+& \text{de paramètres entre $M_0$ et $M_1$}
 \end{align*}
 Ce qui reviens à teste si :
 $$
-F^* = \frac{\frac{[SSE(M_0) - SSE(M_1)]}{[P_{h_1} - P_{h_0}]}}{\frac{SSE(M_1)}{n - P_{h_1}}} \geq \chi_{\alpha}^2( \underbrace{P_{h_1} - P_{h_0}})
+F^* = \frac{\frac{[SSE(M_0) - SSE(M_1)]}{[P_{h_1} - P_{h_0}]}}{\frac{SSE(M_1)}{n - P_{h_1}}} \geq \chi_{\alpha}^2(P_{h_1} - P_{h_0})
 $$
 Soit le test de Fisher partiel de la section \ref{sec:testFpartiel}.
 

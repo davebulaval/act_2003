@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.6.27)  7 AUG 2017 22:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.6.27)  7 AUG 2017 23:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2186,12 +2186,12 @@ Annexe A.
 [94
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3509.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3509.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3510.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3510.
  (./notes_de_cours.aux (./section/license.aux) (./section/abstract.aux)
 (./section/remerciements.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3509.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3509.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3510.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3510.
 
 Package rerunfilecheck Info: File `notes_de_cours.out' has not changed.
 (rerunfilecheck)             Checksum: 41A4549A974E3066428CDF5F1A43B564;6006.
@@ -2202,7 +2202,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3509.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3510.
  ) 
 Here is how much of TeX's memory you used:
  33608 strings out of 492990
@@ -2250,7 +2250,7 @@ bx1000.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb
 ><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texli
 ve/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb><c:/texlive/2017/te
 xmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on notes_de_cours.pdf (97 pages, 913538 bytes).
+Output written on notes_de_cours.pdf (97 pages, 913481 bytes).
 PDF statistics:
  1497 PDF objects out of 1728 (max. 8388607)
  1270 compressed objects within 13 object streams
