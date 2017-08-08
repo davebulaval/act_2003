@@ -517,7 +517,8 @@ Afin de minimiser la fonction $S(\beta_0, \beta_1)$, on dérive la fonction part
 \label{eq:beta0}
 \color{blue}
 \boxed{\color{black}
-\hat{\beta_0} = \overline{Y} - \hat{\beta_1} \overline{X}}
+\hat{\beta_0} = \overline{Y} - \hat{\beta_1} \overline{X}
+}
 \end{equation}
 
 Et à partir de \ref{eq:minimisationbeta1} :
@@ -1694,36 +1695,36 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-         fit        lwr         upr
-1 -0.1038216 -0.6735078  0.46586468
-2 -0.2801632 -0.8659870  0.30566058
-3  1.4268280  0.7149610  2.13869506
-4 -0.4740372 -1.0848910  0.13681651
-5 -0.6724914 -1.3159629 -0.02901983
+          fit        lwr      upr
+1  0.92508849  0.3917690 1.458408
+2  0.87225880  0.3457344 1.398783
+3  2.92558851  1.7606537 4.090523
+4  1.09188164  0.5312566 1.652507
+5 -0.01452348 -0.5789770 0.549930
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-          fit          lwr       upr
-1 -0.01913694 -0.583493601 0.5452197
-2  0.17634916 -0.382004532 0.7347029
-3  0.37183526 -0.189488125 0.9331587
-4  0.56732137 -0.005804919 1.1404477
-5  0.76280747  0.169572083 1.3560429
+        fit        lwr       upr
+1 0.4008632 -0.1101084 0.9118348
+2 0.6088357  0.1013496 1.1163217
+3 0.8168081  0.2963868 1.3372293
+4 1.0247805  0.4761635 1.5733975
+5 1.2327529  0.6428638 1.8226420
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-          fit       lwr      upr
-1 -0.01913694 -2.253574 2.215300
-2  0.17634916 -2.056579 2.409278
-3  0.37183526 -1.861838 2.605508
-4  0.56732137 -1.669347 2.803990
-5  0.76280747 -1.479098 3.004713
+        fit        lwr      upr
+1 0.4008632 -1.6273503 2.429077
+2 0.6088357 -1.4185026 2.636174
+3 0.8168081 -1.2138067 2.847423
+4 1.0247805 -1.0132428 3.062804
+5 1.2327529 -0.8167659 3.282272
 \end{Soutput}
 \end{Schunk}
 
@@ -3471,6 +3472,82 @@ $$
 Soit le test de Fisher partiel de la section \ref{sec:testFpartiel}.
 
 \section{Modèle de régression logistique}
+\subsection{Contexte motivant l'utilisation de ce modèle}
+On utilise la régression logistique lorsqu'il y a un phénomène dichotomique. C'est-à-dire que $Y_i$ peut prendre seulement deux valeurs. \newline
+\begin{itemize}
+\item Est-ce que l'assuré $i$ avec les caractéristique $X_i$ va avoir des sinistres ?
+\item Est-ce que ce mpeme assuré va renouveler sa police avec nous ?
+\item Est-ce qu'un individu ayant les caractéristiques $X_i$ va décéder ou non dans la prochaine année ?
+\end{itemize}
+\bigskip
+
+De façon pratique, il est d'usage de définir $Y_i \in \{0, 1\}$ \newline
+
+Dans ce cas, on a que 
+$$
+(Y_i | \utilde{X_i}) \sim \text{Bernouilli}(\pi_i)
+$$
+Où $\pi_i$ correspond à $E[Y_i|\utilde{X_i}]$ et $g(\pi_i) = \utilde{X_i}\utilde{\beta}$. \newline
+
+Puisque $\pi_i \in ]0, 1[$, $\pi_i$ est une probabilité, et que $\utilde{X_i}\utilde{\beta} \in \mathbb{R}$, il faut choisir la fonction de lien $g(\bullet)$ de telle sorte que
+$$
+g : ]0, 1[ \rightarrow \mathbb{R}
+$$
+Bien que plusieurs candidats peuvent satisfaire cette condition, il est d'usage d'utiliser une fonction appelée \emph{logit} dans ce contexte. Celle fonction est défini ainsi :
+\begin{align*}
+g(x) &= \text{logit}(x) \\
+&= \ln\bigg( \frac{x}{1-x}\bigg)
+\end{align*}
+
+\subsection{Conséquences}
+\begin{align*}
+g(\pi_i) &= \utilde{X_i}\utilde{\beta} \\
+\text{logit}(\pi_i) &= \utilde{X_i}\utilde{\beta} \\
+\ln\bigg( \frac{\pi_i}{1-\pi_i}\bigg) &=\utilde{X_i}\utilde{\beta} \\
+\end{align*}
+Il est donc possible d'exprimer $\pi_i$ comme suit :
+\begin{align*}
+\frac{\pi_i}{1-\pi_i} &= e^{\utilde{X_i}\utilde{\beta}} \\
+\frac{1-\pi_i}{\pi_i} &= \frac{1}{e^{\utilde{X_i}\utilde{\beta}}} \\
+\frac{1}{\pi_i} - 1 &= \frac{1}{e^{\utilde{X_i}\utilde{\beta}}} \\
+\frac{1}{\pi_i} &= 1 + \frac{1}{e^{\utilde{X_i}\utilde{\beta}}} \\
+\pi_i &= \frac{1}{1 + \frac{1}{e^{\utilde{X_i}\utilde{\beta}}}} \\
+\end{align*}
+
+\begin{equation}
+\label{eq:logit}
+\color{blue}
+\boxed{\color{black}
+\pi_i = \frac{e^{\utilde{X_i}\utilde{\beta}}}{1 + e^{\utilde{X_i}\utilde{\beta}}}
+}
+\end{equation}
+
+\subsection{Interprétations}
+\subsubsection{}
+\begin{align*}
+\ln\bigg( \frac{\pi_i}{1-\pi_i}\bigg) &=\utilde{X_i}\utilde{\beta} \\
+\ln\Bigg( \frac{Pr(Y_i=1|\utilde{X_i})}{Pr(Y_i=0|\utilde{X_i})}\Bigg) &=\utilde{X_i}\utilde{\beta} \\
+\end{align*}
+Le log du rapport de cote est linéaire.
+
+\subsubsection{}
+$\beta_0$ : le log du rapport de cote lorsque toutes les variables explicatives $X_i$ sont égale à zéro.
+
+\subsubsection{}
+$\beta_j$ : Si $X_{i,j}$ augmente de une unité, alors que les autres variables explicatives sont fixés, alors le log du rapport de cote augmente de $\beta_j$ unité pour l'individu $i$.
+
+\subsection{Paramétrisation}
+Sous la méthode du maximum de vraisemblane, on a
+\begin{align*}
+l(\utilde{\beta}) &= \sum_{i=1}^n \ln\bigg( Pr(Y_i = y_i|\utilde{X_i}) \bigg) \\
+&= \sum_{i=1}^n \ln\bigg( \pi_i^{y_i} \times (1 - \pi_i)^{1-y_i}) \bigg) \\
+&= \sum_{i=1}^n \bigg( y_i \times \ln(\pi_i) + (1 - y_i)\times\ln(1 - \pi_i) \bigg) \\
+&= \sum_{i=1}^n \Bigg( y_i \times \ln\bigg(\frac{e^{\utilde{X_i}\utilde{\beta}}}{1 + e^{\utilde{X_i}\utilde{\beta}}} \bigg) + (1 - y_i)\times\ln\bigg(\frac{1}{1 + e^{\utilde{X_i}\utilde{\beta}}}\bigg) \Bigg) \\
+&= \sum_{i=1}^n \Bigg( y_i \times \ln(e^{\utilde{X_i}\utilde{\beta}}) - y_i\ln(1 + e^{\utilde{X_i}\utilde{\beta}}) - (1 - y_i)\times\ln(1 + e^{\utilde{X_i}\utilde{\beta}}) \Bigg) \\
+&= \sum_{i=1}^n \Bigg( y_i \times\utilde{X_i}\utilde{\beta} - \ln(1 + e^{\utilde{X_i}\utilde{\beta}}) \Bigg) \\
+\end{align*}
+
+Par conséquent,
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
