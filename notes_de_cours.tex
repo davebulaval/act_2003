@@ -1695,36 +1695,36 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-         fit         lwr       upr
-1 -0.2700664 -1.06462307 0.5244903
-2 -0.3053291 -1.11216523 0.5015071
-3 -0.4116011 -1.25779339 0.4345912
-4  0.7379300  0.04923046 1.4266295
-5  0.5353902 -0.13020186 1.2009822
+          fit        lwr       upr
+1  0.08323557 -0.3802273 0.5466984
+2  0.86925438  0.3004710 1.4380378
+3 -0.67027332 -1.5748399 0.2342933
+4  0.04659309 -0.4310246 0.5242107
+5  0.27277432 -0.1420100 0.6875586
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-         fit         lwr       upr
-1 0.05432778 -0.64949424 0.7581498
-2 0.24836510 -0.42453512 0.9212653
-3 0.44240242 -0.22034286 1.1051477
-4 0.63643974 -0.03785636 1.3107358
-5 0.83047706  0.12398821 1.5369659
+        fit         lwr       upr
+1 0.1909516 -0.23931009 0.6212133
+2 0.3265179 -0.08323784 0.7362737
+3 0.4620843  0.04603502 0.8781335
+4 0.5976506  0.14963645 1.0456648
+5 0.7332169  0.23245861 1.2339753
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-         fit       lwr      upr
-1 0.05432778 -2.607177 2.715832
-2 0.24836510 -2.405130 2.901860
-3 0.44240242 -2.208536 3.093340
-4 0.63643974 -2.017410 3.290289
-5 0.83047706 -1.831734 3.492688
+        fit        lwr      upr
+1 0.1909516 -1.4496349 1.831538
+2 0.3265179 -1.3088104 1.961846
+3 0.4620843 -1.1748323 2.099001
+4 0.5976506 -1.0476808 2.242982
+5 0.7332169 -0.9272522 2.393686
 \end{Soutput}
 \end{Schunk}
 
@@ -3561,7 +3561,7 @@ On cherche le jieme élément du vecteur score, soit
 S(\utilde{\beta}) &= \frac{\partial}{\partial\beta_j} l(\beta) \\
 &= \sum_{i=1}^nX_{i,j}Y_i - \big(X_{i,j}\times \frac{e^{\utilde{X_i}\utilde{\beta}}}{1 + e^{\utilde{X_i}\utilde{\beta}}}\big) \\
 &= \sum_{i=1}^nX_{i,j}\big(Y_i - \frac{e^{\utilde{X_i}\utilde{\beta}}}{1 + e^{\utilde{X_i}\utilde{\beta}}}\big) \\
-X_j^\intercal(Y - M(\utilde{X_i}\utilde{\beta}))
+&= X_j^\intercal(Y - M(\utilde{X_i}\utilde{\beta}))
 \end{align*}
 où $M(\utilde{X_i}\utilde{\beta})$ correspond à 
 $$
@@ -3829,7 +3829,7 @@ P(Y_i = y_i | \utilde{X_i}) &= \int_0^\infty \frac{e^{-\lambda_i\theta}(\lambda_
 \item $\hat{\utilde{\beta}}^{(i+1)} = \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)})$
 \end{itemize}
 
-\subsubsection{Test de surdispersion}
+\subsubsection*{Test de surdispersion}
 
 \begin{align*}
 H_0 &: \text{Il n'y a pas de surdispersion, la variance de $Y$ est égale à l'espérance de $Y$.} \\
@@ -3855,14 +3855,267 @@ $$
 Il s'agit d'un test unilatéral.
 \end{enumerate}
 
-\subsection{Loi Gamma}
+\subsubsection{Loi Gamma}
+Permet de modéliser des cas où $Y$ est continue, mais non-négative.
+
+\begin{itemize}
+\item Fonction de log-vraisemblance
+$$
+f_{Y_i|\utilde{X_i}}(y_i) = \frac{(\frac{\alpha}{\mu_i})^\alpha\times y_i^{\alpha-1}e^{-(\frac{\alpha}{\mu_i}y_i)}}{\Gamma(\alpha)}
+$$
+où
+\begin{align*}
+\ln(\mu_i) &= \utilde{X}\utilde{\beta} \\
+&\overset{\text{Lien log}}{\Rightarrow} \mu_i = e^{\utilde{X}\utilde{\beta}} \\
+\frac{1}{\mu_i} &= \utilde{X}\utilde{\beta}\\
+&\overset{\text{Lien inverse}}{\Rightarrow} \mu_i = \frac{1}{\utilde{X}\utilde{\beta}} \\
+E[Y_i|\utilde{X_i}] &= \mu_i \\
+&= g^{-1}(\utilde{X}\utilde{\beta}) \\
+Var(Y_i|\utilde{X_i}) & = \frac{\mu_i^2}{\alpha} \\
+\end{align*}
+\item $l(\utilde{\beta}) = \sum_{i=1}^n\ln(f_{Y_i|\utilde{X_i}}(y_i))$
+\item $S(\utilde{\beta}) = \frac{\partial}{\partial\utilde{\beta}} l(\utilde{\beta})$
+\item $I(\utilde{\beta}) = \frac{\partial^2}{\partial\utilde{\beta^2}} l(\utilde{\beta})$
+\item $\hat{\utilde{\beta}}^{(i+1)} = \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)})$
+\end{itemize}
+
+\subsection{Algorithme du Scoring}
+L'algorithme de Scoring est un algorithme itératif pour estimer les paramètres. Il peut parfois être une alternative à l'algorithme de Newton-Rahpson. \newline
+
+Pour obtenir l'algorithme du Scoring, il faut simplement remplacer $I(\utilde{\beta})$ par $F(\utilde{\beta})$ dans la formule d'optimisation des paramètres. Ce qui donne la formule suivante :
+$\hat{\utilde{\beta}}^{(i+1)} = \hat{\utilde{\beta}}^{(i)} + F^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)})$
+où
+$$
+F(\utilde{\beta}) = E_Y(I(\utilde{\beta}^{(i)}))
+$$
+
+\subsubsection{Remarque}
+En pratique, il est d'usage d'utiliser cet algortihme pour alléger les formules lorsqu'il reste des termes en $y_i$ dans la marice $I(\utilde{\beta})$. \newline
+
+Dans le cas de la loi Normale, Logistique et Poisson, il n'yy a pas de $y_i$ dans $I(\utilde{\beta})$, mais ce n'est pas le cas avec la loi gamma ou avec la loi géométrie.
+
+\subsubsection{Exemple : Loi géométrique}
+\begin{itemize}
+\item $Pr(Y_i = y_i |\utilde{X_i}) = P_i^{y_i-1} \times (1 - P_i); y_i \in \{1,2,... \}$
+\item Fonction de lien $g(x) = \ln(x-1)$
+\begin{align*}
+\ln(E[Y_i|\utilde{X_i}] - 1) &= \utilde{X_i}\beta \\
+E[Y_i|\utilde{X_i} -1 &= e^{\utilde{X_i}\beta} \\
+E[Y_i|\utilde{X_i}  &= 1 + e^{\utilde{X_i}\beta}  \\
+\frac{1}{1 - P_i} &= 1 + e^{\utilde{X_i}\beta} \\
+1 - P_i &= \frac{1}{1 + e^{\utilde{X_i}\beta}} \\
+P_i &= \frac{e^{\utilde{X_i}\beta}}{1 + e^{\utilde{X_i}\beta}}
+\end{align*}
+
+\item Fonction de log-vraisemblance
+\begin{align*}
+l(\utilde{\beta}) &= \sum_{i=1}^n\ln(Pr(Y_i|\utilde{X_i})) \\
+&= \sum_{i=1}^n\bigg\lbrace(y_i - 1) \ln(P_i) + \ln(1 - P_i) \bigg\rbrace\\
+&= \sum_{i=1}^n\bigg\lbrace(y_i - 1) \ln\bigg(\frac{e^{\utilde{X_i}\beta}}{1 + e^{\utilde{X_i}\beta}}\bigg) + \ln\bigg(\frac{1}{1 + e^{\utilde{X_i}\beta}}\bigg) \bigg\rbrace\\
+&= \sum_{i=1}^n\bigg\lbrace(y_i - 1) \bigg[\utilde{X_i}\beta - \ln(1 + e^{\utilde{X_i}\beta})\bigg] - \ln(1 + e^{\utilde{X_i}\beta}) \bigg\rbrace\\
+&= \sum_{i=1}^n\bigg\lbrace(y_i - 1) \utilde{X_i}\beta -  y_i\times\ln(1 + e^{\utilde{X_i}\beta}) \bigg\rbrace\\
+\end{align*}
+\item Vecteur Score
+\begin{align*}
+[S(\hat{\utilde{\beta}})]_j &= \frac{\partial}{\partial\utilde{\beta}} l(\utilde{\beta}) \\
+&= \sum_{i=1}^n \bigg\lbrace  (y_i - 1)X_{i,j} - y_iX_{i,j} \times \frac{e^{\utilde{X_i}\beta}}{1 + e^{\utilde{X_i}\beta}}\bigg\rbrace\\
+&= ... \\
+&= \sum_{i=1}^n \bigg\lbrace \frac{y_i}{1 + e^{\utilde{X_i}\beta}}\bigg\rbrace \times X_{i,j}\\
+\end{align*}
+\item Matrice d'information de Fisher
+\begin{align*}
+I(\utilde{\beta}) &= \frac{\partial^2}{\partial\utilde{\beta^2}} l(\utilde{\beta}) \\
+&= -\frac{\partial}{\partial\beta_k} \bigg( \frac{\partial}{\partial\beta_j} l(\beta)\bigg) \\ 
+&= -\frac{\partial}{\partial\beta_k} [S(\beta)]_j \\
+&=  \sum_{i=1}^n\bigg\lbrace y_i \times \frac{e^{\utilde{X_i}\beta}}{1 + e^{\utilde{X_i}\beta}} \times \frac{1}{1 + e^{\utilde{X_i}\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace
+\end{align*}
+On remarque qu'il y a des $y_i$ dans la matrice d'information de Fisher.
+\item Matrice F
+\begin{align*}
+[F(\beta)]_{j,k} &= E_Y\bigg[ [I(\utilde{\beta})]_{j,k}\bigg] \\
+&= E_Y\Bigg[ \sum_{i=1}^n\bigg\lbrace y_i \times \frac{e^{\utilde{X_i}\beta}}{1 + e^{\utilde{X_i}\beta}} \times \frac{1}{1 + e^{\utilde{X_i}\beta}} \times X_{i,j} \times X_{i,k} \Bigg] \\
+&= \sum_{i=1}^n \bigg\lbrace E[y_i|\utilde{X_i}] \times \frac{e^{\utilde{X_i}\beta}}{1 + e^{\utilde{X_i}\beta}} \times \frac{1}{1 + e^{\utilde{X_i}\beta}} \times X_{i,j} \times X_{i,k} \\
+&= \sum_{i=1}^n \bigg\lbrace \frac{1}{1-P_i} \times \frac{e^{\utilde{X_i}\beta}}{1 + e^{\utilde{X_i}\beta}} \times \frac{1}{1 + e^{\utilde{X_i}\beta}} \times X_{i,j} \times X_{i,k} \\
+&= \sum_{i=1}^n \bigg\lbrace (1 + e^{\utilde{X_i}\beta}) \times \frac{e^{\utilde{X_i}\beta}}{1 + e^{\utilde{X_i}\beta}} \times \frac{1}{1 + e^{\utilde{X_i}\beta}} \times X_{i,j} \times X_{i,k} \\
+&= \sum_{i=1}^n \bigg\lbrace \frac{e^{\utilde{X_i}\beta}}{1 + e^{\utilde{X_i}\beta}}  \times X_{i,j} \times X_{i,k} \\
+&= \sum_{i=1}^nX_{i,j}\times W_iX_{i,k}
+\end{align*}
+Cette expression est plus simple, car elle n'est aps fonction des $Y_i$.  On peut donc réécrire $F(\utilde{\beta})$ comm suit :
+$$
+F(\utilde{\beta}) = \mathbb{X}^\intercal \mathbb{W}\mathbb{X}
+$$
+où $\mathbb{W}$ correspond à la matrice suivante:
+\begin{align*}
+\begin{bmatrix}
+w_1 & 0 & \cdots & 0 \\
+0 & w_2 & \cdots & 0 \\
+0 & 0 & \cdots & 0 \\
+\vdots&\vdots& \vdots & \vdots \\
+0 & 0 & \cdots & w_n \\
+\end{bmatrix}_{n \times n}
+\end{align*}
+\end{itemize}
+
+\subsection{Varaible offset}
+Il s'agit d'une variable explicative dont le $\beta$ est d'une valeur unitaire. 
+
+\subsubsection{Utilisation en actuariat}
+On utilise les variables offset pour effectuer la modélisation de la fréquence des sinistres à partir de la loi Poisson.
+
+\subsubsection{Exemple}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$i$ & $U_i$ & $N_i$ & $X_{i,1}$ & $X_{i,2}$ & $\cdots$ & $X_{i,p}$ \\
+\hline
+1 & 0.5 & 1 & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+2 & 1.0 & 2 & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+3 & 1.0 & 0 & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+4 & 0.25 & 1 & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+5 & 0.05 & 0 & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+\hline
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item $U_i$ : L'exposition au risque. Autrement dit, la portion d'une année ou l'assuré $i$ a détenu une police en vigeur.
+\item $N_i$ : Le nombre de sinistre de l'assuré $i$.
+\end{itemize}
+
+\subsubsection*{Le modèle GLM}
+\begin{align*}
+(N_i |U_i, \utilde{X_i}) &\sim \text{Poisson}(\lambda_i) \\
+\lambda_i &= U_i \times e^{X_i\beta}
+\end{align*}
+
+\subsubsection*{Idée sous-jacente à ce modèle}
+Un assuré qui a détenu une police en vigeur pendant quelque jours a considérablement moins de chances d'avoir des sinistres qu'un assuré qui a conservé sa police en vigueur pendant toute l'année.
+
+\subsubsection*{Interprétation}
+\begin{itemize}
+\item $\lambda_i = U_i \times e^{\utilde{X_i}\beta}$ : Nombre de sinistre espéré pour l'assuré $i$.
+\item $\frac{\lambda_i}{U_i} = e^{\utilde{X_i}\beta}$ : Fréquence de sinistre espéré pour l'assuré $i$.
+\end{itemize}
+\subsubsection*{Variable offset}
+\begin{align*}
+\lambda_i &= U_i \times e^{X_i\beta} \\
+&= e^{\ln(U_i)} \times e^{\beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}} \\
+&= e^{\ln(U_i) + \beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}} \\
+\end{align*}
+En posant, $0_i = \ln(U_i)$, alors on a que :
+\begin{align*}
+\lambda_i &= e^{1 \times 0_i + \beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}} \\
+\end{align*}
+Ici, $0_i$ est la variable offset.
+
+\subsection{Ajout d'une interactiion entre deux variables explicatives}
+Si on pense que l'effet combiné de deux variables explicatives doit être différent de l'addition des effets individuels de ces deux variables, on utilise une variable d'interaction.
+
+\subsubsection{Exemple}
+\begin{itemize}
+\item $Y$ : Le coûts d'assurance d'une auto
+\item $X_1$ : âge de l'assuré au carré
+\item $X_2$ : Indicateur que l'assuré est un homme
+\end{itemize}
+
+En pratique, on observe souvent cette tendance suivante :
+
+%% figure
+
+Or, il est impossible d'obtenir le graphique précédent avec une structure linéaire de la forme :
+$$
+\beta_0 + \beta_1X_1 + \beta_2X_2
+$$
+Car le $\beta_2$ ne fait qu'induire un effet de translation sur les courbes sans jouer sur l'amplitude :
+
+%% figure
+
+Qui correspond à la fonction suivante:
+
+\begin{align*}
+g(E[Y|\utilde{X_i}]) &= 
+\left \lbrace
+     \begin{array}{rl}
+     \beta_0 + \beta_1X_1 &, \text{si une femme} \\
+     (\beta_0 + \beta_2) + \beta_1X_1 &, \text{si un homme}
+     \end{array}
+     \right.
+\end{align*}
+
+Pour permettre à l'amplitude de varier selon le sexe, il faut ajouter une interaction à la structure linéaire précédente, soit:
+\begin{align*}
+\beta_0  + \beta_1X_1 &+ \beta_2X_2 + \underbrace{\beta_3\times X_1 \times X_2} \\
+&\text{Partie d'interaction entre $X_1$ et $X_2$}
+\end{align*}
+
+Ainsi,
+\begin{align*}
+g(E[Y|\utilde{X_i}]) &= 
+\left \lbrace
+     \begin{array}{rl}
+     \beta_0 + \beta_1X_1 &, \text{si une femme} \\
+     (\beta_0 + \beta_2) + (\beta_1 + \beta_3)X_1 &, \text{si un homme}
+     \end{array}
+     \right.
+\end{align*}
+\subsubsection{Remarque importante}
+Tout comme le traitement des variables non-numériques, l'ajout d'une interaction ne nécessite que de modifier la matrice schéma $\mathbb{X}$ et le vecteur $\utilde{\beta}$.
+
+\subsubsection*{Sans interaction}
+\begin{align*}
+\mathbb{X}
+=
+\bordermatrix { 
+& &  X_1  & X_2 \cr 
+& 1 & 60 & 0 \cr 
+& 1 & 30 & 1 \cr 
+& \vdots & \vdots & \vdots \cr 
+}
+\end{align*}
+$$ 
+\utilde{\beta} = 
+\begin{bmatrix}
+  \beta_0 \\
+  \beta_1 \\
+  \beta_2 \\
+\end{bmatrix} 
+$$
+
+\subsubsection*{Avec interaction}
+\begin{align*}
+\mathbb{X}
+=
+\bordermatrix { 
+& &  X_1  & X_2 & X_3 = X1 \times X_2 \cr 
+& 1 & 60 & 0 & 0 \cr 
+& 1 & 30 & 1 & 30\cr 
+& \vdots & \vdots & \vdots & \vdots \cr 
+}
+\end{align*}
+$$ 
+\utilde{\beta} = 
+\begin{bmatrix}
+  \beta_0 \\
+  \beta_1 \\
+  \beta_2 \\
+  \beta_3 \\
+\end{bmatrix} 
+$$
+
+\subsection{Analyse des résidus}
+Toute la théorie introduite au chapitre 3 reste valide pour les GLM à l'exception du fait qu'il soit nécessaire de définir un désidu plus général.
+
+\subsubsection{Résidus de la déviance}
+$$
+\hat{\varepsilon}_D = signe(y_i - \hat{\mu_i}) \times \sqrt{2 \times \big( l(\utilde{y}, \utilde{y})_i - l(\utilde{y}, \utilde{\mu})_i \big)}
+$$
+
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
 \appendix
 
-\chapter{Code source de l'exemple chapitre 3}
+\chapter{Code source de l'exemple du chapitre 3}
 \label{codesour:chap3}
 (Section \ref{ex:chapitre3})
 

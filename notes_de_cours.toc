@@ -106,6 +106,16 @@
 \contentsline {section}{\numberline {4.8}Autres notions importantes avec les GLM}{104}{section.4.8}
 \contentsline {subsection}{\numberline {4.8.1}Autres distributions}{104}{subsection.4.8.1}
 \contentsline {subsubsection}{\numberline {4.8.1.1}Loi Binomiale n\IeC {\'e}gative}{104}{subsubsection.4.8.1.1}
-\contentsline {subsubsection}{\numberline {4.8.1.2}Test de surdispersion}{105}{subsubsection.4.8.1.2}
-\contentsline {subsection}{\numberline {4.8.2}Loi Gamma}{105}{subsection.4.8.2}
-\contentsline {chapter}{\numberline {A}Code source de l'exemple chapitre 3}{106}{appendix.A}
+\contentsline {subsubsection}{\numberline {4.8.1.2}Loi Gamma}{105}{subsubsection.4.8.1.2}
+\contentsline {subsection}{\numberline {4.8.2}Algorithme du Scoring}{106}{subsection.4.8.2}
+\contentsline {subsubsection}{\numberline {4.8.2.1}Remarque}{106}{subsubsection.4.8.2.1}
+\contentsline {subsubsection}{\numberline {4.8.2.2}Exemple : Loi g\IeC {\'e}om\IeC {\'e}trique}{107}{subsubsection.4.8.2.2}
+\contentsline {subsection}{\numberline {4.8.3}Varaible offset}{109}{subsection.4.8.3}
+\contentsline {subsubsection}{\numberline {4.8.3.1}Utilisation en actuariat}{109}{subsubsection.4.8.3.1}
+\contentsline {subsubsection}{\numberline {4.8.3.2}Exemple}{110}{subsubsection.4.8.3.2}
+\contentsline {subsection}{\numberline {4.8.4}Ajout d'une interactiion entre deux variables explicatives}{111}{subsection.4.8.4}
+\contentsline {subsubsection}{\numberline {4.8.4.1}Exemple}{111}{subsubsection.4.8.4.1}
+\contentsline {subsubsection}{\numberline {4.8.4.2}Remarque importante}{111}{subsubsection.4.8.4.2}
+\contentsline {subsection}{\numberline {4.8.5}Analyse des r\IeC {\'e}sidus}{112}{subsection.4.8.5}
+\contentsline {subsubsection}{\numberline {4.8.5.1}R\IeC {\'e}sidus de la d\IeC {\'e}viance}{112}{subsubsection.4.8.5.1}
+\contentsline {chapter}{\numberline {A}Code source de l'exemple du chapitre 3}{113}{appendix.A}
