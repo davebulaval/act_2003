@@ -147,11 +147,14 @@ L'établissement de prévisions joue un rôle central dans notre vie de tous les
 
 \subsection*{Objectifs de la régression}
 Régulièrement en actuariat, on se questionne sur les effets de différentes variables sur d'autres. Par exemple,
+
+\bigskip
 \begin{itemize}
 \item Quel est l'effet de l'âge sur la fréquence des sinistres automobiles ?
 \item Quel est l'effet du sexe sur la mortalité ?
 \end{itemize}
 
+\bigskip
 On cherche à étudier et déterminer les relations entre des variables mesurables à partir de données.
 
 \subsection*{Deux grandes classes de variables mesurables :}
@@ -190,7 +193,8 @@ $\beta_0, \beta_1, ... \beta_n$ & Les paramètres à estimer & \\
 
 \bigskip
 \bigskip
-Voici une illustration du concept de régression linéaire
+Voici une illustration du concept de régression linéaire.
+\bigskip
 
 %%% fig for the concept of regression operation
 \begin{tikzpicture}
@@ -250,7 +254,7 @@ On cherche à prédire l'âge des passagers du Titanic selon le prix du billet �
 
 \subsection{Régression linéaire multiple}
 \label{ex:multiple}
-On cherche à prédire l'âge d'un cerisier noir en fonction de la hauteur du cerisier et la circonférence de son tronc.
+On cherche à prédire l'âge d'un cerisier noir en fonction de la hauteur du cerisier et de la circonférence de son tronc.
 
 \bigskip
 
@@ -273,7 +277,7 @@ On cherche à prédire l'âge d'un cerisier noir en fonction de la hauteur du ce
 %% fig 1 multilinear regression
 \includegraphics{notes_de_cours-002}
 
-Voici la régression sous un autre angle, on voit la surface plane de régression.
+Voici la régression sous un autre angle.
 %% fig 2
 \includegraphics{notes_de_cours-003}
 
@@ -298,7 +302,7 @@ On cherche à prédire la sévérité d'un sinistre automobile en fonction du te
 \includegraphics{notes_de_cours-004}
 
 
-\subsubsection*{Note}
+\subsubsection{Note}
 \label{note:exponentielle}
 On remarque que la régression exponentielle est similaire à une régression linéaire simple.
 \begin{align*}
@@ -328,28 +332,31 @@ On cherche à prédire la sévérité d'un sinistre automobile en fonction du te
 %% Graphe modèle quadratique
 \includegraphics{notes_de_cours-005}
 
-\subsubsection*{Note}
+\subsubsection{Note}
 \label{note:quadratique}
 On remarque que la régression quadratique est similaire à une régression linéaire multiple. En posant $X_1=X$ et $X_2 = X^2$
 \begin{align*}
 Y &= \beta_0 + \beta_1 \times X_1 + \beta_2 \times X_2 + \varepsilon\\
 \end{align*}
-Soit une régression linéaire multiple.
+Soit une régression linéaire multiple.\newline
 
 Dans le cadre du cours, seulement les modèles linéaires seront à l'étude pour les différentes raisons suivantes
 
+\bigskip
 \begin{itemize}
 \item Plus simples
 \item Plusieurs modèles peuvent se ramener à un modèle linéaire simple ou multiple. (voir \ref{note:exponentielle} et \ref{note:quadratique})
 \item Constituent souvent une très bonne approximation de la réalité qui peut être très complexe, telle que l'assurance.
 \item Se généralisent facilement, tels que les \textit{Generalized Linear Models}.
 \end{itemize}
+\bigskip
 
 Le principal problème de la modélisation linéaire est de trouver les différents paramètres $\beta_0, \beta_1, ..., \beta_n$ de telle sorte que
 \begin{equation}
 \varepsilon = Y - f(X_1,...,X_n; \beta_0, \beta_1,...,\beta_n)
 \end{equation}
 soit minimisé.
+\bigskip
 
 Il existe plusieurs méthodes pour calcul l'erreur. Soit les erreurs suivantes :
 \begin{itemize}
@@ -357,12 +364,13 @@ Il existe plusieurs méthodes pour calcul l'erreur. Soit les erreurs suivantes :
 \item Erreur absolue
 \item Erreur quadratique
 \end{itemize}
+\bigskip
 
 Quel type d'erreur est suffisante pour déterminer $\varepsilon$ ?
 
 \subsubsection{Erreur totale}
 \begin{equation}
-\sum_{t=1}^n \varepsilon_t = \sum_{t=1}^n \Big( Y_t - (\beta_0 + \beta_1\times X_t) \Big) 
+\displaystyle\sum_{t=1}^n \varepsilon_t = \displaystyle\sum_{t=1}^n \Big( Y_t - (\beta_0 + \beta_1\times X_t) \Big) 
 \end{equation}
 \begin{itemize}
 \item Facile à mettre à 0
@@ -374,16 +382,16 @@ Quel type d'erreur est suffisante pour déterminer $\varepsilon$ ?
 
 \subsubsection{Erreur absolue}
 \begin{equation}
-\sum_{t=1}^n |\varepsilon_t| = \sum_{t=1}^n \Big| Y_t - (\beta_0 + \beta_1\times X_t) \Big| 
+\displaystyle\sum_{t=1}^n |\varepsilon_t| = \displaystyle\sum_{t=1}^n \Big| Y_t - (\beta_0 + \beta_1\times X_t) \Big| 
 \end{equation}
 \begin{itemize}
 \item Très robuste
-\item Très compliquée mathématiquement, pour minimiser $\sum_{t=1}^n |\varepsilon_t|$ cela implique de dériver la fonction.
+\item Très compliquée mathématiquement, pour minimiser $\displaystyle\displaystyle\sum_{t=1}^n |\varepsilon_t|$ cela implique de dériver la fonction.
 \end{itemize}
 
 \subsubsection{Erreur quadratique}
 \begin{equation}
-\sum_{t=1}^n \varepsilon_t^2 = \sum_{t=1}^n \Big[ Y_t - (\beta_0 + \beta_1\times X_t) \Big]^2 
+\displaystyle\sum_{t=1}^n \varepsilon_t^2 = \displaystyle\sum_{t=1}^n \Big[ Y_t - (\beta_0 + \beta_1\times X_t) \Big]^2 
 \end{equation}
 \begin{itemize}
 \item Mathématiquement plus simple que l'erreur absolue
@@ -394,7 +402,7 @@ Quel type d'erreur est suffisante pour déterminer $\varepsilon$ ?
 L'erreur quadratique semble donc l'option la plus simple due à la facilité mathématique et sa fiabilité.
 
 \section{Le modèle de régression linéaire simple}
-Le modèle de régression linéaire simple tente d'expliquer le mieux possible la variable \href{https://fr.wikipedia.org/wiki/Variable_dépendante}{dépendante} \footnote{On appelle parfois la variable dépendante une variable \href{https://fr.wikipedia.org/wiki/Endogène}{endogène}. Qui s'interprète comme étant une variable qui est due à une cause interne.}  Y à l'aide d'une variable \href{https://fr.wikipedia.org/wiki/Variable_indépendante}{indépendante}\footnote{On appelle parfois les variables dépendantes des variables \href{https://fr.wikipedia.org/wiki/Exogène}{exogène}. Qui s'intreprète comme étant extérieur à un système.} X . 
+Le modèle de régression linéaire simple tente d'expliquer le mieux possible la variable \href{https://fr.wikipedia.org/wiki/Variable_dépendante}{dépendante} \footnote{On appelle parfois la variable dépendante une variable \href{https://fr.wikipedia.org/wiki/Endogène}{endogène}. Cette variable s'interprète comme étant une variable qui est due à une cause interne.}  Y à l'aide d'une variable \href{https://fr.wikipedia.org/wiki/Variable_indépendante}{indépendante}\footnote{On appelle parfois les variables dépendantes des variables \href{https://fr.wikipedia.org/wiki/Exogène}{exogène}. Cette variable s'intreprète comme étant extérieur à un système.} X . 
 
 Si on dispose de n paires d'observations $(X_1, Y_1), (X_2, Y_2),...,(X_n, Y_n)$ alors, le modèle s'exprime  comme suit :
 \begin{equation}
@@ -408,6 +416,7 @@ et $\varepsilon$ est le terme d'erreur.
 
 \subsubsection*{Quelques remarques sur le modèle}
 Dans l'équation \ref{eq:simple} du modèle, on remarque que :
+\bigskip
 \begin{itemize}
 \item Les observations de $Y_i$ son tirées d'une variable aléatoire;
 \item Les observations de $X_i$ sont considérées comme des valeurs connues et non aléatoires;
@@ -417,8 +426,8 @@ Dans l'équation \ref{eq:simple} du modèle, on remarque que :
 
 \subsubsection*{Exemple d'un modèle de régression}
 \begin{align*}
-X_t &: \text{Nombre d'années de scolarité de l'actuaire} t \\
-Y_t &: \text{Salaire de l'actuaire} t\\
+X_t &: \text{Nombre d'années de scolarité de l'actuaire } t \\
+Y_t &: \text{Salaire de l'actuaire } t\\
 \end{align*}
 
 Comment résoudre le modèle pour prédire les salaires des actuaires en fonction du nombre d'années de scolarité ?
@@ -429,6 +438,7 @@ Comment résoudre le modèle pour prédire les salaires des actuaires en fonctio
 \item Pour $X_t = 0$; on a $Y_t = \beta_0$. Autrement dit, le salaire avec un nombre d'années nulle de scolarité est \emph{en moyenne} de $\beta_0$. Par exemple, $\beta_0$ serait le salaire moyen d'un stagiaire.
 \item Par la suite, pour chaque année additionnelle de scolarité, le salaire augmente \emph{en moyenne }de $\beta_1$ unitées.
 \end{itemize}
+\bigskip
 Ainsi, \emph{en moyenne} on a 
 \begin{align*}
 E[Y_t|X_t] &= \beta_0 + \beta_1\times X_t
@@ -472,9 +482,9 @@ Si $\varepsilon_t$ est minimal, cela veut dire que $Y_t \approx \beta_0 + \beta_
 Les paramètres $\beta_0$ et $\beta_1$ sont déterminés en minimisant l'erreur quadratique à l'aide de la méthode des moindres carrés.
 
 \begin{align*}
-S(\beta_0, \beta_1) &= \sum_{t=1}^n \varepsilon_t^2 \\
-&= \sum_{t=1}^n \big( Y_t - (\beta_0 + \beta_1\times X_t) \big)^2 \\
-&= \sum_{t=1}^n \big( Y_t - \beta_0 - \beta_1\times X_t \big)^2 \\
+S(\beta_0, \beta_1) &= \displaystyle\sum_{t=1}^n \varepsilon_t^2 \\
+&= \displaystyle\sum_{t=1}^n \big( Y_t - (\beta_0 + \beta_1\times X_t) \big)^2 \\
+&= \displaystyle\sum_{t=1}^n \big( Y_t - \beta_0 - \beta_1\times X_t \big)^2 \\
 \end{align*}
 
 Où $S(\psi)$ peut être considérée comme une mesure de la \emph{distance} entre les données observées et le modèle théorique qui prédit ces données \footnote{Pour de plus amples informations sur la méthode des moindres carrés et la fonction de \emph{distance}, la page \href{https://fr.wikipedia.org/wiki/Méthode_des_moindres_carrés}{Wikipédia} contient une bonne explication sur le sujet.}.
@@ -482,36 +492,37 @@ Où $S(\psi)$ peut être considérée comme une mesure de la \emph{distance} ent
 \bigskip
 Afin de minimiser la fonction $S(\beta_0, \beta_1)$, on dérive la fonction partiellement en fonction de chacun des paramètres.
 
-\subsubsection*{Minimisation de $\beta_0$}
+\subsubsection{Minimisation de $\beta_0$}
 \begin{align*}
 \frac{\partial S(\hat{\beta_0}, \hat{\beta_1})}{\partial \beta_0} &= 0 \\
-\frac{\partial}{\partial \beta_0} \sum_{t=1}^n \big( Y_t - \hat{\beta_0} - \hat{\beta_1}\times X_t \big)^2 &= 0 \\
--2\sum_{t=1}^n \big( Y_t - \hat{\beta_0} - \hat{\beta_1} \times X_t \big) &= 0 \\
+\frac{\partial}{\partial \beta_0} \displaystyle\sum_{t=1}^n \big( Y_t - \hat{\beta_0} - \hat{\beta_1}\times X_t \big)^2 &= 0 \\
+-2\displaystyle\sum_{t=1}^n \big( Y_t - \hat{\beta_0} - \hat{\beta_1} \times X_t \big) &= 0 \\
 \end{align*}
 \begin{equation}
 \label{eq:minimisationbeta0}
-\sum_{t=1}^n Y_t - n \times \hat{\beta_0} - \hat{\beta_1} \sum_{t=1}^n X_t = 0 \\
+\displaystyle\sum_{t=1}^n Y_t - n \times \hat{\beta_0} - \hat{\beta_1} \displaystyle\sum_{t=1}^n X_t = 0 \\
 \end{equation}
 
-\subsubsection*{Minimisation de $\beta_1$}
+\subsubsection{Minimisation de $\beta_1$}
 \begin{align*}
 \frac{\partial S(\hat{\beta_0}, \hat{\beta_1})}{\partial \beta_1} &= 0 \\
-\frac{\partial}{\partial \beta_1} \sum_{t=1}^n \big( Y_t - \hat{\beta_0} - \hat{\beta_1}\times X_t \big)^2 &= 0 \\
--2\sum_{t=1}^n \big( Y_t - \hat{\beta_0} - \hat{\beta_1} \times X_t \big) \times X_t &= 0 \\
+\frac{\partial}{\partial \beta_1} \displaystyle\sum_{t=1}^n \big( Y_t - \hat{\beta_0} - \hat{\beta_1}\times X_t \big)^2 &= 0 \\
+-2\displaystyle\sum_{t=1}^n \big( Y_t - \hat{\beta_0} - \hat{\beta_1} \times X_t \big) \times X_t &= 0 \\
 \end{align*}
 \begin{equation}
 \label{eq:minimisationbeta1}
-\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \sum_{t=1}^n X_t - \hat{\beta_1} \sum_{t=1}^n X_t^2 = 0 \\
+\displaystyle\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \displaystyle\sum_{t=1}^n X_t - \hat{\beta_1} \displaystyle\sum_{t=1}^n X_t^2 = 0 \\
 \end{equation}
 
 À l'aide des équations \ref{eq:minimisationbeta0} et \ref{eq:minimisationbeta1}, on peut trouver les deux inconnus $\beta_0$ et $\beta_1$.
 
+\bigskip
 À partir de \ref{eq:minimisationbeta0} :
 
 \begin{align*}
-\sum_{t=1}^n Y_t - n \times \hat{\beta_0} - \hat{\beta_1} \sum_{t=1}^n X_t &= 0 \\
-\sum_{t=1}^n Y_t - \hat{\beta_1} \sum_{t=1}^n X_t &=  n \times \hat{\beta_0} \\
-\frac{\sum_{t=1}^n Y_t}{n} - \hat{\beta_1} \frac{\sum_{t=1}^n X_t}{n} &=  \hat{\beta_0} \\
+\displaystyle\sum_{t=1}^n Y_t - n \times \hat{\beta_0} - \hat{\beta_1} \displaystyle\sum_{t=1}^n X_t &= 0 \\
+\displaystyle\sum_{t=1}^n Y_t - \hat{\beta_1} \displaystyle\sum_{t=1}^n X_t &=  n \times \hat{\beta_0} \\
+\frac{\displaystyle\sum_{t=1}^n Y_t}{n} - \hat{\beta_1} \frac{\displaystyle\sum_{t=1}^n X_t}{n} &=  \hat{\beta_0} \\
 \end{align*}
 
 \begin{equation}
@@ -525,21 +536,21 @@ Afin de minimiser la fonction $S(\beta_0, \beta_1)$, on dérive la fonction part
 Et à partir de \ref{eq:minimisationbeta1} :
 
 \begin{align*}
-\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \sum_{t=1}^n X_t - \hat{\beta_1} \sum_{t=1}^n X_t^2 &= 0 \\
-\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \sum_{t=1}^n X_t &=  \hat{\beta_1} \sum_{t=1}^n X_t^2 \\
+\displaystyle\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \displaystyle\sum_{t=1}^n X_t - \hat{\beta_1} \displaystyle\sum_{t=1}^n X_t^2 &= 0 \\
+\displaystyle\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \displaystyle\sum_{t=1}^n X_t &=  \hat{\beta_1} \displaystyle\sum_{t=1}^n X_t^2 \\
 \end{align*}
 
 \begin{equation}
 \label{eq:beta}
-\hat{\beta_1} =  \frac{\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \sum_{t=1}^n X_t}{\sum_{t=1}^n X_t^2}
+\hat{\beta_1} =  \frac{\displaystyle\sum_{t=1}^n Y_t \times X_t - \hat{\beta_0} \displaystyle\sum_{t=1}^n X_t}{\displaystyle\sum_{t=1}^n X_t^2}
 \end{equation}
 
 On utilise l'équation \ref{eq:beta0} de $\hat{\beta_0}$ avec l'équation \ref{eq:beta} de $\hat{\beta_1}$, on développe l'équation résultante afin d'isoler $\hat{\beta_1}$.
 
 \begin{align*}
-\hat{\beta_1} &= \frac{\sum_{t=1}^n Y_t \times X_t - (\overline{Y} - \hat{\beta_1}\overline{X})\sum_{t=1}^n X_t}{\sum_{t=1}^n X_t^2} \\
-&= \frac{\sum_{t=1}^n Y_t \times X_t - (\overline{Y} - \hat{\beta_1}\overline{X})\times n \overline{X}}{\sum_{t=1}^n X_t^2} \\
-&= \frac{\sum_{t=1}^n Y_t X_t - n\overline{Y}\overline{X} + \hat{\beta_1}\times \overline{X}^2 \times n}{\sum_{t=1}^n X_t^2} \\
+\hat{\beta_1} &= \frac{\displaystyle\sum_{t=1}^n Y_t \times X_t - (\overline{Y} - \hat{\beta_1}\overline{X})\displaystyle\sum_{t=1}^n X_t}{\displaystyle\sum_{t=1}^n X_t^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n Y_t \times X_t - (\overline{Y} - \hat{\beta_1}\overline{X})\times n \overline{X}}{\displaystyle\sum_{t=1}^n X_t^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n Y_t X_t - n\overline{Y}\overline{X} + \hat{\beta_1}\times \overline{X}^2 \times n}{\displaystyle\sum_{t=1}^n X_t^2} \\
 \end{align*}
 En isolant $\hat{\beta}_1$, on obtient la définition suivante
 
@@ -547,11 +558,11 @@ En isolant $\hat{\beta}_1$, on obtient la définition suivante
 \label{eq:beta1}
 \color{blue}
 \boxed{\color{black}
-\hat{\beta_1} = \frac{\sum_{t=1}^n Y_t X_t - n\overline{Y}\overline{X}}{\sum_{t=1}^n X_t^2 - n\overline{X}^2}
+\hat{\beta_1} = \frac{\displaystyle\sum_{t=1}^n Y_t X_t - n\overline{Y}\overline{X}}{\displaystyle\sum_{t=1}^n X_t^2 - n\overline{X}^2}
 }
 \end{equation}
 
-\subsubsection*{Remarques}
+\subsubsection{Remarques}
 
 \begin{enumerate}
 \item On note $\hat{\varepsilon}_t$ les résidus générés par le modèle estimé:
@@ -569,6 +580,7 @@ Si on reprend le graphique de la section \ref{fig:linsimp}, on observe facilemen
 \includegraphics{notes_de_cours-007}
 
 \item Le \emph{centre de gravité}\footnote{Qu'on appelle parfois le centre de masse.} des données $(\overline{X}, \overline{Y})$ se trouvent exactement sur la droite de régression.
+\bigskip
 
 On peut facilement effectuer cette preuve à partir de l'équation \ref{eq:beta0},
 \begin{align*}
@@ -585,31 +597,31 @@ Si on reprend (encore) le graphique de la section \ref{fig:linsimp}, on observe 
 
 \item La somme des résidus de tout modèle de régression linéaire est nulle.
 \begin{align*}
-\sum_{t=1}^{n} \hat{\varepsilon}_t &= \sum_{t=1}^{n}\big( Y_t - (\hat{\beta}_0 + \hat{\beta}_1 X_t) \big) \\
-&\overset{\ref{eq:beta0}}{=} \sum_{t=1}^{n}\big( Y_t - (\overline{Y} - \hat{\beta}_1 \overline{X}) \big) \\
-&= \sum_{t=1}^{n} Y_t - \sum_{t=1}^{n}\overline{Y} + \hat{\beta}_1 \sum_{t=1}^{n}\overline{X} - \hat{\beta}_1\sum_{t=1}^{n}X_t \\
+\displaystyle\sum_{t=1}^{n} \hat{\varepsilon}_t &= \displaystyle\sum_{t=1}^{n}\big( Y_t - (\hat{\beta}_0 + \hat{\beta}_1 X_t) \big) \\
+&\overset{\ref{eq:beta0}}{=} \displaystyle\sum_{t=1}^{n}\big( Y_t - (\overline{Y} - \hat{\beta}_1 \overline{X}) \big) \\
+&= \displaystyle\sum_{t=1}^{n} Y_t - \displaystyle\sum_{t=1}^{n}\overline{Y} + \hat{\beta}_1 \displaystyle\sum_{t=1}^{n}\overline{X} - \hat{\beta}_1\displaystyle\sum_{t=1}^{n}X_t \\
 &= n \overline{Y} - n \overline{Y} + \hat{\beta}_1 + n \overline{X} - \hat{\beta}_1 + n \overline{X} \\
 &= 0
 \end{align*}
 \end{enumerate}
 
-\subsubsection*{Notation}
+\subsubsection{Notation}
 Afin de faciliter l'écriture, on intègre la notation suivante; $S_{xx}$ et  $S_{xy}$. Les expressions précédantes sont appelées respectivement: la somme des carrés corrigée de $x$ et la somme des produits croisés corrigée de $x$ et de $y$.
 Voici le développement pour $S_{xx}$,
 \begin{align*}
-S_{xx} &= \sum_{t=1}^n (X_t - \overline{X})^2 \\
-&= \sum_{t=1}^n (X_t - \overline{X})^2 \\
-&= \sum_{t=1}^n (X_t^2 - 2X_t\overline{X} + \overline{X}^2) \\
-&= \sum_{t=1}^n X_t^2 - 2\overline{X}\sum_{t=1}^n X_t + n\overline{X}^2 \\
-&= \sum_{t=1}^n X_t^2 - 2\overline{X}n\overline{X} + n\overline{X}^2 \\
-&= \sum_{t=1}^n X_t^2 - n\overline{X}^2 \\
+S_{xx} &= \displaystyle\sum_{t=1}^n (X_t - \overline{X})^2 \\
+&= \displaystyle\sum_{t=1}^n (X_t - \overline{X})^2 \\
+&= \displaystyle\sum_{t=1}^n (X_t^2 - 2X_t\overline{X} + \overline{X}^2) \\
+&= \displaystyle\sum_{t=1}^n X_t^2 - 2\overline{X}\displaystyle\sum_{t=1}^n X_t + n\overline{X}^2 \\
+&= \displaystyle\sum_{t=1}^n X_t^2 - 2\overline{X}n\overline{X} + n\overline{X}^2 \\
+&= \displaystyle\sum_{t=1}^n X_t^2 - n\overline{X}^2 \\
 \end{align*}
 
 On effectue le même type de développement pour $S_{xy}$, 
 \begin{align*}
-S_{xy} &= \sum_{t=1}^n (X_t - \overline{X}) (Y_t - \overline{Y}) \\
+S_{xy} &= \displaystyle\sum_{t=1}^n (X_t - \overline{X}) (Y_t - \overline{Y}) \\
 &\vdots \\
-&= \sum_{t=1}^n X_tY_t - n\overline{X}\overline{Y}\\
+&= \displaystyle\sum_{t=1}^n X_tY_t - n\overline{X}\overline{Y}\\
 \end{align*}
 
 À l'aide des sommes de carrés corrigés, on peut réécrire la définition de $\hat{\beta}_1$
@@ -624,7 +636,7 @@ S_{xy} &= \sum_{t=1}^n (X_t - \overline{X}) (Y_t - \overline{Y}) \\
 \end{equation}
 
 \bigskip
-\subsubsection*{Exemple}
+\subsubsection{Exemple}
 \label{exemple1}
 On poursuit avec un exemple pour assimiler l'information.
 
@@ -670,7 +682,7 @@ Totaux : & 274 & 151 \\
 À partir des définitions \ref{eq:beta0} et  \ref{eq:beta1}, on trouve facilement la valeur de $\hat{\beta}_0$ et de $\hat{\beta}_1$.
 
 \begin{align*}
-\hat{\beta_1} &= \frac{\sum_{t=1}^n Y_t X_t - n\overline{Y}\overline{X}}{\sum_{t=1}^n X_t^2 - n\overline{X}^2} \\
+\hat{\beta_1} &= \frac{\displaystyle\sum_{t=1}^n Y_t X_t - n\overline{Y}\overline{X}}{\displaystyle\sum_{t=1}^n X_t^2 - n\overline{X}^2} \\
 &= \frac{151 - (5)(\frac{21}{5})(\frac{32}{5})}{274 - (5)(\frac{32}{5})^2} \\
 &= \frac{83}{346} \\
 & \approx 0.2399 \\
@@ -703,7 +715,7 @@ t & $Y_t = \hat{\beta}_0 + \hat{\beta}_1X_t$ & $\hat{\varepsilon}_t$ \\
 
 \begin{center}
 \begin{tikzpicture}[node distance=1.2cm]
-\node (E) at (10,0) {$\sum_{t=1}^{5}\varepsilon_t \approx -0.0003$};
+\node (E) at (10,0) {$\displaystyle\sum_{t=1}^{5}\varepsilon_t \approx -0.0003$};
 \draw[->, line width=0.5mm] (E) -- (11.5,1);
 \end{tikzpicture}
 \end{center}
@@ -734,7 +746,7 @@ t & $Y_t = \hat{\beta}_0 + \hat{\beta}_1X_t$ & $\hat{\varepsilon}_t$ \\
 	La calculatrice TI-30XS Multiview permet de créer un tableau de donnée et de sortir rapidement et facilement différentes informations sur une régression à partir des données. Tel que :
 	\begin{itemize}
 	\item $\overline{X}$ et $\overline{Y}$ ;
-	\item $\sum_{t=1}^n X_t$, $\sum_{t=1}^n X_t^2$, $\sum_{t=1}^n Y_t$, $\sum_{t=1}^n Y_t^2$ et $\sum_{t=1}^n X_tY_t$ ;
+	\item $\displaystyle\sum_{t=1}^n X_t$, $\displaystyle\sum_{t=1}^n X_t^2$, $\displaystyle\sum_{t=1}^n Y_t$, $\displaystyle\sum_{t=1}^n Y_t^2$ et $\displaystyle\sum_{t=1}^n X_tY_t$ ;
 	\item $\hat{\beta}_0$ et $\hat{\beta}_1$
 	\end{itemize}
 	Pour de plus ample information, consulter le \href{https://github.com/alpa12/guide_calculatrice}{guide} sur les calculatrices.
@@ -777,9 +789,9 @@ On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikiped
 On rappelle qu'un estimateur est dit sans biais lorsque son espérance est égale à la valeur vraie du paramètre, soit $E[\hat{\theta}] = \theta \Leftrightarrow b(\hat{\theta}) = 0$ \footnote{Notes de cours ACT-2000, chapitre 3, Thomas Landry, Hiver 2017.}.
 
 \begin{align*}
-E[\hat{\beta}_1] &= E \Bigg[ \frac{\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg] \\
-&= \frac{\sum_{t=1}^n(X_t- \overline{X})E[Y_t - \overline{Y}]}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
-&= \frac{\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
+E[\hat{\beta}_1] &= E \Bigg[ \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg] \\
+&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})E[Y_t - \overline{Y}]}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 \end{align*}
 De l'équation \ref{eq:simple}, et avec le postulat \ref{post1}, on sait que,
 
@@ -791,10 +803,10 @@ E[Y_t] &= E[\beta_0 + \beta_1\times X_t] + E[\varepsilon_t] \\
 On applique le même raisonnement pour l'espérance de $\overline{Y}$. 
 
 \begin{align*}
-E[\hat{\beta}_1] &= \frac{\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
-&= \frac{\sum_{t=1}^n(X_t- \overline{X})(\beta_0 + \beta_1\times X_t - \beta_0 - \beta_1\overline{X_t})}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
-&= \frac{\sum_{t=1}^n(X_t- \overline{X})\beta_1 (X_t - \overline{X_t})}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
-&= \beta_1 \frac{\sum_{t=1}^n(X_t- \overline{X})^2}{\sum_{t=1}^n(X_t - \overline{X})^2} \\
+E[\hat{\beta}_1] &= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})(\beta_0 + \beta_1\times X_t - \beta_0 - \beta_1\overline{X_t})}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})\beta_1 (X_t - \overline{X_t})}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \beta_1 \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 E[\hat{\beta}_1] &= \beta_1
 \end{align*}
 \bigskip
@@ -813,11 +825,11 @@ On peut ainsi conclure que les deux estimateurs des paramètres sont sans biais.
 On s'intéresse aux variances et aux covariances des estimateurs, cette deuxième propriété ainsi que la première nous permettera de déduire une conclusion en lien avec le quatrième postulat.
 
 \begin{align*}
-Var(\hat{\beta}_1) &= Var\Bigg( \frac{\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg)\\
-&= \frac{Var\big( \sum_{t=1}^n(X_t- \overline{X})Y_t - \sum_{t=1}^n(X_t- \overline{X} \big)\overline{Y}\big)}{\big( \sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
-&= \frac{Var\big( \sum_{t=1}^n(X_t- \overline{X})Y_t\big) + Var\big(\sum_{t=1}^n(X_t- \overline{X})\overline{Y}\big)}{\big( \sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
-&= \frac{\sum_{t=1}^n(X_t- \overline{X})^2 Var(Y_t) + Var\big(\overline{Y}(n\overline{X}- n\overline{X})\big)}{\big( \sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
-&= \frac{\sum_{t=1}^n(X_t- \overline{X})^2 Var(\beta_0 + \beta_1X_t + \varepsilon_t) + 0}{\big( \sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+Var(\hat{\beta}_1) &= Var\Bigg( \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg)\\
+&= \frac{Var\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t - \displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X} \big)\overline{Y}\big)}{\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+&= \frac{Var\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t\big) + Var\big(\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})\overline{Y}\big)}{\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 Var(Y_t) + Var\big(\overline{Y}(n\overline{X}- n\overline{X})\big)}{\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 Var(\beta_0 + \beta_1X_t + \varepsilon_t) + 0}{\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
 \end{align*}
 
 \begin{center}
@@ -835,31 +847,31 @@ Var(\hat{\beta}_1) &= Var\Bigg( \frac{\sum_{t=1}^n(X_t- \overline{X})(Y_t - \ove
 \end{center}
 
 \begin{align*}
-&= \frac{\sum_{t=1}^n(X_t- \overline{X})^2 Var(\varepsilon_t)}{\big( \sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
-& \overset{\ref{post2}}{=} \frac{\sum_{t=1}^n(X_t- \overline{X})^2 \sigma^2}{\big( \sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 Var(\varepsilon_t)}{\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+& \overset{\ref{post2}}{=} \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 \sigma^2}{\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
 \end{align*}
 
 \begin{equation}
 \label{eq:varbeta1}
 \color{blue}
 \boxed{\color{black}
-Var(\hat{\beta_1}) = \frac{\sigma^2}{\sum_{t=1}^n(X_t - \overline{X})^2}}
+Var(\hat{\beta_1}) = \frac{\sigma^2}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2}}
 \end{equation}
 
 \begin{align*}
 Var(\hat{\beta}_0) &= Var(\overline{Y} - \hat{\beta}_1\overline{X})\\
 &= Var(\overline{Y}) + Var(\hat{\beta}_1\overline{X}) -  2 Cov(\overline{Y}, \hat{\beta}_1\overline{X}) \\
-&= Var\Big(\frac{\sum_{t=1}^n Y_t}{n} \Big) + \overline{X}^2 Var(\hat{\beta}_1) -  2 \overline{X} Cov(\overline{Y}, \hat{\beta}_1) \\
-&= \frac{n \times Var(Y_t)}{n^2}  + \overline{X}^2 \Bigg(\frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg) -  2 \overline{X} Cov(\overline{Y}, \hat{\beta}_1) \\
+&= Var\Big(\frac{\displaystyle\displaystyle\sum_{t=1}^n Y_t}{n} \Big) + \overline{X}^2 Var(\hat{\beta}_1) -  2 \overline{X} Cov(\overline{Y}, \hat{\beta}_1) \\
+&= \frac{n \times Var(Y_t)}{n^2}  + \overline{X}^2 \Bigg(\frac{\sigma^2}{\displaystyle\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg) -  2 \overline{X} Cov(\overline{Y}, \hat{\beta}_1) \\
 \end{align*}
 
 \begin{align*}
-Cov(\overline{Y}, \hat{\beta}_1) &= Cov \Bigg( \frac{\sum_{t=1}^n Y_t}{n}, \frac{\sum_{s=1}^n(X_s- \overline{X})(Y_s - \overline{Y})}{\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg) \\
-&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2} Cov\Bigg(\sum_{t=1}^n Y_t, \sum_{s=1}^n(X_s- \overline{X})Y_s - \overline{Y}\sum_{s=1}^n(X_s- \overline{X}) \Bigg) \\
-&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2} \sum_{t=1}^n \sum_{s=1}^n (X_s- \overline{X}) Cov(Y_t, Y_s) \\
-&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg( \mathop{\sum_{t=1}^n \sum_{s=1}^n}_{:t \neq s} (X_s- \overline{X}) \times 0 + \mathop{\sum_{t=1}^n \sum_{s=1}^n}_{:t = s} (X_s- \overline{X}) \sigma^2 \Bigg) \\
-&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2}\sigma^2 \bigg( \sum_{t=1}^n (X_t - \overline{X}) \bigg) \\
-&= \frac{1}{n}\frac{1}{\sum_{s=1}^n(X_s - \overline{X})^2}\sigma^2 (n\overline{X}- n\overline{X}) \\
+Cov(\overline{Y}, \hat{\beta}_1) &= Cov \Bigg( \frac{\displaystyle\displaystyle\sum_{t=1}^n Y_t}{n}, \frac{\displaystyle\displaystyle\sum_{s=1}^n(X_s- \overline{X})(Y_s - \overline{Y})}{\displaystyle\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg) \\
+&= \frac{1}{n}\frac{1}{\displaystyle\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} Cov\Bigg(\displaystyle\displaystyle\sum_{t=1}^n Y_t, \displaystyle\displaystyle\sum_{s=1}^n(X_s- \overline{X})Y_s - \overline{Y}\displaystyle\displaystyle\sum_{s=1}^n(X_s- \overline{X}) \Bigg) \\
+&= \frac{1}{n}\frac{1}{\displaystyle\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \displaystyle\sum_{t=1}^n \displaystyle\sum_{s=1}^n (X_s- \overline{X}) Cov(Y_t, Y_s) \\
+&= \frac{1}{n}\frac{1}{\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg( \mathop{\displaystyle\sum_{t=1}^n \displaystyle\sum_{s=1}^n}_{:t \neq s} (X_s- \overline{X}) \times 0 + \mathop{\displaystyle\sum_{t=1}^n \displaystyle\sum_{s=1}^n}_{:t = s} (X_s- \overline{X}) \sigma^2 \Bigg) \\
+&= \frac{1}{n}\frac{1}{\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2}\sigma^2 \bigg( \displaystyle\sum_{t=1}^n (X_t - \overline{X}) \bigg) \\
+&= \frac{1}{n}\frac{1}{\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2}\sigma^2 (n\overline{X}- n\overline{X}) \\
 &= 0
 \end{align*}
 
@@ -867,21 +879,21 @@ Cov(\overline{Y}, \hat{\beta}_1) &= Cov \Bigg( \frac{\sum_{t=1}^n Y_t}{n}, \frac
 \label{eq:varbeta0}
 \color{blue}
 \boxed{\color{black}
-Var(\hat{\beta}_0) = \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)}
+Var(\hat{\beta}_0) = \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)}
 \end{equation}
 
 Finalement, pour la covariance entre $\hat{\beta}_0$ et $\hat{\beta}_1$
 \begin{align*}
 Cov(\hat{\beta}_0, \hat{\beta}_1) &= Cov(\overline{Y} - \hat{\beta}_1\overline{X}, \hat{\beta}_1) \\
 &= Cov(\overline{Y},  \hat{\beta}_1) - \overline{X} Var(\hat{\beta}_1) \\
-&= 0 - \overline{X} \frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2} \\
+&= 0 - \overline{X} \frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2} \\
 \end{align*}
 
 \begin{equation}
 \label{eq:covariance}
 \color{blue}
 \boxed{\color{black}
-Cov(\hat{\beta}_0, \hat{\beta}_1) = - \overline{X} \frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}}
+Cov(\hat{\beta}_0, \hat{\beta}_1) = - \overline{X} \frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}}
 \end{equation}
 
 \bigskip
@@ -890,8 +902,8 @@ Cov(\hat{\beta}_0, \hat{\beta}_1) = - \overline{X} \frac{\sigma^2}{\sum_{t=1}^n 
 \label{res:estima}
 	Les équations \ref{eq:varbeta0} et \ref{eq:varbeta1}  ainsi que le postulat 4 à la section \ref{post4} nous permettent de conclure que 
 	\begin{align*}
-	     \hat{\beta_0} &\sim N\Bigg(\beta_0, \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)\Bigg) \\
-	     \hat{\beta_1} &\sim N\Bigg(\beta_1, \frac{\sigma^2}{\sum_{t=1}^n(X_t - \overline{X})^2})\Bigg)
+	     \hat{\beta_0} &\sim N\Bigg(\beta_0, \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)\Bigg) \\
+	     \hat{\beta_1} &\sim N\Bigg(\beta_1, \frac{\sigma^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2})\Bigg)
 	\end{align*}
 
 \end{moreInfo}
@@ -902,7 +914,7 @@ Le théorème de \href{https://fr.wikipedia.org/wiki/Théorème_de_Gauss-Markov}
 
 \subsubsection*{Notions importantes à retenir du théorème:}
 \begin{enumerate}
-\item Considérer l'estimateur $\Theta^* = \sum_{t=1}^n C_t \times Y_t$
+\item Considérer l'estimateur $\Theta^* = \displaystyle\sum_{t=1}^n C_t \times Y_t$
 \item Minimiser $Var(\Theta^*)$ sous la contrainte que $E[\Theta^*] = \beta$; où
 $$ \beta =
 \begin{bmatrix}
@@ -932,7 +944,7 @@ On peut démontrer par le même raisonnement qu'à la section \ref{subsec:coeffr
 \label{eq:betasimp}
 \color{blue}
 \boxed{\color{black}
-\hat{\beta} = \frac{\sum_{t=1}^n X_t Y_t}{\sum_{t=1}^n X_t^2}}
+\hat{\beta} = \frac{\displaystyle\sum_{t=1}^n X_t Y_t}{\displaystyle\sum_{t=1}^n X_t^2}}
 \end{equation}
 
 On reprend l'exemple énoncer plus haut, voici le modèle représenter graphiquement :
@@ -1019,7 +1031,7 @@ Noter que les modèles précédents  ont été ajustés pour mieux représenter 
 \subsection{Notions préliminaires : Somme des carrés}
 La variance totale de $Y_t$ est décomposable sous le modèle de régression linéaire, cette décomposition permet d'analyser l'ajustement du modèle. On la représente ainsi :
 $$
-SST = \sum_{t=1}^n(Y_t-\overline{Y})^2
+SST = \displaystyle\sum_{t=1}^n(Y_t-\overline{Y})^2
 $$
 \bigskip
 \subsubsection*{Décomposition}
@@ -1041,12 +1053,12 @@ Variation totale de $Y_t$ & Variation de $Y_t$ & Résidu \\
 
 Par conséquent, on a que
 \begin{align*}
-SST &= \sum_{t=1}^n \bigg[ (\hat{Y_t} - \overline{Y}) + (Y_t - \hat{Y}_t) \bigg]^2 \\
-&= \sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 + \sum_{t=1}^n(Y_t - \hat{Y}_t)^2 + 2 \sum_{t=1}^n (\hat{Y_t} - \overline{Y})(Y_t - \hat{Y}_t)\\
+SST &= \displaystyle\sum_{t=1}^n \bigg[ (\hat{Y_t} - \overline{Y}) + (Y_t - \hat{Y}_t) \bigg]^2 \\
+&= \displaystyle\sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 + \displaystyle\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 + 2 \displaystyle\sum_{t=1}^n (\hat{Y_t} - \overline{Y})(Y_t - \hat{Y}_t)\\
 \end{align*}
 \begin{center}
 \begin{tabular}{cccc}
- = & $\underbrace{\sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 \  + }$ & $\underbrace{\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 \  +} $ & $\underbrace{2 \sum_{t=1}^n (\hat{Y_t} - \overline{Y})(Y_t - \hat{Y}_t)}$\\
+ = & $\underbrace{\displaystyle\sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 \  + }$ & $\underbrace{\displaystyle\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 \  +} $ & $\underbrace{2 \displaystyle\sum_{t=1}^n (\hat{Y_t} - \overline{Y})(Y_t - \hat{Y}_t)}$\\
  & SSR & SSE & $\psi$ \\
  & Régression & Erreur & \\
 \end{tabular}
@@ -1054,10 +1066,10 @@ SST &= \sum_{t=1}^n \bigg[ (\hat{Y_t} - \overline{Y}) + (Y_t - \hat{Y}_t) \bigg]
 
 \subsubsection*{Développement de $\psi$}
 \begin{align*}
-2 \sum_{t=1}^n (\hat{Y_t} - \overline{Y})(Y_t - \hat{Y}_t) &\Rightarrow 2 \sum_{t=1}^n (\hat{\beta}_0 + \hat{\beta}_1X_t - \hat{\beta}_0 - \hat{\beta}_1\overline{X})(Y_t - \overline{Y} + \overline{Y} - \hat{Y}_t) \\
-&= 2 \sum_{t=1}^n \hat{\beta}_1 (\hat{X_t} - \overline{X}) (Y_t - \overline{Y} + \hat{\beta}_0 + \hat{\beta}_1\overline{X} - \hat{\beta}_0 - \hat{\beta}_1 X_t) \\
-&= 2 \sum_{t=1}^n \hat{\beta}_1 (\hat{X_t} - \overline{X}) \bigg((Y_t - \overline{Y}) - \hat{\beta}_1(X_t - \overline{X}) \bigg)\\
-&= 2 \hat{\beta}_1 \sum_{t=1}^n  (\hat{X_t} - \overline{X})(Y_t - \overline{Y}) - 2 \hat{\beta}_1^2 \sum_{t=1}^n (X_t - \overline{X})^2\\
+2 \displaystyle\sum_{t=1}^n (\hat{Y_t} - \overline{Y})(Y_t - \hat{Y}_t) &\Rightarrow 2 \displaystyle\sum_{t=1}^n (\hat{\beta}_0 + \hat{\beta}_1X_t - \hat{\beta}_0 - \hat{\beta}_1\overline{X})(Y_t - \overline{Y} + \overline{Y} - \hat{Y}_t) \\
+&= 2 \displaystyle\sum_{t=1}^n \hat{\beta}_1 (\hat{X_t} - \overline{X}) (Y_t - \overline{Y} + \hat{\beta}_0 + \hat{\beta}_1\overline{X} - \hat{\beta}_0 - \hat{\beta}_1 X_t) \\
+&= 2 \displaystyle\sum_{t=1}^n \hat{\beta}_1 (\hat{X_t} - \overline{X}) \bigg((Y_t - \overline{Y}) - \hat{\beta}_1(X_t - \overline{X}) \bigg)\\
+&= 2 \hat{\beta}_1 \displaystyle\sum_{t=1}^n  (\hat{X_t} - \overline{X})(Y_t - \overline{Y}) - 2 \hat{\beta}_1^2 \displaystyle\sum_{t=1}^n (X_t - \overline{X})^2\\
 &= 2 \hat{\beta}_1 (S_{xy} - \hat{\beta}_1S_{xx})\\
 & \overset{\ref{eq:beta1SXY}}{=} 2 \hat{\beta}_1 (S_{xy} - \frac{S_{xy}}{S_{xx}}S_{xx})\\
 &= 2 \hat{\beta}_1 (S_{xy} - S_{xy})\\
@@ -1114,16 +1126,16 @@ Le nombre de \emph{degrés de liberté}\footnote{Couramment l'abréviation $d.l.
 
 Ainsi, 
 \begin{itemize}
-\item $SST = \sum_{t=1}^n(Y_t-\overline{Y})^2 \rightarrow$ n termes - (1 paramètre estimé\footnote{$\overline{Y}$}) $= \color{blue}\boxed{\color{black} (n-1)d.l.}$
-\item $SSE = \sum_{t=1}^n(Y_t - \hat{Y}_t)^2 $
+\item $SST = \displaystyle\sum_{t=1}^n(Y_t-\overline{Y})^2 \rightarrow$ n termes - (1 paramètre estimé\footnote{$\overline{Y}$}) $= \color{blue}\boxed{\color{black} (n-1)d.l.}$
+\item $SSE = \displaystyle\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 $
 $$
-\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 = \sum_{t=1}^n(Y_t - \hat{\beta}_0 - \hat{\beta}_1X_t )^2
+\displaystyle\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 = \displaystyle\sum_{t=1}^n(Y_t - \hat{\beta}_0 - \hat{\beta}_1X_t )^2
 \rightarrow \text{ n termes } - (\text{2 paramètres estimés}\footnote{$\hat{\beta}_0 \text{ et } \hat{\beta}_1$}) = \color{blue}\boxed{\color{black} (n-2)d.l.}
 $$
-\item $SSR = \sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 $
+\item $SSR = \displaystyle\sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 $
 \begin{align*}
-\sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 &= \sum_{t=1}^n(\hat{\beta}_0 + \hat{\beta}_1X_t - \hat{\beta}_0 - \hat{\beta}_1\overline{X})^2 \\
-&= \underbrace{\hat{\beta}_1^2} \times \underbrace{\sum_{t=1}^n(X_t - \overline{X})^2} \\
+\displaystyle\sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 &= \displaystyle\sum_{t=1}^n(\hat{\beta}_0 + \hat{\beta}_1X_t - \hat{\beta}_0 - \hat{\beta}_1\overline{X})^2 \\
+&= \underbrace{\hat{\beta}_1^2} \times \underbrace{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
  f&(y_1,...y_n) \  f(x_1,...,x_n)
 \end{align*}
 Soit une seule fonction des $Y_1,...,Y_n$ doit être connue pour obtenir $SSR \rightarrow  \color{blue}\boxed{\color{black} 1 \  d.l.}$ 
@@ -1179,8 +1191,8 @@ Totaux : & 32 & 21 & & \\
 \end{center}
 
 \begin{align*}
-SSE &= \sum_{t=1}^n (Y_t - \hat{Y}_t)^2 = \sum_{t=1}^n \varepsilon_t^2 = 6.8179 \\
-SSR &= \sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 = 3.9821 \\
+SSE &= \displaystyle\sum_{t=1}^n (Y_t - \hat{Y}_t)^2 = \displaystyle\sum_{t=1}^n \varepsilon_t^2 = 6.8179 \\
+SSR &= \displaystyle\sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 = 3.9821 \\
 SST &= SSE + SSR = 6.8179 +3.9821 = 10.8000 \\
 \end{align*}
 
@@ -1238,8 +1250,8 @@ Les conséquences de ce postulat sont les suivantes :
 \item $(Y_t = \beta_0 + \beta_1X_t + \varepsilon_t) \sim N(\beta_0 + \beta_1X_t, \sigma^2)$ (Postulat \ref{post1})
 \item Les propriétés de l'estimateur des moindres carrés avaient permis de démontrer que (section \ref{sec:EMC}) :
 	\begin{align*}
-	     \hat{\beta_0} &\sim N\Bigg(\beta_0, \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)\Bigg) \\
-	     \hat{\beta_1} &\sim N\Bigg(\beta_1, \frac{\sigma^2}{\sum_{t=1}^n(X_t - \overline{X})^2})\Bigg)
+	     \hat{\beta_0} &\sim N\Bigg(\beta_0, \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)\Bigg) \\
+	     \hat{\beta_1} &\sim N\Bigg(\beta_1, \frac{\sigma^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2})\Bigg)
 	\end{align*}
 	
 \begin{moreInfo}{\emph{Alternative}}
@@ -1250,14 +1262,14 @@ Les conséquences de ce postulat sont les suivantes :
 \begin{align*}
 \sigma^2 &= S^2 = MSE \\
 MSE &= \frac{SSE}{d.l.(SSE)} \\
-\frac{SSE}{d.l.(SSE)} &= \frac{\sum_{t=1}^n (Y_t - \hat{Y}_t)^2}{n-2} \\
+\frac{SSE}{d.l.(SSE)} &= \frac{\displaystyle\sum_{t=1}^n (Y_t - \hat{Y}_t)^2}{n-2} \\
 \end{align*}
 
 \begin{equation}
 \label{eq:s2}
 \color{blue}
 \boxed{\color{black}
-\sigma^2 = \frac{\sum_{t=1}^n \varepsilon_t^2}{n-2}}
+\sigma^2 = \frac{\displaystyle\sum_{t=1}^n \varepsilon_t^2}{n-2}}
 \end{equation}
 
 \item On peut montrer que 
@@ -1284,7 +1296,7 @@ $$
 $$
 Par contre, $\sigma^2$ n'est  souvent pas connu et il est nécessaire de l'estimer. Tel que mentionné plus haut, l'estimateur non biaisé correspond à l'équation \ref{eq:s2}. Mais cet estimateur ne suit pas une distribution normale. À l'aide des notions acquises en ACT-2000, il est possible de démontrer que si on utilise l'estimateur de $\sigma^2$, soit $S^2$, dans la formule de $Var(\hat{\beta}_1)$, c'est-à-dire :
 $$
-\widehat{Var}(\hat{\beta}_1) = \frac{S^2}{\sum_{t=1}^n (X_t - \overline{X})^2}
+\widehat{Var}(\hat{\beta}_1) = \frac{S^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}
 $$
 Alors, on peut conclure que :
 $$
@@ -1297,7 +1309,7 @@ On obtient ainsi l'intervalle de confiance suivant au niveau $100 \times (1 - \a
 \label{eq:intconfb1}
 \color{blue}
 \boxed{\color{black}
-\hat{\beta}_1 \pm t_{\frac{\alpha}{2}}(n-2) \times \sqrt{\frac{S^2}{\sum_{t=1}^n (X_t - \overline{X})^2}}}
+\hat{\beta}_1 \pm t_{\frac{\alpha}{2}}(n-2) \times \sqrt{\frac{S^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}}}
 \end{equation}
 
 \subsection{Intervalle de confiance pour $\beta_0$}
@@ -1307,7 +1319,7 @@ De manière similaire, un intervalle de confiance au niveau $100 \times (1 - \al
 \label{eq:intconfb0}
 \color{blue}
 \boxed{\color{black}
-\hat{\beta}_0 \pm t_{\frac{\alpha}{2}}(n-2) \times \sqrt{\frac{S^2}{n} + \frac{S^2\overline{X}^2}{\sum_{t=1}^n (X_t - \overline{X})^2}}}
+\hat{\beta}_0 \pm t_{\frac{\alpha}{2}}(n-2) \times \sqrt{\frac{S^2}{n} + \frac{S^2\overline{X}^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}}}
 \end{equation}
 
 \subsection{Tests d'hypothèses sur les paramètres}
@@ -1500,9 +1512,9 @@ F > F_{\alpha}(1, n-2)}
 \label{equivalent}
 	En régression linéaire simple \textbf{seulement}, le test F est équivalent au test $t$ pour $\beta_1 = 0$
 	\begin{align*}
-	F &= \frac{\frac{SSR}{1}}{\frac{SSE}{(n-2)}} = \frac{SSR}{\sigma^2} = \frac{SSR}{S^2} = \frac{\sum_{t=1}^n (\hat{Y}_t - \overline{Y})^2}{S^2} \\
-	&= \frac{\sum_{t=1}^n(\hat{\beta}_0 + \hat{\beta}_1X_t - \hat{\beta}_0 - \hat{\beta}_1\overline{X})^2}{S^2} = \frac{\hat{\beta}_1^2 \times \sum_{t=1}^n(X_t - \overline{X})^2}{S^2} \\
-	&= \frac{\hat{\beta}_1^2}{\frac{S^2}{\sum_{t=1}^n(X_t - \overline{X})^2}} \\
+	F &= \frac{\frac{SSR}{1}}{\frac{SSE}{(n-2)}} = \frac{SSR}{\sigma^2} = \frac{SSR}{S^2} = \frac{\displaystyle\sum_{t=1}^n (\hat{Y}_t - \overline{Y})^2}{S^2} \\
+	&= \frac{\displaystyle\sum_{t=1}^n(\hat{\beta}_0 + \hat{\beta}_1X_t - \hat{\beta}_0 - \hat{\beta}_1\overline{X})^2}{S^2} = \frac{\hat{\beta}_1^2 \times \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2}{S^2} \\
+	&= \frac{\hat{\beta}_1^2}{\frac{S^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2}} \\
 	&= \frac{(\hat{\beta}_1 - 0)^2}{\widehat{Var}(\hat{\beta}_1)} \\
 	&= t^2
 	\end{align*}
@@ -1610,8 +1622,8 @@ Var(\hat{\beta}_0 + \hat{\beta}_1X^*)  &= Var(\overline{Y} - \overline{Y} + \hat
 &= Var(\overline{Y} - (\hat{\beta}_0 + \hat{\beta}_1\overline{X}) + \hat{\beta}_0 + \hat{\beta}_1X^*) \\
 &= Var(\overline{Y} + \hat{\beta}_1( X^* - \overline{X})) \\
 &= Var(\overline{Y}) + Var(\hat{\beta}_1)( X^* - \overline{X})^2 \\
-&= \frac{\sigma^2}{n} + \frac{\sigma^2}{\sum_{t=1}^n (X_t - \overline{X})^2}(X^* - \overline{X})^2 \\
-&=\sigma^2 \Bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg)  \\
+&= \frac{\sigma^2}{n} + \frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}(X^* - \overline{X})^2 \\
+&=\sigma^2 \Bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg)  \\
 \end{align*}
 Et ainsi, on obtient,
 
@@ -1619,7 +1631,7 @@ Et ainsi, on obtient,
 \label{eq:var*}
 \color{blue}
 \boxed{\color{black}
-\widehat{Var}(\hat{\beta}_0 + \hat{\beta}_1X^*) = S^2 \Bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg)  
+\widehat{Var}(\hat{\beta}_0 + \hat{\beta}_1X^*) = S^2 \Bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg)  
 }
 \end{equation}
 L'I.C. est donc,
@@ -1627,7 +1639,7 @@ L'I.C. est donc,
 \label{eq:IC2}
 \color{blue}
 \boxed{\color{black}
-(\hat{\beta}_0 + \hat{\beta}_1X^*) \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{S^2 \bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)}  
+(\hat{\beta}_0 + \hat{\beta}_1X^*) \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{S^2 \bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)}  
 }
 \end{equation}
 
@@ -1670,7 +1682,7 @@ $$
 Or par hypothèse on a
 \begin{align*}
 Var(Y^* - \hat{Y}^*) &= Var(Y^*) + Var(\hat{Y}^*) \\
-&= \underbrace{\sigma^2} +\underbrace{\sigma^2\Bigg( \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)}  \\
+&= \underbrace{\sigma^2} +\underbrace{\sigma^2\Bigg( \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)}  \\
 &   \text{Process risk }\ \ \ \  \text{Parameter risk}
 \end{align*}
 D'où 
@@ -1679,7 +1691,7 @@ D'où
 \label{eq:var2*}
 \color{blue}
 \boxed{\color{black}
-\widehat{Var}(Y^* - \hat{Y}^*) = S^2 \Bigg(1 + \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)  
+\widehat{Var}(Y^* - \hat{Y}^*) = S^2 \Bigg(1 + \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)  
 }
 \end{equation}
 L'I.C. est donc,
@@ -1687,7 +1699,7 @@ L'I.C. est donc,
 \label{eq:IC3}
 \color{blue}
 \boxed{\color{black}
-(\hat{\beta}_0 + \hat{\beta}_1X^*) \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{S^2 \Bigg(1 + \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)}  
+(\hat{\beta}_0 + \hat{\beta}_1X^*) \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{S^2 \Bigg(1 + \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)}  
 }
 \end{equation}
 
@@ -1697,12 +1709,12 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-          fit        lwr        upr
-1  1.80121050  0.8752323 2.72718871
-2 -0.77589071 -1.5916369 0.03985552
-3 -0.31101082 -0.9576410 0.33561933
-4  0.18959925 -0.3494671 0.72866559
-5 -0.04263753 -0.6187126 0.53343749
+          fit         lwr         upr
+1  0.14320562 -0.28605967  0.57247090
+2  0.01055256 -0.37294237  0.39404750
+3 -0.57558880 -1.05948653 -0.09169107
+4  0.06382786 -0.33552727  0.46318299
+5  0.58287287 -0.09370067  1.25944641
 \end{Soutput}
 \end{Schunk}
 
@@ -1710,23 +1722,23 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \begin{Schunk}
 \begin{Soutput}
         fit         lwr       upr
-1 0.2828758 -0.24885239 0.8146040
-2 0.4541617 -0.07623189 0.9845553
-3 0.6254476  0.08070160 1.1701936
-4 0.7967335  0.22312441 1.3703426
-5 0.9680194  0.35307638 1.5829624
+1 0.2200436 -0.24409436 0.6841815
+2 0.3558831 -0.18053614 0.8923024
+3 0.4917227 -0.12641473 1.1098602
+4 0.6275623 -0.07846094 1.3335855
+5 0.7634019 -0.03463969 1.5614434
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit       lwr      upr
-1 0.2828758 -1.833877 2.399628
-2 0.4541617 -1.662256 2.570579
-3 0.6254476 -1.494612 2.745508
-4 0.7967335 -1.330926 2.924393
-5 0.9680194 -1.171154 3.107192
+        fit        lwr      upr
+1 0.2200436 -1.2520148 1.692102
+2 0.3558831 -1.1405384 1.852305
+3 0.4917227 -1.0358982 2.019344
+4 0.6275623 -0.9376855 2.192810
+5 0.7634019 -0.8454493 2.372253
 \end{Soutput}
 \end{Schunk}
 
@@ -2004,8 +2016,8 @@ X_{t,2} &= X_t^2
 \subsection{Estimateur des moindres carrés (EMC)}
 On peut démontrer que l'estimateur $\hat{\beta}$ de $\hat{\beta}$ qui minimise la somme résiduelle des carrés correspond à l'équation suivante :
 \begin{align*}
-S(\beta) &= \sum_{t=1}^n (Y_t - \hat{Y}_t)^2 \\
-&= \sum_{t=1}^n \varepsilon_t^2 \\
+S(\beta) &= \displaystyle\sum_{t=1}^n (Y_t - \hat{Y}_t)^2 \\
+&= \displaystyle\sum_{t=1}^n \varepsilon_t^2 \\
 &= \utilde{\varepsilon}^\intercal \varepsilon \\
 &= (\mathbb{Y} - \mathbb{X} \beta)^\intercal(\mathbb{Y} - \mathbb{X}\beta)
 \end{align*}
@@ -2057,8 +2069,8 @@ X_1  & \cdots & X_{n} \\
 \end{bmatrix} \\
 &= 
 \begin{bmatrix} 
-n & \sum_{t=1}^n X_{t} \\
-\sum_{t=1}^n X_{t} & \sum_{t=1}^n X_{t}^2 \\ 
+n & \displaystyle\sum_{t=1}^n X_{t} \\
+\displaystyle\sum_{t=1}^n X_{t} & \displaystyle\sum_{t=1}^n X_{t}^2 \\ 
 \end{bmatrix}
 \end{align*}
 
@@ -2067,7 +2079,7 @@ n & \sum_{t=1}^n X_{t} \\
 (\mathbb{X}^\intercal \mathbb{X})^{-1} &=
 \frac{1}{n X_{t}^2 - (n \overline{X})^2}
 \begin{bmatrix} 
-\sum_{t=1}^n X_{t}^2  & n \overline{X} \\
+\displaystyle\sum_{t=1}^n X_{t}^2  & n \overline{X} \\
 n \overline{X} & n \\ 
 \end{bmatrix}
 \end{align*}
@@ -2086,13 +2098,13 @@ Y_{n} \\
 \end{bmatrix} \\
 &=
 \begin{bmatrix} 
-\sum_{t=1}^n Y_{t} \\
-\sum_{t=1}^n X_t Y_{t} \\ 
+\displaystyle\sum_{t=1}^n Y_{t} \\
+\displaystyle\sum_{t=1}^n X_t Y_{t} \\ 
 \end{bmatrix} \\
 &= 
 \begin{bmatrix} 
 n \overline{Y} \\
-\sum_{t=1}^n X_t Y_{t} \\ 
+\displaystyle\sum_{t=1}^n X_t Y_{t} \\ 
 \end{bmatrix} \\
 \end{align*}
 
@@ -2106,13 +2118,13 @@ Ainsi,
 &= (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y} \\
 &= 
 \begin{bmatrix} 
-\frac{n \overline{Y} \sum_{t=1}^n X_t^2 - n \overline{X} \sum_{t=1}^n X_tY_t}{n \sum_{t=1}^n X_t^2 - (n \overline{X})^2} \\
-\frac{n\sum_{t=1}^n X_tY_t - (n \overline{Y})(n \overline{X}) }{n \sum_{t=1}^n X_t^2 - (n \overline{X})^2} \\
+\frac{n \overline{Y} \displaystyle\sum_{t=1}^n X_t^2 - n \overline{X} \displaystyle\sum_{t=1}^n X_tY_t}{n \displaystyle\sum_{t=1}^n X_t^2 - (n \overline{X})^2} \\
+\frac{n\displaystyle\sum_{t=1}^n X_tY_t - (n \overline{Y})(n \overline{X}) }{n \displaystyle\sum_{t=1}^n X_t^2 - (n \overline{X})^2} \\
 \end{bmatrix} \\
 &=
 \begin{bmatrix} 
-\frac{\overline{Y} \sum_{t=1}^n X_t^2 - \overline{X} \sum_{t=1}^n X_tY_t + n\overline{X}^2\overline{Y} - n\overline{X}^2\overline{Y}}{n \sum_{t=1}^n X_t^2 - (n \overline{X})^2} \\
-\frac{\sum_{t=1}^n X_tY_t - n\overline{Y}\overline{X}}{\sum_{t=1}^n X_t^2 - n \overline{X}^2} \\
+\frac{\overline{Y} \displaystyle\sum_{t=1}^n X_t^2 - \overline{X} \displaystyle\sum_{t=1}^n X_tY_t + n\overline{X}^2\overline{Y} - n\overline{X}^2\overline{Y}}{n \displaystyle\sum_{t=1}^n X_t^2 - (n \overline{X})^2} \\
+\frac{\displaystyle\sum_{t=1}^n X_tY_t - n\overline{Y}\overline{X}}{\displaystyle\sum_{t=1}^n X_t^2 - n \overline{X}^2} \\
 \end{bmatrix} \\
 &=
 \begin{bmatrix} 
@@ -2159,18 +2171,18 @@ Où $\mathbb{H}$ corresponds à la matrice de projection (Hat matrix).\newline
 Les sommes des carrés du tableau ANOVA sont données par les expressions suivantes :
 
 \begin{align*}
-\bullet SST &= \sum_{t=1}^n(Y_t - \overline{Y})^2 \\
-&= \sum_{t=1}^nY_t^2 - n\overline{Y}^2 \\
+\bullet SST &= \displaystyle\sum_{t=1}^n(Y_t - \overline{Y})^2 \\
+&= \displaystyle\sum_{t=1}^nY_t^2 - n\overline{Y}^2 \\
 &= \mathbb{Y}^\intercal\mathbb{Y} - n \overline{Y}^2 \\
 & \text{Avec $(n-1)$ degré de liberté} \\
 \end{align*}
 \begin{align*}
-\bullet SSE &= \sum_{t=1}^n(Y_t - \hat{Y})^2 \\
-&= \sum_{t=1}^n\varepsilon_t^2 \\
+\bullet SSE &= \displaystyle\sum_{t=1}^n(Y_t - \hat{Y})^2 \\
+&= \displaystyle\sum_{t=1}^n\varepsilon_t^2 \\
 &= \mathbb{\varepsilon}^\intercal\mathbb{\varepsilon}\\
 & \text{Avec $(n-(p+1))$ degré de liberté} \\
-\bullet SSR &= \sum_{t=1}^n(\hat{Y_t} - \hat{Y})^2 \\
-&= \sum_{t=1}^n\hat{Y_t}^2 - n\overline{Y}^2 \\
+\bullet SSR &= \displaystyle\sum_{t=1}^n(\hat{Y_t} - \hat{Y})^2 \\
+&= \displaystyle\sum_{t=1}^n\hat{Y_t}^2 - n\overline{Y}^2 \\
 &= \mathbb{\hat{Y}}^\intercal\mathbb{\hat{Y}} - n \overline{Y}^2\\
 & \text{Avec $(p)$ degré de liberté}
 \end{align*}
@@ -2497,6 +2509,7 @@ F_{5 \%}(1.16) &= 4.49 \\
 0.4211 &< 4.49
 \end{align*}
 On accepte $H_0$ et on exclut $X_2$. \newline
+
 La prochaine pire variable est la variable $X_1$.
 
 \begin{align*}
@@ -2510,6 +2523,7 @@ F_{5 \%}(1.17) &= 4.49 \\
 4.79 &> 4.45
 \end{align*}
 On rejette $H_0$ et on n'exclut pas $X_3$. \newline
+
 On trouve le modèle suivant :
 $$
 Y = \beta_0 + \beta_1X_1 + \beta_2X_3 + \varepsilon
@@ -2583,6 +2597,7 @@ Permettent de traiter des variables explicatives \emph{catégoriques} dans les m
 \item Type de véhicule (sport et autres)
 \item emploi (ACT, ETU, RTR, GOU et autres)
 \end{itemize}
+\bigskip
 
 Pour inclure une variable catégorique ayant $r$ valeurs possibles, on doit créer $(r-1)$ variables indicatrices.
 \subsubsection*{Exemple}
@@ -2775,6 +2790,16 @@ L'étape suivante consiste à analyser notre jeu de donnée et de retirer les va
  (Other)    :186           
 \end{Soutput}
 \end{Schunk}
+\bigskip
+On peut aussi observer le comportement de la variable âge avec les différentes variables explicatives.
+\begin{Schunk}
+\begin{Sinput}
+> # Visualisation des variables en fct de l'âge
+> par(mfrow = c(2,2))
+> plot(Age ~ Survived + Pclass + Sex + Fare + Embarked + Fare, data)
+\end{Sinput}
+\end{Schunk}
+
 
 \bigskip
 Certaines variables ne sont d'aucun intérêt pour estimer l'âge d'un passager, tel que :
@@ -2875,1279 +2900,28 @@ Coefficients:
 \end{Schunk}
 
 \bigskip
-On observe que le Q-Q plot suivant pour le modèle
+On observe que le Q-Q plot suivant pour le modèle,
 
 \begin{Schunk}
 \begin{Sinput}
 > # Q-Q plot 
 > plot(fit, which=2)
 \end{Sinput}
-\end{Schunk}
-\includegraphics{notes_de_cours-040}
-
-\bigskip
-Notre modèle prédit assez bien l'âge, par contre pour des valeurs extrêmes notre prédiction est moins précise. \newline
-
-On va maintenant tester une variable modifier, le log-Fare. En appliquant un log à une valeur numérique, on réduit l'échelle d'écart entre les variables et certaines peuvent mieux prédire après avoir être transformées.
-
-\begin{Schunk}
-\begin{Soutput}
-Start:  AIC=3796.92
-Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname + LogFare
-
-            Df Sum of Sq    RSS    AIC
-- Surname  533     84253 116157 3653.6
-- Pclass     1         6  31910 3795.0
-- LogFare    1        51  31955 3796.0
-<none>                    31904 3796.9
-- Fare       1        93  31997 3797.0
-- Embarked   2       374  32278 3801.2
-- Sex        1       409  32313 3804.0
-- Survived   1      2614  34518 3851.1
-
-Step:  AIC=3653.56
-Age ~ Survived + Pclass + Sex + Fare + Embarked + LogFare
-
-            Df Sum of Sq    RSS    AIC
-- Sex        1         6 116163 3651.6
-- Embarked   3       682 116839 3651.7
-- Fare       1       116 116274 3652.3
-<none>                   116157 3653.6
-- LogFare    1      3507 119664 3672.8
-- Survived   1      4214 120372 3677.0
-+ Surname  533     84253  31904 3796.9
-- Pclass     1     28085 144242 3806.2
-
-Step:  AIC=3651.59
-Age ~ Survived + Pclass + Fare + Embarked + LogFare
-
-            Df Sum of Sq    RSS    AIC
-- Embarked   3       677 116840 3649.7
-- Fare       1       120 116283 3650.3
-<none>                   116163 3651.6
-+ Sex        1         6 116157 3653.6
-- LogFare    1      3687 119851 3671.9
-- Survived   1      5931 122094 3685.1
-+ Surname  533     83850  32313 3804.0
-- Pclass     1     29036 145199 3808.9
-
-Step:  AIC=3649.74
-Age ~ Survived + Pclass + Fare + LogFare
-
-            Df Sum of Sq    RSS    AIC
-- Fare       1        99 116939 3648.3
-<none>                   116840 3649.7
-+ Embarked   3       677 116163 3651.6
-+ Sex        1         1 116839 3651.7
-- LogFare    1      3633 120473 3669.6
-- Survived   1      5953 122794 3683.2
-- Pclass     1     29179 146019 3806.9
-+ Surname  534     84180  32660 3807.6
-
-Step:  AIC=3648.35
-Age ~ Survived + Pclass + LogFare
-
-            Df Sum of Sq    RSS    AIC
-<none>                   116939 3648.3
-+ Fare       1        99 116840 3649.7
-+ Embarked   3       656 116283 3650.3
-+ Sex        1         2 116937 3650.3
-- LogFare    1      5384 122323 3678.5
-- Survived   1      5953 122892 3681.8
-- Pclass     1     29081 146021 3804.9
-+ Surname  534     84275  32664 3805.7
-\end{Soutput}
-\begin{Soutput}
-Call:
-lm(formula = Age ~ Survived + Pclass + LogFare, data = data)
-
-Coefficients:
-(Intercept)     Survived       Pclass      LogFare  
-     69.419       -6.354      -11.201       -4.060  
-\end{Soutput}
 \end{Schunk}
 \includegraphics{notes_de_cours-041}
 
-On obtient une légère amélioration de notre modèle et on retient ce modèle. \newline
-
-On cherche maintenant à prédire à partir d'un autre échantillon des données.
+De plus, on observe une répartition uniforme des résidus,
 
 \begin{Schunk}
 \begin{Sinput}
-> head(predict(fitL, dataTest))
-\end{Sinput}
-\begin{Soutput}
-       1        2        3        4        5        6 
-21.10578 21.56033 37.79596 27.04870 19.27570 20.43965 
-\end{Soutput}
-\end{Schunk}
-
-\begin{moreInfo}{\emph{Segmentation des données}}
-      En analyse des données, il est primordial de fragmenter les données. On utilise habituellement réduit l'algorithme suivant :
-      \begin{enumerate}
-      \item 80 \% des données pour l'entraînement (training) et 20 \% pour le test (testing);
-      \item 80 \% des données de test pour l'entraînement  (training) et 20 \% pour la validation (validation). 
-      \end{enumerate}
-      On segmente les données afin d'éviter le surapprentissage (overfitting). Il s'agit de la situation ou toutes les situations possibles sont incluses dans le modèle et celui-ci perd de la qualité prédictive. 
-      Dans le cadre du cours, seulement l'étape 1 est suffisante. \newline
-      
-      Des méthodes plus \href{https://fr.wikipedia.org/wiki/Validation_croisée}{élaborée} et complexe existent pour les données massives et l'apprentissage automatique.
-\end{moreInfo}
-
-\chapter{Les modèles linéaires généralisés}
-\section{Introduction}
-Le modèle de régression linéaire multiple étudié lors des derniers chapitres peut parfois avoir certaines limitations : 
-\begin{itemize}
-\item On suppose une distribution normale. Dans la plupart des contextes, cette distribution est inappropriée, car elle permet des valeurs négatives. On comprend qu'en actuariat, cette situation n'est pas désirable.
-\item Hypothèse contraignante de variance constante.
-\item Le domaine des variables réponses permet des valeurs entre $-\infty$ et $\infty$. Plusieurs contextes ne se retrouvent que dans un domaine non négatifs. De plus, certaines situations pourraient être une variable réponse discrète.
-\end{itemize}
-
-Le modèle linéaire généralisé, parfois appeler GLM pour \emph{Generalized Linear Models}, est une généralisation de la régression linéaire multiple dont l'objectif est de palier aux limitations précédentes.
-
-\begin{moreInfo}{\emph{Reformulation}}
-     On peut voir le GLM comme une généralisation souple de la régression linéaire. Cette généralisation de la régression linéaire permet au modèle linéaire d'être relié aux variables réponses via une fonction de lien. De plus, le GLM autorise l'amplitude de la variance de chaque mesure en étant une fonction de sa valeur prévue.
-\end{moreInfo}
-
-\section{Notions préliminaires : La famille exponentielle}
-De manière générale, une variable aléatoire y obéit à une distribution faisant partie de la famille exponentielle si :
-\begin{align*}
-f_Y(y) &= \exp\bigg\lbrace \frac{y \times \theta - b(\theta)}{a(\phi)} - c(y, \phi) \bigg\rbrace \\
-\end{align*}
-où,
-\begin{itemize}
-     \item $\theta$ : Paramètre canonique
-     \item $\phi $ : Paramètre de dispersion
-     \item $a(\phi), b(\theta)$ et $c(y, \phi)$ : 3 fonctions générales de $y, \theta$ et $\phi$.
-\end{itemize}
-
-\subsection{Loi Normale}
-En posant,
-\begin{itemize}
-     \item $\theta = \mu$
-     \item $\phi = \sigma^2$
-     \item $b(\theta) = \frac{\theta^2}{2}$
-     \item $a(\phi) = \phi$
-     \item $c(y, \phi) = -\frac{1}{2}\bigg(\frac{y^2}{\sigma^2} + \ln(2 \pi \sigma^2) \bigg)$
-     \item[] alors,
-     \begin{align*}
-          f_Y(y) &= \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{1}{2}\times \big(\frac{y - \mu}{\sigma} \big)^2}
-     \end{align*}
-     \item[] et
-     \begin{align*}
-          Y \sim N(\mu, \sigma^2)
-     \end{align*}
-\end{itemize}
-
-\subsubsection*{Preuve}
-\begin{align*}
-f_Y(y) &= \exp\Bigg\lbrace \frac{y \times \mu - \frac{\mu^2}{2}}{\sigma^2} + -\frac{1}{2} \bigg( \frac{y^2}{\sigma^2} + \ln(2 \pi \sigma^2) \bigg) \Bigg\rbrace \\
-&= \exp\Bigg\lbrace \frac{-y^2}{2\sigma^2} + \frac{y \times \mu}{\sigma^2} - \frac{\mu^2}{2\sigma^2} - \frac{\ln(2 \pi \sigma^2)}{2} \Bigg\rbrace \\
-&= \exp\Bigg\lbrace \frac{-1}{2\sigma^2}(y - \mu)^2 - \frac{1}{2} \ln(2\pi \sigma^2)\Bigg\rbrace \\
-&= \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{1}{2}\times \big(\frac{y - \mu}{\sigma} \big)^2}
-\end{align*}
-
-\subsection{Loi Poisson}
-En posant,
-\begin{itemize}
-     \item $\theta = \ln(\mu)$
-     \item $\phi = 1$
-     \item $b(\theta) = e^{\theta}$
-     \item $a(\phi) = \phi$
-     \item $c(y, \phi) = -\ln(\fact{y})$
-     \item[] alors,
-     \begin{align*}
-          f_Y(y) &= \frac{e^{-\mu}\mu^y}{\fact{y}}
-     \end{align*}
-     \item[] et
-     \begin{align*}
-          Y \sim \text{Poisson}(\mu)
-     \end{align*}
-\end{itemize}
-
-\subsubsection*{Preuve}
-\begin{align*}
-f_Y(y) &= \exp\Bigg\lbrace \frac{y \ln(\mu) - e^{\ln(\mu)}}{1} + (-1) \ln(\fact{y}) \Bigg\rbrace \\
-&= \exp\Bigg\lbrace y \ln(\mu) - \mu + \ln(\frac{1}{\fact{y}}) \Bigg\rbrace \\
-&= \frac{e^{-\mu}\mu^y}{\fact{y}}
-\end{align*}
-
-\subsection{Loi Bernouilli}
-En posant,
-\begin{itemize}
-     \item $\theta = \ln(\frac{\pi}{(1 -\pi)})$
-     \item $\phi = 1$
-     \item $b(\theta) = \ln(1 + e^{\theta})$
-     \item $a(\phi) = \phi$
-     \item $c(y, \phi) = \emptyset$
-     \item[] alors,
-     \begin{align*}
-          f_Y(y) &= \pi^y \times (1 - \pi)^{1 - y}
-     \end{align*}
-     \item[] et
-     \begin{align*}
-          Y \sim \text{Bern}(\pi)
-     \end{align*}
-\end{itemize}
-
-\subsubsection*{Preuve}
-\begin{align*}
-f_Y(y) &= \exp\Bigg\lbrace \frac{y \times \ln\big(\frac{\pi}{(1 -\pi)}\big) - \ln\big( 1 + e^{\ln\big(\frac{\pi}{(1 -\pi)}\big)}\big)}{1} + 0 \Bigg\rbrace \\
-&= \exp\Bigg\lbrace y \times \ln(\pi) - y \ln(1 -\pi) + \ln( 1 -\pi) \Bigg\rbrace \\
-&= \exp\Bigg\lbrace y \times \ln(\pi) + (1 - y) \ln(1 -\pi) \Bigg\rbrace \\
-&= \pi^y \times (1 - \pi)^{1 - y}
-\end{align*}
-
-\subsection{Autres lois}
-\begin{itemize}
-\item Loi beta
-\item Loi binomiale
-\item Loi gamma
-\item Loi inverse-Gaussienne
-\item Loi binomiale négative
-\item Loi pareto
-\item Loi weibull
-\end{itemize}
-
-sont aussi des distributions qui appartiennent à la famille exponentielle.
-
-\section{Généralités sur les modèles de régression avec la famille exponentielle}
-
-\subsection{Contexte}
-Le contexte est très similaire à celui de la régression multiple :
-\subsection{Autres lois}
-\begin{itemize}
-\item $\mathbb{Y}_{n \times 1}$ : Vecteur des observations de $Y_i$, où $i = 1,...,n$.
-\item $\mathbb{X}_{n \times (p+1)}$ : Matrice schéma contenant n lignes d'observations et $(p+1)$ colonnes de variables explicatives.
-\item $\mathbb{\beta}_{(p+1) \times 1}$ : Vecteur des $(p+1)$ paramètres $\beta_0, \beta_1,...,\beta_p$ à estimer. 
-\end{itemize}
-
-\subsection{Structure du modèle}
-On suppose maintenant que 
-$$
-(Y_i|X_i) \sim \text{ Famille exponentielle}
-$$
-et que
-\begin{align*}
-g(E[Y_i|X_i]) &= X_i\beta \\
-&= \beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}\\
-\end{align*}
-Où $g(\bullet)$ est une fonction continue appelée une \textbf{fonction de lien}.
-
-\subsection{Propriété de la fonction de lien}
-\subsubsection{Domaine de $g(\bullet)$}
-Domaine des valeurs possible de $\mu = \varphi(\mu)$ \newline
-
-Voici quelques exemples de domaine de la fonction de lien :
-\begin{itemize}
-\item Loi gamma $\Rightarrow \varphi(\mu) = [0, \infty[$
-\item Loi bernouilli $\Rightarrow \varphi(\mu) = [0, 1]$
-\end{itemize}
-
-\subsubsection{Image de $g(\bullet)$}
-L'image de la fonction de lien est $\mathbb{R} = ] - \infty, \infty [$
-
-\subsubsection{Conclusion}
-Le but de la fonction de lien est d'obtenir des valeurs de $\mu$ qui correspond bien au contexte du modèle à parti du prédicteur linéaire $X_i\beta$ qui peut prendre des valeurs dans $\mathbb{R}$. Autrement dit, on définit un domaine cohérent pour les valeurs réponses et on ne restreint pas les valeurs possibles des observations.\newline
-
-Ainsi, on obtient $\mu$ en inversant $g(\bullet)$ :
-\begin{align*}
-g(E[Y_i|X_i]) &= X_i\beta \\
-\end{align*}
-\begin{equation}
-\label{eq:fonctionlien}
-\color{blue}
-\boxed{\color{black}
-E[Y_i|X_i] = g^{-1}(X_i\beta)
-}
-\end{equation}
-Il est donc nécessaire de choisir une fonction inversible pour la fonction de lien.
-
-\section{Approche générale}
-\subsection{Procédure avec les GLM}
-\begin{itemize}
-\item Choisir une distribution pour $Y$ dans la famille exponentielle.
-\item Choisir une fonction de lien $g(\bullet)$.
-\item Estimer les paramètres $\utilde{\beta}$ et $\phi$.
-\item Valider le modèle.
-\end{itemize}
-
-\subsection{Estimation des paramètres}
-\label{sec:newtonR}
-Dans le cas des GLM, on estime les paramètres en utilisant la méthode du maximum de vraisemblance. \newline
-
-On souhaite choisir $\utilde{\beta}$ qui maximise la fonction de vraisemblance suivante qui sera notre nouvelle métrique de distance:
-$$
-l(\utilde{\beta}) = \sum_{i=1}^n \ln(f_Y(y_i))
-$$
-
-En pratique, il est d'usage d'utiliser la méthode de Newton-Raphson pour maximiser numériquement $l(\utilde{\beta})$. \newline
-
-Pour ce faire, on pose $\hat{\utilde{\beta}}^{(k)}$, le vecteur contenant les valeurs estimées pour $\utilde{\beta}$ après la $k^e$ itération de l'algorithme. \newline
-
-En supposant que l'algorithme ait convergé après l'itération (i+1), alors on a que :
-$$
-\frac{\partial}{\partial \utilde{\beta}} l(\utilde{\beta}^{(i+1)}) = 0
-$$
-ou encore que
-\begin{equation}
-\label{eq:score}
-S(\utilde{\beta}^{(i+1)}) = 0
-\end{equation}
-
-où $S(\bullet)$ est appelé le vecteur score et est défini ainsi :
-$$
-S(\utilde{\beta}^{(i+1)}) = 
-\begin{bmatrix}
-  \frac{\partial}{\partial\beta_0}  l(\utilde{\beta}) \\
-  \frac{\partial}{\partial\beta_1}  l(\utilde{\beta}) \\
-  \vdots \\
-  \frac{\partial}{\partial\beta_p}  l(\utilde{\beta}) \\
-\end{bmatrix}_{(p+1) \times 1}
-$$
-
-Pour obtenir un algorithme permettant d'obtenir un estimateur récursivement, à partir de $\hat{\utilde{\beta}}^{(i)}$, il faut développer $S(\utilde{\beta}^{(i+1)}) $ autour de $\hat{\utilde{\beta}}^{(i)}$ à l'aide d'une série de Taylor :
-\begin{align*}
-S(\utilde{\beta}^{(i+1)}) &= S(\utilde{\beta}^{(i)}) + \Bigg[ \frac{\partial}{\partial\utilde{\beta}}(S(\utilde{\beta}^{(i)})) \Bigg]\Bigg(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Bigg)
-\end{align*}
-En substituant cette expression dans l'équation \ref{eq:score}, on obtient le développement suivant:
-\begin{align*}
- S(\utilde{\beta}^{(i)}) + \frac{\partial}{\partial\utilde{\beta}}(S(\utilde{\beta}^{(i)})) \Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) &= 0
-\end{align*}
-
-ou encore,
-\begin{align*}
- S(\utilde{\beta}^{(i)}) + (- I(\hat{\utilde{\beta}}^{(i)}))\Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) &= 0
-\end{align*}
-
-où $I(\utilde{\beta})$ correspond à la matrice d'information de Fisher et est donnée par :
-$$
-I(\utilde{\beta}) = 
-\begin{bmatrix}
-  \frac{\partial^2}{\partial\beta_0^2}  l(\utilde{\beta}) & \frac{\partial^2}{\partial\beta_0\partial\beta_1}  l(\utilde{\beta}) & \cdots \frac{\partial^2}{\partial\beta_0\partial\beta_p}  l(\utilde{\beta})\\
-  \vdots & \vdots & \vdots\\
-  \frac{\partial^2}{\partial\beta_0\partial\beta_p}  l(\utilde{\beta}) & \frac{\partial^2}{\partial\beta_1\partial\beta_p}  l(\utilde{\beta}) & \cdots \frac{\partial^2}{\partial\beta_p^2}  l(\utilde{\beta})\\
-\end{bmatrix}_{(p+1) \times (p+1)}
-$$
-Ainsi, on peut réécrire l'expression de la façon suivante:
-\begin{align*}
-S(\utilde{\beta}^{(i)}) &= I(\hat{\utilde{\beta}}^{(i)}) \Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) \\
-I^{-1}(\hat{\utilde{\beta}}^{(i)}) S(\utilde{\beta}^{(i)}) &= \hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \\
-\end{align*}
-
-\begin{equation}
-\label{eq:glmbeta}
-\color{blue}
-\boxed{\color{black}
-\hat{\utilde{\beta}}^{(i+1)} = \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)}) S(\utilde{\beta}^{(i)})
-}
-\end{equation}
-Cette équation correspond à 
-\begin{align*}
-\text{Vecteur de paramètre mis à jour} &= \text{Ancien vecteur de paramètre} \\
-&+ \text{Produit matriciel entre l'inverse de la  matrice Fisher et le vecteur score}
-\end{align*}
-
-\subsection{Validation globale du modèle avec la \emph{déviance}}
-En réécrivant la fonction de vraisemblance $l(\utilde{\beta})$ comme suit :
-\begin{align*}
-l(\utilde{\beta}) &= \sum_{i=1}^n \ln(f_Y(y_i)) \\
-&= \sum_{i=1}^n \ln(f_Y(y_i; \mu_i)) \text{ ; où } \mu_i = g^{-1}(X_i \utilde{\beta}) \\
-&= l(\utilde{y}, \utilde{\beta}) \\
-\end{align*}
-On peut définir la statistique de déviance $D(\utilde{\beta})$ comme suit :
-
-\begin{align*}
-D(\utilde{\beta}) &= 2 \times \Big( \underbrace{l(\utilde{y}, \utilde{y})} - \underbrace{l(\utilde{y}, \utilde{\beta})} \Big) \\ 
-& \text{Log vraissemblance} \text{Log vraissemblance} \\
-& \text{sous un modèle parfait}  \text{du modèle obtenu} \\
-\end{align*}
-
-\begin{center}
-\begin{tabularx}{\textwidth}{cXX}
-$D(\utilde{\beta})$ &= $2 \times \Big( \underbrace{l(\utilde{y}, \utilde{y})}$ & $- \underbrace{l(\utilde{y}, \utilde{\beta})} \Big)$ \\
-& Log vraisemblance \newline sous un modèle parfait & Log vraisemblance \newline du modèle obtenu\\
-\end{tabularx}
-\end{center}
-
-On remarque que dans le cas de la famille exponentielle, on aura 
-
-\begin{equation}
-\label{eq:deviance}
-\color{blue}
-\boxed{\color{black}
-D(\utilde{\beta}) = 2 \times \sum_{i=1}^n \Big\lbrace y_i \times \big( \theta(y_i) - \theta(\mu_i) \big) - b(\theta(y_i)) + b(\theta(\mu_i)) \Big\rbrace
-}
-\end{equation}
-
-\subsubsection{Loi normale}
-\label{sec:sec:normale}
-\begin{align*}
-D(\utilde{\beta}) &= 2 \times \sum_{i=1}^n \Big\lbrace y_i (y_i - \mu_i) - \frac{y_i^2}{2} + \frac{\mu_i^2}{2} \Big\rbrace \\
-&= \sum_{i=1}^n \Big\lbrace 2y_i^2 - y_i\times\mu_i - y_i^2 + \mu_i^2 \Big\rbrace \\
-&= \sum_{i=1}^n \Big\lbrace y_i^2 - 2y_i\times\mu_i  + \mu_i^2 \Big\rbrace \\
-&= \sum_{i=1}^n (y_i - \mu_i)^2\\
-&= \sum_{i=1}^n \varepsilon_t^2\\
-&= SSE
-\end{align*}
-\subsubsection*{Conclusion}
-Dans le cas de la loi Normale, la déviance est égale à SSE. \newline
-
-De ce fait, $D(\utilde{\beta})$ constitue une généralisation de SSE qui sera valide avec tous les sous-cas de la famille exponentielle.
-
-\subsubsection{Loi de Poisson}
-\begin{align*}
-D(\utilde{\beta}) &= 2 \times \sum_{i=1}^n \Bigg\lbrace y_i \ln\bigg( \frac{y_i}{\mu_i}\bigg) - (y_i - \mu_i) \Bigg\rbrace \\
-&\neq SSE
-\end{align*}
-
-\subsubsection{Loi binomiale$(m_i, \mu_i)$}
-\begin{align*}
-D(\utilde{\beta}) &= 2 \times \sum_{i=1}^n \Bigg\lbrace y_i \ln\bigg( \frac{y_i}{\mu_i}\bigg) + (m_i - y_i)\times \ln\bigg( \frac{m_i - y_i}{m_i - \mu_i}\bigg) \Bigg\rbrace \\
-&\neq SSE
-\end{align*}
-
-\subsubsection{Loi gamma}
-\begin{align*}
-D(\utilde{\beta}) &= 2 \times \sum_{i=1}^n \Bigg\lbrace -\ln\bigg( \frac{y_i}{\mu_i}\bigg) + \frac{y_i - \mu_i}{\mu_i} \Bigg\rbrace \\
-&\neq SSE
-\end{align*}
-
-\subsubsection{Loi inverse Gausienne}
-\begin{align*}
-D(\utilde{\beta}) &= \times \sum_{i=1}^n \frac{(y_i - \mu_i)^2}{\frac{\mu_i^2}{y_i}}\\
-&\neq SSE
-\end{align*}
-
-\subsubsection*{Conclusion}
-La déviance correspond à SSE seulement pour la distribution Normale. Dans les autres cas, on a une mesure plus générale.
-
-\subsection{Validation locale du modèle avec des tests d'hypothèses et intervalles de confiances}
-\subsubsection{Test d'hypothèse très général}
-On introduit ici une version généralisée des tests de Fisher partiels introduits à la section \ref{sec:testFpartiel}.
-
-\subsubsection*{Hypothèses à considérer}
-\begin{align*}
-H_0 &: \text{Un modèle \emph{réduit}, noté $M_0$, qui est un sous-modèle de $M_1$,} \\
-& \text{\ \ le modèle complet, est statistiquement acceptable.} \\
-H_1 &: \text{On doit utiliser le modèle plus \emph{complet}, noté $M_1$.} \\
-\end{align*}
-On utilise la statistique suivante pour tester les hypothèses,
-\begin{equation}
-\color{blue}
-\boxed{\color{black}
-\chi^2_{obs} = D(\utilde{\beta}{}_{H_0}) - D(\utilde{\beta}{}_{H_1})
-}
-\end{equation}
-\begin{equation}
-\label{eq:deviance2}
-\color{blue}
-\boxed{\color{black}
-\chi^2_{obs} = 2 \times \bigg( l(\utilde{\beta}{}_{H_1}) - l(\utilde{\beta}{}_{H_0}) \bigg)
-}
-\end{equation}
-
-On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ si :
-\begin{equation}
-\color{blue}
-\boxed{\color{black}
-\chi^2_{obs} \geq \chi^2_{\alpha} \bigg( \text{Nombre de paramètres dans $M_1$ - Nombre de paramètres dans $M_0$}\bigg)
-}
-\end{equation}
-
-\subsubsection{Intervalles de confiances}
-Selon la théorie du maximum de vraisemblance, on a que la loi asymptotique de $\hat{\utilde{\beta}}$ est une loi normale multi-dimensionnelle :
-$$
-\hat{\beta}_{(p+1) \times 1} \longrightarrow N_{p+1} \bigg(\utilde{\beta}; Var(\hat{\utilde{\beta}}) \bigg)
-$$
-avec,
-
-$$
-Var(\hat{\beta}) = I^{-1}(\hat{\utilde{\beta}})
-$$
-Qui correspond à la borne inférieure de Cramer-Rao. \newline
-
-Ainsi un intervalle de confiance au niveau $100 \times (1 - \alpha)\%$ pour $\beta_1$ pour $\beta_i$ est donné par :
-\begin{equation}
-\color{blue}
-\boxed{\color{black}
-\beta_i \pm Z_{1 - \frac{\alpha}{2}} \times \sqrt{[Var(\hat{\utilde{\beta}})]_{i+1, i+1}}
-}
-\end{equation}
-
-\section{Modèle de régression normale}
-\label{sec:normale}
-Sachant maintenant les résultats les plus généraux des GLM, il est intéressant de retrouver les concepts de la régression multiple. \newline
-
-Dans ce cas, on a que 
-$$
-(Y_i | \utilde{X}{}_i) \sim N(\mu, \sigma^2)
-$$
-avec,
-$$
-\mu_i = \utilde{X}{}_i\beta \Rightarrow g(x) = x
-$$
-Soit la fonction de lien identité.\newline
-
-On obtient donc,
-\begin{align*}
-l(\utilde{\beta}) &= \sum_{i =1}^n \ln \big( f_{Y_i}(y_i) \big) \\
-&= - \frac{1}{2} \sum_{i =1}^n\big\lbrace \ln(2\pi\sigma^2) + \frac{1}{\sigma^2}(Y_i - X_i \beta)^2 \big\rbrace \\
-\end{align*}
-On remarque que de maximiser $l(\utilde{\beta})$ revient à minimiser $\sum_{i =1}^n (Y_i - X_i \beta)^2$ qui correspond à $SSE$. \newline
-
-Par conséquent, 
-$$
-S(\utilde{\beta}) = \frac{\partial}{\partial \utilde{\beta}} l(\utilde{\beta}) = ?
-$$
-On cherche le jieme élément de ce vecteur $S(\utilde{\beta})$ :
-\begin{align*}
-[S(\utilde{\beta})]_j &= \frac{\partial}{\partial \utilde{\beta}{}_i} l(\utilde{\beta}) \\
-&= \frac{2}{2\sigma^2} \sum_{i =1}^n (Y_i - X_i \beta)^2X_{i,j} \\
-&= \frac{1}{\sigma^2} \Bigg( \sum_{i =1}^nX_{i,j}Y_i -  \big(\sum_{i =1}^n X_i\times X_{i,j} \big)\beta \Bigg) \\
-&= \frac{1}{\sigma^2} \Bigg( X_j^\intercal Y_i -   X_j^\intercal X\beta \Bigg) \\
-\end{align*}
-Ainsi, on déduit que 
-$$
-S(\utilde{\beta}) = \frac{1}{\sigma^2} \Bigg( \mathbb{X}^\intercal \mathbb{Y} -   \mathbb{X}^\intercal \mathbb{X}\mathbb{\beta} \Bigg)
-$$
-Et donc, 
-\begin{align*}
-I(\beta) &= \frac{-\partial^2}{\partial \utilde{\beta}^2} l(\utilde{\beta}) \\
-&= \frac{-\partial}{\partial \utilde{\beta}} S(\utilde{\beta}) \\
-&= ?
-\end{align*}
-
-On cherche l'élément $(j, k)$ de la matrice $I(\beta)$
-\begin{align*}
-[I(\beta)]_{j,k} &= \frac{-\partial^2}{\partial \utilde{\beta}{}_j\partial \utilde{\beta}{}_i} l(\utilde{\beta}) \\
-&= \frac{-\partial}{\partial \utilde{\beta}{}_k} \bigg( \frac{-\partial}{\partial \utilde{\beta}{}_j} l(\utilde{\beta}) \bigg) \\
-&= \frac{-\partial}{\partial \utilde{\beta}{}_k} \bigg( [S(\utilde{\beta})]_j \bigg) \\
-&= \frac{1}{\sigma^2} \sum_{i =1}^nX_{i,j}\times X_{i,k} \\
-&= \frac{1}{\sigma^2} (X_{i}^\intercal\times X_{j}) \\
-\end{align*}
-Ainsi, on déduit que :
-$$
-I(\utilde{\beta}) = \frac{1}{\sigma^2} (\mathbb{X}^\intercal\mathbb{X})
-$$
-
-En appliquant maintenant l'algorithme de Newton-Raphson (section \ref{sec:newtonR}), on a donc
-\begin{align*}
-\hat{\utilde{\beta}}^{(i+1)} &= \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)}) \\
-&= \hat{\utilde{\beta}}^{(i)} + \Bigg[ \frac{1}{\sigma^2} (\mathbb{X}^\intercal\mathbb{X})\Bigg]^{-1} \frac{1}{\sigma^2} \Bigg( \mathbb{X}^\intercal \mathbb{Y} -   \mathbb{X}^\intercal \mathbb{X}\mathbb{\beta} \Bigg) \\
-&= \hat{\utilde{\beta}}^{(i)} + \sigma^2 (\mathbb{X}^\intercal\mathbb{X})^{-1} \frac{1}{\sigma^2} \Bigg( \mathbb{X}^\intercal \mathbb{Y} -   \mathbb{X}^\intercal \mathbb{X}\mathbb{\beta} \Bigg) \\
-&= \hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{Y} - (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{X}\mathbb{\beta} \Bigg) \\
-&= (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{Y} \\
-\end{align*}
-
-\subsection{Conclusion intéressante}
-L'approche GLM basée sur la méthode du maximum de vraisemblance et utilisant l'algorithme de Newton-Raphson donne le même résultat pour $\hat{\beta}$ que l'approche de la régression multiple basée sur la minimisation de la distance quadratique.
-
-\subsection{Remarque sur la validation globale et locale du modèle sous la loi Normale}
-Tel que vu à la section \ref{sec:sec:normale},
-\begin{align*}
-D(\utilde{\beta}) &= SSE \\
-&= \sum_{i=1}^n \hat{\varepsilon}_i^2 \\
-&= \text{Somme de $N(0,1)$ au carré} \\
-& \sim \chi^2(n -(p+1))
-\end{align*}
-Ainsi, la statistique $\chi_{obs}^2$ est donnée par :
-\begin{align*}
-\chi_{obs}^2 &= D(\utilde{\beta}{}_{H_0}) -  D(\utilde{\beta}{}_{H_1}) \\
-&= SSE(M_0) - SSE(M_1)
-\end{align*}
-Or, puisque
-\begin{align*}
-SSE(M_0) &\sim \chi^2(n -(P_{H_0}+1)) \\
-&\text{et} \\
-SSE(M_1) &\sim \chi^2(n -(P_{H_1}+1))
-\end{align*}
-On peut ainsi dire que cela revient à tester,
-\begin{align*}
-\chi_{obs}^2 &\geq \chi_{\alpha}^2([n - (P_{H_0}+1)] - [n -(P_{H_1}+1]) \\
-\Rightarrow \chi_{obs}^2 &\geq \chi_{\alpha}^2( \underbrace{P_{H_1} - P_{H_0}}) \\
-& \text{Différence entre le nombre} \\ 
-& \text{de paramètres entre $M_0$ et $M_1$}
-\end{align*}
-Ce qui revient a testé si :
-$$
-F^* = \frac{\frac{[SSE(M_0) - SSE(M_1)]}{[P_{H_1} - P_{H_0}]}}{\frac{SSE(M_1)}{n - P_{H_1}}} \geq \chi_{\alpha}^2(P_{H_1} - P_{H_0})
-$$
-Soit le test de Fisher partiel de la section \ref{sec:testFpartiel}.
-
-\section{Modèle de régression logistique}
-\label{sec:logistique}
-
-\subsection{Contexte motivant l'utilisation de ce modèle}
-On utilise la régression logistique lorsqu'il y a un phénomène dichotomique. C'est-à-dire que $Y_i$ peut prendre seulement deux valeurs. \newline
-\begin{itemize}
-\item Est-ce que l'assuré $i$ avec les caractéristiques $X_i$ va avoir des sinistres ?
-\item Est-ce que ce même assuré va renouveler sa police avec nous ?
-\item Est-ce qu'un individu ayant les caractéristiques $X_i$ va décéder ou non dans la prochaine année ?
-\end{itemize}
-\bigskip
-
-De façon pratique, il est d'usage de définir $Y_i \in \{0, 1\}$. \newline
-
-Dans ce cas, on a que 
-$$
-(Y_i | \utilde{X}{}_i) \sim \text{Bernouilli}(\pi_i)
-$$
-Où $\pi_i$ correspond à $E[Y_i|\utilde{X}{}_i]$ et $g(\pi_i) = \utilde{X}{}_i\utilde{\beta}$. \newline
-
-Puisque $\pi_i \in ]0, 1[$, $\pi_i$ est une probabilité, et que $\utilde{X}{}_i\utilde{\beta} \in \mathbb{R}$, il faut choisir la fonction de lien $g(\bullet)$ de telle sorte que
-$$
-g : ]0, 1[ \rightarrow \mathbb{R}
-$$
-Bien que plusieurs candidats peuvent satisfaire cette condition, il est d'usage d'utiliser une fonction appelée \emph{logit} dans ce contexte. Celle fonction est défini ainsi :
-\begin{align*}
-g(x) &= \text{logit}(x) \\
-&= \ln\bigg( \frac{x}{1-x}\bigg)
-\end{align*}
-
-\subsection{Conséquences}
-\begin{align*}
-g(\pi_i) &= \utilde{X}{}_i\utilde{\beta} \\
-\text{logit}(\pi_i) &= \utilde{X}{}_i\utilde{\beta} \\
-\ln\bigg( \frac{\pi_i}{1-\pi_i}\bigg) &=\utilde{X}{}_i\utilde{\beta} \\
-\end{align*}
-Il est donc possible d'exprimer $\pi_i$ comme suit :
-\begin{align*}
-\frac{\pi_i}{1-\pi_i} &= e^{\utilde{X}{}_i\utilde{\beta}} \\
-\frac{1-\pi_i}{\pi_i} &= \frac{1}{e^{\utilde{X}{}_i\utilde{\beta}}} \\
-\frac{1}{\pi_i} - 1 &= \frac{1}{e^{\utilde{X}{}_i\utilde{\beta}}} \\
-\frac{1}{\pi_i} &= 1 + \frac{1}{e^{\utilde{X}{}_i\utilde{\beta}}} \\
-\pi_i &= \frac{1}{1 + \frac{1}{e^{\utilde{X}{}_i\utilde{\beta}}}} \\
-\end{align*}
-
-\begin{equation}
-\label{eq:logit}
-\color{blue}
-\boxed{\color{black}
-\pi_i = \frac{e^{\utilde{X}{}_i\utilde{\beta}}}{1 + e^{\utilde{X}{}_i\utilde{\beta}}}
-}
-\end{equation}
-
-\subsection{Interprétations}
-\subsubsection{}
-\begin{align*}
-\ln\bigg( \frac{\pi_i}{1-\pi_i}\bigg) &=\utilde{X}{}_i\utilde{\beta} \\
-\ln\Bigg( \frac{Pr(Y_i=1|\utilde{X}{}_i)}{Pr(Y_i=0|\utilde{X}{}_i)}\Bigg) &=\utilde{X}{}_i\utilde{\beta} \\
-\end{align*}
-Le log du rapport de cote est linéaire.
-
-\subsubsection{}
-$\beta_0$ : le log du rapport de cote lorsque toutes les variables explicatives $X_i$ sont égales à zéro.
-
-\subsubsection{}
-$\beta_j$ : Si $X_{i,j}$ augmente de une unité, alors que les autres variables explicatives sont fixées, alors le log du rapport de cote augmente de $\beta_j$ unité pour l'individu $i$.
-
-\subsection{Optimisation}
-\label{sec:optim}
-Sous la méthode du maximum de vraisemblance, on a
-\begin{align*}
-l(\utilde{\beta}) &= \sum_{i=1}^n \ln\bigg( Pr(Y_i = y_i|\utilde{X}{}_i) \bigg) \\
-&= \sum_{i=1}^n \ln\bigg( \pi_i^{y_i} \times (1 - \pi_i)^{1-y_i}) \bigg) \\
-&= \sum_{i=1}^n \bigg( y_i \times \ln(\pi_i) + (1 - y_i)\times\ln(1 - \pi_i) \bigg) \\
-&= \sum_{i=1}^n \Bigg( y_i \times \ln\bigg(\frac{e^{\utilde{X}{}_i\utilde{\beta}}}{1 + e^{\utilde{X}{}_i\utilde{\beta}}} \bigg) + (1 - y_i)\times\ln\bigg(\frac{1}{1 + e^{\utilde{X}{}_i\utilde{\beta}}}\bigg) \Bigg) \\
-&= \sum_{i=1}^n \Bigg( y_i \times \ln(e^{\utilde{X}{}_i\utilde{\beta}}) - y_i\ln(1 + e^{\utilde{X}{}_i\utilde{\beta}}) - (1 - y_i)\times\ln(1 + e^{\utilde{X}{}_i\utilde{\beta}}) \Bigg) \\
-&= \sum_{i=1}^n \Bigg( y_i \times\utilde{X}{}_i\utilde{\beta} - \ln(1 + e^{\utilde{X}{}_i\utilde{\beta}}) \Bigg) \\
-\end{align*}
-
-Par conséquent,
-\begin{align*}
-S(\utilde{\beta}) &= \frac{\partial}{\partial\beta} l(\beta) \\
-&= ?
-\end{align*}
-On cherche le jieme élément du vecteur score, soit
-\begin{align*}
-S(\utilde{\beta}) &= \frac{\partial}{\partial\beta_j} l(\beta) \\
-&= \sum_{i=1}^nX_{i,j}Y_i - \big(X_{i,j}\times \frac{e^{\utilde{X}{}_i\utilde{\beta}}}{1 + e^{\utilde{X}{}_i\utilde{\beta}}}\big) \\
-&= \sum_{i=1}^nX_{i,j}\big(Y_i - \frac{e^{\utilde{X}{}_i\utilde{\beta}}}{1 + e^{\utilde{X}{}_i\utilde{\beta}}}\big) \\
-&= X_j^\intercal(Y - M(\utilde{X}{}_i\utilde{\beta}))
-\end{align*}
-où $M(\utilde{X}{}_i\utilde{\beta})$ correspond à 
-$$
-M(\utilde{X}{}_i\utilde{\beta}) =
-\begin{bmatrix}
-  \frac{e^{\utilde{X_1}\utilde{\beta}}}{1 + e^{\utilde{X_1}\utilde{\beta}}}\\
-  \vdots \\
-  \frac{e^{\utilde{X}{}_n\utilde{\beta}}}{1 + e^{\utilde{X}{}_n\utilde{\beta}}}\\ 
-\end{bmatrix} 
-$$
-Ainsi, on déduit que
-\begin{equation}
-\label{eq:logits}
-\color{blue}
-\boxed{\color{black}
-S(\utilde{\beta}) = \mathbb{X}^\intercal(\mathbb{Y} - M(\utilde{X}{}_i\utilde{\beta}))
-}
-\end{equation}
-On peut maintenant trouver $I(\utilde{\beta})$, 
-\begin{align*}
-I(\utilde{\beta}) &= -\frac{\partial^2}{\partial\beta^2} l(\beta) \\
-&= -\frac{\partial}{\partial\beta} S(\beta) \\
-\end{align*}
-On cherche l'élément $(j,k)$ de cette matrice, soit:
-\begin{align*}
-[I(\utilde{\beta})]_{j,k} &= -\frac{\partial^2}{\partial\beta^2} l(\beta) \\
-&= -\frac{\partial}{\partial\beta_k} \bigg( \frac{\partial}{\partial\beta_j} l(\beta)\bigg) \\
-&= -\frac{\partial}{\partial\beta_k} [S(\beta)]_j \\
-&= \sum_{i=1}^nX_{i,j}X_{i,k} \times \Bigg(\frac{e^{\utilde{X}{}_i\utilde{\beta}}\bigg(1 + e^{\utilde{X}{}_i\utilde{\beta}}\bigg) - \bigg(e^{\utilde{X}{}_i\utilde{\beta}}\bigg)^2}{\bigg(1 + e^{\utilde{X}{}_i\utilde{\beta}}\bigg)^2}\Bigg) \\
-&= \sum_{i=1}^nX_{i,j}X_{i,k} \times \frac{e^{\utilde{X}{}_i\utilde{\beta}}}{\bigg(1 + e^{\utilde{X}{}_i\utilde{\beta}}\bigg)^2} \\
-&= \sum_{i=1}^nX_{i,j}\times X_{i,k} \times W_i
-\end{align*}
-où $W_i$ correspond à
-$$
-\frac{e^{\utilde{X}{}_i\utilde{\beta}}}{\bigg(1 + e^{\utilde{X}{}_i\utilde{\beta}}\bigg)^2}
-$$
-
-Ainsi, on arrive à la déduction que
-\begin{align*}
-I(\utilde{\beta}) &= \mathbb{X}^\intercal \mathbb{W} \mathbb{X} \\
-&\text{avec,} \\
-\mathbb{W} &= 
-\begin{bmatrix}
-w_1 & 0 & \cdots & 0 \\
-0 & w_2 & \cdots & 0 \\
-0 & 0 & \cdots & 0 \\
-\vdots&\vdots& \vdots & \vdots \\
-0 & 0 & \cdots & w_n \\
-\end{bmatrix} _{n \times n}
-\end{align*}
-
-\bigskip
-En appliquant maintenant l'algorithme de Newton-Raphson (section \ref{sec:newtonR}), on a donc
-\begin{align*}
-\hat{\utilde{\beta}}^{(i+1)} &= \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)}) \\
-&= \hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} \mathbb{X}^\intercal (\mathbb{Y} - M(\utilde{X}{}_i\utilde{\beta})) \\
-&\overset{\times I}{=} I\hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} \mathbb{X}^\intercal I(\mathbb{Y} - M(\utilde{X}{}_i\utilde{\beta})) \\
-&= (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}(\mathbb{X}^\intercal \mathbb{W} \mathbb{X})\hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} (\mathbb{Y} - M)\\
-&= \big[(\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{W}\big]\underbrace{\big[\mathbb{X}\hat{\utilde{\beta}}^{(i)} + \mathbb{W}^{-1} (\mathbb{Y} - M)\big]}\\
-&\ \ \ \ \ \ \ \ \ \text{\ \ \ $Z^{(i)}$: transformation sur $Y$}
-\end{align*}
-
-\begin{equation}
-\label{eq:logbeta}
-\color{blue}
-\boxed{\color{black}
-\hat{\utilde{\beta}}^{(i+1)} = (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{W}Z^{(i)}
-}
-\end{equation}
-\subsubsection{Remarque}
-L'algorithme itératif permettant d'obtenir l'estimateur de $\hat{\beta}$ peut être vu comme une succession d'estimations de régressions linéaires de $\utilde{Z}^{(i)}$ sur $\utilde{X}$, pondérés par $\utilde{W}$.
-
-\subsection{Formule de déviance-régression logistique}
-\begin{align*}
-D(\utilde{\beta}) &= 2 \times \sum_{i=1}^n \Big\lbrace y_i \times \ln\bigg( \frac{y_i}{\pi_i}\bigg) + (1 -y_i) \times\ln\bigg( \frac{1 - y_i}{1 - \pi_i}\bigg) \Big\rbrace \\
-&\text{où,} \\
-\pi_i &= \frac{e^{X_i\beta}}{1+e^{X_i\beta}}
-\end{align*}
-
-\subsection{Test d'hypothèse général}
-$$
-\chi_{obs}^2 = D(\utilde{\beta}{}_{H_0}) -D(\utilde{\beta}{}_{H_1})
-$$
-
-\subsection{Intervalle de confiance}
-On obtient ainsi l'intervalle de confiance suivant au niveau $100 \times (1 - \alpha)\%$ pour $\beta_i$,
-\begin{equation}
-\label{eq:IClog}
-\color{blue}
-\boxed{\color{black}
-\hat{\beta_i} = Z_{1 - \frac{\alpha}{2}} \times \sqrt{[(\mathbb{X}^\intercal\mathbb{W}\mathbb{X})^{-1}]_{(i+1) \times (i+1)}}
-}
-\end{equation}
-
-\section{Régression de Poisson}
-\label{sec:poisson}
-
-\subsection{Contexte motivant l'utilisation de ce modèle}
-Phénomène ou la varaible aléatoire $Y$ est positive et discrète $(Y_i \in \{0, 1, 2,... \})$. Voici quelques exemples de contexte :
-\begin{itemize}
-\item Nombre de sinistres d'un assuré au cours de la prochaine année.
-\item Nombre de défauts de fabrication d'un produit.
-\end{itemize}
-
-Dans ce cas, on postule que,
-\begin{align*}
-(Y_i|\utilde{X}{}_i) &\sim \text{Poisson}(\lambda_i) \\
-&\text{Où, } \\
-\lambda_i &= E[Y_i|\utilde{X}{}_i] \\
-&\text{avec, } \\
-g(\lambda_i) &= \utilde{X}{}_i\utilde{\beta} \\
-\end{align*}
-Puisque $\lambda_i \in [0, \infty[$ est non négatif et que $\utilde{X}{}_i\utilde{\beta} \in \mathbb{R}$, il faut utiliser une fonction $g(\bullet)$ telle que :
-$$
-g: [0, \infty[ \rightarrow \mathbb{R}
-$$
-Bien que plusieurs candidats peuvent satisfaire cette condition, il est d'usage d'utiliser la fonction logarithmique dans le contexte de la régression de Poisson :
-$$
-g(x) = \ln(x)
-$$
-\subsection{Conséquences}
-\begin{align*}
-g(\lambda_i) &=  \utilde{X}{}_i\utilde{\beta} \\
-\ln(\lambda_i) &- \utilde{X}{}_i\utilde{\beta} \\
-\lambda_i &= e^{\utilde{X}{}_i\utilde{\beta}} \\
-\end{align*}
-En conclusion, sous cette spécification on a que :
-$$
-(Y_i|\utilde{X}{}_i) \sim \text{Poisson}(e^{\utilde{X}{}_i\utilde{\beta}})
-$$
-Puisque $\utilde{X}{}_i\utilde{\beta} = \beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}$, on a que
-\begin{align*}
-(Y_i|\utilde{X}{}_i) &\sim \text{Poisson}(e^{\beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}}) \\
-(Y_i|\utilde{X}{}_i) &\sim \text{Poisson}(\underbrace{e^{\beta_0} \times e^{\beta_1X_{i,1}}\times  ... \times e^{\beta_pX_{i,p}}}) \\
-&\ \ \ \ \ \ \text{\ \ \ Modèle multiplicatif}
-\end{align*}
-
-\subsection{Interprétations}
-\subsubsection{}
-$\ln(\lambda_i) = \utilde{X}{}_i\utilde{\beta}$, qui correspond au log de l'espérance est linéaire.
-
-\subsubsection{}
-$\beta_0$: Lorsque toutes les variables explicatives $X_i$ on une valeur de zéro, alors l'espérance de $Y_i$ est $e^{\beta_0}$.
-
-\subsubsection{}
-$\beta_i$ : Si $X_{i,j}$ augmente d'une unité, alors que les autres variables explicatives restent fixées, alors l'espérance de $Y_i$ est multiplié par $e^{\beta_j}$
-
-\subsection{Optimisation}
-Sous la méthode du maximum de vraisemblance, on a que :
-\begin{align*}
-l(\utilde{\beta}) &= \sum_{i=1}^n \ln\bigg(Pr(Y_i= y_i |\utilde{X}{}_i)\bigg) \\
-&= \sum_{i=1}^n \ln\bigg( \frac{e^{-\lambda_i}\lambda_i^{y_i}}{\fact{y_i}}\bigg) \\
-&= \sum_{i=1}^n \ln\bigg( y_i\times \ln(\lambda_i) - \lambda_i^ -\ln(\fact{y_i}) \bigg) \\
-&= \sum_{i=1}^n \ln\bigg( y_i\times \utilde{X}{}_i\utilde{\beta} - e^{\utilde{X}{}_i\utilde{\beta}} -\ln(\fact{y_i}) \bigg) \\
-\end{align*}
-Par conséquent,
-$$
-S(\utilde{\beta}) = \frac{\partial}{\partial \utilde{\beta}} l(\utilde{\beta}) = ?
-$$
-On cherche le jieme élément de ce vecteur $S(\utilde{\beta})$ :
-\begin{align*}
-[S(\utilde{\beta})]_j &= \frac{\partial}{\partial \utilde{\beta}_i} l(\utilde{\beta}) \\
-&= \sum_{i =1}^n \bigg(Y_iX_{i,j} - X_{i,j} e^{\utilde{X}{}_i\utilde{\beta}} \bigg)\\
-&= \sum_{i =1}^n X_{i,j}\bigg(Y_i -  e^{\utilde{X}{}_i\utilde{\beta}} \bigg)\\
-&= X_{j}^\intercal\bigg(Y -  M(\utilde{X}{}_i\utilde{\beta}) \bigg)\\
-\end{align*}
-où $M(\utilde{X}{}_i\utilde{\beta})$ correspond à 
-$$
-M(\utilde{X}{}_i\utilde{\beta}) =
-\begin{bmatrix}
-  e^{\utilde{X_1}\utilde{\beta}}\\
-  \vdots \\
-  e^{\utilde{X} {}_n\utilde{\beta}}\\ 
-\end{bmatrix} 
-$$
-et donc,
-
-\begin{equation}
-\label{eq:spoisson}
-\color{blue}
-\boxed{\color{black}
-S(\utilde{\beta}) = \mathbb{X}^\intercal\bigg(\mathbb{Y} -  M(\utilde{X}{}_i\utilde{\beta}) \bigg)
-}
-\end{equation}
-
-On peut maintenant trouver $I(\utilde{\beta})$, 
-\begin{align*}
-I(\utilde{\beta}) &= -\frac{\partial^2}{\partial\beta^2} l(\beta) \\
-&= -\frac{\partial}{\partial\beta} S(\beta) \\
-\end{align*}
-On cherche l'élément $(j,k)$ de cette matrice, soit:
-\begin{align*}
-[I(\utilde{\beta})]_{j,k} &= -\frac{\partial^2}{\partial\beta^2} l(\beta) \\
-&= -\frac{\partial}{\partial\beta_k} \bigg( \frac{\partial}{\partial\beta_j} l(\beta)\bigg) \\
-&= -\frac{\partial}{\partial\beta_k} [S(\beta)]_j \\
-&= \sum_{i=1}^nX_{i,j}X_{i,k} \times e^{\utilde{X}{}_i\utilde{\beta}}\\
-&= \sum_{i=1}^nX_{i,j}\times X_{i,k} \times W_i
-\end{align*}
-où $W_i$ correspond à
-$$
-e^{\utilde{X}{}_i\utilde{\beta}}
-$$
-
-Ainsi, on arrive à la déduction que
-\begin{align*}
-I(\utilde{\beta}) &= \mathbb{X}^\intercal \mathbb{W} \mathbb{X} \\
-&\text{avec,} \\
-\mathbb{W} &= 
-\begin{bmatrix}
-w_1 & 0 & \cdots & 0 \\
-0 & w_2 & \cdots & 0 \\
-0 & 0 & \cdots & 0 \\
-\vdots&\vdots& \vdots & \vdots \\
-0 & 0 & \cdots & w_n \\
-\end{bmatrix} _{n \times n}
-\end{align*}
-
-\bigskip
-En utilisant une méthode similaire à celle qui a été appliquée pour le cas de la régression logistique à la section \ref{sec:optim}, on peut montrer que l'algorithme de Newton-Raphon est le suivant :
-
-\begin{align*}
-\hat{\utilde{\beta}}^{(i+1)} &= \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)}) \\
-\end{align*}
-Qui peut être simplifié sous la forme suivante,
-$$
-\hat{\utilde{\beta}}^{(i+1)} = (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{W}\mathbb{Z}^{(i)}
-$$
-où $\mathbb{Z}^{(i)} = \mathbb{X}\hat{\beta}^{(i)} + \mathbb{W}^{-1}(\mathbb{Y} - M(\utilde{X},\utilde{\beta})$
-
-\section{Autres notions importantes avec les GLM}
-\subsection{Autres distributions}
-La procédure illustrée aux sections \ref{sec:normale}, \ref{sec:logistique} et \ref{sec:logistique} s'applique à toutes les distributions de la famille exponentielle. Les cas les plus célèbres sont :
-
-\subsubsection{Loi Binomiale négative}
-Permets d'obtenir une variance plus grande que la moyenne, ce qui n'est pas possible avec la loi de Poisson.
-
-\begin{itemize}
-\item Fonction de log-vraisemblance
-$$
-(Y_i|\utilde{X}{}_i, \Theta_i) \sim \text{Poisson}(\lambda_i \Theta_i)
-$$
-où
-\begin{align*}
-\ln(\lambda_i) &= \utilde{X}\utilde{\beta} \\
-\lambda_i &= e^{\utilde{X}\utilde{\beta}}\\
-\end{align*}
-
-et,
-\begin{align*}
-\Theta_i &\sim \Gamma(\alpha, \alpha) \\
-E[\Theta] &= 1 \\
-Var(\Theta) & = \frac{1}{\alpha} \\
-\end{align*}
-De plus, si $\alpha \rightarrow \infty$, alors NegBin $\rightarrow$ Poisson.
-\begin{align*}
-P(Y_i = y_i | \utilde{X}{}_i) &= \int_0^\infty \frac{e^{-\lambda_i\theta}(\lambda_i\theta_i)^{y_i}}{\fact{y_i}} \times \frac{\alpha^\alpha \Theta^{\alpha-1}e^{-\alpha\Theta}}{\Gamma(\alpha)}d\Theta \\
-&= \frac{\alpha^\alpha \lambda^{y_i}}{\Gamma(\alpha)\Gamma(y_i + 1)} \int_0^\infty \Theta^{(y_i + \alpha) - 1}e^{-(\alpha + \lambda_i)\Theta} d\Theta \\
-&= \frac{\alpha^\alpha \lambda^{y_i}}{\Gamma(\alpha)\Gamma(y_i + 1)} \times \frac{\Gamma(y_i+\alpha)}{(\alpha+\lambda_i)^{y_i + \alpha}} \\
-&= \frac{\Gamma(y_i+\alpha)}{\Gamma(\alpha)\Gamma(y_i + 1)} (\frac{\alpha}{\alpha + \lambda_i})^\alpha (\frac{\lambda_i}{\alpha+\lambda_i})^{y_i}
-\end{align*} 
-
-\item $l(\utilde{\beta}) = \sum_{i=1}^n\ln\big(Pr(Y_i = y_i|\utilde{X}{}_i)\big)$
-\item $S(\utilde{\beta}) = \frac{\partial}{\partial\utilde{\beta}} l(\utilde{\beta})$
-\item $I(\utilde{\beta}) = \frac{\partial^2}{\partial\utilde{\beta^2}} l(\utilde{\beta})$
-\item $\hat{\utilde{\beta}}^{(i+1)} = \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)})$
-\end{itemize}
-
-\subsubsection*{Test de surdispersion}
-
-\begin{align*}
-H_0 &: \text{Il n'y a pas de surdispersion, la variance de $Y$ est égale à l'espérance de $Y$.} \\
-H_1 &: \text{Il y a de la surdispersion} \\
-\end{align*}
-
-\begin{align*}
-Var(Y) &= E[Var(Y|\Theta)] + Var(E[Y|\Theta]) \\
-&= E[\lambda\times \Theta] + Var(\lambda\times\Theta) \\
-&= \lambda \times 1 + \lambda^2 \times \frac{1}{\alpha} \\
-&= \lambda \times (1 + \frac{\lambda}{\alpha}) \\
-\end{align*}
-
-\subsubsection*{Procédure}
-\begin{enumerate}
-\item Obtenir $l_{Poisson}(\utilde{\beta})$ avec une régression Poisson.
-\item Obtenir $l_{NB}(\utilde{\beta})$ avec une régression Binomiale négative.
-\item Calculer $\chi_{obs}^2 = 2 \times \big(l_{NB}(\utilde{\beta}) - l_{Poisson}(\utilde{\beta})\big)$
-\item On rejette $H_0$ au niveau de confiance $100 \times (1 0 \alpha)\%$ si 
-$$
-\chi_{obs}^2 \geq \chi_{1 - 2\times \alpha}^2(1)
-$$
-Il s'agit d'un test unilatéral.
-\end{enumerate}
-
-\subsubsection{Loi Gamma}
-Permet de modéliser des cas où $Y$ est continue, mais non-négative.
-
-\begin{itemize}
-\item Fonction de log-vraisemblance
-$$
-f_{Y_i|\utilde{X}{}_i}(y_i) = \frac{\Big(\frac{\alpha}{\mu_i}\Big)^\alpha\times y_i^{\alpha-1}e^{-\Big(\frac{\alpha}{\mu_i}y_i\Big)}}{\Gamma(\alpha)}
-$$
-où
-\begin{align*}
-\ln(\mu_i) &= \utilde{X}\utilde{\beta} \\
-\overset{\text{Lien log}}{\Rightarrow} \mu_i &= e^{\utilde{X}\utilde{\beta}} \\
-\frac{1}{\mu_i} &= \utilde{X}\utilde{\beta}\\
-\overset{\text{Lien inverse}}{\Rightarrow} \mu_i &= \frac{1}{\utilde{X}\utilde{\beta}} \\
-E[Y_i|\utilde{X}{}_i] &= \mu_i \\
-&= g^{-1}(\utilde{X}\utilde{\beta}) \\
-Var(Y_i|\utilde{X}{}_i) & = \frac{\mu_i^2}{\alpha} \\
-\end{align*}
-\item $l(\utilde{\beta}) = \sum_{i=1}^n\ln(f_{Y_i|\utilde{X}{}_i}(y_i))$
-\item $S(\utilde{\beta}) = \frac{\partial}{\partial\utilde{\beta}} l(\utilde{\beta})$
-\item $I(\utilde{\beta}) = \frac{\partial^2}{\partial\utilde{\beta^2}} l(\utilde{\beta})$
-\item $\hat{\utilde{\beta}}^{(i+1)} = \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)})$
-\end{itemize}
-
-\subsection{Algorithme du Scoring}
-L'algorithme de Scoring est un algorithme itératif pour estimer les paramètres. Il peut parfois être une alternative à l'algorithme de Newton-Rahpson. \newline
-
-Pour obtenir l'algorithme du Scoring, il faut simplement remplacer $I(\utilde{\beta})$ par $F(\utilde{\beta})$ dans la formule d'optimisation des paramètres. Ce qui donne la formule suivante :
-$\hat{\utilde{\beta}}^{(i+1)} = \hat{\utilde{\beta}}^{(i)} + F^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)})$
-où
-$$
-F(\utilde{\beta}) = E_Y(I(\utilde{\beta}^{(i)}))
-$$
-
-\subsubsection{Remarque}
-En pratique, il est d'usage d'utiliser cet algorithme pour alléger les formules lorsqu'il reste des termes en $y_i$ dans la matrice $I(\utilde{\beta})$. \newline
-
-Dans le cas de la loi Normale, Logistique et Poisson, il n'y a pas de $y_i$ dans $I(\utilde{\beta})$, mais ce n'est pas le cas avec la loi gamma ou avec la loi géométrie.
-
-\subsubsection{Exemple : Loi géométrique}
-\begin{itemize}
-\item $Pr(Y_i = y_i |\utilde{X}{}_i) = P_i^{y_i-1} \times (1 - P_i); y_i \in \{1,2,... \}$
-\item Fonction de lien $g(x) = \ln(x-1)$
-\begin{align*}
-\ln(E[Y_i|\utilde{X}{}_i] - 1) &= \utilde{X}{}_i\beta \\
-E[Y_i|\utilde{X}{}_i] -1 &= e^{\utilde{X}{}_i\beta} \\
-E[Y_i|\utilde{X}{}_i]  &= 1 + e^{\utilde{X}{}_i\beta}  \\
-\frac{1}{1 - P_i} &= 1 + e^{\utilde{X}{}_i\beta} \\
-1 - P_i &= \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \\
-P_i &= \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}
-\end{align*}
-
-\item Fonction de log-vraisemblance
-\begin{align*}
-l(\utilde{\beta}) &= \sum_{i=1}^n\ln\Big(Pr(Y_i|\utilde{X}{}_i)\Big) \\
-&= \sum_{i=1}^n\Bigg\lbrace(y_i - 1) \ln(P_i) + \ln(1 - P_i) \Bigg\rbrace\\
-&= \sum_{i=1}^n\Bigg\lbrace(y_i - 1) \ln\bigg(\frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}\bigg) + \ln\bigg(\frac{1}{1 + e^{\utilde{X}{}_i\beta}}\bigg) \Bigg\rbrace\\
-&= \sum_{i=1}^n\Bigg\lbrace(y_i - 1) \bigg[\utilde{X}{}_i\beta - \ln(1 + e^{\utilde{X}{}_i\beta})\bigg] - \ln(1 + e^{\utilde{X}{}_i\beta}) \Bigg\rbrace\\
-&= \sum_{i=1}^n\Bigg\lbrace(y_i - 1) \utilde{X}{}_i\beta -  y_i\times\ln(1 + e^{\utilde{X}{}_i\beta}) \Bigg\rbrace\\
-\end{align*}
-\item Vecteur Score
-\begin{align*}
-[S(\hat{\utilde{\beta}})]_j &= \frac{\partial}{\partial\utilde{\beta}} l(\utilde{\beta}) \\
-&= \sum_{i=1}^n \Bigg\lbrace  (y_i - 1)X_{i,j} - y_iX_{i,j} \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}\Bigg\rbrace\\
-&= ... \\
-&= \sum_{i=1}^n \Bigg\lbrace \frac{y_i}{1 + e^{\utilde{X}{}_i\beta}}\Bigg\rbrace \times X_{i,j}\\
-\end{align*}
-\item Matrice d'information de Fisher
-\begin{align*}
-I(\utilde{\beta}) &= \frac{\partial^2}{\partial\utilde{\beta^2}} l(\utilde{\beta}) \\
-&= -\frac{\partial}{\partial\beta_k} \bigg( \frac{\partial}{\partial\beta_j} l(\beta)\bigg) \\ 
-&= -\frac{\partial}{\partial\beta_k} [S(\beta)]_j \\
-&=  \sum_{i=1}^n\bigg\lbrace y_i \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace
-\end{align*}
-On remarque qu'il y a des $y_i$ dans la matrice d'information de Fisher.
-\item Matrice F
-\begin{align*}
-[F(\beta)]_{j,k} &= E_Y\bigg[ [I(\utilde{\beta})]_{j,k}\bigg] \\
-&= E_Y\Bigg[ \sum_{i=1}^n\bigg\lbrace y_i \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace \Bigg]\\
-&= \sum_{i=1}^n \bigg\lbrace E[y_i|\utilde{X}{}_i] \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
-&= \sum_{i=1}^n \bigg\lbrace \frac{1}{1-P_i} \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
-&= \sum_{i=1}^n \bigg\lbrace (1 + e^{\utilde{X}{}_i\beta}) \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
-&= \sum_{i=1}^n \bigg\lbrace \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}  \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
-&= \sum_{i=1}^nX_{i,j}\times W_i \times X_{i,k}
-\end{align*}
-Cette expression est plus simple, car elle n'est pas fonction des $Y_i$.  On peut donc réécrire $F(\utilde{\beta})$ comme suit :
-$$
-F(\utilde{\beta}) = \mathbb{X}^\intercal \mathbb{W}\mathbb{X}
-$$
-où $\mathbb{W}$ corresponds à la matrice suivante:
-\begin{align*}
-\begin{bmatrix}
-w_1 & 0 & \cdots & 0 \\
-0 & w_2 & \cdots & 0 \\
-0 & 0 & \cdots & 0 \\
-\vdots&\vdots& \vdots & \vdots \\
-0 & 0 & \cdots & w_n \\
-\end{bmatrix}_{n \times n}
-\end{align*}
-\end{itemize}
-
-\subsection{Variable offset}
-Il s'agit d'une variable explicative dont le $\beta$ est d'une valeur unitaire. 
-
-\subsubsection{Utilisation en actuariat}
-On utilise les variables offset pour effectuer la modélisation de la fréquence des sinistres à partir de la loi Poisson.
-
-\subsubsection{Exemple}
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-$i$ & $U_i$ & $N_i$ & $X_{i,1}$ & $X_{i,2}$ & $\cdots$ & $X_{i,p}$ \\
-\hline
-1 & 0.5 & 1 & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
-2 & 1.0 & 2 & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
-3 & 1.0 & 0 & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
-4 & 0.25 & 1 & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
-5 & 0.05 & 0 & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
-\hline
-\end{tabular}
-\end{center}
-\begin{itemize}
-\item $U_i$ : L'exposition au risque. Autrement dit, la portion d'une année ou l'assuré $i$ a détenu une police en vigueur.
-\item $N_i$ : Le nombre de sinistres de l'assuré $i$.
-\end{itemize}
-
-\subsubsection*{Le modèle GLM}
-\begin{align*}
-(N_i |U_i, \utilde{X}{}_i) &\sim \text{Poisson}(\lambda_i) \\
-\lambda_i &= U_i \times e^{X_i\beta}
-\end{align*}
-
-\subsubsection*{Idée sous-jacente à ce modèle}
-Un assuré qui a détenu une police en vigueur pendant quelques jours a considérablement moins de chances d'avoir des sinistres qu'un assuré qui a conservé sa police en vigueur pendant toute l'année.
-
-\subsubsection*{Interprétation}
-\begin{itemize}
-\item $\lambda_i = U_i \times e^{\utilde{X}{}_i\beta}$ : Nombre de sinistres espérés  pour l'assuré $i$.
-\item $\frac{\lambda_i}{U_i} = e^{\utilde{X}{}_i\beta}$ : Fréquence de sinistre espéré pour l'assuré $i$.
-\end{itemize}
-\subsubsection*{Variable offset}
-\begin{align*}
-\lambda_i &= U_i \times e^{X_i\beta} \\
-&= e^{\ln(U_i)} \times e^{\beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}} \\
-&= e^{\ln(U_i) + \beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}} \\
-\end{align*}
-En posant, $0_i = \ln(U_i)$, alors on a que :
-\begin{align*}
-\lambda_i &= e^{1 \times 0_i + \beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}} \\
-\end{align*}
-Ici, $0_i$ est la variable offset.
-
-\subsection{Ajout d'une interaction entre deux variables explicatives}
-Si on pense que l'effet combiné de deux variables explicatives doit être différent de l'addition des effets individuels de ces deux variables, on utilise une variable d'interaction.
-
-\subsubsection{Exemple}
-\begin{itemize}
-\item $Y$ : Le coût d'assurance d'une auto
-\item $X_1$ : Âge de l'assuré au carré
-\item $X_2$ : Indicateur que l'assuré est un homme
-\end{itemize}
-
-En pratique, on observe souvent cette tendance suivante :
-
-%% figure interaction
-\includegraphics{notes_de_cours-044}
-
-Or, il est impossible d'obtenir le graphique précédent avec une structure linéaire de la forme :
-$$
-\beta_0 + \beta_1X_1 + \beta_2X_2
-$$
-Car le $\beta_2$ ne fait qu'induire un effet de translation sur les courbes sans jouer sur l'amplitude :
-
-%% figure translation
-\includegraphics{notes_de_cours-045}
-
-Qui correspond à la fonction suivante:
-
-\begin{align*}
-g(E[Y|\utilde{X}{}_i]) &= 
-\left \lbrace
-     \begin{array}{rl}
-     \beta_0 + \beta_1X_1 &, \text{si une femme} \\
-     (\beta_0 + \beta_2) + \beta_1X_1 &, \text{si un homme}
-     \end{array}
-     \right.
-\end{align*}
-
-Pour permettre à l'amplitude de varier selon le sexe, il faut ajouter une interaction à la structure linéaire précédente, soit:
-\begin{align*}
-\beta_0  + \beta_1X_1 &+ \beta_2X_2 + \underbrace{\beta_3\times X_1 \times X_2} \\
-&\text{Partie d'interaction entre $X_1$ et $X_2$}
-\end{align*}
-
-Ainsi,
-\begin{align*}
-g(E[Y|\utilde{X}{}_i]) &= 
-\left \lbrace
-     \begin{array}{rl}
-     \beta_0 + \beta_1X_1 &, \text{si une femme} \\
-     (\beta_0 + \beta_2) + (\beta_1 + \beta_3)X_1 &, \text{si un homme}
-     \end{array}
-     \right.
-\end{align*}
-\subsubsection{Remarque importante}
-Tout comme le traitement des variables non numériques, l'ajout d'une interaction ne nécessite que de modifier la matrice schéma $\mathbb{X}$ et le vecteur $\utilde{\beta}$.
-
-\subsubsection*{Sans interaction}
-\begin{align*}
-\mathbb{X}
-=
-\bordermatrix { 
-& &  X_1  & X_2 \cr 
-& 1 & 60 & 0 \cr 
-& 1 & 30 & 1 \cr 
-& \vdots & \vdots & \vdots \cr 
-}
-\end{align*}
-$$ 
-\utilde{\beta} = 
-\begin{bmatrix}
-  \beta_0 \\
-  \beta_1 \\
-  \beta_2 \\
-\end{bmatrix} 
-$$
-
-\subsubsection*{Avec interaction}
-\begin{align*}
-\mathbb{X}
-=
-\bordermatrix { 
-& &  X_1  & X_2 & X_3 = X1 \times X_2 \cr 
-& 1 & 60 & 0 & 0 \cr 
-& 1 & 30 & 1 & 30\cr 
-& \vdots & \vdots & \vdots & \vdots \cr 
-}
-\end{align*}
-$$ 
-\utilde{\beta} = 
-\begin{bmatrix}
-  \beta_0 \\
-  \beta_1 \\
-  \beta_2 \\
-  \beta_3 \\
-\end{bmatrix} 
-$$
-
-\subsection{Analyse des résidus}
-Toute la théorie introduite au chapitre 3 reste valide pour les GLM à l'exception du fait qu'il soit nécessaire de définir un résidu plus général.
-
-\subsubsection{Résidus de la déviance}
-$$
-\hat{\varepsilon}_D = signe(y_i - \hat{\mu_i}) \times \sqrt{2 \times \big( l(\utilde{y}, \utilde{y})_i - l(\utilde{y}, \utilde{\mu})_i \big)}
-$$
-
-
-%%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-
-\appendix
-
-\chapter{Code source de l'exemple du chapitre 3}
-\label{codesour:chap3}
-(Section \ref{ex:chapitre3})
-
-\begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
-\begin{Schunk}
-\begin{Sinput}
-> # Import data
-> data <- read.csv('data/Titanic/train.csv', stringsAsFactors = T)
-> summary(data)
-> # Ajout de la variable nom de famille
-> data$Surname <- as.factor(sapply(as.character(data$Name),  
-+                        function(x) strsplit(x, split = '[,]')[[1]][1]))
-> # Modele de regression stepwise
-> fit <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname, data), direction = "both")
-> fit
-> # Q-Q plot 
-> plot(fit, which=2)
-> # Ajout de la variable Log - Fare
-> data$LogFare <- log(data$Fare)
-> data$LogFare[data$LogFare == -Inf] <- 0
-> fitL <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname + LogFare, data), direction = "both")
-> fitL
-> # Import data
-> dataTest <- read.csv('data/Titanic/test.csv', stringsAsFactors = T)
-> head(predict(fitL, dataTest))
+> # Graphe des residus
+> plot(residuals(fit), main = "Résidus")
 \end{Sinput}
 \end{Schunk}
-\end{lstlisting}
+\includegraphics{notes_de_cours-042}
 
-\end{document}
+\bigskip
+On peut conclure que notre modèle prédit assez bien l'âge, par contre pour des valeurs extrêmes notre prédiction est moins précise. \newline
+
+On va maintenant tester une variable modifier pour tenter d'améliorer notre modèle, le log-Fare. En appliquant un log à une valeur numérique, on réduit l'échelle d'écart entre les variables et certaines peuvent mieux prédire après avoir être transformées.
+
