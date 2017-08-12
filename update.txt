@@ -1,6 +1,1 @@
-surface grise section 2.1.2 découpage de surface.
-vérifier exponentielle ca forme
-\sim symbol à corriger dans les outputs de code
-
-\displaystyle
 

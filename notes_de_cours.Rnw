@@ -32,14 +32,11 @@
   %% no indent
   \setlength{\parindent}{0pt}
   \frenchbsetup{StandardItemLabels=true} % pour obtenir des puces par défaut dans les listes à puces A.B.
-  %% for moreInfo    
+  %% for moreInfo 
   \usepackage{fontawesome} %%also cool logo
   \usepackage[framemethod=TikZ]{mdframed}
   %% set lenght figure
   \setlength{\abovecaptionskip}{5pt}
-  %%abstract
-  \usepackage{epigraph}
-  \usepackage{actuarialsymbol}
   %% background code chunk listing
   \lstset{
 	language=R,
@@ -81,7 +78,7 @@ $\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern1.0pt\nointerlineskip}
 $\hfil\tilde{}\hfil$\crcr\noalign{\kern1.0pt}}}}}
 
 % Creation of environment to add additional informations
-% Provided from Samuel Cabral Cruz
+% Provided by Samuel Cabral Cruz
 \mdfsetup{
 	linewidth=2pt,
 	nobreak=true,
@@ -128,8 +125,6 @@ $\hfil\tilde{}\hfil$\crcr\noalign{\kern1.0pt}}}}}
 %%%%license %%%%%
 \include{section/license}
 \pagebreak
-%%%%%%% Abstract %%%%%%%
-\include{section/abstract}
 
 %%%%Remerciements %%%%%
 \include{section/remerciements}
@@ -140,7 +135,7 @@ $\hfil\tilde{}\hfil$\crcr\noalign{\kern1.0pt}}}}}
 
 %%%%%% Content %%%%%%%%
 
-%%%%%%% Chapitre 1 %%%%%%%%
+%%%%%%%%%%%%%%% Chapitre 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Introduction}
 L'établissement de prévisions joue un rôle central dans notre vie de tous les jours (prévisions météorologiques, horoscope, etc.), et plus particulièrement dans celle des actuaires.
 
@@ -296,7 +291,7 @@ On cherche à prédire l'âge d'un cerisier noir en fonction de la hauteur du ce
 \end{center}
 
 %% fig 1 multilinear regression
-<<eval = TRUE, echo=FALSE, fig=TRUE , height=5,width=5>>=
+<<eval = TRUE, echo=FALSE, fig=TRUE , height=7, width=8>>=
 library(scatterplot3d)
 # Dataset 
 dataTrees <- subset(trees, select = c(Girth, Height))
@@ -305,25 +300,26 @@ dataTrees$Age <- rgamma(length(dataTrees$Girth),1, 9)
 # Le modele
 resul <- lm(Age ~ Girth + Height, dataTrees)
 
+# Modification affichage des graphiques
+par(mfrow = c(1,2))
+
+## Vue 1
 # Affichage des points en 3D
 fig <- scatterplot3d(dataTrees, type = "h", color = "blue",
-                     angle=55, pch = 16, main = "Âge prédit d'un cerisier noir")
+                     angle=55, pch = 16, main = "Âge prédit d'un cerisier noir \n Vue 1")
 
 # Surface de régression
-fig$plane3d(resul)
-@
+fig$plane3d(resul, draw_polygon = TRUE)
 
-Voici la régression sous un autre angle.
-%% fig 2
-<<eval = TRUE, echo=FALSE, fig=TRUE, height=5,width=5>>=
-# Même graphe mais angle différent
+## Vue 2
 # Affichage des points en 3D
 fig <- scatterplot3d(dataTrees, type = "h", color = "blue",
-                     angle=-55, pch = 16, main = "Âge prédit d'un cerisier noir")
+                     angle=-55, pch = 16, main = "Âge prédit d'un cerisier noir \n Vue 2")
 
 # Surface de régression
-fig$plane3d(resul)
+fig$plane3d(resul, draw_polygon = TRUE)
 @
+
 
 \subsection{Régression exponentielle}
 On cherche à prédire la sévérité d'un sinistre automobile en fonction du temps à l'aide du modèle exponentiel suivant,
@@ -343,7 +339,7 @@ On cherche à prédire la sévérité d'un sinistre automobile en fonction du te
 \end{center}
 
 %% Figure modèle exponentiel
-<<eval = TRUE, echo=FALSE, fig=TRUE, height=3.5,width=5>>=
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=4.5,width=5>>=
 # Les donnees simulees
 beta <- 0.051
 n <- 100
@@ -388,7 +384,7 @@ On cherche à prédire la sévérité d'un sinistre automobile en fonction du te
 \end{center}
 
 %% Graphe modèle quadratique
-<<eval = TRUE, echo=FALSE, fig=TRUE, height=3.5,width=5>>=
+<<eval = TRUE, echo=FALSE, fig=TRUE, height=4.5,width=5>>=
 # Affichage des donnees
 plot(temp$x, temp$y, xlab = "Temps", ylab = "Sévérité des sinistres", main = "Modèle de prédiction de la sévérité des sinistres" )
 
@@ -439,11 +435,14 @@ Quel type d'erreur est suffisante pour déterminer $\varepsilon$ ?
 \begin{equation}
 \displaystyle\sum_{t=1}^n \varepsilon_t = \displaystyle\sum_{t=1}^n \Big( Y_t - (\beta_0 + \beta_1\times X_t) \Big) 
 \end{equation}
+
+\bigskip
 \begin{itemize}
 \item Facile à mettre à 0
 \item Manque de fiabilité à cause de la mise à zéro
 \end{itemize}
 
+\bigskip
 %% Graphe modèle quadratique
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=6,width=7.5>>=
 # Les donnees simulees
@@ -474,6 +473,8 @@ lines(temp$x, predict(mod, list(x = temp$x)), col = "red2")
 \begin{equation}
 \displaystyle\sum_{t=1}^n |\varepsilon_t| = \displaystyle\sum_{t=1}^n \Big| Y_t - (\beta_0 + \beta_1\times X_t) \Big| 
 \end{equation}
+
+\bigskip
 \begin{itemize}
 \item Très robuste
 \item Très compliquée mathématiquement, pour minimiser $\displaystyle\displaystyle\sum_{t=1}^n |\varepsilon_t|$ cela implique de dériver la fonction.
@@ -483,6 +484,8 @@ lines(temp$x, predict(mod, list(x = temp$x)), col = "red2")
 \begin{equation}
 \displaystyle\sum_{t=1}^n \varepsilon_t^2 = \displaystyle\sum_{t=1}^n \Big[ Y_t - (\beta_0 + \beta_1\times X_t) \Big]^2 
 \end{equation}
+
+\bigskip
 \begin{itemize}
 \item Mathématiquement plus simple que l'erreur absolue
 \item Donne beaucoup de poids aux grandes erreurs
@@ -561,6 +564,7 @@ En réorganisant, on retrouve l'équation \ref{eq:simple}.
 
 On doit maintenant trouver les paramètres $\beta_0$ et $\beta_1$ de manière à minimiser l'erreur $\varepsilon_t$.
 
+\bigskip
 Si $\varepsilon_t$ est minimal, cela veut dire que $Y_t \approx \beta_0 + \beta_1\times X_t$. Ce qui signifie que la droite de régression est une bonne approximation de $Y_t$.
 
 \begin{moreInfo}{\emph{En résumé}}
@@ -711,11 +715,11 @@ abline(resul, col="red2", lwd = 1.5)
 points(xbarre, ybarre, pch = 20)
 segments(xbarre, ybarre,  xbarre, 0, col = "gray8")
 segments(xbarre, ybarre,  0, ybarre, col = "gray8")
-# Affichage varepsilone 7
-text( x = xbarre, y = 0, col = "blue", labels = "XBarre", pos = 3, cex = 1)
+# Affichage xbarre
+text(x = xbarre, y = 0, col = "blue", labels = expression(bar(X)), pos = 3, cex = 1)
 
-# Affichage varepsilone 17
-text( x = 3, y = ybarre + 2, col = "blue", labels = "YBarre", pos = 4, cex = 1)
+# Affichage ybarre
+text( x = 3, y = ybarre + 2, col = "blue", labels = expression(bar(Y)), pos = 4, cex = 1)
 @
 
 \item La somme des résidus de tout modèle de régression linéaire est nulle.
@@ -817,6 +821,7 @@ Totaux : & 274 & 151 \\
 & \approx 2.6647
 \end{align*}
 
+\bigskip
 On obtient ainsi le modèle de régression suivant :
 \begin{align*}
 Y_t &= 2.6647 + 0.2399X_t + \varepsilon_t
@@ -914,9 +919,9 @@ On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikiped
 On rappelle qu'un estimateur est dit sans biais lorsque son espérance est égale à la valeur vraie du paramètre, soit $E[\hat{\theta}] = \theta \Leftrightarrow b(\hat{\theta}) = 0$ \footnote{Notes de cours ACT-2000, chapitre 3, Thomas Landry, Hiver 2017.}.
 
 \begin{align*}
-E[\hat{\beta}_1] &= E \Bigg[ \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg] \\
-&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})E[Y_t - \overline{Y}]}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
-&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+E[\hat{\beta}_1] &= E \Bigg[ \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg] \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})E[Y_t - \overline{Y}]}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 \end{align*}
 De l'équation \ref{eq:simple}, et avec le postulat \ref{post1}, on sait que,
 
@@ -928,10 +933,12 @@ E[Y_t] &= E[\beta_0 + \beta_1\times X_t] + E[\varepsilon_t] \\
 On applique le même raisonnement pour l'espérance de $\overline{Y}$. 
 
 \begin{align*}
-E[\hat{\beta}_1] &= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
-&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})(\beta_0 + \beta_1\times X_t - \beta_0 - \beta_1\overline{X_t})}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
-&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})\beta_1 (X_t - \overline{X_t})}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
-&= \beta_1 \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+E[\hat{\beta}_1] &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(\beta_0 + \beta_1\times X_t - \beta_0 - \beta_1\overline{X_t})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+\end{align*}
+\begin{align*}
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})\beta_1 (X_t - \overline{X_t})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \beta_1 \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 E[\hat{\beta}_1] &= \beta_1
 \end{align*}
 \bigskip
@@ -950,11 +957,14 @@ On peut ainsi conclure que les deux estimateurs des paramètres sont sans biais.
 On s'intéresse aux variances et aux covariances des estimateurs, cette deuxième propriété ainsi que la première nous permettera de déduire une conclusion en lien avec le quatrième postulat.
 
 \begin{align*}
-Var(\hat{\beta}_1) &= Var\Bigg( \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg)\\
-&= \frac{Var\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t - \displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X} \big)\overline{Y}\big)}{\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
-&= \frac{Var\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t\big) + Var\big(\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})\overline{Y}\big)}{\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
-&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 Var(Y_t) + Var\big(\overline{Y}(n\overline{X}- n\overline{X})\big)}{\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
-&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 Var(\beta_0 + \beta_1X_t + \varepsilon_t) + 0}{\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+Var(\hat{\beta}_1) &= Var\Bigg( \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg)\\
+&= \frac{Var\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t - \displaystyle\sum_{t=1}^n(X_t- \overline{X} \big)\overline{Y}\big)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
+\end{align*}
+
+\begin{align*}
+&= \frac{Var\big( \displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t\big) + Var\big(\displaystyle\sum_{t=1}^n(X_t- \overline{X})\overline{Y}\big)}{\bigg( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 Var(Y_t) + Var\big(\overline{Y}(n\overline{X}- n\overline{X})\big)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 Var(\beta_0 + \beta_1X_t + \varepsilon_t) + 0}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 \end{align*}
 
 \begin{center}
@@ -972,27 +982,27 @@ Var(\hat{\beta}_1) &= Var\Bigg( \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t
 \end{center}
 
 \begin{align*}
-&= \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 Var(\varepsilon_t)}{\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
-& \overset{\ref{post2}}{=} \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 \sigma^2}{\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \big)^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 Var(\varepsilon_t)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
+& \overset{\ref{post2}}{=} \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 \sigma^2}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 \end{align*}
 
 \begin{equation}
 \label{eq:varbeta1}
 \color{blue}
 \boxed{\color{black}
-Var(\hat{\beta_1}) = \frac{\sigma^2}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2}}
+Var(\hat{\beta_1}) = \frac{\sigma^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2}}
 \end{equation}
 
 \begin{align*}
 Var(\hat{\beta}_0) &= Var(\overline{Y} - \hat{\beta}_1\overline{X})\\
 &= Var(\overline{Y}) + Var(\hat{\beta}_1\overline{X}) -  2 Cov(\overline{Y}, \hat{\beta}_1\overline{X}) \\
-&= Var\Big(\frac{\displaystyle\displaystyle\sum_{t=1}^n Y_t}{n} \Big) + \overline{X}^2 Var(\hat{\beta}_1) -  2 \overline{X} Cov(\overline{Y}, \hat{\beta}_1) \\
-&= \frac{n \times Var(Y_t)}{n^2}  + \overline{X}^2 \Bigg(\frac{\sigma^2}{\displaystyle\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg) -  2 \overline{X} Cov(\overline{Y}, \hat{\beta}_1) \\
+&= Var\Bigg(\frac{\sum_{t=1}^n Y_t}{n} \Bigg) + \overline{X}^2 Var(\hat{\beta}_1) -  2 \overline{X} Cov(\overline{Y}, \hat{\beta}_1) \\
+&= \frac{n \times Var(Y_t)}{n^2}  + \overline{X}^2 \Bigg(\frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg) -  2 \overline{X} Cov(\overline{Y}, \hat{\beta}_1) \\
 \end{align*}
 
 \begin{align*}
-Cov(\overline{Y}, \hat{\beta}_1) &= Cov \Bigg( \frac{\displaystyle\displaystyle\sum_{t=1}^n Y_t}{n}, \frac{\displaystyle\displaystyle\sum_{s=1}^n(X_s- \overline{X})(Y_s - \overline{Y})}{\displaystyle\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg) \\
-&= \frac{1}{n}\frac{1}{\displaystyle\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} Cov\Bigg(\displaystyle\displaystyle\sum_{t=1}^n Y_t, \displaystyle\displaystyle\sum_{s=1}^n(X_s- \overline{X})Y_s - \overline{Y}\displaystyle\displaystyle\sum_{s=1}^n(X_s- \overline{X}) \Bigg) \\
+Cov(\overline{Y}, \hat{\beta}_1) &= Cov \Bigg( \frac{\displaystyle\sum_{t=1}^n Y_t}{n}, \frac{\displaystyle\sum_{s=1}^n(X_s- \overline{X})(Y_s - \overline{Y})}{\displaystyle\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg) \\
+&= \frac{1}{n}\frac{1}{\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} Cov\Bigg(\displaystyle\sum_{t=1}^n Y_t, \displaystyle\sum_{s=1}^n(X_s- \overline{X})Y_s - \overline{Y}\displaystyle\sum_{s=1}^n(X_s- \overline{X}) \Bigg) \\
 &= \frac{1}{n}\frac{1}{\displaystyle\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \displaystyle\sum_{t=1}^n \displaystyle\sum_{s=1}^n (X_s- \overline{X}) Cov(Y_t, Y_s) \\
 &= \frac{1}{n}\frac{1}{\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg( \mathop{\displaystyle\sum_{t=1}^n \displaystyle\sum_{s=1}^n}_{:t \neq s} (X_s- \overline{X}) \times 0 + \mathop{\displaystyle\sum_{t=1}^n \displaystyle\sum_{s=1}^n}_{:t = s} (X_s- \overline{X}) \sigma^2 \Bigg) \\
 &= \frac{1}{n}\frac{1}{\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2}\sigma^2 \bigg( \displaystyle\sum_{t=1}^n (X_t - \overline{X}) \bigg) \\
@@ -1527,7 +1537,9 @@ Pour tester la question \ref{hyp1} :
 \begin{align*}
 H_0 &: \beta_0 = 0 \\
 H_1 &: \beta_0 \neq 0 \\
-&\text{On utilise la statistique suivante, } \\
+\end{align*}
+On utilise la statistique suivante,
+\begin{align*}
 t &= \frac{\hat{\beta}_0 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_0)}}
 \end{align*}
 
@@ -1536,7 +1548,9 @@ Pour tester la question  \ref{hyp2} :
 \begin{align*}
 H_0 &: \beta_1 = 0 \\
 H_1 &: \beta_1 \neq 0 \\
-&\text{On utilise la statistique suivante, } \\
+\end{align*}
+On utilise la statistique suivante,
+\begin{align*}
 t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}}
 \end{align*}
 
@@ -1578,7 +1592,9 @@ Pour tester la question \ref{hyp1} :
 \begin{align*}
 H_0 &: \beta_0 = \beta_0^* \\
 H_1 &: \beta_0 \neq \beta_0^* \\
-&\text{On utilise la statistique suivante, } \\
+\end{align*}
+On utilise la statistique suivante,
+\begin{align*}
 t &= \frac{\hat{\beta}_0 - \beta_0^* }{\sqrt{\widehat{Var}(\hat{\beta}_0)}}
 \end{align*}
 
@@ -1587,7 +1603,9 @@ Pour tester la question  \ref{hyp2} :
 \begin{align*}
 H_0 &: \beta_1 = \beta_1^* \\
 H_1 &: \beta_1 \neq \beta_1^* \\
-&\text{On utilise la statistique suivante, } \\
+\end{align*}
+On utilise la statistique suivante,
+\begin{align*}
 t &= \frac{\hat{\beta}_1 - \beta_1^* }{\sqrt{\widehat{Var}(\hat{\beta}_1)}}
 \end{align*}
 
@@ -1626,7 +1644,9 @@ Tester si $\beta_0$ est significativement différent de 0 à un taux de confianc
 \begin{align*}
 H_0 &: \beta_0 = 0 \text{ Hypothèse nulle} \\
 H_1 &: \beta_0 \neq 0 \\
-&\text{On utilise la statistique suivante, } \\
+\end{align*}
+On utilise la statistique suivante,
+\begin{align*}
 t &= \frac{\hat{\beta}_0 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_0)}} \\
 &= \frac{68.494 - 0}{\sqrt{66.8511}}\\
 &= 8.38\\
@@ -1640,13 +1660,15 @@ Tester si $\beta_1$ est significativement différent de 0 à un taux de confianc
 \begin{align*}
 H_0 &: \beta_1 = 0\\
 H_1 &: \beta_1 \neq 0 \\
-&\text{On utilise la statistique suivante, } \\
+\end{align*}
+On utilise la statistique suivante,
+\begin{align*}
 t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}} \\
 &= \frac{-0.468 - 0}{\sqrt{0.0237}}\\
 &= -3.040\\
 t_{\frac{0.05}{2}(14-2)} &= 2.18\\
 \end{align*}
-Étant donné que $|-3.040| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, il y a 96 \% de chance que la régression soit utile.
+Étant donné que $|-3.040| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, il y a 95 \% de chance que la régression soit utile.
 
 \subsubsection*{Question 2}
 Tester si $\beta_1$ est significativement différent de 0 à un taux de confiance de 95 \%.
@@ -1654,7 +1676,9 @@ Tester si $\beta_1$ est significativement différent de 0 à un taux de confianc
 \begin{align*}
 H_0 &: \beta_1 = 0\\
 H_1 &: \beta_1 \neq 0 \\
-&\text{On utilise la statistique suivante, } \\
+\end{align*}
+On utilise la statistique suivante,
+\begin{align*}
 t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}} \\
 &= \frac{-0.468 - 0}{\sqrt{0.0237}}\\
 &= -3.040\\
@@ -1668,7 +1692,9 @@ Tester si $\beta_1$ est significativement négatif à un taux de confiance de 95
 \begin{align*}
 H_0 &: \beta_1 = 0\\
 H_1 &: \beta_1 < 0 \\
-&\text{On utilise la statistique suivante, } \\
+\end{align*}
+On utilise la statistique suivante,
+\begin{align*}
 t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}} \\
 &= \frac{-0.468 - 0}{\sqrt{0.0237}} \\
 &= -3.040 \\
@@ -1725,11 +1751,14 @@ Une régression linéaire simple est valide, ou significative si $\beta_1 \neq 0
 \begin{align*}
 H_0 &: \beta_1 = 0\\
 H_1 &: \beta_1 < 0 \\
-&\text{avec la statistique de Fisher, } \\
+\end{align*}
+avec la statistique de Fisher,
+\begin{align*}
 F &= \frac{MSR}{MSE} \\
 &= \frac{\frac{SSR}{1}}{\frac{SSE}{(n-2)}} \\
 \end{align*}
-Sous $H_0$, on a que $F \sim F(1, n-2)$. \\
+Sous $H_0$, on a que $F \sim F(1, n-2)$. \newline
+
 On rejette donc $H_0$ au niveau $100 \times (1 - \alpha) \%$ si
 \begin{equation}
 \label{eq:fisher}
@@ -1801,6 +1830,7 @@ E[\hat{\beta}_0 +  \hat{\beta}_1X^*] &= E[\hat{\beta}_0] + E[\hat{\beta}_1]X^* \
 &= \beta_0 +  \beta_1X^*
 \end{align*}
 \item Il y a deux sources d'erreur dans les prévisions,
+\bigskip
 \begin{itemize}
 \item Parameter risk : Incertitude sur les estimateurs. Autrement dit, la variance des estimateurs des paramètres.
 
@@ -1837,7 +1867,10 @@ p <- p + annotate("segment", x=8.75, xend=8.75, y=12.5, yend=13.75,
 p <- p + xlab("Parameter risk")
 p
 @
+
+\bigskip
 \item Process risk : Fluctuations autour de la droite de régression. Autrement dit, la variance des résidus.
+\bigskip
 
 %% Figure process risk
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=3,width=4>>=
@@ -2074,6 +2107,7 @@ predict(fit, interval = "prediction", newdata = xStar) # I.C. pour un vecteur de
 \end{lstlisting}
 \bigskip
 
+%%%%%%%%%%%%%%% Chapitre 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Régression linéaire multiple}
 Il n'est pas rare que plus d'une variable soit nécessaire pour expliquer un phénomène. 
 Tel que vu à la section \ref{ex:multiple}, voici un autre exemple de modèle de régression multiple :
@@ -2570,7 +2604,9 @@ Dans le cas de la régression multiple, on teste
 \begin{align*}
 H_0 &: \beta_1 = \beta_2 = ... = \beta_p = 0 \\
 H_1 &: \text{Au moins un coefficient parmi $\beta_1,...,\beta_p$ est $\neq 0$.} \\
-&\text{On teste l'hypothèse à l'aide de la statistique suivante, } \\
+\end{align*}
+On teste l'hypothèse à l'aide de la statistique suivante, \\
+\begin{align*}
 F &= \frac{MSR}{MSE} \sim F(\text{d.l. de SSR, d.l. de SSE}) \\
 F &= \frac{MSR}{MSE} \sim F(p, n - (p+1)) \\
 \end{align*}
@@ -2689,6 +2725,7 @@ Si on dispose de $X_1, X_2$ et $X_3$, on ajuste les $2^3$ modèles possibles :
 \item $Y = \beta_0 + \beta_1X_2 + \beta_2X_3 + \varepsilon$
 \item $Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \beta_3X_3 + \varepsilon$
 \end{enumerate}
+\bigskip
 On fait le calcul du $R^2_{adj}$ pour chaque modèle et on choisit le modèle avec le plus grand $R^2_{adj}$.
 
 \subsubsection*{Remarque}
@@ -2913,7 +2950,7 @@ step(lm(mpg~wt+drat+disp+qsec+hp,data=mtcars),direction="both")
 \end{lstlisting}
 
 \begin{moreInfo}{\emph{Technique de sélection \& \emph{R}}}
-	Toutes les techniques présentées à la section \ref{sec:optimal} sont intégrées dans le système de base de \emph{R}. Cette \href{https://cran.r-project.org/web/packages/olsrr/vignettes/variable_selection.html}{vignette} sur la sélection des variables comprend les différentes méthodes ainsi que des exemples utiles
+	Toutes les techniques présentées à la section \ref{sec:optimal} sont intégrées dans le système de base de \emph{R}. Cette \href{https://cran.r-project.org/web/packages/olsrr/vignettes/variable_selection.html}{vignette} sur la sélection des variables comprend les différentes méthodes ainsi que des exemples utiles.
 \end{moreInfo}
 
 \section{Régression avec variables indicatrices}
@@ -3180,17 +3217,10 @@ L'étape suivante consiste à analyser notre jeu de donnée et de retirer les va
 data <- read.csv('data/Titanic/train.csv', stringsAsFactors = T)
 summary(data)
 @
-\bigskip
-On peut aussi observer le comportement de la variable âge avec les différentes variables explicatives.
-<<>>=
-# Visualisation des variables en fct de l'âge
-par(mfrow = c(2,2))
-plot(Age ~ Survived + Pclass + Sex + Fare + Embarked + Fare, data)
-@
 
-
+On remarque que certaines variables ne sont d'aucun intérêt pour estimer l'âge d'un passager, tel que :
 \bigskip
-Certaines variables ne sont d'aucun intérêt pour estimer l'âge d'un passager, tel que :
+
 \begin{itemize}
 \item \emph{PassengerId}, car il s'agit d'un numéro unique pour chaque passager. (Max. : 891 pour 891 observations)
 \item \emph{Name}, dans son état actuel le nom du passager n'est pas très utile, car il s'agit d'observation unique.
@@ -3199,9 +3229,24 @@ Certaines variables ne sont d'aucun intérêt pour estimer l'âge d'un passager,
 \end{itemize}
 
 \bigskip
+On peut aussi observer le comportement de la variable âge avec les différentes variables explicatives.
+<<eval = FALSE>>=
+# Visualisation des variables en fct de l'âge
+plot(Age ~ Survived + Pclass + Sex + Fare + Embarked + Fare, data)
+@
+
+\bigskip
+%%% Figures des variables en fct de l'âge
+<<fig  = TRUE, echo = FALSE, width=5, height=7>>=
+# Visualisation des variables en fct de l'âge
+par(mfrow = c(3,2))
+plot(Age ~ Survived + Pclass + Sex + Fare + Embarked, data)
+@
+\bigskip
+
 On cherche maintenant à transformer une donnée pour en tirer de l'information. On observe que le nom du passager est unique dans son format actuel, mais avec un peu de manipulation de donnée, il est très facile d'extraire son nom de famille.
 
-<<echo = FALSE >>=
+<<echo = FALSE>>=
 data$Surname <- as.factor(sapply(as.character(data$Name),  
                        function(x) strsplit(x, split = '[,]')[[1]][1]))
 @
@@ -3218,49 +3263,59 @@ On obtient ainsi le modèle complet suivant :
 
 On peut maintenant trouver le meilleur modèle,
 
-<<>>=
+<<echo = FALSE>>=
 fit <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname, data), 
             direction = "both")
 fit
 @
 
 \bigskip
-On observe que le Q-Q plot suivant pour le modèle,
+Voici le Q-Q plot ainsi que le graphique de la réparitition des résidus.
+\bigskip
 
-<<fig = TRUE>>=
+<<echo = FALSE, fig = TRUE, height= 5>>=
+par(mfrow = c(1,2))
+
 # Q-Q plot 
 plot(fit, which=2)
-@
 
-De plus, on observe une répartition uniforme des résidus,
-
-<<fig = TRUE>>=
 # Graphe des residus
 plot(residuals(fit), main = "Résidus")
 @
 
 \bigskip
-On peut conclure que notre modèle prédit assez bien l'âge, par contre pour des valeurs extrêmes notre prédiction est moins précise. \newline
+On observe que la droite du Q-Q plot est à $45^\circ$ et que les résidus suivent une répartition Normale. De plus, on observe une répartition uniforme des résidus. \newline
 
-On va maintenant tester une variable modifier pour tenter d'améliorer notre modèle, le log-Fare. En appliquant un log à une valeur numérique, on réduit l'échelle d'écart entre les variables et certaines peuvent mieux prédire après avoir être transformées.
+On peut conclure que notre modèle prédit assez bien l'âge, par contre pour des valeurs extrêmes notre modèle est moins précis. \newline
 
-<<echo=FALSE, fig = TRUE>>=
+On va maintenant tester une variable modifier pour tenter d'améliorer notre modèle, il s'agit de la variable le log-Fare. En appliquant un log à une valeur numérique, on réduit l'échelle entre les variables. 
+
+\begin{moreInfo}{\emph{Modification des données}}
+      La modification des données permet de mieux répondre aux postulats de la régression multiple, en particulier le postulat \ref{post4}. Permettant ainsi d'avoir un modèle plus solide et théoriquement viable.
+      
+      Parmi les différentes modifications couramment utilisées, il y a entre autres le \emph{Log-Variable}, le \emph{Carré-variable} et le \emph{Cube-variable}.
+\end{moreInfo}
+
+<<echo=FALSE>>=
 data$LogFare <- log(data$Fare)
 data$LogFare[data$LogFare == -Inf] <- 0
+
+# Nouveau modele
 fitL <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname + LogFare, data), direction = "both")
 fitL
-plot(fitL, which=2)
 @
 
-<<fig = TRUE>>=
+<<echo = FALSE, fig = TRUE>>=
+par(mfrow = c(1,2))
+
 # Graphe des residus
+plot(fitL, which=2)
 plot(residuals(fitL), main = "Résidus")
 @
 
-
 On obtient une légère amélioration de notre modèle et on retient ce modèle. \newline
 
-On cherche maintenant à prédire à partir d'un autre échantillon des données.
+On cherche maintenant à prédire les âges des passagers à partir d'un second échantillon de donnée.
 <<echo = FALSE>>=
 # Import data
 dataTest <- read.csv('data/Titanic/test.csv', stringsAsFactors = T)
@@ -3282,6 +3337,7 @@ head(predict(fitL, dataTest))
       Des méthodes plus \href{https://fr.wikipedia.org/wiki/Validation_croisée}{élaborée} et complexe existent pour les données massives et l'apprentissage automatique.
 \end{moreInfo}
 
+%%%%%%%%%%%%%%% Chapitre 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Les modèles linéaires généralisés}
 \section{Introduction}
 Le modèle de régression linéaire multiple étudié lors des derniers chapitres peut parfois avoir certaines limitations : 
@@ -3858,14 +3914,14 @@ S(\utilde{\beta}) &= \frac{\partial}{\partial\beta_j} l(\beta) \\
 &= X_j^\intercal(Y - M(\utilde{X}{}_i\utilde{\beta}))
 \end{align*}
 où $M(\utilde{X}{}_i\utilde{\beta})$ correspond à 
-$$
+\begin{align*}
 M(\utilde{X}{}_i\utilde{\beta}) =
 \begin{bmatrix}
   \frac{e^{\utilde{X_1}\utilde{\beta}}}{1 + e^{\utilde{X_1}\utilde{\beta}}}\\
   \vdots \\
   \frac{e^{\utilde{X}{}_n\utilde{\beta}}}{1 + e^{\utilde{X}{}_n\utilde{\beta}}}\\ 
 \end{bmatrix} 
-$$
+\end{align*}
 Ainsi, on déduit que
 \begin{equation}
 \label{eq:logits}
@@ -3893,10 +3949,14 @@ $$
 \frac{e^{\utilde{X}{}_i\utilde{\beta}}}{\bigg(1 + e^{\utilde{X}{}_i\utilde{\beta}}\bigg)^2}
 $$
 
+\bigskip
 Ainsi, on arrive à la déduction que
 \begin{align*}
 I(\utilde{\beta}) &= \mathbb{X}^\intercal \mathbb{W} \mathbb{X} \\
-&\text{avec,} \\
+\end{align*}
+avec,
+
+\begin{align*}
 \mathbb{W} &= 
 \begin{bmatrix}
 w_1 & 0 & \cdots & 0 \\
@@ -3918,6 +3978,8 @@ En appliquant maintenant l'algorithme de Newton-Raphson (section \ref{sec:newton
 &\ \ \ \ \ \ \ \ \ \text{\ \ \ $Z^{(i)}$: transformation sur $Y$}
 \end{align*}
 
+On obtient ainsi l'algorithme suivant :
+\bigskip
 \begin{equation}
 \label{eq:logbeta}
 \color{blue}
@@ -3925,13 +3987,17 @@ En appliquant maintenant l'algorithme de Newton-Raphson (section \ref{sec:newton
 \hat{\utilde{\beta}}^{(i+1)} = (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{W}Z^{(i)}
 }
 \end{equation}
+
+\bigskip
 \subsubsection{Remarque}
 L'algorithme itératif permettant d'obtenir l'estimateur de $\hat{\beta}$ peut être vu comme une succession d'estimations de régressions linéaires de $\utilde{Z}^{(i)}$ sur $\utilde{X}$, pondérés par $\utilde{W}$.
 
 \subsection{Formule de déviance-régression logistique}
 \begin{align*}
 D(\utilde{\beta}) &= 2 \times \displaystyle\sum_{i=1}^n \Big\lbrace y_i \times \ln\bigg( \frac{y_i}{\pi_i}\bigg) + (1 -y_i) \times\ln\bigg( \frac{1 - y_i}{1 - \pi_i}\bigg) \Big\rbrace \\
-&\text{où,} \\
+\end{align*}
+où, 
+\begin{align*}
 \pi_i &= \frac{e^{X_i\beta}}{1+e^{X_i\beta}}
 \end{align*}
 
@@ -3946,9 +4012,37 @@ On obtient ainsi l'intervalle de confiance suivant au niveau $100 \times (1 - \a
 \label{eq:IClog}
 \color{blue}
 \boxed{\color{black}
-\hat{\beta_i} = Z_{1 - \frac{\alpha}{2}} \times \sqrt{[(\mathbb{X}^\intercal\mathbb{W}\mathbb{X})^{-1}]_{(i+1) \times (i+1)}}
+\hat{\beta_i} = Z_{1 - \frac{\alpha}{2}} \times \sqrt{\big[(\mathbb{X}^\intercal\mathbb{W}\mathbb{X})^{-1}\big]_{(i+1) \times (i+1)}}
 }
 \end{equation}
+
+\subsubsection*{Illustration d'un GLM}
+
+Voici une représentation d'un modèle linéaire, d'un GLM logistique et d'un GLM probit\footnote{Il s'agit d'un exemple tiré des notes de cours de modèle linéaire à l'automne 2014 donné et rédigé par Marie-Pier Côté.}. Les trois modèles tentent de modéliser la probabilité de bris simultané des six joints d'étanchéité selon la température sur les navettes spatiales. Cet exemple permet de bien visualisé la différence entre un modèle linéaire et un GLM. 
+
+<<echo=FALSE, fig = TRUE>>=
+#
+# Code source tiré des notes de cours de modèle linéaire automne 2014 de Marie-Pier Côté.
+#
+library(faraway)
+data(orings)
+## Graphique
+plot(damage/6~temp, orings, xlim=c(20,85), ylim = c(0,1),xlab="Temperature", ylab="Prob de bris",pch=19)
+
+## Modèle linéaire
+lmod <- lm(damage/6~temp, orings)
+abline(lmod,lwd=2)
+
+## GLM avec lien logistique
+logitmod <- glm(cbind(damage,6-damage)~temp, family=binomial, orings)
+x <- seq(20,85,1)
+lines(x,ilogit(coef(logitmod)[1]+coef(logitmod)[2]*x),lty=2,lwd=2, col = "Red")
+
+## GLM avec lien probit
+probitmod <- glm(cbind(damage,6-damage)~temp,family=binomial(link=probit), orings)
+lines(x,pnorm(coef(probitmod)[1]+coef(probitmod)[2]*x),lty=3,lwd=2, col = "Blue")
+legend(20,0.4,c("Linear","Logit","Probit"),lty=c(1:3),lwd=rep(2,3), col = c("Black", "Red", "Blue"))
+@
 
 \section{Régression de Poisson}
 \label{sec:poisson}
@@ -3965,9 +4059,13 @@ Phénomène ou la varaible aléatoire $Y$ est positive et discrète $(Y_i \in \{
 Dans ce cas, on postule que,
 \begin{align*}
 (Y_i|\utilde{X}{}_i) &\sim \text{Poisson}(\lambda_i) \\
-&\text{Où, } \\
+\end{align*}
+Où
+\begin{align*}
 \lambda_i &= E[Y_i|\utilde{X}{}_i] \\
-&\text{avec, } \\
+\end{align*}
+avec,
+\begin{align*}
 g(\lambda_i) &= \utilde{X}{}_i\utilde{\beta} \\
 \end{align*}
 Puisque $\lambda_i \in [0, \infty[$ est non négatif et que $\utilde{X}{}_i\utilde{\beta} \in \mathbb{R}$, il faut utiliser une fonction $g(\bullet)$ telle que :
@@ -4058,7 +4156,7 @@ On cherche l'élément $(j,k)$ de cette matrice, soit:
 \end{align*}
 où $W_i$ correspond à
 $$
-e^{\utilde{X}{}_i\utilde{\beta}}
+\displaystyle{e^{\utilde{X}{}_i\utilde{\beta}}}
 $$
 
 Ainsi, on arrive à la déduction que
@@ -4086,6 +4184,7 @@ $$
 \hat{\utilde{\beta}}^{(i+1)} = (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{W}\mathbb{Z}^{(i)}
 $$
 où $\mathbb{Z}^{(i)} = \mathbb{X}\hat{\beta}^{(i)} + \mathbb{W}^{-1}(\mathbb{Y} - M(\utilde{X},\utilde{\beta})$
+
 
 \section{Autres notions importantes avec les GLM}
 \subsection{Autres distributions}
@@ -4237,6 +4336,8 @@ On remarque qu'il y a des $y_i$ dans la matrice d'information de Fisher.
 &= \displaystyle\sum_{i=1}^n \bigg\lbrace \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}  \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
 &= \displaystyle\sum_{i=1}^nX_{i,j}\times W_i \times X_{i,k}
 \end{align*}
+\bigskip
+
 Cette expression est plus simple, car elle n'est pas fonction des $Y_i$.  On peut donc réécrire $F(\utilde{\beta})$ comme suit :
 $$
 F(\utilde{\beta}) = \mathbb{X}^\intercal \mathbb{W}\mathbb{X}
@@ -4448,44 +4549,59 @@ $$
 \hat{\varepsilon}_D = signe(y_i - \hat{\mu_i}) \times \sqrt{2 \times \big( l(\utilde{y}, \utilde{y})_i - l(\utilde{y}, \utilde{\mu})_i \big)}
 $$
 
+%%%%%%%%%%%%%%% Chapitre 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
 \appendix
 
-\chapter{Code source exemple chapitre 3}
-\label{codesour:chap3}
-(Section \ref{ex:chapitre3})
+\chapter{Code source }
+\label{codesource}
 
+\section{Exemple du chapitre 3}
+\label{codesour:chap3}
+
+Voici le code source de l'exemple à la section \ref{ex:chapitre3}.
+
+\bigskip
 \begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
 <<eval =FALSE>>=
 # Import data
 data <- read.csv('data/Titanic/train.csv', stringsAsFactors = T)
 summary(data)
 
+# Visualisation des variables en fct de l'age
+par(mfrow = c(3,2))
+plot(Age ~ Survived + Pclass + Sex + Fare + Embarked + Fare, data)
+
 # Ajout de la variable nom de famille
 data$Surname <- as.factor(sapply(as.character(data$Name),  
                        function(x) strsplit(x, split = '[,]')[[1]][1]))
 
+# Visualiser les 6 premieres observations par categorie
+head(summary(data$Surname))
+
 # Modele de regression stepwise
-fit <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname, data), direction = "both")
+fit <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname, data), 
+            direction = "both")
 fit
+
+# Q-Q plot 
+par(mfrow = c(1,2))
+plot(fit, which=2)
 
 # Graphe des residus
 plot(residuals(fit), main = "Residus")
 
-# Q-Q plot 
-plot(fit, which=2)
-
 # Ajout de la variable Log - Fare
 data$LogFare <- log(data$Fare)
 data$LogFare[data$LogFare == -Inf] <- 0
+
+# Nouveau modele
 fitL <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname + LogFare, data), direction = "both")
 fitL
-
-# Graphe des residus
-plot(residuals(fitL), main = "Residus")
 
 # Import data
 dataTest <- read.csv('data/Titanic/test.csv', stringsAsFactors = T)

@@ -1,10 +1,10 @@
 \select@language {french}
 \select@language {french}
-\contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.1}
-\contentsline {chapter}{\numberline {2}R\IeC {\'e}gression lin\IeC {\'e}aire simple}{6}{chapter.2}
-\contentsline {section}{\numberline {2.1}Introduction}{6}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Regression lin\IeC {\'e}aire simple}{7}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}R\IeC {\'e}gression lin\IeC {\'e}aire multiple}{7}{subsection.2.1.2}
+\contentsline {chapter}{\numberline {1}Introduction}{6}{chapter.1}
+\contentsline {chapter}{\numberline {2}R\IeC {\'e}gression lin\IeC {\'e}aire simple}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Introduction}{7}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Regression lin\IeC {\'e}aire simple}{8}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}R\IeC {\'e}gression lin\IeC {\'e}aire multiple}{8}{subsection.2.1.2}
 \contentsline {subsection}{\numberline {2.1.3}R\IeC {\'e}gression exponentielle}{9}{subsection.2.1.3}
 \contentsline {subsubsection}{\numberline {2.1.3.1}Note}{10}{subsubsection.2.1.3.1}
 \contentsline {subsection}{\numberline {2.1.4}R\IeC {\'e}gression quadratique}{10}{subsection.2.1.4}
@@ -23,106 +23,107 @@
 \contentsline {section}{\numberline {2.3}Propri\IeC {\'e}t\IeC {\'e}s de l'estimateur des moindres carr\IeC {\'e}s (EMC)}{23}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Estimateur sans biais}{23}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Variances et covariances des estimateurs}{25}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Optimalit\IeC {\'e}}{29}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.3}Optimalit\IeC {\'e}}{28}{subsection.2.3.3}
 \contentsline {section}{\numberline {2.4}R\IeC {\'e}gression passant par l'origine}{29}{section.2.4}
 \contentsline {section}{\numberline {2.5}Analyse de la variance}{31}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Notions pr\IeC {\'e}liminaires : Somme des carr\IeC {\'e}s}{33}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}Notions pr\IeC {\'e}liminaires : Degr\IeC {\'e}s de libert\IeC {\'e}}{36}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}Tableau d'analyse de la variance}{37}{subsection.2.5.3}
-\contentsline {section}{\numberline {2.6}Intervalles de confiance (I.C.) et test d'hypoth\IeC {\`e}ses}{38}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}Distribution des variables al\IeC {\'e}atoires}{38}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Intervalle de confiance pour $\beta _1$}{39}{subsection.2.6.2}
-\contentsline {subsection}{\numberline {2.6.3}Intervalle de confiance pour $\beta _0$}{40}{subsection.2.6.3}
-\contentsline {subsection}{\numberline {2.6.4}Tests d'hypoth\IeC {\`e}ses sur les param\IeC {\`e}tres}{41}{subsection.2.6.4}
-\contentsline {subsection}{\numberline {2.6.5}Test de la validit\IeC {\'e} globale de la r\IeC {\'e}gression}{46}{subsection.2.6.5}
-\contentsline {section}{\numberline {2.7}Pr\IeC {\'e}visions et intervalles de confiance}{48}{section.2.7}
-\contentsline {subsection}{\numberline {2.7.1}I.C. pour la pr\IeC {\'e}vision de type I (Valeur moyenne)}{50}{subsection.2.7.1}
-\contentsline {subsection}{\numberline {2.7.2}I.C. pour la pr\IeC {\'e}vision de type II (Vraie valeur)}{52}{subsection.2.7.2}
-\contentsline {chapter}{\numberline {3}R\IeC {\'e}gression lin\IeC {\'e}aire multiple}{55}{chapter.3}
-\contentsline {section}{\numberline {3.1}Le mod\IeC {\`e}le sous forme matricielle}{57}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Estimateur des moindres carr\IeC {\'e}s (EMC)}{59}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}R\IeC {\'e}sidus et tableau ANOVA}{62}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Estimateur de $\sigma ^2$}{63}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}Intervalles de confiance et tests d'hypoth\IeC {\`e}ses}{63}{subsection.3.1.4}
-\contentsline {subsection}{\numberline {3.1.5}Test de Student sur un seul param\IeC {\`e}tre}{64}{subsection.3.1.5}
-\contentsline {subsection}{\numberline {3.1.6}Test de Fisher pour la validit\IeC {\'e} globale de la r\IeC {\'e}gression}{65}{subsection.3.1.6}
-\contentsline {subsection}{\numberline {3.1.7}Test de Fisher partiel}{65}{subsection.3.1.7}
-\contentsline {section}{\numberline {3.2}S\IeC {\'e}lection d'un mod\IeC {\`e}le optimal}{66}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Technique 1: Essai de tous les mod\IeC {\`e}les}{67}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Technique 2 : \IeC {\'E}limination r\IeC {\'e}gressive (\emph {Backward elimination})}{68}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Technique 3 : S\IeC {\'e}lection progressive (\emph {forward selection})}{69}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}Technique 4 : R\IeC {\'e}gression pas-\IeC {\`a}-pas (\emph {stepwise regression})}{69}{subsection.3.2.4}
-\contentsline {section}{\numberline {3.3}R\IeC {\'e}gression avec variables indicatrices}{73}{section.3.3}
-\contentsline {section}{\numberline {3.4}Analyse qualitative des r\IeC {\'e}sidus}{75}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Probl\IeC {\`e}mes possibles dans la distribution des r\IeC {\'e}sidus}{75}{subsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.1.1}Distribution \emph {uniforme} avec rotation}{75}{subsubsection.3.4.1.1}
-\contentsline {subsubsection}{\numberline {3.4.1.2}Distribution \emph {quadratique}}{76}{subsubsection.3.4.1.2}
-\contentsline {subsubsection}{\numberline {3.4.1.3}Distribution \emph {conique}}{77}{subsubsection.3.4.1.3}
-\contentsline {subsection}{\numberline {3.4.2}Quantiles normaux}{77}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Exemple complet}{78}{subsection.3.4.3}
-\contentsline {chapter}{\numberline {4}Les mod\IeC {\`e}les lin\IeC {\'e}aires g\IeC {\'e}n\IeC {\'e}ralis\IeC {\'e}s}{88}{chapter.4}
-\contentsline {section}{\numberline {4.1}Introduction}{88}{section.4.1}
-\contentsline {section}{\numberline {4.2}Notions pr\IeC {\'e}liminaires : La famille exponentielle}{89}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Loi Normale}{89}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Loi Poisson}{90}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Loi Bernouilli}{90}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Autres lois}{91}{subsection.4.2.4}
-\contentsline {section}{\numberline {4.3}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s sur les mod\IeC {\`e}les de r\IeC {\'e}gression avec la famille exponentielle}{91}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Contexte}{91}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Autres lois}{91}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Structure du mod\IeC {\`e}le}{91}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Propri\IeC {\'e}t\IeC {\'e} de la fonction de lien}{92}{subsection.4.3.4}
-\contentsline {subsubsection}{\numberline {4.3.4.1}Domaine de $g(\bullet )$}{92}{subsubsection.4.3.4.1}
-\contentsline {subsubsection}{\numberline {4.3.4.2}Image de $g(\bullet )$}{92}{subsubsection.4.3.4.2}
-\contentsline {subsubsection}{\numberline {4.3.4.3}Conclusion}{92}{subsubsection.4.3.4.3}
-\contentsline {section}{\numberline {4.4}Approche g\IeC {\'e}n\IeC {\'e}rale}{92}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Proc\IeC {\'e}dure avec les GLM}{92}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Estimation des param\IeC {\`e}tres}{93}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Validation globale du mod\IeC {\`e}le avec la \emph {d\IeC {\'e}viance}}{94}{subsection.4.4.3}
-\contentsline {subsubsection}{\numberline {4.4.3.1}Loi normale}{95}{subsubsection.4.4.3.1}
-\contentsline {subsubsection}{\numberline {4.4.3.2}Loi de Poisson}{96}{subsubsection.4.4.3.2}
-\contentsline {subsubsection}{\numberline {4.4.3.3}Loi binomiale$(m_i, \mu _i)$}{96}{subsubsection.4.4.3.3}
-\contentsline {subsubsection}{\numberline {4.4.3.4}Loi gamma}{96}{subsubsection.4.4.3.4}
-\contentsline {subsubsection}{\numberline {4.4.3.5}Loi inverse Gausienne}{96}{subsubsection.4.4.3.5}
-\contentsline {subsection}{\numberline {4.4.4}Validation locale du mod\IeC {\`e}le avec des tests d'hypoth\IeC {\`e}ses et intervalles de confiances}{96}{subsection.4.4.4}
-\contentsline {subsubsection}{\numberline {4.4.4.1}Test d'hypoth\IeC {\`e}se tr\IeC {\`e}s g\IeC {\'e}n\IeC {\'e}ral}{96}{subsubsection.4.4.4.1}
-\contentsline {subsubsection}{\numberline {4.4.4.2}Intervalles de confiances}{97}{subsubsection.4.4.4.2}
-\contentsline {section}{\numberline {4.5}Mod\IeC {\`e}le de r\IeC {\'e}gression normale}{98}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Conclusion int\IeC {\'e}ressante}{100}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Remarque sur la validation globale et locale du mod\IeC {\`e}le sous la loi Normale}{100}{subsection.4.5.2}
-\contentsline {section}{\numberline {4.6}Mod\IeC {\`e}le de r\IeC {\'e}gression logistique}{101}{section.4.6}
-\contentsline {subsection}{\numberline {4.6.1}Contexte motivant l'utilisation de ce mod\IeC {\`e}le}{101}{subsection.4.6.1}
-\contentsline {subsection}{\numberline {4.6.2}Cons\IeC {\'e}quences}{102}{subsection.4.6.2}
-\contentsline {subsection}{\numberline {4.6.3}Interpr\IeC {\'e}tations}{103}{subsection.4.6.3}
-\contentsline {subsubsection}{\numberline {4.6.3.1}}{103}{subsubsection.4.6.3.1}
-\contentsline {subsubsection}{\numberline {4.6.3.2}}{103}{subsubsection.4.6.3.2}
-\contentsline {subsubsection}{\numberline {4.6.3.3}}{103}{subsubsection.4.6.3.3}
-\contentsline {subsection}{\numberline {4.6.4}Optimisation}{104}{subsection.4.6.4}
-\contentsline {subsubsection}{\numberline {4.6.4.1}Remarque}{106}{subsubsection.4.6.4.1}
-\contentsline {subsection}{\numberline {4.6.5}Formule de d\IeC {\'e}viance-r\IeC {\'e}gression logistique}{107}{subsection.4.6.5}
-\contentsline {subsection}{\numberline {4.6.6}Test d'hypoth\IeC {\`e}se g\IeC {\'e}n\IeC {\'e}ral}{107}{subsection.4.6.6}
-\contentsline {subsection}{\numberline {4.6.7}Intervalle de confiance}{107}{subsection.4.6.7}
-\contentsline {section}{\numberline {4.7}R\IeC {\'e}gression de Poisson}{107}{section.4.7}
-\contentsline {subsection}{\numberline {4.7.1}Contexte motivant l'utilisation de ce mod\IeC {\`e}le}{107}{subsection.4.7.1}
-\contentsline {subsection}{\numberline {4.7.2}Cons\IeC {\'e}quences}{108}{subsection.4.7.2}
-\contentsline {subsection}{\numberline {4.7.3}Interpr\IeC {\'e}tations}{108}{subsection.4.7.3}
-\contentsline {subsubsection}{\numberline {4.7.3.1}}{108}{subsubsection.4.7.3.1}
+\contentsline {subsection}{\numberline {2.5.1}Notions pr\IeC {\'e}liminaires : Somme des carr\IeC {\'e}s}{32}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Notions pr\IeC {\'e}liminaires : Degr\IeC {\'e}s de libert\IeC {\'e}}{35}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Tableau d'analyse de la variance}{36}{subsection.2.5.3}
+\contentsline {section}{\numberline {2.6}Intervalles de confiance (I.C.) et test d'hypoth\IeC {\`e}ses}{37}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Distribution des variables al\IeC {\'e}atoires}{37}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Intervalle de confiance pour $\beta _1$}{38}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}Intervalle de confiance pour $\beta _0$}{39}{subsection.2.6.3}
+\contentsline {subsection}{\numberline {2.6.4}Tests d'hypoth\IeC {\`e}ses sur les param\IeC {\`e}tres}{40}{subsection.2.6.4}
+\contentsline {subsection}{\numberline {2.6.5}Test de la validit\IeC {\'e} globale de la r\IeC {\'e}gression}{45}{subsection.2.6.5}
+\contentsline {section}{\numberline {2.7}Pr\IeC {\'e}visions et intervalles de confiance}{47}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}I.C. pour la pr\IeC {\'e}vision de type I (Valeur moyenne)}{49}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}I.C. pour la pr\IeC {\'e}vision de type II (Vraie valeur)}{51}{subsection.2.7.2}
+\contentsline {chapter}{\numberline {3}R\IeC {\'e}gression lin\IeC {\'e}aire multiple}{54}{chapter.3}
+\contentsline {section}{\numberline {3.1}Le mod\IeC {\`e}le sous forme matricielle}{56}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Estimateur des moindres carr\IeC {\'e}s (EMC)}{58}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}R\IeC {\'e}sidus et tableau ANOVA}{61}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Estimateur de $\sigma ^2$}{62}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Intervalles de confiance et tests d'hypoth\IeC {\`e}ses}{62}{subsection.3.1.4}
+\contentsline {subsection}{\numberline {3.1.5}Test de Student sur un seul param\IeC {\`e}tre}{63}{subsection.3.1.5}
+\contentsline {subsection}{\numberline {3.1.6}Test de Fisher pour la validit\IeC {\'e} globale de la r\IeC {\'e}gression}{64}{subsection.3.1.6}
+\contentsline {subsection}{\numberline {3.1.7}Test de Fisher partiel}{64}{subsection.3.1.7}
+\contentsline {section}{\numberline {3.2}S\IeC {\'e}lection d'un mod\IeC {\`e}le optimal}{65}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Technique 1: Essai de tous les mod\IeC {\`e}les}{66}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Technique 2 : \IeC {\'E}limination r\IeC {\'e}gressive (\emph {Backward elimination})}{67}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Technique 3 : S\IeC {\'e}lection progressive (\emph {forward selection})}{68}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Technique 4 : R\IeC {\'e}gression pas-\IeC {\`a}-pas (\emph {stepwise regression})}{68}{subsection.3.2.4}
+\contentsline {section}{\numberline {3.3}R\IeC {\'e}gression avec variables indicatrices}{72}{section.3.3}
+\contentsline {section}{\numberline {3.4}Analyse qualitative des r\IeC {\'e}sidus}{74}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Probl\IeC {\`e}mes possibles dans la distribution des r\IeC {\'e}sidus}{74}{subsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.1.1}Distribution \emph {uniforme} avec rotation}{74}{subsubsection.3.4.1.1}
+\contentsline {subsubsection}{\numberline {3.4.1.2}Distribution \emph {quadratique}}{75}{subsubsection.3.4.1.2}
+\contentsline {subsubsection}{\numberline {3.4.1.3}Distribution \emph {conique}}{76}{subsubsection.3.4.1.3}
+\contentsline {subsection}{\numberline {3.4.2}Quantiles normaux}{76}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Exemple complet}{77}{subsection.3.4.3}
+\contentsline {chapter}{\numberline {4}Les mod\IeC {\`e}les lin\IeC {\'e}aires g\IeC {\'e}n\IeC {\'e}ralis\IeC {\'e}s}{86}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{86}{section.4.1}
+\contentsline {section}{\numberline {4.2}Notions pr\IeC {\'e}liminaires : La famille exponentielle}{87}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Loi Normale}{87}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Loi Poisson}{88}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Loi Bernouilli}{88}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Autres lois}{89}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}G\IeC {\'e}n\IeC {\'e}ralit\IeC {\'e}s sur les mod\IeC {\`e}les de r\IeC {\'e}gression avec la famille exponentielle}{89}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Contexte}{89}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Autres lois}{89}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Structure du mod\IeC {\`e}le}{89}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Propri\IeC {\'e}t\IeC {\'e} de la fonction de lien}{90}{subsection.4.3.4}
+\contentsline {subsubsection}{\numberline {4.3.4.1}Domaine de $g(\bullet )$}{90}{subsubsection.4.3.4.1}
+\contentsline {subsubsection}{\numberline {4.3.4.2}Image de $g(\bullet )$}{90}{subsubsection.4.3.4.2}
+\contentsline {subsubsection}{\numberline {4.3.4.3}Conclusion}{90}{subsubsection.4.3.4.3}
+\contentsline {section}{\numberline {4.4}Approche g\IeC {\'e}n\IeC {\'e}rale}{90}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Proc\IeC {\'e}dure avec les GLM}{90}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Estimation des param\IeC {\`e}tres}{91}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Validation globale du mod\IeC {\`e}le avec la \emph {d\IeC {\'e}viance}}{92}{subsection.4.4.3}
+\contentsline {subsubsection}{\numberline {4.4.3.1}Loi normale}{93}{subsubsection.4.4.3.1}
+\contentsline {subsubsection}{\numberline {4.4.3.2}Loi de Poisson}{94}{subsubsection.4.4.3.2}
+\contentsline {subsubsection}{\numberline {4.4.3.3}Loi binomiale$(m_i, \mu _i)$}{94}{subsubsection.4.4.3.3}
+\contentsline {subsubsection}{\numberline {4.4.3.4}Loi gamma}{94}{subsubsection.4.4.3.4}
+\contentsline {subsubsection}{\numberline {4.4.3.5}Loi inverse Gausienne}{94}{subsubsection.4.4.3.5}
+\contentsline {subsection}{\numberline {4.4.4}Validation locale du mod\IeC {\`e}le avec des tests d'hypoth\IeC {\`e}ses et intervalles de confiances}{94}{subsection.4.4.4}
+\contentsline {subsubsection}{\numberline {4.4.4.1}Test d'hypoth\IeC {\`e}se tr\IeC {\`e}s g\IeC {\'e}n\IeC {\'e}ral}{94}{subsubsection.4.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.4.2}Intervalles de confiances}{95}{subsubsection.4.4.4.2}
+\contentsline {section}{\numberline {4.5}Mod\IeC {\`e}le de r\IeC {\'e}gression normale}{96}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Conclusion int\IeC {\'e}ressante}{98}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Remarque sur la validation globale et locale du mod\IeC {\`e}le sous la loi Normale}{98}{subsection.4.5.2}
+\contentsline {section}{\numberline {4.6}Mod\IeC {\`e}le de r\IeC {\'e}gression logistique}{99}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Contexte motivant l'utilisation de ce mod\IeC {\`e}le}{99}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}Cons\IeC {\'e}quences}{100}{subsection.4.6.2}
+\contentsline {subsection}{\numberline {4.6.3}Interpr\IeC {\'e}tations}{101}{subsection.4.6.3}
+\contentsline {subsubsection}{\numberline {4.6.3.1}}{101}{subsubsection.4.6.3.1}
+\contentsline {subsubsection}{\numberline {4.6.3.2}}{101}{subsubsection.4.6.3.2}
+\contentsline {subsubsection}{\numberline {4.6.3.3}}{101}{subsubsection.4.6.3.3}
+\contentsline {subsection}{\numberline {4.6.4}Optimisation}{102}{subsection.4.6.4}
+\contentsline {subsubsection}{\numberline {4.6.4.1}Remarque}{105}{subsubsection.4.6.4.1}
+\contentsline {subsection}{\numberline {4.6.5}Formule de d\IeC {\'e}viance-r\IeC {\'e}gression logistique}{105}{subsection.4.6.5}
+\contentsline {subsection}{\numberline {4.6.6}Test d'hypoth\IeC {\`e}se g\IeC {\'e}n\IeC {\'e}ral}{105}{subsection.4.6.6}
+\contentsline {subsection}{\numberline {4.6.7}Intervalle de confiance}{105}{subsection.4.6.7}
+\contentsline {section}{\numberline {4.7}R\IeC {\'e}gression de Poisson}{106}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}Contexte motivant l'utilisation de ce mod\IeC {\`e}le}{106}{subsection.4.7.1}
+\contentsline {subsection}{\numberline {4.7.2}Cons\IeC {\'e}quences}{107}{subsection.4.7.2}
+\contentsline {subsection}{\numberline {4.7.3}Interpr\IeC {\'e}tations}{107}{subsection.4.7.3}
+\contentsline {subsubsection}{\numberline {4.7.3.1}}{107}{subsubsection.4.7.3.1}
 \contentsline {subsubsection}{\numberline {4.7.3.2}}{108}{subsubsection.4.7.3.2}
-\contentsline {subsubsection}{\numberline {4.7.3.3}}{109}{subsubsection.4.7.3.3}
-\contentsline {subsection}{\numberline {4.7.4}Optimisation}{109}{subsection.4.7.4}
-\contentsline {section}{\numberline {4.8}Autres notions importantes avec les GLM}{111}{section.4.8}
-\contentsline {subsection}{\numberline {4.8.1}Autres distributions}{111}{subsection.4.8.1}
-\contentsline {subsubsection}{\numberline {4.8.1.1}Loi Binomiale n\IeC {\'e}gative}{111}{subsubsection.4.8.1.1}
-\contentsline {subsubsection}{\numberline {4.8.1.2}Loi Gamma}{113}{subsubsection.4.8.1.2}
-\contentsline {subsection}{\numberline {4.8.2}Algorithme du Scoring}{114}{subsection.4.8.2}
-\contentsline {subsubsection}{\numberline {4.8.2.1}Remarque}{114}{subsubsection.4.8.2.1}
-\contentsline {subsubsection}{\numberline {4.8.2.2}Exemple : Loi g\IeC {\'e}om\IeC {\'e}trique}{115}{subsubsection.4.8.2.2}
-\contentsline {subsection}{\numberline {4.8.3}Variable offset}{117}{subsection.4.8.3}
+\contentsline {subsubsection}{\numberline {4.7.3.3}}{108}{subsubsection.4.7.3.3}
+\contentsline {subsection}{\numberline {4.7.4}Optimisation}{108}{subsection.4.7.4}
+\contentsline {section}{\numberline {4.8}Autres notions importantes avec les GLM}{110}{section.4.8}
+\contentsline {subsection}{\numberline {4.8.1}Autres distributions}{110}{subsection.4.8.1}
+\contentsline {subsubsection}{\numberline {4.8.1.1}Loi Binomiale n\IeC {\'e}gative}{110}{subsubsection.4.8.1.1}
+\contentsline {subsubsection}{\numberline {4.8.1.2}Loi Gamma}{112}{subsubsection.4.8.1.2}
+\contentsline {subsection}{\numberline {4.8.2}Algorithme du Scoring}{113}{subsection.4.8.2}
+\contentsline {subsubsection}{\numberline {4.8.2.1}Remarque}{113}{subsubsection.4.8.2.1}
+\contentsline {subsubsection}{\numberline {4.8.2.2}Exemple : Loi g\IeC {\'e}om\IeC {\'e}trique}{114}{subsubsection.4.8.2.2}
+\contentsline {subsection}{\numberline {4.8.3}Variable offset}{116}{subsection.4.8.3}
 \contentsline {subsubsection}{\numberline {4.8.3.1}Utilisation en actuariat}{117}{subsubsection.4.8.3.1}
-\contentsline {subsubsection}{\numberline {4.8.3.2}Exemple}{118}{subsubsection.4.8.3.2}
-\contentsline {subsection}{\numberline {4.8.4}Ajout d'une interaction entre deux variables explicatives}{119}{subsection.4.8.4}
-\contentsline {subsubsection}{\numberline {4.8.4.1}Exemple}{119}{subsubsection.4.8.4.1}
-\contentsline {subsubsection}{\numberline {4.8.4.2}Remarque importante}{121}{subsubsection.4.8.4.2}
+\contentsline {subsubsection}{\numberline {4.8.3.2}Exemple}{117}{subsubsection.4.8.3.2}
+\contentsline {subsection}{\numberline {4.8.4}Ajout d'une interaction entre deux variables explicatives}{118}{subsection.4.8.4}
+\contentsline {subsubsection}{\numberline {4.8.4.1}Exemple}{118}{subsubsection.4.8.4.1}
+\contentsline {subsubsection}{\numberline {4.8.4.2}Remarque importante}{120}{subsubsection.4.8.4.2}
 \contentsline {subsection}{\numberline {4.8.5}Analyse des r\IeC {\'e}sidus}{121}{subsection.4.8.5}
 \contentsline {subsubsection}{\numberline {4.8.5.1}R\IeC {\'e}sidus de la d\IeC {\'e}viance}{121}{subsubsection.4.8.5.1}
-\contentsline {chapter}{\numberline {A}Code source exemple chapitre 3}{122}{appendix.A}
+\contentsline {chapter}{\numberline {A}Code source }{122}{appendix.A}
+\contentsline {section}{\numberline {A.1}Exemple du chapitre 3}{122}{section.A.1}
