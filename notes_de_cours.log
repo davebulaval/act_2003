@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.6.27)  11 AUG 2017 19:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.6.27)  13 AUG 2017 12:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1629,14 +1629,14 @@ ut line 248.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
  248.
  [8 <./notes_de_cours-001.pdf>]
-<notes_de_cours-002.pdf, id=538, pagebox=cropbox, 578.16pt x 505.89pt>
+<notes_de_cours-002.pdf, id=539, pagebox=cropbox, 578.16pt x 505.89pt>
 File: notes_de_cours-002.pdf Graphic file (type pdf)
 <use notes_de_cours-002.pdf>
 Package pdftex.def Info: notes_de_cours-002.pdf  used on input line 273. on inp
 ut line 273.
 Package pdftex.def Info: Requested size: 288.0011pt x 251.9949pt on input line 
 273.
-<notes_de_cours-003.pdf, id=539, pagebox=cropbox, 361.35pt x 325.215pt>
+<notes_de_cours-003.pdf, id=540, pagebox=cropbox, 361.35pt x 325.215pt>
 File: notes_de_cours-003.pdf Graphic file (type pdf)
 <use notes_de_cours-003.pdf>
 Package pdftex.def Info: notes_de_cours-003.pdf  used on input line 294. on inp
@@ -1644,7 +1644,7 @@ ut line 294.
 Package pdftex.def Info: Requested size: 288.0011pt x 259.20468pt on input line
  294.
  [9 <./notes_de_cours-002.pdf>]
-<notes_de_cours-004.pdf, id=554, pagebox=cropbox, 361.35pt x 325.215pt>
+<notes_de_cours-004.pdf, id=555, pagebox=cropbox, 361.35pt x 325.215pt>
 File: notes_de_cours-004.pdf Graphic file (type pdf)
 <use notes_de_cours-004.pdf>
 Package pdftex.def Info: notes_de_cours-004.pdf  used on input line 325. on inp
@@ -1657,7 +1657,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 332--334
  []
 
 [11 <./notes_de_cours-004.pdf>]
-<notes_de_cours-005.pdf, id=580, pagebox=cropbox, 542.025pt x 433.62pt>
+<notes_de_cours-005.pdf, id=581, pagebox=cropbox, 542.025pt x 433.62pt>
 File: notes_de_cours-005.pdf Graphic file (type pdf)
 <use notes_de_cours-005.pdf>
 Package pdftex.def Info: notes_de_cours-005.pdf  used on input line 376. on inp
@@ -1672,14 +1672,14 @@ line 476.
 File: ufontawesomeone.fd 2016/05/22 Font definitions for U/fontawesomeone.
 ) [14]
 [15] [16] [17]
-<notes_de_cours-006.pdf, id=654, pagebox=cropbox, 361.35pt x 289.08pt>
+<notes_de_cours-006.pdf, id=655, pagebox=cropbox, 361.35pt x 289.08pt>
 File: notes_de_cours-006.pdf Graphic file (type pdf)
 <use notes_de_cours-006.pdf>
 Package pdftex.def Info: notes_de_cours-006.pdf  used on input line 580. on inp
 ut line 580.
 Package pdftex.def Info: Requested size: 288.0011pt x 230.40416pt on input line
  580.
-<notes_de_cours-007.pdf, id=658, pagebox=cropbox, 361.35pt x 289.08pt>
+<notes_de_cours-007.pdf, id=659, pagebox=cropbox, 361.35pt x 289.08pt>
 File: notes_de_cours-007.pdf Graphic file (type pdf)
 <use notes_de_cours-007.pdf>
 Package pdftex.def Info: notes_de_cours-007.pdf  used on input line 596. on inp
@@ -1694,7 +1694,7 @@ LaTeX Font Info:    Font shape `TS1/aer/bx/n' in size <10> not available
 LaTeX Font Info:    Font shape `TS1/aer/m/n' in size <10.95> not available
 (Font)              Font shape `TS1/cmr/m/n' tried instead on input line 748.
  [22] [23] [24] [25] [26] [27] [28]
-<notes_de_cours-009.pdf, id=774, pagebox=cropbox, 325.215pt x 289.08pt>
+<notes_de_cours-009.pdf, id=776, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-009.pdf Graphic file (type pdf)
 <use notes_de_cours-009.pdf>
 Package pdftex.def Info: notes_de_cours-009.pdf  used on input line 957. on inp
@@ -1702,7 +1702,7 @@ ut line 957.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
  957.
  [29] [30 <./notes_de_cours-009.pdf>]
-<notes_de_cours-011.pdf, id=808, pagebox=cropbox, 469.755pt x 361.35pt>
+<notes_de_cours-011.pdf, id=810, pagebox=cropbox, 469.755pt x 361.35pt>
 File: notes_de_cours-011.pdf Graphic file (type pdf)
 <use notes_de_cours-011.pdf>
 Package pdftex.def Info: notes_de_cours-011.pdf  used on input line 993. on inp
@@ -1714,7 +1714,7 @@ LaTeX Font Info:    Try loading font information for T1+aett on input line 997.
  (c:/texlive/2017/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [31 <./notes_de_cours-011.pdf>] [32]
-<notes_de_cours-013.pdf, id=828, pagebox=cropbox, 325.215pt x 289.08pt>
+<notes_de_cours-013.pdf, id=830, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-013.pdf Graphic file (type pdf)
 <use notes_de_cours-013.pdf>
 Package pdftex.def Info: notes_de_cours-013.pdf  used on input line 1058. on in
@@ -1784,7 +1784,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 1321.
 
 [39]
-<notes_de_cours-015.pdf, id=900, pagebox=cropbox, 325.215pt x 289.08pt>
+<notes_de_cours-015.pdf, id=902, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-015.pdf Graphic file (type pdf)
 <use notes_de_cours-015.pdf>
 Package pdftex.def Info: notes_de_cours-015.pdf  used on input line 1369. on in
@@ -1792,7 +1792,7 @@ put line 1369.
 Package pdftex.def Info: Requested size: 288.0011pt x 256.01883pt on input line
  1369.
  [40] [41 <./notes_de_cours-015.pdf>] [42] [43]
-<notes_de_cours-016.pdf, id=931, pagebox=cropbox, 325.215pt x 289.08pt>
+<notes_de_cours-016.pdf, id=933, pagebox=cropbox, 325.215pt x 289.08pt>
 File: notes_de_cours-016.pdf Graphic file (type pdf)
 <use notes_de_cours-016.pdf>
 Package pdftex.def Info: notes_de_cours-016.pdf  used on input line 1491. on in
@@ -1820,7 +1820,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1569--1570
  []
 
 [46]
-<notes_de_cours-017.pdf, id=956, pagebox=cropbox, 289.08pt x 216.81pt>
+<notes_de_cours-017.pdf, id=958, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-017.pdf Graphic file (type pdf)
 <use notes_de_cours-017.pdf>
 Package pdftex.def Info: notes_de_cours-017.pdf  used on input line 1604. on in
@@ -1828,14 +1828,14 @@ put line 1604.
 Package pdftex.def Info: Requested size: 288.0011pt x 216.01216pt on input line
  1604.
  [47]
-<notes_de_cours-018.pdf, id=964, pagebox=cropbox, 289.08pt x 216.81pt>
+<notes_de_cours-018.pdf, id=966, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-018.pdf Graphic file (type pdf)
 <use notes_de_cours-018.pdf>
 Package pdftex.def Info: notes_de_cours-018.pdf  used on input line 1611. on in
 put line 1611.
 Package pdftex.def Info: Requested size: 288.0011pt x 216.01216pt on input line
  1611.
-<notes_de_cours-019.pdf, id=965, pagebox=cropbox, 289.08pt x 216.81pt>
+<notes_de_cours-019.pdf, id=967, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-019.pdf Graphic file (type pdf)
 <use notes_de_cours-019.pdf>
 Package pdftex.def Info: notes_de_cours-019.pdf  used on input line 1618. on in
@@ -1844,7 +1844,7 @@ Package pdftex.def Info: Requested size: 288.0011pt x 216.01216pt on input line
  1618.
  [48 <./notes_de_cours-017.pdf> <./notes_de_cours-018.pdf>] [49 <./notes_de_cou
 rs-019.pdf>]
-<notes_de_cours-020.pdf, id=994, pagebox=cropbox, 289.08pt x 216.81pt>
+<notes_de_cours-020.pdf, id=996, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-020.pdf Graphic file (type pdf)
 <use notes_de_cours-020.pdf>
 Package pdftex.def Info: notes_de_cours-020.pdf  used on input line 1678. on in
@@ -1940,7 +1940,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2379--2380
  []
 
 [65] [66]
-<notes_de_cours-025.pdf, id=1136, pagebox=cropbox, 361.35pt x 216.81pt>
+<notes_de_cours-025.pdf, id=1138, pagebox=cropbox, 361.35pt x 216.81pt>
 File: notes_de_cours-025.pdf Graphic file (type pdf)
 <use notes_de_cours-025.pdf>
 Package pdftex.def Info: notes_de_cours-025.pdf  used on input line 2452. on in
@@ -1948,14 +1948,14 @@ put line 2452.
 Package pdftex.def Info: Requested size: 288.0011pt x 172.80312pt on input line
  2452.
  [67 <./notes_de_cours-025.pdf>]
-<notes_de_cours-026.pdf, id=1147, pagebox=cropbox, 361.35pt x 216.81pt>
+<notes_de_cours-026.pdf, id=1149, pagebox=cropbox, 361.35pt x 216.81pt>
 File: notes_de_cours-026.pdf Graphic file (type pdf)
 <use notes_de_cours-026.pdf>
 Package pdftex.def Info: notes_de_cours-026.pdf  used on input line 2472. on in
 put line 2472.
 Package pdftex.def Info: Requested size: 288.0011pt x 172.80312pt on input line
  2472.
-<notes_de_cours-027.pdf, id=1150, pagebox=cropbox, 361.35pt x 216.81pt>
+<notes_de_cours-027.pdf, id=1152, pagebox=cropbox, 361.35pt x 216.81pt>
 File: notes_de_cours-027.pdf Graphic file (type pdf)
 <use notes_de_cours-027.pdf>
 Package pdftex.def Info: notes_de_cours-027.pdf  used on input line 2498. on in
@@ -1979,14 +1979,14 @@ Overfull \hbox (17.45792pt too wide) in paragraph at lines 2693--2693
  []
 
 [73]
-<notes_de_cours-030.pdf, id=1196, pagebox=cropbox, 289.08pt x 216.81pt>
+<notes_de_cours-030.pdf, id=1198, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-030.pdf Graphic file (type pdf)
 <use notes_de_cours-030.pdf>
 Package pdftex.def Info: notes_de_cours-030.pdf  used on input line 2726. on in
 put line 2726.
 Package pdftex.def Info: Requested size: 288.0011pt x 216.01216pt on input line
  2726.
-<notes_de_cours-031.pdf, id=1197, pagebox=cropbox, 289.08pt x 216.81pt>
+<notes_de_cours-031.pdf, id=1199, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-031.pdf Graphic file (type pdf)
 <use notes_de_cours-031.pdf>
 Package pdftex.def Info: notes_de_cours-031.pdf  used on input line 2738. on in
@@ -1994,7 +1994,7 @@ put line 2738.
 Package pdftex.def Info: Requested size: 288.0011pt x 216.01216pt on input line
  2738.
  [74 <./notes_de_cours-030.pdf>]
-<notes_de_cours-032.pdf, id=1209, pagebox=cropbox, 289.08pt x 216.81pt>
+<notes_de_cours-032.pdf, id=1211, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-032.pdf Graphic file (type pdf)
 <use notes_de_cours-032.pdf>
 Package pdftex.def Info: notes_de_cours-032.pdf  used on input line 2745. on in
@@ -2002,7 +2002,7 @@ put line 2745.
 Package pdftex.def Info: Requested size: 288.0011pt x 216.01216pt on input line
  2745.
  [75 <./notes_de_cours-031.pdf> <./notes_de_cours-032.pdf>]
-<notes_de_cours-033.pdf, id=1229, pagebox=cropbox, 289.08pt x 216.81pt>
+<notes_de_cours-033.pdf, id=1231, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-033.pdf Graphic file (type pdf)
 <use notes_de_cours-033.pdf>
 Package pdftex.def Info: notes_de_cours-033.pdf  used on input line 2751. on in
@@ -2019,7 +2019,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2756--2757
 
  []
 
-<notes_de_cours-034.pdf, id=1230, pagebox=cropbox, 289.08pt x 216.81pt>
+<notes_de_cours-034.pdf, id=1232, pagebox=cropbox, 289.08pt x 216.81pt>
 File: notes_de_cours-034.pdf Graphic file (type pdf)
 <use notes_de_cours-034.pdf>
 Package pdftex.def Info: notes_de_cours-034.pdf  used on input line 2760. on in
@@ -2056,7 +2056,7 @@ LaTeX Font Info:    Font shape `TS1/aett/m/n' in size <10> not available
 LaTeX Font Info:    Font shape `TS1/aett/m/sl' in size <10> not available
 (Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 2841
 .
-<notes_de_cours-037.pdf, id=1262, pagebox=cropbox, 361.35pt x 505.89pt>
+<notes_de_cours-037.pdf, id=1264, pagebox=cropbox, 361.35pt x 505.89pt>
 File: notes_de_cours-037.pdf Graphic file (type pdf)
 <use notes_de_cours-037.pdf>
 Package pdftex.def Info: notes_de_cours-037.pdf  used on input line 2848. on in
@@ -2069,7 +2069,7 @@ Overfull \hbox (114.8554pt too wide) in paragraph at lines 2868--2868
  []
 
 [80]
-<notes_de_cours-041.pdf, id=1278, pagebox=cropbox, 433.62pt x 361.35pt>
+<notes_de_cours-041.pdf, id=1280, pagebox=cropbox, 433.62pt x 361.35pt>
 File: notes_de_cours-041.pdf Graphic file (type pdf)
 <use notes_de_cours-041.pdf>
 Package pdftex.def Info: notes_de_cours-041.pdf  used on input line 2936. on in
@@ -2087,7 +2087,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2941--2942
  []
 
 [82] [83]
-<notes_de_cours-043.pdf, id=1298, pagebox=cropbox, 433.62pt x 433.62pt>
+<notes_de_cours-043.pdf, id=1300, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-043.pdf Graphic file (type pdf)
 <use notes_de_cours-043.pdf>
 Package pdftex.def Info: notes_de_cours-043.pdf  used on input line 3028. on in
@@ -2179,7 +2179,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3558--3560
  []
 
 [99] [100] [101] [102] [103] [104]
-<notes_de_cours-046.pdf, id=1430, pagebox=cropbox, 433.62pt x 433.62pt>
+<notes_de_cours-046.pdf, id=1432, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-046.pdf Graphic file (type pdf)
 <use notes_de_cours-046.pdf>
 Package pdftex.def Info: notes_de_cours-046.pdf  used on input line 3739. on in
@@ -2198,7 +2198,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3983--3984
  []
 
 [113] [114] [115] [116] [117]
-<notes_de_cours-047.pdf, id=1511, pagebox=cropbox, 433.62pt x 433.62pt>
+<notes_de_cours-047.pdf, id=1513, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-047.pdf Graphic file (type pdf)
 <use notes_de_cours-047.pdf>
 Package pdftex.def Info: notes_de_cours-047.pdf  used on input line 4115. on in
@@ -2206,7 +2206,7 @@ put line 4115.
 Package pdftex.def Info: Requested size: 288.0011pt x 288.01624pt on input line
  4115.
  [118]
-<notes_de_cours-048.pdf, id=1517, pagebox=cropbox, 433.62pt x 433.62pt>
+<notes_de_cours-048.pdf, id=1519, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-048.pdf Graphic file (type pdf)
 <use notes_de_cours-048.pdf>
 Package pdftex.def Info: notes_de_cours-048.pdf  used on input line 4124. on in
@@ -2278,10 +2278,10 @@ rm0900.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb
 ><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb><c:/texli
 ve/2017/texmf-dist/fonts/type1/public/cm-super/sfst1000.pfb><c:/texlive/2017/te
 xmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on notes_de_cours.pdf (124 pages, 1121105 bytes).
+Output written on notes_de_cours.pdf (124 pages, 1121213 bytes).
 PDF statistics:
- 1796 PDF objects out of 2073 (max. 8388607)
- 1534 compressed objects within 16 object streams
+ 1798 PDF objects out of 2073 (max. 8388607)
+ 1536 compressed objects within 16 object streams
  435 named destinations out of 1000 (max. 500000)
  891 words of extra memory for PDF output out of 10000 (max. 10000000)
 

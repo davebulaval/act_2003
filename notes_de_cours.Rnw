@@ -261,11 +261,11 @@ abline(resul, col="red2", lwd = 1.5)
 epsi <- c(7, 17)
 segments(data$Fare[epsi], data$Age[epsi],  data$Fare[epsi], resul$coefficients[1] + resul$coefficients[2]* data$Fare[epsi], col = "gray8")
 
-# Affichage varepsilone 7
-text( x = (data$Fare[7] + data$Fare[7]) / 2, y = (data$Age[7] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[7]) / 2, col = "gray8", labels = "epsilone_7", pos = 4, cex = 1)
+# Affichage epsilon 7
+text( x = (data$Fare[7] + data$Fare[7]) / 2, y = (data$Age[7] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[7]) / 2, col = "gray8", labels = expression(epsilon[7]), pos = 4, cex = 1)
 
-# Affichage varepsilone 17
-text( x = (data$Fare[17] + data$Fare[17]) / 2, y = (data$Age[17] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[17]) / 2, col = "gray8", labels = "epsilone_17", pos = 4, cex = 1)
+# Affichage epsilon 17
+text( x = (data$Fare[17] + data$Fare[17]) / 2, y = (data$Age[17] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[17]) / 2, col = "gray8", labels = expression(epsilon[17]), pos = 4, cex = 1)
 @
 
 \subsection{Régression linéaire multiple}
@@ -682,11 +682,11 @@ abline(resul, col="red2", lwd = 1.5)
 epsi <- c(7, 17)
 segments(data$Fare[epsi], data$Age[epsi],  data$Fare[epsi], resul$coefficients[1] + resul$coefficients[2]* data$Fare[epsi], col = "gray8")
 
-# Affichage varepsilone 7
-text( x = (data$Fare[7] + data$Fare[7]) / 2, y = (data$Age[7] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[7]) / 2, col = "gray8", labels = "epsilone_7", pos = 4, cex = 1)
+# Affichage epsilon 7
+text( x = (data$Fare[7] + data$Fare[7]) / 2, y = (data$Age[7] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[7]) / 2, col = "gray8", labels = expression(epsilon[7]), pos = 4, cex = 1)
 
-# Affichage varepsilone 17
-text( x = (data$Fare[17] + data$Fare[17]) / 2, y = (data$Age[17] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[17]) / 2, col = "gray8", labels = "epsilone_17", pos = 4, cex = 1)
+# Affichage epsilon 17
+text( x = (data$Fare[17] + data$Fare[17]) / 2, y = (data$Age[17] +  resul$coefficients[1] + resul$coefficients[2]* data$Fare[17]) / 2, col = "gray8", labels = expression(epsilon[17]), pos = 4, cex = 1)
 @
 
 \item Le \emph{centre de gravité}\footnote{Qu'on appelle parfois le centre de masse.} des données $(\overline{X}, \overline{Y})$ se trouvent exactement sur la droite de régression.
@@ -1144,7 +1144,7 @@ y <- c(1.99, 2.1, 1.9, 2, 2.1, 1.9, 2.1, 2, 2, 2)
 par(mfrow = c(1,2))
 
 resul <- lm(y ~x)
-plot(x, y, xlab = "X_t", ylab = "Y_t", main = "Échantillon 1")
+plot(x, y, xlab = expression(X[t]), ylab = expression(Y[t]), main = "Échantillon 1")
 abline(resul, col="red2", lwd = 1.5)
 
 # Exemple de bonne explication
@@ -1152,7 +1152,7 @@ x2 <- seq(0, 9, 1)
 y2 <- seq(0, 9, 1)
 
 resul2 <- lm(y2 ~ x2)
-plot(x2, y2, xlab = "X_t", ylab = "Y_t", main = "Échantillon 2")
+plot(x2, y2, xlab = expression(X[t]), ylab = expression(Y[t]), main = "Échantillon 2")
 abline(resul2, col="red2", lwd = 1.5)
 @
 
