@@ -245,7 +245,7 @@ On cherche à prédire l'âge des passagers du Titanic selon le prix du billet �
 
 %% Graphe modèle linéaire simple
 <<eval = TRUE, echo=FALSE, fig=TRUE, height=4,width=4.5>>=
-path <- paste(getwd(),"..",sep = "/")
+setwd("~/GitHub/act_2003")
 data <- read.csv('data/Titanic/train.csv', stringsAsFactors = T)
 
 n <- 25

@@ -1,4 +1,11 @@
+#
+# Code pour la modification du dataset Test
+# Ajout de l'état de survie, LogFare et Surname
+#
+
+
 # Modification du dataset Test
+setwd("~/GitHub/act_2003")
 dataTest <- read.csv('data/Titanic/test.csv', stringsAsFactors = T)
 
 # Ajout surnom

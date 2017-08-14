@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.6.27)  13 AUG 2017 12:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.7.10)  14 AUG 2017 16:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./notes_de_cours.tex
 (./notes_de_cours.tex
 LaTeX2e <2017-04-15>
-Babel <3.11> and hyphenation patterns for 84 language(s) loaded.
+Babel <3.12> and hyphenation patterns for 84 language(s) loaded.
 (c:/texlive/2017/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
 (c:/texlive/2017/texmf-dist/tex/latex/base/size11.clo
@@ -25,19 +25,19 @@ File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \bibindent=\dimen102
 )
 (c:/texlive/2017/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2017/06/26 3.11 The Babel package
+Package: babel 2017/06/29 3.12 The Babel package
 
 (c:/texlive/2017/texmf-dist/tex/generic/babel/switch.def
-File: switch.def 2017/06/26 3.11 Babel switching mechanism
+File: switch.def 2017/06/29 3.12 Babel switching mechanism
 )
 (c:/texlive/2017/texmf-dist/tex/generic/babel-french/frenchb.ldf
 Language: frenchb 2017/04/30 v3.3a French support from the babel system
 
 (c:/texlive/2017/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2017/06/26 3.11 Babel common definitions
+File: babel.def 2017/06/29 3.12 Babel common definitions
 
 (c:/texlive/2017/texmf-dist/tex/generic/babel/switch.def
-File: switch.def 2017/06/26 3.11 Babel switching mechanism
+File: switch.def 2017/06/29 3.12 Babel switching mechanism
 )
 \babel@savecnt=\count88
 \U@D=\dimen103
@@ -1259,7 +1259,7 @@ File: lstlang2.sty 2015/06/04 1.6 listings language file
 (c:/texlive/2017/texmf-dist/tex/latex/listings/lstlang3.sty
 File: lstlang3.sty 2015/06/04 1.6 listings language file
 )
-(c:/PROGRA~1/R/R-3.4.0/share/texmf/tex/latex/Sweave.sty
+(c:/PROGRA~1/R/R-3.4.1/share/texmf/tex/latex/Sweave.sty
 Package: Sweave 
 
 (c:/texlive/2017/texmf-dist/tex/latex/base/ifthen.sty
@@ -1547,7 +1547,7 @@ LaTeX Font Warning: Font shape `T1/aer/bx/sc' undefined
 
 (./section/license.tex
 LaTeX Font Info:    Try loading font information for TS1+aer on input line 2.
- (c:/PROGRA~1/R/R-3.4.0/share/texmf/tex/latex/ts1aer.fd
+ (c:/PROGRA~1/R/R-3.4.1/share/texmf/tex/latex/ts1aer.fd
 File: ts1aer.fd 
 )
 LaTeX Font Info:    Font shape `TS1/aer/m/n' in size <10> not available
@@ -2036,27 +2036,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 2767--2768
 
  []
 
-[77 <./notes_de_cours-034.pdf>]
-LaTeX Font Info:    Try loading font information for TS1+aett on input line 280
-7.
+[77 <./notes_de_cours-034.pdf>] [78]
+LaTeX Font Info:    Try loading font information for TS1+aett on input line 284
+1.
 
-(c:/PROGRA~1/R/R-3.4.0/share/texmf/tex/latex/ts1aett.fd
+(c:/PROGRA~1/R/R-3.4.1/share/texmf/tex/latex/ts1aett.fd
 File: ts1aett.fd 
 )
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 280
-7.
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 284
+1.
 
 (c:/texlive/2017/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `TS1/aett/m/n' in size <10> not available
-(Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 2807.
-
- [78]
 LaTeX Font Info:    Font shape `TS1/aett/m/sl' in size <10> not available
 (Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 2841
 .
-<notes_de_cours-037.pdf, id=1264, pagebox=cropbox, 361.35pt x 505.89pt>
+<notes_de_cours-037.pdf, id=1263, pagebox=cropbox, 361.35pt x 505.89pt>
 File: notes_de_cours-037.pdf Graphic file (type pdf)
 <use notes_de_cours-037.pdf>
 Package pdftex.def Info: notes_de_cours-037.pdf  used on input line 2848. on in
@@ -2068,162 +2064,161 @@ Overfull \hbox (114.8554pt too wide) in paragraph at lines 2868--2868
 [] 
  []
 
-[80]
-<notes_de_cours-041.pdf, id=1280, pagebox=cropbox, 433.62pt x 361.35pt>
+<notes_de_cours-041.pdf, id=1275, pagebox=cropbox, 433.62pt x 361.35pt>
 File: notes_de_cours-041.pdf Graphic file (type pdf)
 <use notes_de_cours-041.pdf>
-Package pdftex.def Info: notes_de_cours-041.pdf  used on input line 2936. on in
-put line 2936.
+Package pdftex.def Info: notes_de_cours-041.pdf  used on input line 2915. on in
+put line 2915.
 Package pdftex.def Info: Requested size: 288.0011pt x 240.01353pt on input line
- 2936.
-
-Underfull \hbox (badness 10000) in paragraph at lines 2939--2940
-
- []
-
-[81 <./notes_de_cours-041.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 2941--2942
+ 2915.
+[80]
+Underfull \hbox (badness 10000) in paragraph at lines 2918--2919
 
  []
 
-[82] [83]
-<notes_de_cours-043.pdf, id=1300, pagebox=cropbox, 433.62pt x 433.62pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 2920--2921
+
+ []
+
+[81 <./notes_de_cours-041.pdf>] [82]
+<notes_de_cours-043.pdf, id=1295, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-043.pdf Graphic file (type pdf)
 <use notes_de_cours-043.pdf>
-Package pdftex.def Info: notes_de_cours-043.pdf  used on input line 3028. on in
-put line 3028.
+Package pdftex.def Info: notes_de_cours-043.pdf  used on input line 2996. on in
+put line 2996.
 Package pdftex.def Info: Requested size: 288.0011pt x 288.01624pt on input line
- 3028.
+ 2996.
 
-Underfull \hbox (badness 10000) in paragraph at lines 3030--3031
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3050--3052
+Underfull \hbox (badness 10000) in paragraph at lines 2998--2999
 
  []
 
-[84 <./notes_de_cours-043.pdf>] [85]
+
+Underfull \hbox (badness 10000) in paragraph at lines 3018--3020
+
+ []
+
+[83 <./notes_de_cours-043.pdf>] [84]
 Chapitre 4.
-[86
+[85
 
-] [87] [88] [89]
-Underfull \hbox (badness 10000) in paragraph at lines 3202--3203
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3214--3215
+] [86] [87] [88]
+Underfull \hbox (badness 10000) in paragraph at lines 3170--3171
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3240--3241
+Underfull \hbox (badness 10000) in paragraph at lines 3182--3183
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3208--3209
+
+ []
+
+[89]
+Underfull \hbox (badness 10000) in paragraph at lines 3215--3216
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3217--3218
 
  []
 
 [90]
-Underfull \hbox (badness 10000) in paragraph at lines 3247--3248
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3249--3250
-
- []
-
-[91]
-Overfull \hbox (106.71535pt too wide) in paragraph at lines 3312--3312
+Overfull \hbox (106.71535pt too wide) in paragraph at lines 3280--3280
 [] 
  []
 
-[92]
-Underfull \hbox (badness 10000) in paragraph at lines 3357--3358
+[91]
+Underfull \hbox (badness 10000) in paragraph at lines 3325--3326
 
  []
 
-[93] [94]
-Underfull \hbox (badness 10000) in paragraph at lines 3430--3432
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3443--3444
-
- []
-
-[95]
-Underfull \hbox (badness 10000) in paragraph at lines 3452--3454
+[92] [93]
+Underfull \hbox (badness 10000) in paragraph at lines 3398--3400
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3459--3461
+Underfull \hbox (badness 10000) in paragraph at lines 3411--3412
 
  []
 
-[96] [97] [98]
-Underfull \hbox (badness 10000) in paragraph at lines 3545--3546
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3553--3554
+[94]
+Underfull \hbox (badness 10000) in paragraph at lines 3420--3422
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3558--3560
+Underfull \hbox (badness 10000) in paragraph at lines 3427--3429
 
  []
 
-[99] [100] [101] [102] [103] [104]
-<notes_de_cours-046.pdf, id=1432, pagebox=cropbox, 433.62pt x 433.62pt>
+[95] [96] [97]
+Underfull \hbox (badness 10000) in paragraph at lines 3513--3514
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3521--3522
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3526--3528
+
+ []
+
+[98] [99] [100] [101] [102] [103]
+<notes_de_cours-046.pdf, id=1427, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-046.pdf Graphic file (type pdf)
 <use notes_de_cours-046.pdf>
-Package pdftex.def Info: notes_de_cours-046.pdf  used on input line 3739. on in
-put line 3739.
+Package pdftex.def Info: notes_de_cours-046.pdf  used on input line 3707. on in
+put line 3707.
 Package pdftex.def Info: Requested size: 288.0011pt x 288.01624pt on input line
- 3739.
- [105] [106 <./notes_de_cours-046.pdf>]
-[107] [108] [109] [110] [111] [112]
-Underfull \hbox (badness 10000) in paragraph at lines 3973--3974
+ 3707.
+ [104] [105 <./notes_de_cours-046.pdf>]
+[106] [107] [108] [109] [110] [111]
+Underfull \hbox (badness 10000) in paragraph at lines 3941--3942
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3983--3984
+Underfull \hbox (badness 10000) in paragraph at lines 3951--3952
 
  []
 
-[113] [114] [115] [116] [117]
-<notes_de_cours-047.pdf, id=1513, pagebox=cropbox, 433.62pt x 433.62pt>
+[112] [113] [114] [115] [116]
+<notes_de_cours-047.pdf, id=1508, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-047.pdf Graphic file (type pdf)
 <use notes_de_cours-047.pdf>
-Package pdftex.def Info: notes_de_cours-047.pdf  used on input line 4115. on in
-put line 4115.
+Package pdftex.def Info: notes_de_cours-047.pdf  used on input line 4083. on in
+put line 4083.
 Package pdftex.def Info: Requested size: 288.0011pt x 288.01624pt on input line
- 4115.
- [118]
-<notes_de_cours-048.pdf, id=1519, pagebox=cropbox, 433.62pt x 433.62pt>
+ 4083.
+ [117]
+<notes_de_cours-048.pdf, id=1514, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-048.pdf Graphic file (type pdf)
 <use notes_de_cours-048.pdf>
-Package pdftex.def Info: notes_de_cours-048.pdf  used on input line 4124. on in
-put line 4124.
+Package pdftex.def Info: notes_de_cours-048.pdf  used on input line 4092. on in
+put line 4092.
 Package pdftex.def Info: Requested size: 288.0011pt x 288.01624pt on input line
- 4124.
- [119 <./notes_de_cours-047.pdf>] [120 <./notes_de_cours-048.pdf>] [121]
+ 4092.
+ [118 <./notes_de_cours-047.pdf>] [119 <./notes_de_cours-048.pdf>] [120]
 Annexe A.
-[122
+[121
 
-] [123]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4259.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 4259.
+] [122]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4227.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4227.
  (./notes_de_cours.aux (./section/license.aux)
 (./section/remerciements.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4259.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4259.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4227.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4227.
 
 Package rerunfilecheck Info: File `notes_de_cours.out' has not changed.
 (rerunfilecheck)             Checksum: 0D3372534B8565CCCA6BCEFFADB11391;7509.
@@ -2231,14 +2226,14 @@ Package rerunfilecheck Info: File `notes_de_cours.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4259.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4227.
  ) 
 Here is how much of TeX's memory you used:
- 33387 strings out of 492990
- 598910 string characters out of 6136334
- 771915 words of memory out of 5000000
- 35928 multiletter control sequences out of 15000+600000
- 603139 words of font info for 153 fonts, out of 8000000 for 9000
+ 33383 strings out of 492990
+ 598864 string characters out of 6136334
+ 772915 words of memory out of 5000000
+ 35926 multiletter control sequences out of 15000+600000
+ 602842 words of font info for 152 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,25n,74p,10441b,1948s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
@@ -2276,12 +2271,11 @@ ic/amsfonts/symbols/msbm10.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/c
 m-super/sfbx1000.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sf
 rm0900.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb
 ><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb><c:/texli
-ve/2017/texmf-dist/fonts/type1/public/cm-super/sfst1000.pfb><c:/texlive/2017/te
-xmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on notes_de_cours.pdf (124 pages, 1121213 bytes).
+ve/2017/texmf-dist/fonts/type1/public/cm-super/sfst1000.pfb>
+Output written on notes_de_cours.pdf (123 pages, 1158429 bytes).
 PDF statistics:
- 1798 PDF objects out of 2073 (max. 8388607)
- 1536 compressed objects within 16 object streams
- 435 named destinations out of 1000 (max. 500000)
+ 1790 PDF objects out of 2073 (max. 8388607)
+ 1530 compressed objects within 16 object streams
+ 434 named destinations out of 1000 (max. 500000)
  891 words of extra memory for PDF output out of 10000 (max. 10000000)
 
