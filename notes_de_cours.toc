@@ -75,17 +75,17 @@
 \contentsline {subsubsection}{\numberline {4.3.4.1}Domaine de $g(\bullet )$}{89}{subsubsection.4.3.4.1}
 \contentsline {subsubsection}{\numberline {4.3.4.2}Image de $g(\bullet )$}{89}{subsubsection.4.3.4.2}
 \contentsline {subsubsection}{\numberline {4.3.4.3}Conclusion}{89}{subsubsection.4.3.4.3}
-\contentsline {section}{\numberline {4.4}Approche g\IeC {\'e}n\IeC {\'e}rale}{89}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Proc\IeC {\'e}dure avec les GLM}{89}{subsection.4.4.1}
+\contentsline {section}{\numberline {4.4}Approche g\IeC {\'e}n\IeC {\'e}rale}{90}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Proc\IeC {\'e}dure avec les GLM}{90}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}Estimation des param\IeC {\`e}tres}{90}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Validation globale du mod\IeC {\`e}le avec la \emph {d\IeC {\'e}viance}}{91}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.3}Validation globale du mod\IeC {\`e}le avec la \emph {d\IeC {\'e}viance}}{92}{subsection.4.4.3}
 \contentsline {subsubsection}{\numberline {4.4.3.1}Loi normale}{92}{subsubsection.4.4.3.1}
 \contentsline {subsubsection}{\numberline {4.4.3.2}Loi de Poisson}{93}{subsubsection.4.4.3.2}
 \contentsline {subsubsection}{\numberline {4.4.3.3}Loi binomiale$(m_i, \mu _i)$}{93}{subsubsection.4.4.3.3}
 \contentsline {subsubsection}{\numberline {4.4.3.4}Loi gamma}{93}{subsubsection.4.4.3.4}
 \contentsline {subsubsection}{\numberline {4.4.3.5}Loi inverse Gausienne}{93}{subsubsection.4.4.3.5}
-\contentsline {subsection}{\numberline {4.4.4}Validation locale du mod\IeC {\`e}le avec des tests d'hypoth\IeC {\`e}ses et intervalles de confiances}{93}{subsection.4.4.4}
-\contentsline {subsubsection}{\numberline {4.4.4.1}Test d'hypoth\IeC {\`e}se tr\IeC {\`e}s g\IeC {\'e}n\IeC {\'e}ral}{93}{subsubsection.4.4.4.1}
+\contentsline {subsection}{\numberline {4.4.4}Validation locale du mod\IeC {\`e}le avec des tests d'hypoth\IeC {\`e}ses et intervalles de confiances}{94}{subsection.4.4.4}
+\contentsline {subsubsection}{\numberline {4.4.4.1}Test d'hypoth\IeC {\`e}se tr\IeC {\`e}s g\IeC {\'e}n\IeC {\'e}ral}{94}{subsubsection.4.4.4.1}
 \contentsline {subsubsection}{\numberline {4.4.4.2}Intervalles de confiances}{94}{subsubsection.4.4.4.2}
 \contentsline {section}{\numberline {4.5}Mod\IeC {\`e}le de r\IeC {\'e}gression normale}{95}{section.4.5}
 \contentsline {subsection}{\numberline {4.5.1}Conclusion int\IeC {\'e}ressante}{97}{subsection.4.5.1}
@@ -97,9 +97,9 @@
 \contentsline {subsubsection}{\numberline {4.6.3.1}}{100}{subsubsection.4.6.3.1}
 \contentsline {subsubsection}{\numberline {4.6.3.2}}{100}{subsubsection.4.6.3.2}
 \contentsline {subsubsection}{\numberline {4.6.3.3}}{100}{subsubsection.4.6.3.3}
-\contentsline {subsection}{\numberline {4.6.4}Optimisation}{101}{subsection.4.6.4}
-\contentsline {subsubsection}{\numberline {4.6.4.1}Remarque}{104}{subsubsection.4.6.4.1}
-\contentsline {subsection}{\numberline {4.6.5}Formule de d\IeC {\'e}viance-r\IeC {\'e}gression logistique}{104}{subsection.4.6.5}
+\contentsline {subsection}{\numberline {4.6.4}Optimisation}{100}{subsection.4.6.4}
+\contentsline {subsubsection}{\numberline {4.6.4.1}Remarque}{103}{subsubsection.4.6.4.1}
+\contentsline {subsection}{\numberline {4.6.5}Formule de d\IeC {\'e}viance-r\IeC {\'e}gression logistique}{103}{subsection.4.6.5}
 \contentsline {subsection}{\numberline {4.6.6}Test d'hypoth\IeC {\`e}se g\IeC {\'e}n\IeC {\'e}ral}{104}{subsection.4.6.6}
 \contentsline {subsection}{\numberline {4.6.7}Intervalle de confiance}{104}{subsection.4.6.7}
 \contentsline {section}{\numberline {4.7}R\IeC {\'e}gression de Poisson}{105}{section.4.7}

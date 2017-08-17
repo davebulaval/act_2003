@@ -1738,36 +1738,36 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-          fit          lwr       upr
-1 -0.03890253 -0.561246153 0.4834411
-2 -0.02637068 -0.551516175 0.4987748
-3 -0.18575778 -0.682114220 0.3105987
-4  0.63237407 -0.128991985 1.3937401
-5  0.85853686 -0.008488046 1.7255618
+         fit         lwr        upr
+1 -0.9590360 -1.59670083 -0.3213711
+2  0.5141926 -0.03670814  1.0650933
+3 -0.3915600 -0.89933397  0.1162139
+4 -2.3569896 -3.52151432 -1.1924650
+5 -0.3648144 -0.86899120  0.1393625
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-         fit         lwr       upr
-1 -0.1118675 -0.61967205 0.3959370
-2  0.1012904 -0.45703878 0.6596195
-3  0.3144483 -0.31511137 0.9440079
-4  0.5276062 -0.18773092 1.2429433
-5  0.7407641 -0.07029504 1.5518232
+        fit         lwr       upr
+1 0.2072234 -0.29179301 0.7062398
+2 0.4346404 -0.09971504 0.9689958
+3 0.6620574  0.07554107 1.2485737
+4 0.8894744  0.23800346 1.5409452
+5 1.1168913  0.39109896 1.8426837
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-         fit       lwr      upr
-1 -0.1118675 -2.052086 1.828351
-2  0.1012904 -1.852760 2.055341
-3  0.3144483 -1.661134 2.290031
-4  0.5276062 -1.476961 2.532173
-5  0.7407641 -1.299922 2.781450
+        fit        lwr      upr
+1 0.2072234 -1.7321812 2.146628
+2 0.4346404 -1.5141563 2.383437
+3 0.6620574 -1.3016825 2.625797
+4 0.8894744 -1.0946343 2.873583
+5 1.1168913 -0.8928468 3.126629
 \end{Soutput}
 \end{Schunk}
 
@@ -3072,7 +3072,7 @@ En posant,
 
 \subsubsection*{Preuve}
 \begin{align*}
-f_Y(y) &= \exp\Bigg\lbrace \frac{y \times \mu - \frac{\mu^2}{2}}{\sigma^2} + -\frac{1}{2} \bigg( \frac{y^2}{\sigma^2} + \ln(2 \pi \sigma^2) \bigg) \Bigg\rbrace \\
+f_Y(y) &= \exp\Bigg\lbrace \frac{y \times \mu - \frac{\mu^2}{2}}{\sigma^2} -\frac{1}{2} \bigg( \frac{y^2}{\sigma^2} + \ln(2 \pi \sigma^2) \bigg) \Bigg\rbrace \\
 &= \exp\Bigg\lbrace \frac{-y^2}{2\sigma^2} + \frac{y \times \mu}{\sigma^2} - \frac{\mu^2}{2\sigma^2} - \frac{\ln(2 \pi \sigma^2)}{2} \Bigg\rbrace \\
 &= \exp\Bigg\lbrace \frac{-1}{2\sigma^2}(y - \mu)^2 - \frac{1}{2} \ln(2\pi \sigma^2)\Bigg\rbrace \\
 &= \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{1}{2}\times \big(\frac{y - \mu}{\sigma} \big)^2}
@@ -3099,14 +3099,14 @@ En posant,
 \subsubsection*{Preuve}
 \begin{align*}
 f_Y(y) &= \exp\Bigg\lbrace \frac{y \ln(\mu) - e^{\ln(\mu)}}{1} + (-1) \ln(\fact{y}) \Bigg\rbrace \\
-&= \exp\Bigg\lbrace y \ln(\mu) - \mu + \ln(\frac{1}{\fact{y}}) \Bigg\rbrace \\
+&= \exp\Bigg\lbrace y \ln(\mu) - \mu + \ln\bigg(\frac{1}{\fact{y}}\bigg) \Bigg\rbrace \\
 &= \frac{e^{-\mu}\mu^y}{\fact{y}}
 \end{align*}
 
 \subsection{Loi Bernouilli}
 En posant,
 \begin{itemize}
-     \item $\theta = \ln(\frac{\pi}{(1 -\pi)})$
+     \item $\theta = \ln\Big(\frac{\pi}{(1 -\pi)}\Big)$
      \item $\phi = 1$
      \item $b(\theta) = \ln(1 + e^{\theta})$
      \item $a(\phi) = \phi$
@@ -3194,6 +3194,11 @@ E[Y_i|X_i] = g^{-1}(X_i\beta)
 \end{equation}
 Il est donc nécessaire de choisir une fonction inversible pour la fonction de lien.
 
+\begin{moreInfo}{\emph{Reformulation}}
+     La fonction de lien fournit une relation linéaire entre le predicteur linéaire et la moyenne de la fonction de distribution. 
+\end{moreInfo}
+
+
 \section{Approche générale}
 \subsection{Procédure avec les GLM}
 \begin{itemize}
@@ -3209,7 +3214,7 @@ Dans le cas des GLM, on estime les paramètres en utilisant la méthode du maxim
 
 On souhaite choisir $\utilde{\beta}$ qui maximise la fonction de vraisemblance suivante qui sera notre nouvelle métrique de distance:
 $$
-l(\utilde{\beta}) = \displaystyle\sum_{i=1}^n \ln(f_Y(y_i))
+l(\utilde{\beta}) = \displaystyle\sum_{i=1}^n \ln\big(f_Y(y_i)\big)
 $$
 
 En pratique, il est d'usage d'utiliser la méthode de Newton-Raphson pour maximiser numériquement $l(\utilde{\beta})$. \newline
@@ -3239,16 +3244,16 @@ $$
 
 Pour obtenir un algorithme permettant d'obtenir un estimateur récursivement, à partir de $\hat{\utilde{\beta}}^{(i)}$, il faut développer $S(\utilde{\beta}^{(i+1)}) $ autour de $\hat{\utilde{\beta}}^{(i)}$ à l'aide d'une série de Taylor :
 \begin{align*}
-S(\utilde{\beta}^{(i+1)}) &= S(\utilde{\beta}^{(i)}) + \Bigg[ \frac{\partial}{\partial\utilde{\beta}}(S(\utilde{\beta}^{(i)})) \Bigg]\Bigg(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Bigg)
+S(\utilde{\beta}^{(i+1)}) &= S(\utilde{\beta}^{(i)}) + \Bigg[ \frac{\partial}{\partial\utilde{\beta}}\bigg(S\big(\utilde{\beta}^{(i)}\big)\bigg) \Bigg]\Bigg(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Bigg)
 \end{align*}
 En substituant cette expression dans l'équation \ref{eq:score}, on obtient le développement suivant:
 \begin{align*}
- S(\utilde{\beta}^{(i)}) + \frac{\partial}{\partial\utilde{\beta}}(S(\utilde{\beta}^{(i)})) \Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) &= 0
+ S(\utilde{\beta}^{(i)}) + \frac{\partial}{\partial\utilde{\beta}}\big(S(\utilde{\beta}^{(i)})\big) \Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) &= 0
 \end{align*}
 
 ou encore,
 \begin{align*}
- S(\utilde{\beta}^{(i)}) + (- I(\hat{\utilde{\beta}}^{(i)}))\Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) &= 0
+ S(\utilde{\beta}^{(i)}) + \big(- I(\hat{\utilde{\beta}}^{(i)})\big)\Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) &= 0
 \end{align*}
 
 où $I(\utilde{\beta})$ correspond à la matrice d'information de Fisher et est donnée par :
@@ -3283,16 +3288,10 @@ Cette équation correspond à
 En réécrivant la fonction de vraisemblance $l(\utilde{\beta})$ comme suit :
 \begin{align*}
 l(\utilde{\beta}) &= \displaystyle\sum_{i=1}^n \ln(f_Y(y_i)) \\
-&= \displaystyle\sum_{i=1}^n \ln(f_Y(y_i; \mu_i)) \text{ ; où } \mu_i = g^{-1}(X_i \utilde{\beta}) \\
+&= \displaystyle\sum_{i=1}^n \ln\big(f_Y(y_i; \mu_i)\big) \text{ ; où } \mu_i = g^{-1}(X_i \utilde{\beta}) \\
 &= l(\utilde{y}, \utilde{\beta}) \\
 \end{align*}
 On peut définir la statistique de déviance $D(\utilde{\beta})$ comme suit :
-
-\begin{align*}
-D(\utilde{\beta}) &= 2 \times \Big( \underbrace{l(\utilde{y}, \utilde{y})} - \underbrace{l(\utilde{y}, \utilde{\beta})} \Big) \\ 
-& \text{Log vraissemblance} \text{Log vraissemblance} \\
-& \text{sous un modèle parfait}  \text{du modèle obtenu} \\
-\end{align*}
 
 \begin{center}
 \begin{tabularx}{\textwidth}{cXX}
@@ -3467,7 +3466,7 @@ En appliquant maintenant l'algorithme de Newton-Raphson (section \ref{sec:newton
 \hat{\utilde{\beta}}^{(i+1)} &= \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)}) \\
 &= \hat{\utilde{\beta}}^{(i)} + \Bigg[ \frac{1}{\sigma^2} (\mathbb{X}^\intercal\mathbb{X})\Bigg]^{-1} \frac{1}{\sigma^2} \Bigg( \mathbb{X}^\intercal \mathbb{Y} -   \mathbb{X}^\intercal \mathbb{X}\mathbb{\beta} \Bigg) \\
 &= \hat{\utilde{\beta}}^{(i)} + \sigma^2 (\mathbb{X}^\intercal\mathbb{X})^{-1} \frac{1}{\sigma^2} \Bigg( \mathbb{X}^\intercal \mathbb{Y} -   \mathbb{X}^\intercal \mathbb{X}\mathbb{\beta} \Bigg) \\
-&= \hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{Y} - (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{X}\mathbb{\beta} \Bigg) \\
+&= \hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{Y} - (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{X}\mathbb{\beta} \\
 &= (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{Y} \\
 \end{align*}
 
@@ -3495,7 +3494,7 @@ SSE(M_1) &\sim \chi^2(n -(P_{H_1}+1))
 \end{align*}
 On peut ainsi dire que cela revient à tester,
 \begin{align*}
-\chi_{obs}^2 &\geq \chi_{\alpha}^2([n - (P_{H_0}+1)] - [n -(P_{H_1}+1]) \\
+\chi_{obs}^2 &\geq \chi_{\alpha}^2([n - (P_{H_0}+1)] - [n -(P_{H_1}+1)] \\
 \Rightarrow \chi_{obs}^2 &\geq \chi_{\alpha}^2( \underbrace{P_{H_1} - P_{H_0}}) \\
 & \text{Différence entre le nombre} \\ 
 & \text{de paramètres entre $M_0$ et $M_1$}
@@ -3526,9 +3525,9 @@ $$
 $$
 Où $\pi_i$ correspond à $E[Y_i|\utilde{X}{}_i]$ et $g(\pi_i) = \utilde{X}{}_i\utilde{\beta}$. \newline
 
-Puisque $\pi_i \in ]0, 1[$, $\pi_i$ est une probabilité, et que $\utilde{X}{}_i\utilde{\beta} \in \mathbb{R}$, il faut choisir la fonction de lien $g(\bullet)$ de telle sorte que
+Puisque $\pi_i \in \  ]0, 1[\ $, $\pi_i$ est une probabilité, et que $\utilde{X}{}_i\utilde{\beta} \in \mathbb{R}$, il faut choisir la fonction de lien $g(\bullet)$ de telle sorte que
 $$
-g : ]0, 1[ \rightarrow \mathbb{R}
+g : \ ]0, 1[ \rightarrow \ \mathbb{R}
 $$
 Bien que plusieurs candidats peuvent satisfaire cette condition, il est d'usage d'utiliser une fonction appelée \emph{logit} dans ce contexte. Celle fonction est défini ainsi :
 \begin{align*}
@@ -3580,6 +3579,9 @@ Sous la méthode du maximum de vraisemblance, on a
 l(\utilde{\beta}) &= \displaystyle\sum_{i=1}^n \ln\bigg( Pr(Y_i = y_i|\utilde{X}{}_i) \bigg) \\
 &= \displaystyle\sum_{i=1}^n \ln\bigg( \pi_i^{y_i} \times (1 - \pi_i)^{1-y_i}) \bigg) \\
 &= \displaystyle\sum_{i=1}^n \bigg( y_i \times \ln(\pi_i) + (1 - y_i)\times\ln(1 - \pi_i) \bigg) \\
+\end{align*}
+
+\begin{align*}
 &= \displaystyle\sum_{i=1}^n \Bigg( y_i \times \ln\bigg(\frac{\displaystyle{e^{\utilde{X}{}_i\utilde{\beta}}}}{1 + \displaystyle{e^{\utilde{X}{}_i\utilde{\beta}}}} \bigg) + (1 - y_i)\times\ln\bigg(\frac{1}{1 +\displaystyle{ e^{\utilde{X}{}_i\utilde{\beta}}}}\bigg) \Bigg) \\
 &= \displaystyle\sum_{i=1}^n \Bigg( y_i \times \ln(e^{\utilde{X}{}_i\utilde{\beta}}) - y_i\ln(1 + e^{\utilde{X}{}_i\utilde{\beta}}) - (1 - y_i)\times\ln(1 + e^{\utilde{X}{}_i\utilde{\beta}}) \Bigg) \\
 &= \displaystyle\sum_{i=1}^n \Bigg( y_i \times\utilde{X}{}_i\utilde{\beta} - \ln(1 + e^{\utilde{X}{}_i\utilde{\beta}}) \Bigg) \\
@@ -3595,15 +3597,15 @@ On cherche le jieme élément du vecteur score, soit
 S(\utilde{\beta}) &= \frac{\partial}{\partial\beta_j} l(\beta) \\
 &= \displaystyle\sum_{i=1}^nX_{i,j}Y_i - \Bigg(X_{i,j}\times \frac{e^{\utilde{X}{}_i\utilde{\beta}}}{1 + e^{\utilde{X}{}_i\utilde{\beta}}}\Bigg) \\
 &= \displaystyle\sum_{i=1}^nX_{i,j}\Bigg(Y_i - \frac{e^{\utilde{X}{}_i\utilde{\beta}}}{1 + e^{\utilde{X}{}_i\utilde{\beta}}}\Bigg) \\
-&= X_j^\intercal(Y - M(\utilde{X}{}_i\utilde{\beta}))
+&= X_j^\intercal\big(Y - M(\utilde{X}{}_i\utilde{\beta})\big)
 \end{align*}
 où $M(\utilde{X}{}_i\utilde{\beta})$ correspond à 
 \begin{align*}
 M(\utilde{X}{}_i\utilde{\beta}) =
 \begin{bmatrix}
-  \frac{e^{\utilde{X_1}\utilde{\beta}}}{1 + e^{\utilde{X_1}\utilde{\beta}}}\\
+  \frac{\displaystyle{e}^{\utilde{X_1}\utilde{\beta}}}{1 + \displaystyle{e}^{\utilde{X_1}\utilde{\beta}}}\\
   \vdots \\
-  \frac{e^{\utilde{X}{}_n\utilde{\beta}}}{1 + e^{\utilde{X}{}_n\utilde{\beta}}}\\ 
+  \frac{\displaystyle{e}^{\utilde{X}{}_n\utilde{\beta}}}{1 + \displaystyle{e}^{\utilde{X}{}_n\utilde{\beta}}}\\ 
 \end{bmatrix} 
 \end{align*}
 Ainsi, on déduit que
