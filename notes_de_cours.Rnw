@@ -71,6 +71,10 @@
 %macro position tikz
 \newcommand{\tikzmark}[2]{\tikz[overlay, remember picture] \node[inner sep=0pt, outer sep=0pt, anchor=base] (#1) {#2};}
 
+%macro E, Var et Cov
+\newcommand{\E}{{\rm I\kern-.3em E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
 
 %maccro tilde
 \def\utilde#1{\mathord{\vtop{\ialign{##\crcr
@@ -534,12 +538,12 @@ Comment résoudre le modèle pour prédire les salaires des actuaires en fonctio
 \bigskip
 Ainsi, \emph{en moyenne} on a 
 \begin{align*}
-E[Y_t|X_t] &= \beta_0 + \beta_1\times X_t
+\E[Y_t|X_t] &= \beta_0 + \beta_1\times X_t
 \end{align*}
 
 Habituellement, la relation n'est pas parfaitement exacte dans la réalité. On se retrouve ainsi avec une \emph{différence} dans notre variable exogène prédite. L'erreur est notée $\varepsilon_t$ et est telle que mentionnée plus tôt, assumée aléatoire.
 \begin{align*}
-\varepsilon_t &= Y_t - E[Y_t|X_t] \\
+\varepsilon_t &= Y_t - \E[Y_t|X_t] \\
 &= Y_t - (\beta_0 + \beta_1\times X_t)\\
 \end{align*}
 
@@ -891,14 +895,14 @@ Y_t &= \beta_0 + \beta_1\times X_t + \varepsilon_t \text{ (\ref{eq:simple})}
 \end{align*}
 De plus, on sait qu'il s'agit des valeurs moyennes de $Y_t$ en sachant $X_t$, soit
 \begin{align*}
-Y_t = E[Y_t|X_t] + \varepsilon_t 
+Y_t = \E[Y_t|X_t] + \varepsilon_t 
 \end{align*}
 
 On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikipedia.org/wiki/Postulat}{postulat} est un principe non démontré, mais utilisé dans la construction d'une théorie mathématique. } suivants,
 \begin{enumerate}
-\item \label{post1} $E[\varepsilon_t] = 0$, par définition pour que $E[Y_t] = E[Y_t|X_t]$. Il s'agit de l'hypothèse de linéarité de la variable explicative. On dit qu'elle est exogène si elle n'est pas corrélée au terme d'erreur.
+\item \label{post1} $\E[\varepsilon_t] = 0$, par définition pour que $\E[Y_t] = \E[Y_t|X_t]$. Il s'agit de l'hypothèse de linéarité de la variable explicative. On dit qu'elle est exogène si elle n'est pas corrélée au terme d'erreur.
 \item \label{post2} $Var(\varepsilon_t) = \sigma^2$, la variance des termes d'erreurs est supposée constante. Il s'agit de l'hypothèse d'homoscédasticité.
-\item \label{post3} $Cov(\varepsilon_t, \varepsilon_s) = 0$, pour $t \neq s$,il n'y a pas de corrélation entre les termes d'erreurs. Il s'agit de l'hypothèse d'indépendance des erreurs.
+\item \label{post3} $\Cov(\varepsilon_t, \varepsilon_s) = 0$, pour $t \neq s$,il n'y a pas de corrélation entre les termes d'erreurs. Il s'agit de l'hypothèse d'indépendance des erreurs.
 \end{enumerate}
 
 \bigskip
@@ -916,39 +920,39 @@ On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikiped
 \label{sec:EMC}
 
 \subsection{Estimateur sans biais}
-On rappelle qu'un estimateur est dit sans biais lorsque son espérance est égale à la valeur vraie du paramètre, soit $E[\hat{\theta}] = \theta \Leftrightarrow b(\hat{\theta}) = 0$ \footnote{Notes de cours ACT-2000, chapitre 3, Thomas Landry, Hiver 2017.}.
+On rappelle qu'un estimateur est dit sans biais lorsque son espérance est égale à la valeur vraie du paramètre, soit $\E[\hat{\theta}] = \theta \Leftrightarrow b(\hat{\theta}) = 0$ \footnote{Notes de cours ACT-2000, chapitre 3, Thomas Landry, Hiver 2017.}.
 
 \begin{align*}
-E[\hat{\beta}_1] &= E \Bigg[ \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg] \\
-&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})E[Y_t - \overline{Y}]}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
-&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+\E[\hat{\beta}_1] &= \E \Bigg[ \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg] \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})\E[Y_t - \overline{Y}]}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(\E[Y_t] - \E[\overline{Y}])}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 \end{align*}
 De l'équation \ref{eq:simple}, et avec le postulat \ref{post1}, on sait que,
 
 \begin{align*}
 Y_t &= \beta_0 + \beta_1\times X_t + \varepsilon_t \\
-E[Y_t] &= E[\beta_0 + \beta_1\times X_t] + E[\varepsilon_t] \\
+\E[Y_t] &= \E[\beta_0 + \beta_1\times X_t] + \E[\varepsilon_t] \\
 &\overset{\ref{post1}}{=} \beta_0 + \beta_1\times X_t + 0 \\
 \end{align*}
 On applique le même raisonnement pour l'espérance de $\overline{Y}$. 
 
 \begin{align*}
-E[\hat{\beta}_1] &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(E[Y_t] - E[\overline{Y}])}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+\E[\hat{\beta}_1] &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(\E[Y_t] - \E[\overline{Y}])}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(\beta_0 + \beta_1\times X_t - \beta_0 - \beta_1\overline{X_t})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 \end{align*}
 \begin{align*}
 &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})\beta_1 (X_t - \overline{X_t})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 &= \beta_1 \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
-E[\hat{\beta}_1] &= \beta_1
+\E[\hat{\beta}_1] &= \beta_1
 \end{align*}
 \bigskip
 
 Par conséquent,
 \begin{align*}
-E[\hat{\beta}_0] &= E[\overline{Y} - \hat{\beta}_1 \overline{X}] \\
-&= E[\overline{Y}] - \overline{X} E[\hat{\beta}_1]  \\
+\E[\hat{\beta}_0] &= \E[\overline{Y} - \hat{\beta}_1 \overline{X}] \\
+&= \E[\overline{Y}] - \overline{X} \E[\hat{\beta}_1]  \\
 &= \beta_0 + \beta_1\overline{X} - \overline{X}\beta_1 \\
-E[\hat{\beta}_0]  &= \beta_0 \\
+\E[\hat{\beta}_0]  &= \beta_0 \\
 \end{align*}
 
 On peut ainsi conclure que les deux estimateurs des paramètres sont sans biais.
@@ -957,19 +961,19 @@ On peut ainsi conclure que les deux estimateurs des paramètres sont sans biais.
 On s'intéresse aux variances et aux covariances des estimateurs, cette deuxième propriété ainsi que la première nous permettera de déduire une conclusion en lien avec le quatrième postulat.
 
 \begin{align*}
-Var(\hat{\beta}_1) &= Var\Bigg( \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg)\\
-&= \frac{Var\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t - \displaystyle\sum_{t=1}^n(X_t- \overline{X} \big)\overline{Y}\big)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
+\Var(\hat{\beta}_1) &= \Var\Bigg( \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg)\\
+&= \frac{\Var\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t - \displaystyle\sum_{t=1}^n(X_t- \overline{X} \big)\overline{Y}\big)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 \end{align*}
 
 \begin{align*}
-&= \frac{Var\big( \displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t\big) + Var\big(\displaystyle\sum_{t=1}^n(X_t- \overline{X})\overline{Y}\big)}{\bigg( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
-&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 Var(Y_t) + Var\big(\overline{Y}(n\overline{X}- n\overline{X})\big)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
-&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 Var(\beta_0 + \beta_1X_t + \varepsilon_t) + 0}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
+&= \frac{\Var\big( \displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t\big) + \Var\big(\displaystyle\sum_{t=1}^n(X_t- \overline{X})\overline{Y}\big)}{\bigg( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 \Var(Y_t) + \Var\big(\overline{Y}(n\overline{X}- n\overline{X})\big)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 \Var(\beta_0 + \beta_1X_t + \varepsilon_t) + 0}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 \end{align*}
 
 \begin{center}
 \begin{tikzpicture}[node distance=1.2cm]
-\node (function) at (current page.center) {$Var(\beta_0 + \beta_1X_t + \varepsilon_t)$};
+\node (function) at (current page.center) {$\Var(\beta_0 + \beta_1X_t + \varepsilon_t)$};
 \coordinate[below of=function] (c);
 \node[text width = 2.3cm, left of=c]  (Y) {Constante};
 \draw[->, line width=0.5mm] (Y) -- ([xshift=1cm, yshift=-3mm] function.west);
@@ -982,7 +986,7 @@ Var(\hat{\beta}_1) &= Var\Bigg( \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X
 \end{center}
 
 \begin{align*}
-&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 Var(\varepsilon_t)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 \Var(\varepsilon_t)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 & \overset{\ref{post2}}{=} \frac{\displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 \sigma^2}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 \end{align*}
 
@@ -990,20 +994,20 @@ Var(\hat{\beta}_1) &= Var\Bigg( \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X
 \label{eq:varbeta1}
 \color{blue}
 \boxed{\color{black}
-Var(\hat{\beta_1}) = \frac{\sigma^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2}}
+\Var(\hat{\beta_1}) = \frac{\sigma^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2}}
 \end{equation}
 
 \begin{align*}
-Var(\hat{\beta}_0) &= Var(\overline{Y} - \hat{\beta}_1\overline{X})\\
-&= Var(\overline{Y}) + Var(\hat{\beta}_1\overline{X}) -  2 Cov(\overline{Y}, \hat{\beta}_1\overline{X}) \\
-&= Var\Bigg(\frac{\sum_{t=1}^n Y_t}{n} \Bigg) + \overline{X}^2 Var(\hat{\beta}_1) -  2 \overline{X} Cov(\overline{Y}, \hat{\beta}_1) \\
-&= \frac{n \times Var(Y_t)}{n^2}  + \overline{X}^2 \Bigg(\frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg) -  2 \overline{X} Cov(\overline{Y}, \hat{\beta}_1) \\
+\Var(\hat{\beta}_0) &= \Var(\overline{Y} - \hat{\beta}_1\overline{X})\\
+&= \Var(\overline{Y}) + \Var(\hat{\beta}_1\overline{X}) -  2 \Cov(\overline{Y}, \hat{\beta}_1\overline{X}) \\
+&= \Var\Bigg(\frac{\sum_{t=1}^n Y_t}{n} \Bigg) + \overline{X}^2 \Var(\hat{\beta}_1) -  2 \overline{X} \Cov(\overline{Y}, \hat{\beta}_1) \\
+&= \frac{n \times \Var(Y_t)}{n^2}  + \overline{X}^2 \Bigg(\frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg) -  2 \overline{X} \Cov(\overline{Y}, \hat{\beta}_1) \\
 \end{align*}
 
 \begin{align*}
-Cov(\overline{Y}, \hat{\beta}_1) &= Cov \Bigg( \frac{\displaystyle\sum_{t=1}^n Y_t}{n}, \frac{\displaystyle\sum_{s=1}^n(X_s- \overline{X})(Y_s - \overline{Y})}{\displaystyle\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg) \\
-&= \frac{1}{n}\frac{1}{\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} Cov\Bigg(\displaystyle\sum_{t=1}^n Y_t, \displaystyle\sum_{s=1}^n(X_s- \overline{X})Y_s - \overline{Y}\displaystyle\sum_{s=1}^n(X_s- \overline{X}) \Bigg) \\
-&= \frac{1}{n}\frac{1}{\displaystyle\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \displaystyle\sum_{t=1}^n \displaystyle\sum_{s=1}^n (X_s- \overline{X}) Cov(Y_t, Y_s) \\
+\Cov(\overline{Y}, \hat{\beta}_1) &= \Cov \Bigg( \frac{\displaystyle\sum_{t=1}^n Y_t}{n}, \frac{\displaystyle\sum_{s=1}^n(X_s- \overline{X})(Y_s - \overline{Y})}{\displaystyle\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg) \\
+&= \frac{1}{n}\frac{1}{\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \Cov\Bigg(\displaystyle\sum_{t=1}^n Y_t, \displaystyle\sum_{s=1}^n(X_s- \overline{X})Y_s - \overline{Y}\displaystyle\sum_{s=1}^n(X_s- \overline{X}) \Bigg) \\
+&= \frac{1}{n}\frac{1}{\displaystyle\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \displaystyle\sum_{t=1}^n \displaystyle\sum_{s=1}^n (X_s- \overline{X}) \Cov(Y_t, Y_s) \\
 &= \frac{1}{n}\frac{1}{\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2} \Bigg( \mathop{\displaystyle\sum_{t=1}^n \displaystyle\sum_{s=1}^n}_{:t \neq s} (X_s- \overline{X}) \times 0 + \mathop{\displaystyle\sum_{t=1}^n \displaystyle\sum_{s=1}^n}_{:t = s} (X_s- \overline{X}) \sigma^2 \Bigg) \\
 &= \frac{1}{n}\frac{1}{\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2}\sigma^2 \bigg( \displaystyle\sum_{t=1}^n (X_t - \overline{X}) \bigg) \\
 &= \frac{1}{n}\frac{1}{\displaystyle\sum_{s=1}^n(X_s - \overline{X})^2}\sigma^2 (n\overline{X}- n\overline{X}) \\
@@ -1014,13 +1018,13 @@ Cov(\overline{Y}, \hat{\beta}_1) &= Cov \Bigg( \frac{\displaystyle\sum_{t=1}^n Y
 \label{eq:varbeta0}
 \color{blue}
 \boxed{\color{black}
-Var(\hat{\beta}_0) = \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)}
+\Var(\hat{\beta}_0) = \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)}
 \end{equation}
 
 Finalement, pour la covariance entre $\hat{\beta}_0$ et $\hat{\beta}_1$
 \begin{align*}
-Cov(\hat{\beta}_0, \hat{\beta}_1) &= Cov(\overline{Y} - \hat{\beta}_1\overline{X}, \hat{\beta}_1) \\
-&= Cov(\overline{Y},  \hat{\beta}_1) - \overline{X} Var(\hat{\beta}_1) \\
+\Cov(\hat{\beta}_0, \hat{\beta}_1) &= \Cov(\overline{Y} - \hat{\beta}_1\overline{X}, \hat{\beta}_1) \\
+&= \Cov(\overline{Y},  \hat{\beta}_1) - \overline{X} \Var(\hat{\beta}_1) \\
 &= 0 - \overline{X} \frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2} \\
 \end{align*}
 
@@ -1028,7 +1032,7 @@ Cov(\hat{\beta}_0, \hat{\beta}_1) &= Cov(\overline{Y} - \hat{\beta}_1\overline{X
 \label{eq:covariance}
 \color{blue}
 \boxed{\color{black}
-Cov(\hat{\beta}_0, \hat{\beta}_1) = - \overline{X} \frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}}
+\Cov(\hat{\beta}_0, \hat{\beta}_1) = - \overline{X} \frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}}
 \end{equation}
 
 \bigskip
@@ -1050,7 +1054,7 @@ Le théorème de \href{https://fr.wikipedia.org/wiki/Théorème_de_Gauss-Markov}
 \subsubsection*{Notions importantes à retenir du théorème:}
 \begin{enumerate}
 \item Considérer l'estimateur $\Theta^* = \displaystyle\sum_{t=1}^n C_t \times Y_t$
-\item Minimiser $Var(\Theta^*)$ sous la contrainte que $E[\Theta^*] = \beta$; où
+\item Minimiser $\Var(\Theta^*)$ sous la contrainte que $\E[\Theta^*] = \beta$; où
 $$ \beta =
 \begin{bmatrix}
   \beta_0 \\
@@ -1171,7 +1175,7 @@ Il y a peu d'intérêt de construire un modèle avec les données de l'échantil
 
 \begin{center}
 \begin{tikzpicture}[node distance=1.2cm]
-\node (function) at (current page.center) {$Var(Y_t) \approx 0\% \times Var(X_t) + 100\% \times Var(\varepsilon_t)$};
+\node (function) at (current page.center) {$\Var(Y_t) \approx 0\% \times \Var(X_t) + 100\% \times \Var(\varepsilon_t)$};
 \coordinate[below of=function] (c);
 \node[text width = 2.5cm, below of=c, yshift = 1.1cm]  (B2) {Expliquée};
 \draw[->, line width=0.5mm] (B2) -- ([xshift=3.3cm, yshift=-3mm] function.west);
@@ -1184,7 +1188,7 @@ Il est préférable dans ce cas-ci d'utiliser les modèles statistiques vus dans
 \bigskip
 Par contre, il y a un intérêt à utiliser un modèle avec les données de l'échantillon 2 car,
 $$
-Var(Y_t) = Var(X_t)
+\Var(Y_t) = \Var(X_t)
 $$
 Autrement dit, la variable X explique bien la variable Y.
 
@@ -1294,7 +1298,7 @@ Intuitivement,
 \begin{itemize}
      \item Dans un bon modèle de régression, on aimerait que 
           \begin{itemize}
-          \item $SST \approx SSR$, soit que $Var(Y_t) \approx Var(X_t)$ 
+          \item $SST \approx SSR$, soit que $\Var(Y_t) \approx \Var(X_t)$ 
           \item[ou]
           \item $SSE \approx 0$, soit que la variation résiduelle soit très faible
           \end{itemize}
@@ -1487,22 +1491,22 @@ MSE &= \frac{SSE}{d.l.(SSE)} \\
 \emph{Attention de ne pas confondre avec $\hat{\beta}_1$.}
 
 \bigskip
-Puisque $ \hat{\beta}_1 \sim N(\beta_1, Var(\hat{\beta}_1))$, on a que 
+Puisque $ \hat{\beta}_1 \sim N(\beta_1, \Var(\hat{\beta}_1))$, on a que 
 $$
-\Bigg(\frac{\hat{\beta}_1 - \beta_1}{\sqrt{Var(\hat{\beta}_1)}}\Bigg) \sim N(0,1)
+\Bigg(\frac{\hat{\beta}_1 - \beta_1}{\sqrt{\Var(\hat{\beta}_1)}}\Bigg) \sim N(0,1)
 $$
 
 Si $\sigma^2$ était connu, l'intervalle de confiance serait de la forme suivante 
 $$
-\bigg[\hat{\beta}_1\pm Z_{\alpha/2} \times \sqrt{Var(\hat{\beta}_1)}\bigg]
+\bigg[\hat{\beta}_1\pm Z_{\alpha/2} \times \sqrt{\Var(\hat{\beta}_1)}\bigg]
 $$
-Par contre, $\sigma^2$ n'est  souvent pas connu et il est nécessaire de l'estimer. Tel que mentionné plus haut, l'estimateur non biaisé correspond à l'équation \ref{eq:s2}. Mais cet estimateur ne suit pas une distribution normale. À l'aide des notions acquises en ACT-2000, il est possible de démontrer que si on utilise l'estimateur de $\sigma^2$, soit $S^2$, dans la formule de $Var(\hat{\beta}_1)$, c'est-à-dire :
+Par contre, $\sigma^2$ n'est  souvent pas connu et il est nécessaire de l'estimer. Tel que mentionné plus haut, l'estimateur non biaisé correspond à l'équation \ref{eq:s2}. Mais cet estimateur ne suit pas une distribution normale. À l'aide des notions acquises en ACT-2000, il est possible de démontrer que si on utilise l'estimateur de $\sigma^2$, soit $S^2$, dans la formule de $\Var(\hat{\beta}_1)$, c'est-à-dire :
 $$
-\widehat{Var}(\hat{\beta}_1) = \frac{S^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}
+\widehat{\Var}(\hat{\beta}_1) = \frac{S^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}
 $$
 Alors, on peut conclure que :
 $$
-\Bigg(\frac{\hat{\beta}_1 - \beta_1}{\sqrt{Var(\hat{\beta}_1)}}\Bigg) \sim t(n-2)
+\Bigg(\frac{\hat{\beta}_1 - \beta_1}{\sqrt{\Var(\hat{\beta}_1)}}\Bigg) \sim t(n-2)
 $$
 
 On obtient ainsi l'intervalle de confiance suivant au niveau $100 \times (1 - \alpha)\%$ pour $\beta_1$, soit :
@@ -1540,7 +1544,7 @@ H_1 &: \beta_0 \neq 0 \\
 \end{align*}
 On utilise la statistique suivante,
 \begin{align*}
-t &= \frac{\hat{\beta}_0 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_0)}}
+t &= \frac{\hat{\beta}_0 - 0 }{\sqrt{\widehat{\Var}(\hat{\beta}_0)}}
 \end{align*}
 
 Pour tester la question  \ref{hyp2} :
@@ -1551,7 +1555,7 @@ H_1 &: \beta_1 \neq 0 \\
 \end{align*}
 On utilise la statistique suivante,
 \begin{align*}
-t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}}
+t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{\Var}(\hat{\beta}_1)}}
 \end{align*}
 
 On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ pour $\beta_0$ si :
@@ -1595,7 +1599,7 @@ H_1 &: \beta_0 \neq \beta_0^* \\
 \end{align*}
 On utilise la statistique suivante,
 \begin{align*}
-t &= \frac{\hat{\beta}_0 - \beta_0^* }{\sqrt{\widehat{Var}(\hat{\beta}_0)}}
+t &= \frac{\hat{\beta}_0 - \beta_0^* }{\sqrt{\widehat{\Var}(\hat{\beta}_0)}}
 \end{align*}
 
 Pour tester la question  \ref{hyp2} :
@@ -1606,7 +1610,7 @@ H_1 &: \beta_1 \neq \beta_1^* \\
 \end{align*}
 On utilise la statistique suivante,
 \begin{align*}
-t &= \frac{\hat{\beta}_1 - \beta_1^* }{\sqrt{\widehat{Var}(\hat{\beta}_1)}}
+t &= \frac{\hat{\beta}_1 - \beta_1^* }{\sqrt{\widehat{\Var}(\hat{\beta}_1)}}
 \end{align*}
 
 On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ pour $\beta_0$ si :
@@ -1621,15 +1625,15 @@ On poursuit avec un exemple pour assimiler l'information.
 Dans une régression sur un ensemble de 14 observations, on a obtenu les informations suivantes :
 \begin{align*}
 \hat{Y}_t &= 68.494 - 0.468X_t \\
-\widehat{Var}(\hat{\beta}) &= \widehat{Var}\Bigg(
+\widehat{\Var}(\hat{\beta}) &= \widehat{\Var}\Bigg(
 \begin{bmatrix}
   \beta_0 \\
   \beta_1 \\ 
 \end{bmatrix}\Bigg) \\
 &= 
 \begin{bmatrix}
-  \widehat{Var}(\hat{\beta}_0) & \widehat{Cov}(\hat{\beta}_0, \hat{\beta}_1)\\
-  \widehat{Cov}(\hat{\beta}_0, \hat{\beta}_1)  & \widehat{Var}(\hat{\beta}_1)\\ 
+  \widehat{\Var}(\hat{\beta}_0) & \widehat{\Cov}(\hat{\beta}_0, \hat{\beta}_1)\\
+  \widehat{\Cov}(\hat{\beta}_0, \hat{\beta}_1)  & \widehat{\Var}(\hat{\beta}_1)\\ 
 \end{bmatrix} \\
 &= 
 \begin{bmatrix}
@@ -1647,7 +1651,7 @@ H_1 &: \beta_0 \neq 0 \\
 \end{align*}
 On utilise la statistique suivante,
 \begin{align*}
-t &= \frac{\hat{\beta}_0 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_0)}} \\
+t &= \frac{\hat{\beta}_0 - 0 }{\sqrt{\widehat{\Var}(\hat{\beta}_0)}} \\
 &= \frac{68.494 - 0}{\sqrt{66.8511}}\\
 &= 8.38\\
 t_{\frac{0.05}{2}(14-2)} &= 2.18 \\
@@ -1663,7 +1667,7 @@ H_1 &: \beta_1 \neq 0 \\
 \end{align*}
 On utilise la statistique suivante,
 \begin{align*}
-t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}} \\
+t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{\Var}(\hat{\beta}_1)}} \\
 &= \frac{-0.468 - 0}{\sqrt{0.0237}}\\
 &= -3.040\\
 t_{\frac{0.05}{2}(14-2)} &= 2.18\\
@@ -1679,7 +1683,7 @@ H_1 &: \beta_1 \neq 0 \\
 \end{align*}
 On utilise la statistique suivante,
 \begin{align*}
-t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}} \\
+t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{\Var}(\hat{\beta}_1)}} \\
 &= \frac{-0.468 - 0}{\sqrt{0.0237}}\\
 &= -3.040\\
 t_{\frac{0.05}{2}(14-2)} &= 2.18\\
@@ -1695,7 +1699,7 @@ H_1 &: \beta_1 < 0 \\
 \end{align*}
 On utilise la statistique suivante,
 \begin{align*}
-t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{Var}(\hat{\beta}_1)}} \\
+t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{\Var}(\hat{\beta}_1)}} \\
 &= \frac{-0.468 - 0}{\sqrt{0.0237}} \\
 &= -3.040 \\
 -t_{\frac{0.05}{2}(14-2)} &= -1.78 \\
@@ -1730,7 +1734,7 @@ p
 Obtenir un I.C. au niveau de confiance de 95 \% pour $\beta_0$.
 
 \begin{align*}
-\beta_0 &\in \hat{\beta}_0 \pm t_{\frac{0.05}{2}}(14-2)\sqrt{\widehat{Var}(\hat{\beta}_0)} \\
+\beta_0 &\in \hat{\beta}_0 \pm t_{\frac{0.05}{2}}(14-2)\sqrt{\widehat{\Var}(\hat{\beta}_0)} \\
 & \in 68.494 \pm 2.18 \times \sqrt{66.8511} \\
 &\in \big] 50.670, 86.318 \big[
 \end{align*}
@@ -1740,7 +1744,7 @@ L' I.C. permet de valider le test d'hypothèse de la question 1, car il ne compr
 Obtenir un I.C. au niveau de confiance de 95 \% pour $\beta_1$.
 
 \begin{align*}
-\beta_1 &\in \hat{\beta}_1 \pm t_{\frac{0.05}{2}}(14-2)\sqrt{\widehat{Var}(\hat{\beta}_1)} \\
+\beta_1 &\in \hat{\beta}_1 \pm t_{\frac{0.05}{2}}(14-2)\sqrt{\widehat{\Var}(\hat{\beta}_1)} \\
 & \in -0.468 \pm 2.18 \times \sqrt{0.0237} \\
 &\in \big] -0.804, -0.132 \big[
 \end{align*}
@@ -1774,7 +1778,7 @@ F > F_{\alpha}(1, n-2)}
 	F &= \frac{\frac{SSR}{1}}{\frac{SSE}{(n-2)}} = \frac{SSR}{\sigma^2} = \frac{SSR}{S^2} = \frac{\displaystyle\sum_{t=1}^n (\hat{Y}_t - \overline{Y})^2}{S^2} \\
 	&= \frac{\displaystyle\sum_{t=1}^n(\hat{\beta}_0 + \hat{\beta}_1X_t - \hat{\beta}_0 - \hat{\beta}_1\overline{X})^2}{S^2} = \frac{\hat{\beta}_1^2 \times \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2}{S^2} \\
 	&= \frac{\hat{\beta}_1^2}{\frac{S^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2}} \\
-	&= \frac{(\hat{\beta}_1 - 0)^2}{\widehat{Var}(\hat{\beta}_1)} \\
+	&= \frac{(\hat{\beta}_1 - 0)^2}{\widehat{\Var}(\hat{\beta}_1)} \\
 	&= t^2
 	\end{align*}
 \end{moreInfo}
@@ -1808,7 +1812,7 @@ On peut utiliser la droite de régression pour faire des types de prévisions de
 \subsubsection*{Type 1}
 Prévision pour la \emph{valeur moyenne} de $Y^*$
 $$
-E[Y^*] = \beta_0 + \beta_1X^*
+\E[Y^*] = \beta_0 + \beta_1X^*
 $$
 
 \subsubsection*{Type 2}
@@ -1821,12 +1825,12 @@ $$
 \begin{enumerate}
 \item Dans les deux types, la prévision est le point sur la droite de régression
 \begin{align*}
-\widehat{E}[Y^*] &= \hat{Y}^* \\
+\widehat{\E}[Y^*] &= \hat{Y}^* \\
 \hat{Y}^* &= \hat{\beta}_0 +  \hat{\beta}_1X^*
 \end{align*}
 \item La prévision est sans biais 
 \begin{align*}
-E[\hat{\beta}_0 +  \hat{\beta}_1X^*] &= E[\hat{\beta}_0] + E[\hat{\beta}_1]X^* \\
+\E[\hat{\beta}_0 +  \hat{\beta}_1X^*] &= \E[\hat{\beta}_0] + \E[\hat{\beta}_1]X^* \\
 &= \beta_0 +  \beta_1X^*
 \end{align*}
 \item Il y a deux sources d'erreur dans les prévisions,
@@ -1930,15 +1934,15 @@ Aussi appelé intervalle de confiance pour la droite de régression.
 
 Tel que vue à la section \ref{sec:distri}, on a que
 $$
-\big(\widehat{E}[Y^*] = \hat{\beta}_0 + \hat{\beta}_1X^* \big) \sim N(\beta_0 + \beta_1X^*; Var( \hat{\beta}_0 + \hat{\beta}_1X^*))
+\big(\widehat{\E}[Y^*] = \hat{\beta}_0 + \hat{\beta}_1X^* \big) \sim N(\beta_0 + \beta_1X^*; \Var( \hat{\beta}_0 + \hat{\beta}_1X^*))
 $$
 Par conséquent,
 $$
-\frac{(\hat{\beta}_0 + \hat{\beta}_1X^*) - (\beta_0 + \beta_1X^*)}{\sqrt{Var( \hat{\beta}_0 + \hat{\beta}_1X^*)}} \sim N(0,1)
+\frac{(\hat{\beta}_0 + \hat{\beta}_1X^*) - (\beta_0 + \beta_1X^*)}{\sqrt{\Var( \hat{\beta}_0 + \hat{\beta}_1X^*)}} \sim N(0,1)
 $$
-En substituant $\sigma^2$ par $S^2$ dans la $Var(\hat{\beta}_0 + \hat{\beta}_1X^*)$; on a
+En substituant $\sigma^2$ par $S^2$ dans la $\Var(\hat{\beta}_0 + \hat{\beta}_1X^*)$; on a
 $$
-\frac{(\hat{\beta}_0 + \hat{\beta}_1X^*) - (\beta_0 + \beta_1X^*)}{\sqrt{\widehat{Var}( \hat{\beta}_0 + \hat{\beta}_1X^*)}} \sim t(n-2)
+\frac{(\hat{\beta}_0 + \hat{\beta}_1X^*) - (\beta_0 + \beta_1X^*)}{\sqrt{\widehat{\Var}( \hat{\beta}_0 + \hat{\beta}_1X^*)}} \sim t(n-2)
 $$
 Ainsi, un I.C. au niveau $100 \times(1 -\alpha)\%$ pour la valeur moyenne est
 
@@ -1946,17 +1950,17 @@ Ainsi, un I.C. au niveau $100 \times(1 -\alpha)\%$ pour la valeur moyenne est
 \label{eq:IC}
 \color{blue}
 \boxed{\color{black}
-(\hat{\beta}_0 + \hat{\beta}_1X^*)  \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{\widehat{Var}( \hat{\beta}_0 + \hat{\beta}_1X^*)}
+(\hat{\beta}_0 + \hat{\beta}_1X^*)  \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{\widehat{\Var}( \hat{\beta}_0 + \hat{\beta}_1X^*)}
 }
 \end{equation}
 On rappelle que comme $\sigma^2$ n'est souvent pas connu, il est nécessaire d'utiliser son estimateur $S^2$.
 
 Or, 
 \begin{align*}
-Var(\hat{\beta}_0 + \hat{\beta}_1X^*)  &= Var(\overline{Y} - \overline{Y} + \hat{\beta}_0 + \hat{\beta}_1X^*) \\
-&= Var(\overline{Y} - (\hat{\beta}_0 + \hat{\beta}_1\overline{X}) + \hat{\beta}_0 + \hat{\beta}_1X^*) \\
-&= Var(\overline{Y} + \hat{\beta}_1( X^* - \overline{X})) \\
-&= Var(\overline{Y}) + Var(\hat{\beta}_1)( X^* - \overline{X})^2 \\
+\Var(\hat{\beta}_0 + \hat{\beta}_1X^*)  &= \Var(\overline{Y} - \overline{Y} + \hat{\beta}_0 + \hat{\beta}_1X^*) \\
+&= \Var(\overline{Y} - (\hat{\beta}_0 + \hat{\beta}_1\overline{X}) + \hat{\beta}_0 + \hat{\beta}_1X^*) \\
+&= \Var(\overline{Y} + \hat{\beta}_1( X^* - \overline{X})) \\
+&= \Var(\overline{Y}) + \Var(\hat{\beta}_1)( X^* - \overline{X})^2 \\
 &= \frac{\sigma^2}{n} + \frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}(X^* - \overline{X})^2 \\
 &=\sigma^2 \Bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg)  \\
 \end{align*}
@@ -1966,7 +1970,7 @@ Et ainsi, on obtient,
 \label{eq:var*}
 \color{blue}
 \boxed{\color{black}
-\widehat{Var}(\hat{\beta}_0 + \hat{\beta}_1X^*) = S^2 \Bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg)  
+\widehat{\Var}(\hat{\beta}_0 + \hat{\beta}_1X^*) = S^2 \Bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg)  
 }
 \end{equation}
 L'I.C. est donc,
@@ -2020,24 +2024,24 @@ p
 \label{sec:type2}
 Aussi appelé I.C. pour les points de $Y^*$.
 \bigskip
-Pour obtenir un I.C. pour la vraie valeur de $Y^*$, il faut tenir compte du parameter risk $(Var(\hat{\beta}_i))$ ET du process risk $(Var(\varepsilon_t))$. On considère donc de manière équivalente à la section \ref{sec:type1},
+Pour obtenir un I.C. pour la vraie valeur de $Y^*$, il faut tenir compte du parameter risk $(\Var(\hat{\beta}_i))$ ET du process risk $(\Var(\varepsilon_t))$. On considère donc de manière équivalente à la section \ref{sec:type1},
 
 $$
-\frac{Y^* - \hat{Y}^*}{\sqrt{Var(Y^* - \hat{Y}^*)}} \sim N(0,1)
+\frac{Y^* - \hat{Y}^*}{\sqrt{\Var(Y^* - \hat{Y}^*)}} \sim N(0,1)
 $$
-En substituant $\sigma^2$ par $S^2$ dans $Var(Y^* - \hat{Y}^*)$, on a
+En substituant $\sigma^2$ par $S^2$ dans $\Var(Y^* - \hat{Y}^*)$, on a
 
 $$
-\frac{Y^* - \hat{Y}^*}{\sqrt{\widehat{Var}(Y^* - \hat{Y}^*)}} \sim t(n-2)
+\frac{Y^* - \hat{Y}^*}{\sqrt{\widehat{\Var}(Y^* - \hat{Y}^*)}} \sim t(n-2)
 $$
 Ainsi, un I.C. au niveau $100 \times (1 - \alpha)\%$ pour $\beta_1$  pour la vraie valeur de $Y^*$ est,
 $$
-\hat{Y}^* \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{\widehat{Var}(Y^* - \hat{Y}^*)}
+\hat{Y}^* \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{\widehat{\Var}(Y^* - \hat{Y}^*)}
 $$
 
 Or par hypothèse on a
 \begin{align*}
-Var(Y^* - \hat{Y}^*) &= Var(Y^*) + Var(\hat{Y}^*) \\
+\Var(Y^* - \hat{Y}^*) &= \Var(Y^*) + \Var(\hat{Y}^*) \\
 &= \underbrace{\sigma^2} +\underbrace{\sigma^2\Bigg( \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)}  \\
 &   \text{Process risk }\ \ \ \  \text{Parameter risk}
 \end{align*}
@@ -2047,7 +2051,7 @@ D'où
 \label{eq:var2*}
 \color{blue}
 \boxed{\color{black}
-\widehat{Var}(Y^* - \hat{Y}^*) = S^2 \Bigg(1 + \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)  
+\widehat{\Var}(Y^* - \hat{Y}^*) = S^2 \Bigg(1 + \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)  
 }
 \end{equation}
 L'I.C. est donc,
@@ -2152,22 +2156,22 @@ X_n \\
 
 On définit le vecteur espérance de la façon suivante
 \begin{align*}
-E[X] &=
+\E[X] &=
 \begin{bmatrix} 
-E[X_1] \\
-E[X_2 ]\\
+\E[X_1] \\
+\E[X_2 ]\\
 \vdots \\
-E[X_n] \\
+\E[X_n] \\
 \end{bmatrix}_{n \times 1}
 \end{align*}
 
 et la matrice de variance-covariance
 \begin{align*}
-Var(X) &=\underbrace{E\Big[(X -E[X])(X-E[X])^\intercal\Big]}  =
+\Var(X) &=\underbrace{\E\Big[(X -\E[X])(X-\E[X])^\intercal\Big]}  =
 \begin{bmatrix} 
-Var(X_1) &\cdots & Cov(X_1,X_n) \\
+\Var(X_1) &\cdots & \Cov(X_1,X_n) \\
 \vdots \\
-Cov(X_n,X_1) & \cdots & Var(X_n)\\
+\Cov(X_n,X_1) & \cdots & \Var(X_n)\\
 \end{bmatrix}_{n \times 1}\\
 & \text{\ \ \ \ \ \ Produit matriciel}
 \end{align*}
@@ -2181,8 +2185,8 @@ $$
 $$
 Alors,
 \begin{align*}
-E[\mathbb{AX}] &= \mathbb{A}E[\mathbb{X}] \\
-Var(\mathbb{A}\mathbb{X}) &= \mathbb{A} Var(\mathbb{X})\mathbb{A}^\intercal \\
+\E[\mathbb{AX}] &= \mathbb{A}\E[\mathbb{X}] \\
+\Var(\mathbb{A}\mathbb{X}) &= \mathbb{A} \Var(\mathbb{X})\mathbb{A}^\intercal \\
 \end{align*}
 
 \subsubsection*{Exemple}
@@ -2205,30 +2209,30 @@ Var(\mathbb{A}\mathbb{X}) &= \mathbb{A} Var(\mathbb{X})\mathbb{A}^\intercal \\
 Intuitivement,
 \begin{align*}
 \mathbb{A} \mathbb{X} &= X_1 + X_2  \\
-\Rightarrow & E[\mathbb{A} \mathbb{X}] = E[X_1 + X_2] = E[X_1] + E[X_2] \\
-\Rightarrow & Var(\mathbb{A} \mathbb{X})= Var(X_1 + X_2) = Var(X_1) + Var(X_2) + 2cov(X_1, X_2) \\
+\Rightarrow & \E[\mathbb{A} \mathbb{X}] = \E[X_1 + X_2] = \E[X_1] + \E[X_2] \\
+\Rightarrow & \Var(\mathbb{A} \mathbb{X})= \Var(X_1 + X_2) = \Var(X_1) + \Var(X_2) + 2\Cov(X_1, X_2) \\
 \end{align*}
 
 En calcul matriciel,
 \begin{align*}
-E[\mathbb{A} \mathbb{X}] &= \mathbb{A} E[\mathbb{X}]  \\
+\E[\mathbb{A} \mathbb{X}] &= \mathbb{A} \E[\mathbb{X}]  \\
 &= 
 \begin{bmatrix} 
      1 & 1 \\
 \end{bmatrix} 
 \begin{bmatrix} 
-     E[X_1] \\
-     E[X_2]\\
+     \E[X_1] \\
+     \E[X_2]\\
 \end{bmatrix} \\
-&= E[X_1] + E[X_2] \\
-Var(\mathbb{A} \mathbb{X}) &= \mathbb{A}Var(\mathbb{X})\mathbb{A}^\intercal \\
+&= \E[X_1] + \E[X_2] \\
+\Var(\mathbb{A} \mathbb{X}) &= \mathbb{A}\Var(\mathbb{X})\mathbb{A}^\intercal \\
 &= 
 \begin{bmatrix} 
      1 & 1 \\
 \end{bmatrix}
 \begin{bmatrix} 
-Var(X_1)  & Cov(X_1,X_2) \\
-Cov(X_1,X_2) & Var(X_2)\\
+\Var(X_1)  & \Cov(X_1,X_2) \\
+\Cov(X_1,X_2) & \Var(X_2)\\
 \end{bmatrix} 
 \begin{bmatrix} 
      1  \\
@@ -2236,13 +2240,13 @@ Cov(X_1,X_2) & Var(X_2)\\
 \end{bmatrix}\\
 &= 
 \begin{bmatrix} 
-\big(Var(X_1)  + Cov(X_1,X_2) \big) &\big(Cov(X_1,X_2) + Var(X_2) \big) 
+\big(\Var(X_1)  + \Cov(X_1,X_2) \big) &\big(\Cov(X_1,X_2) + \Var(X_2) \big) 
 \end{bmatrix}
 \begin{bmatrix} 
      1  \\
      1  \\
 \end{bmatrix}\\
-&= Var(X_1) + Var(X_2) + 2cov(X_1, X_2) \\
+&= \Var(X_1) + \Var(X_2) + 2\Cov(X_1, X_2) \\
 \end{align*}
 
 \section{Le modèle sous forme matricielle}
@@ -2319,7 +2323,7 @@ $$
 \item $\beta$ est un vecteur de dimension $(p+1) \times 1$ des coefficients à estimer.
 \item $\varepsilon$ est un vecteur de dimension $n \times 1$ des erreurs de telle sorte que
      \begin{itemize}
-     \item $E[\varepsilon] = \mathbb{O}_{n\times 1}$, où $\mathbb{O}$ correspond à une matrice nulle.
+     \item $\E[\varepsilon] = \mathbb{O}_{n\times 1}$, où $\mathbb{O}$ correspond à une matrice nulle.
      \item $Var(\varepsilon) = \sigma^2 \mathbb{I}_{n \times n}$, où $\mathbb{I}$ correspond à une matrice identité.
      \end{itemize}
 \end{itemize}
@@ -2485,8 +2489,8 @@ Qui correspond bien à l'estimateur de $\hat{\beta}_0$ (\ref{eq:beta0}) et de $\
 \begin{enumerate}
 \item Sans biais
 \begin{align*}
-E[\hat{\beta}] &= E\big[ (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y} \big] \\
-&\overset{\ref{sec:theo}}{=} (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal E[\mathbb{Y}] \\
+\E[\hat{\beta}] &= \E\big[ (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y} \big] \\
+&\overset{\ref{sec:theo}}{=} (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \E[\mathbb{Y}] \\
 &= (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal (\mathbb{X}\beta) \\
 &= (\mathbb{X}^\intercal\mathbb{X})^{-1}(\mathbb{X}^\intercal\mathbb{X}) \beta \\
 &= \mathbb{I} \beta \\
@@ -2494,8 +2498,8 @@ E[\hat{\beta}] &= E\big[ (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\interc
 \end{align*}
 \item Variance-covariance
 \begin{align*}
-Var\hat{\beta}) &= Var\big((\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y} \big) \\
-&\overset{\ref{sec:theo}}{=} (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal Var(\mathbb{Y}) \big[ (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \big]^\intercal \\
+\Var\hat{\beta}) &= \Var\big((\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y} \big) \\
+&\overset{\ref{sec:theo}}{=} (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \Var(\mathbb{Y}) \big[ (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \big]^\intercal \\
 &= (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \sigma^2 \mathbb{I} \bigg[ \mathbb{X} \big[(\mathbb{X}^\intercal\mathbb{X})^{-1} \big]^\intercal \bigg] \\
 & \overset{\ref{remarque1}}{=}\sigma^2 (\mathbb{X}^\intercal\mathbb{X})^{-1} \mathbb{X}^\intercal \bigg[ \mathbb{X} \big[(\mathbb{X}^\intercal\mathbb{X})^{-1} \big] \bigg] \\
 &= \sigma^2 (\mathbb{X}^\intercal\mathbb{X})^{-1} (\mathbb{X}^\intercal\mathbb{X}) (\mathbb{X}^\intercal\mathbb{X})^{-1} \\
@@ -2572,22 +2576,22 @@ H_0 &: \beta_i = \beta_i^* \\
 H_1 &: \beta_i \neq \beta_i^* \\
 &\text{Où $\beta_i^*$ est une constante.} \\
 &\text{On teste l'hypothèse à l'aide de la statistique suivante, } \\
-t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[{Var}(\hat{\beta})]_{i+1 \times i+1}}} \sim N(0, 1) \\
+t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[{\Var}(\hat{\beta})]_{i+1 \times i+1}}} \sim N(0, 1) \\
 &\text{et en remplacant $\sigma^2$ par $S^2$ dans la matrice de la variance, on obtient }\\
-t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[\widehat{Var}(\hat{\beta})]_{i+1 \times i+1}}} \sim t(n-(p+1)) \\
+t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[\widehat{\Var}(\hat{\beta})]_{i+1 \times i+1}}} \sim t(n-(p+1)) \\
 \end{align*}
 On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ pour si :
 $$
 |t| > t_{\frac{\alpha}{2}(n-(p+1))}
 $$
-Or, on a que $Var(\hat{\mathbb(\beta)}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}\sigma^2$. \newline
+Or, on a que $\Var(\hat{\mathbb(\beta)}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}\sigma^2$. \newline
 
 Ainsi, on peut réécrire l'expression en fonction de l'estimateur $S^2$, 
 \begin{equation}
 \label{eq:varmulti}
 \color{blue}
 \boxed{\color{black}
-\widehat{Var}(\hat{\mathbb(\beta)}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}S^2}
+\widehat{\Var}(\hat{\mathbb(\beta)}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}S^2}
 \end{equation}
 
 Avec un peu d'algèbre, on transforme ce test d'hypothèse en un intervalle de confiance pour $\beta_i$. L'I.C. marginal est donc le suivant :
@@ -3476,7 +3480,7 @@ $$
 $$
 et que
 \begin{align*}
-g(E[Y_i|X_i]) &= X_i\beta \\
+g(\E[Y_i|X_i]) &= X_i\beta \\
 &= \beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}\\
 \end{align*}
 Où $g(\bullet)$ est une fonction continue appelée une \textbf{fonction de lien}.
@@ -3499,13 +3503,13 @@ Le but de la fonction de lien est d'obtenir des valeurs de $\mu$ qui correspond 
 
 Ainsi, on obtient $\mu$ en inversant $g(\bullet)$ :
 \begin{align*}
-g(E[Y_i|X_i]) &= X_i\beta \\
+g(\E[Y_i|X_i]) &= X_i\beta \\
 \end{align*}
 \begin{equation}
 \label{eq:fonctionlien}
 \color{blue}
 \boxed{\color{black}
-E[Y_i|X_i] = g^{-1}(X_i\beta)
+\E[Y_i|X_i] = g^{-1}(X_i\beta)
 }
 \end{equation}
 Il est donc nécessaire de choisir une fonction inversible pour la fonction de lien.
@@ -3704,12 +3708,12 @@ On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ si :
 \subsubsection{Intervalles de confiances}
 Selon la théorie du maximum de vraisemblance, on a que la loi asymptotique de $\hat{\utilde{\beta}}$ est une loi normale multi-dimensionnelle :
 $$
-\hat{\beta}_{(p+1) \times 1} \longrightarrow N_{p+1} \bigg(\utilde{\beta}; Var(\hat{\utilde{\beta}}) \bigg)
+\hat{\beta}_{(p+1) \times 1} \longrightarrow N_{p+1} \bigg(\utilde{\beta}; \Var(\hat{\utilde{\beta}}) \bigg)
 $$
 avec,
 
 $$
-Var(\hat{\beta}) = I^{-1}(\hat{\utilde{\beta}})
+\Var(\hat{\beta}) = I^{-1}(\hat{\utilde{\beta}})
 $$
 Qui correspond à la borne inférieure de Cramer-Rao. \newline
 
@@ -3717,7 +3721,7 @@ Ainsi un intervalle de confiance au niveau $100 \times (1 - \alpha)\%$ pour $\be
 \begin{equation}
 \color{blue}
 \boxed{\color{black}
-\beta_i \pm Z_{1 - \frac{\alpha}{2}} \times \sqrt{[Var(\hat{\utilde{\beta}})]_{i+1, i+1}}
+\beta_i \pm Z_{1 - \frac{\alpha}{2}} \times \sqrt{[\Var(\hat{\utilde{\beta}})]_{i+1, i+1}}
 }
 \end{equation}
 
@@ -3839,7 +3843,7 @@ Dans ce cas, on a que
 $$
 (Y_i | \utilde{X}{}_i) \sim \text{Bernouilli}(\pi_i)
 $$
-Où $\pi_i$ correspond à $E[Y_i|\utilde{X}{}_i]$ et $g(\pi_i) = \utilde{X}{}_i\utilde{\beta}$. \newline
+Où $\pi_i$ correspond à $\E[Y_i|\utilde{X}{}_i]$ et $g(\pi_i) = \utilde{X}{}_i\utilde{\beta}$. \newline
 
 Puisque $\pi_i \in \  ]0, 1[\ $, $\pi_i$ est une probabilité, et que $\utilde{X}{}_i\utilde{\beta} \in \mathbb{R}$, il faut choisir la fonction de lien $g(\bullet)$ de telle sorte que
 $$
@@ -4064,7 +4068,7 @@ Dans ce cas, on postule que,
 \end{align*}
 Où
 \begin{align*}
-\lambda_i &= E[Y_i|\utilde{X}{}_i] \\
+\lambda_i &= \E[Y_i|\utilde{X}{}_i] \\
 \end{align*}
 avec,
 \begin{align*}
@@ -4210,8 +4214,8 @@ où
 et,
 \begin{align*}
 \Theta_i &\sim \Gamma(\alpha, \alpha) \\
-E[\Theta] &= 1 \\
-Var(\Theta) & = \frac{1}{\alpha} \\
+\E[\Theta] &= 1 \\
+\Var(\Theta) & = \frac{1}{\alpha} \\
 \end{align*}
 De plus, si $\alpha \rightarrow \infty$, alors NegBin $\rightarrow$ Poisson.
 \begin{align*}
@@ -4235,8 +4239,8 @@ H_1 &: \text{Il y a de la surdispersion} \\
 \end{align*}
 
 \begin{align*}
-Var(Y) &= E[Var(Y|\Theta)] + Var(E[Y|\Theta]) \\
-&= E[\lambda\times \Theta] + Var(\lambda\times\Theta) \\
+\Var(Y) &= \E[\Var(Y|\Theta)] + \Var(\E[Y|\Theta]) \\
+&= \E[\lambda\times \Theta] + \Var(\lambda\times\Theta) \\
 &= \lambda \times 1 + \lambda^2 \times \frac{1}{\alpha} \\
 &= \lambda \times (1 + \frac{\lambda}{\alpha}) \\
 \end{align*}
@@ -4267,9 +4271,9 @@ où
 \overset{\text{Lien log}}{\Rightarrow} \mu_i &= e^{\utilde{X}\utilde{\beta}} \\
 \frac{1}{\mu_i} &= \utilde{X}\utilde{\beta}\\
 \overset{\text{Lien inverse}}{\Rightarrow} \mu_i &= \frac{1}{\utilde{X}\utilde{\beta}} \\
-E[Y_i|\utilde{X}{}_i] &= \mu_i \\
+\E[Y_i|\utilde{X}{}_i] &= \mu_i \\
 &= g^{-1}(\utilde{X}\utilde{\beta}) \\
-Var(Y_i|\utilde{X}{}_i) & = \frac{\mu_i^2}{\alpha} \\
+\Var(Y_i|\utilde{X}{}_i) & = \frac{\mu_i^2}{\alpha} \\
 \end{align*}
 \item $l(\utilde{\beta}) = \displaystyle\sum_{i=1}^n\ln(f_{Y_i|\utilde{X}{}_i}(y_i))$
 \item $S(\utilde{\beta}) = \frac{\partial}{\partial\utilde{\beta}} l(\utilde{\beta})$
@@ -4297,9 +4301,9 @@ Dans le cas de la loi Normale, Logistique et Poisson, il n'y a pas de $y_i$ dans
 \item $Pr(Y_i = y_i |\utilde{X}{}_i) = P_i^{y_i-1} \times (1 - P_i); y_i \in \{1,2,... \}$
 \item Fonction de lien $g(x) = \ln(x-1)$
 \begin{align*}
-\ln(E[Y_i|\utilde{X}{}_i] - 1) &= \utilde{X}{}_i\beta \\
-E[Y_i|\utilde{X}{}_i] -1 &= e^{\utilde{X}{}_i\beta} \\
-E[Y_i|\utilde{X}{}_i]  &= 1 + e^{\utilde{X}{}_i\beta}  \\
+\ln(\E[Y_i|\utilde{X}{}_i] - 1) &= \utilde{X}{}_i\beta \\
+\E[Y_i|\utilde{X}{}_i] -1 &= e^{\utilde{X}{}_i\beta} \\
+\E[Y_i|\utilde{X}{}_i]  &= 1 + e^{\utilde{X}{}_i\beta}  \\
 \frac{1}{1 - P_i} &= 1 + e^{\utilde{X}{}_i\beta} \\
 1 - P_i &= \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \\
 P_i &= \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}
@@ -4332,7 +4336,7 @@ On remarque qu'il y a des $y_i$ dans la matrice d'information de Fisher.
 \begin{align*}
 [F(\beta)]_{j,k} &= E_Y\bigg[ [I(\utilde{\beta})]_{j,k}\bigg] \\
 &= E_Y\Bigg[ \displaystyle\sum_{i=1}^n\bigg\lbrace y_i \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace \Bigg]\\
-&= \displaystyle\sum_{i=1}^n \bigg\lbrace E[y_i|\utilde{X}{}_i] \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
+&= \displaystyle\sum_{i=1}^n \bigg\lbrace \E[y_i|\utilde{X}{}_i] \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
 &= \displaystyle\sum_{i=1}^n \bigg\lbrace \frac{1}{1-P_i} \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
 &= \displaystyle\sum_{i=1}^n \bigg\lbrace (1 + e^{\utilde{X}{}_i\beta}) \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
 &= \displaystyle\sum_{i=1}^n \bigg\lbrace \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}  \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
@@ -4474,7 +4478,7 @@ p
 Qui correspond à la fonction suivante:
 
 \begin{align*}
-g(E[Y|\utilde{X}{}_i]) &= 
+g(\E[Y|\utilde{X}{}_i]) &= 
 \left \lbrace
      \begin{array}{rl}
      \beta_0 + \beta_1X_1 &, \text{si une femme} \\
@@ -4491,7 +4495,7 @@ Pour permettre à l'amplitude de varier selon le sexe, il faut ajouter une inter
 
 Ainsi,
 \begin{align*}
-g(E[Y|\utilde{X}{}_i]) &= 
+g(\E[Y|\utilde{X}{}_i]) &= 
 \left \lbrace
      \begin{array}{rl}
      \beta_0 + \beta_1X_1 &, \text{si une femme} \\
