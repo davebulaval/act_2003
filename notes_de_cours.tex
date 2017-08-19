@@ -8,6 +8,7 @@
   \usepackage{listings}
   \usepackage{color}
  
+  %% Color
   \definecolor{codegreen}{rgb}{0,0.6,0}
   \definecolor{codegray}{rgb}{0.5,0.5,0.5}
   \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -19,7 +20,7 @@
   %%profondeur de la numérotation du TOC
   \setcounter{secnumdepth}{3} 
   %%lien hypertex
-  \usepackage[colorlinks, allcolors=blue]{hyperref} 
+  \usepackage[colorlinks, allcolors=Blue]{hyperref} 
   %% package pour modifier les chapitres #2
   \usepackage{titlesec}
   %% for number separation
@@ -76,7 +77,10 @@
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\Cov}{\mathrm{Cov}}
 
-%maccro tilde
+% macro colonne couleur
+\newcolumntype{b}{>{\columncolor{backcolour}}c}
+
+%macro tilde
 \def\utilde#1{\mathord{\vtop{\ialign{##\crcr
 $\hfil\displaystyle{#1}\hfil$\crcr\noalign{\kern1.0pt\nointerlineskip}
 $\hfil\tilde{}\hfil$\crcr\noalign{\kern1.0pt}}}}}
@@ -86,7 +90,7 @@ $\hfil\tilde{}\hfil$\crcr\noalign{\kern1.0pt}}}}}
 \mdfsetup{
 	linewidth=2pt,
 	nobreak=true,
-	backgroundcolor=blue!10,
+	backgroundcolor=Blue!10,
 	roundcorner=10pt}	
 \newenvironment{moreInfo}[1]
 	{\begin{mdframed}
@@ -387,7 +391,7 @@ Quel type d'erreur est suffisante pour déterminer $\varepsilon$ ?
 \bigskip
 \begin{itemize}
 \item Très robuste
-\item Très compliquée mathématiquement, pour minimiser $\displaystyle\displaystyle\sum_{t=1}^n |\varepsilon_t|$ cela implique de dériver la fonction.
+\item Très compliquée mathématiquement, pour minimiser $\displaystyle\displaystyle\sum_{t=1}^n |\varepsilon_t|$ cela implique de dériver une fonction valeur absolue.
 \end{itemize}
 
 \subsubsection{Erreur quadratique}
@@ -402,7 +406,7 @@ Quel type d'erreur est suffisante pour déterminer $\varepsilon$ ?
 \end{itemize}
 
 \bigskip
-L'erreur quadratique semble donc l'option la plus simple due à la facilité mathématique et sa fiabilité.
+L'erreur quadratique semble donc l'option la plus simple due à la facilité mathématique et à sa fiabilité.
 
 \section{Le modèle de régression linéaire simple}
 Le modèle de régression linéaire simple tente d'expliquer le mieux possible la variable \href{https://fr.wikipedia.org/wiki/Variable_dépendante}{dépendante} \footnote{On appelle parfois la variable dépendante une variable \href{https://fr.wikipedia.org/wiki/Endogène}{endogène}. Cette variable s'interprète comme étant une variable qui est due à une cause interne.}  Y à l'aide d'une variable \href{https://fr.wikipedia.org/wiki/Variable_indépendante}{indépendante}\footnote{On appelle parfois les variables dépendantes des variables \href{https://fr.wikipedia.org/wiki/Exogène}{exogène}. Cette variable s'intreprète comme étant extérieur à un système.} X . 
@@ -477,7 +481,8 @@ On doit maintenant trouver les paramètres $\beta_0$ et $\beta_1$ de manière à
 \bigskip
 Si $\varepsilon_t$ est minimal, cela veut dire que $Y_t \approx \beta_0 + \beta_1\times X_t$. Ce qui signifie que la droite de régression est une bonne approximation de $Y_t$.
 
-\begin{moreInfo}{\emph{En résumé}}
+\begin{moreInfo}{\color{Gray}\emph{En résumé}
+     \color{black}}
 	En résumé, on cherche à minimiser nos résidus en optimisant les paramètres $\beta_i$. 
 \end{moreInfo}
 
@@ -531,7 +536,7 @@ Afin de minimiser la fonction $S(\beta_0, \beta_1)$, on dérive la fonction part
 
 \begin{equation}
 \label{eq:beta0}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \hat{\beta_0} = \overline{Y} - \hat{\beta_1} \overline{X}
 }
@@ -560,7 +565,7 @@ En isolant $\hat{\beta}_1$, on obtient la définition suivante
 
 \begin{equation}
 \label{eq:beta1}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \hat{\beta_1} = \frac{\displaystyle\sum_{t=1}^n Y_t X_t - n\overline{Y}\overline{X}}{\displaystyle\sum_{t=1}^n X_t^2 - n\overline{X}^2}
 }
@@ -610,8 +615,8 @@ Si on reprend (encore) le graphique de la section \ref{fig:linsimp}, on observe 
 \end{enumerate}
 
 \subsubsection{Notation}
-Afin de faciliter l'écriture, on intègre la notation suivante; $S_{xx}$ et  $S_{xy}$. Les expressions précédantes sont appelées respectivement: la somme des carrés corrigée de $x$ et la somme des produits croisés corrigée de $x$ et de $y$.
-Voici le développement pour $S_{xx}$,
+Afin de faciliter l'écriture, on intègre la notation suivante; $S_{xx}$ et  $S_{xy}$. Les expressions précédantes sont appelées respectivement: la somme des carrés corrigée de $x$ et la somme des produits croisés corrigée de $x$ et de $y$. Voici le développement pour $S_{xx}$,
+
 \begin{align*}
 S_{xx} &= \displaystyle\sum_{t=1}^n (X_t - \overline{X})^2 \\
 &= \displaystyle\sum_{t=1}^n (X_t - \overline{X})^2 \\
@@ -633,7 +638,7 @@ S_{xy} &= \displaystyle\sum_{t=1}^n (X_t - \overline{X}) (Y_t - \overline{Y}) \\
 %% beta_1 en fonction de Sxx et Sxy
 \begin{equation}
 \label{eq:beta1SXY}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \hat{\beta_1} = \frac{S_{xy}}{S_{xx}}
 }
@@ -650,8 +655,9 @@ On poursuit avec un exemple pour assimiler l'information.
 \end{description}
 
 \begin{minipage}[t]{.4\linewidth}
-\begin{tabular}{|c|c|c|}
+\begin{tabular}{|c|b|c|}
 \hline
+\rowcolor{codegray}
 t & $X_t$ & $Y_t$ \\
 \hline
 1 & 2 & 2 \\
@@ -660,14 +666,16 @@ t & $X_t$ & $Y_t$ \\
 4 & 9 & 6 \\
 5 & 12 & 5 \\
 \hline
+\rowcolor{codegray}
 Totaux : & 32 & 21 \\
 \hline
 \end{tabular}
 \end{minipage}
 \hfill
 \begin{minipage}[t]{.4\linewidth}
-\begin{tabular}{|c|c|c|}
+\begin{tabular}{|c|b|c|}
 \hline
+\rowcolor{codegray}
 t & $X_t^2$ & $X_tY_t$ \\
 \hline
 1 & 4 & 4 \\
@@ -676,6 +684,7 @@ t & $X_t^2$ & $X_tY_t$ \\
 4 & 81 & 54 \\
 5 & 144 & 60 \\
 \hline
+\rowcolor{codegray}
 Totaux : & 274 & 151 \\
 \hline
 \end{tabular}
@@ -747,7 +756,8 @@ t & $Y_t = \hat{\beta}_0 + \hat{\beta}_1X_t$ & $\hat{\varepsilon}_t$ \\
 
 \bigskip
 %% info bull astuce calculatrice + reférence vers le guide
-\begin{moreInfo}{\emph{Astuce calculatrice}}
+\begin{moreInfo}{\color{Gray}\emph{Astuce calculatrice}}
+     \color{black}
 	La calculatrice TI-30XS Multiview permet de créer un tableau de donnée et de sortir rapidement et facilement différentes informations sur une régression à partir des données. Tel que :
 	\begin{itemize}
 	\item $\overline{X}$ et $\overline{Y}$ ;
@@ -778,7 +788,8 @@ On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikiped
 
 \bigskip
 %% info bull hypothèse implicite
-\begin{moreInfo}{\emph{Quatrième postulat}}
+\begin{moreInfo}{\color{Gray}\emph{Quatrième postulat}
+     \color{black}}
 \label{post4}
 	Les hypothèses de linéarité et d'homoscédasticité sont très intéressantes, si on observe leurs définitions ensemble on remarque qu'il s'agit d'une distribution avec une espérance nulle et une variabilité supposée constante. Ce qui nous amène à une quatrième hypothèse, les résidus sont distribués selon une loi normale.
 	\begin{align*}
@@ -863,7 +874,7 @@ On s'intéresse aux variances et aux covariances des estimateurs, cette deuxièm
 
 \begin{equation}
 \label{eq:varbeta1}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \Var(\hat{\beta_1}) = \frac{\sigma^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2}}
 \end{equation}
@@ -887,7 +898,7 @@ On s'intéresse aux variances et aux covariances des estimateurs, cette deuxièm
 
 \begin{equation}
 \label{eq:varbeta0}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \Var(\hat{\beta}_0) = \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)}
 \end{equation}
@@ -901,14 +912,15 @@ Finalement, pour la covariance entre $\hat{\beta}_0$ et $\hat{\beta}_1$
 
 \begin{equation}
 \label{eq:covariance}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \Cov(\hat{\beta}_0, \hat{\beta}_1) = - \overline{X} \frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}}
 \end{equation}
 
 \bigskip
 %% info bull postulat 4 et param.
-\begin{moreInfo}{\emph{Résumé des propriétés des estimateurs}}
+\begin{moreInfo}{\color{Gray}\emph{Résumé des propriétés des estimateurs}
+     \color{black}}
 \label{res:estima}
 	Les équations \ref{eq:varbeta0} et \ref{eq:varbeta1}  ainsi que le postulat 4 à la section \ref{post4} nous permettent de conclure que 
 	\begin{align*}
@@ -952,7 +964,7 @@ On peut démontrer par le même raisonnement qu'à la section \ref{subsec:coeffr
 
 \begin{equation}
 \label{eq:betasimp}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \hat{\beta} = \frac{\displaystyle\sum_{t=1}^n X_t Y_t}{\displaystyle\sum_{t=1}^n X_t^2}}
 \end{equation}
@@ -1090,7 +1102,7 @@ Ainsi,
 
 \begin{equation}
 \label{eq:SST}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \text{SST} = \text{SSR} + \text{SSE}}
 \end{equation}
@@ -1110,7 +1122,7 @@ Intuitivement,
           
           \item[]\begin{equation}
           \label{eq:R}
-          \color{blue}
+          \color{Blue}
           \boxed{\color{black}
           R^2 = Corr^2(Y, \hat{Y}) = \frac{\text{SSR}}{\text{SST}} \Leftrightarrow 1 - \frac{\text{SSE}}{\text{SST}}}
           \end{equation}
@@ -1136,11 +1148,11 @@ Le nombre de \emph{degrés de liberté}\footnote{Couramment l'abréviation $d.l.
 
 Ainsi, 
 \begin{itemize}
-\item $SST = \displaystyle\sum_{t=1}^n(Y_t-\overline{Y})^2 \rightarrow$ n termes - (1 paramètre estimé\footnote{$\overline{Y}$}) $= \color{blue}\boxed{\color{black} (n-1)d.l.}$
+\item $SST = \displaystyle\sum_{t=1}^n(Y_t-\overline{Y})^2 \rightarrow$ n termes - (1 paramètre estimé\footnote{$\overline{Y}$}) $= \color{Blue}\boxed{\color{black} (n-1)d.l.}$
 \item $SSE = \displaystyle\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 $
 $$
 \displaystyle\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 = \displaystyle\sum_{t=1}^n(Y_t - \hat{\beta}_0 - \hat{\beta}_1X_t )^2
-\rightarrow \text{ n termes } - (\text{2 paramètres estimés}\footnote{$\hat{\beta}_0 \text{ et } \hat{\beta}_1$}) = \color{blue}\boxed{\color{black} (n-2)d.l.}
+\rightarrow \text{ n termes } - (\text{2 paramètres estimés}\footnote{$\hat{\beta}_0 \text{ et } \hat{\beta}_1$}) = \color{Blue}\boxed{\color{black} (n-2)d.l.}
 $$
 \item $SSR = \displaystyle\sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 $
 \begin{align*}
@@ -1148,7 +1160,7 @@ $$
 &= \underbrace{\hat{\beta}_1^2} \times \underbrace{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
  f&(y_1,...y_n) \  f(x_1,...,x_n)
 \end{align*}
-Soit une seule fonction des $Y_1,...,Y_n$ doit être connue pour obtenir $SSR \rightarrow  \color{blue}\boxed{\color{black} 1 \  d.l.}$ 
+Soit une seule fonction des $Y_1,...,Y_n$ doit être connue pour obtenir $SSR \rightarrow  \color{Blue}\boxed{\color{black} 1 \  d.l.}$ 
 \end{itemize}
 
 \subsubsection*{Remarque}
@@ -1264,7 +1276,8 @@ Les conséquences de ce postulat sont les suivantes :
 	     \hat{\beta_1} &\sim N\Bigg(\beta_1, \frac{\sigma^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2})\Bigg)
 	\end{align*}
 	
-\begin{moreInfo}{\emph{Alternative}}
+\begin{moreInfo}{\color{Gray}\emph{Alternative}
+     \color{black}}
 	On peut tirer la même conclusion à partir de la propriété des fonctions linéaires de $\hat{\beta}_0$ et $\hat{\beta}_1$.
 \end{moreInfo}
 
@@ -1277,7 +1290,7 @@ MSE &= \frac{SSE}{d.l.(SSE)} \\
 
 \begin{equation}
 \label{eq:s2}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \sigma^2 = \frac{\displaystyle\sum_{t=1}^n \varepsilon_t^2}{n-2}}
 \end{equation}
@@ -1285,7 +1298,7 @@ MSE &= \frac{SSE}{d.l.(SSE)} \\
 \item On peut montrer que 
 \begin{equation}
 \label{eq:ssesigma}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \bigg(\frac{SSE}{\sigma^2}\bigg) \sim \chi^2(n - 2) }
 \end{equation}
@@ -1317,7 +1330,7 @@ On obtient ainsi l'intervalle de confiance suivant au niveau $100 \times (1 - \a
 
 \begin{equation}
 \label{eq:intconfb1}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \hat{\beta}_1 \pm t_{\frac{\alpha}{2}}(n-2) \times \sqrt{\frac{S^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}}}
 \end{equation}
@@ -1327,7 +1340,7 @@ De manière similaire, un intervalle de confiance au niveau $100 \times (1 - \al
 
 \begin{equation}
 \label{eq:intconfb0}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \hat{\beta}_0 \pm t_{\frac{\alpha}{2}}(n-2) \times \sqrt{\frac{S^2}{n} + \frac{S^2\overline{X}^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}}}
 \end{equation}
@@ -1532,12 +1545,13 @@ Sous $H_0$, on a que $F \sim F(1, n-2)$. \newline
 On rejette donc $H_0$ au niveau $100 \times (1 - \alpha) \%$ si
 \begin{equation}
 \label{eq:fisher}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 F > F_{\alpha}(1, n-2)}
 \end{equation}
 
-\begin{moreInfo}{\emph{Équivalent}}
+\begin{moreInfo}{\color{Gray}\emph{Équivalent}
+     \color{black}}
 \label{equivalent}
 	En régression linéaire simple \textbf{seulement}, le test F est équivalent au test $t$ pour $\beta_1 = 0$
 	\begin{align*}
@@ -1642,7 +1656,7 @@ Ainsi, un I.C. au niveau $100 \times(1 -\alpha)\%$ pour la valeur moyenne est
 
 \begin{equation}
 \label{eq:IC}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 (\hat{\beta}_0 + \hat{\beta}_1X^*)  \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{\widehat{\Var}( \hat{\beta}_0 + \hat{\beta}_1X^*)}
 }
@@ -1662,7 +1676,7 @@ Et ainsi, on obtient,
 
 \begin{equation}
 \label{eq:var*}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \widehat{\Var}(\hat{\beta}_0 + \hat{\beta}_1X^*) = S^2 \Bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\Bigg)  
 }
@@ -1670,7 +1684,7 @@ Et ainsi, on obtient,
 L'I.C. est donc,
 \begin{equation}
 \label{eq:IC2}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 (\hat{\beta}_0 + \hat{\beta}_1X^*) \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{S^2 \bigg(\frac{1}{n} + \frac{(X^* - \overline{X})^2 }{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)}  
 }
@@ -1722,7 +1736,7 @@ D'où
 
 \begin{equation}
 \label{eq:var2*}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \widehat{\Var}(Y^* - \hat{Y}^*) = S^2 \Bigg(1 + \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)  
 }
@@ -1730,7 +1744,7 @@ D'où
 L'I.C. est donc,
 \begin{equation}
 \label{eq:IC3}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 (\hat{\beta}_0 + \hat{\beta}_1X^*) \pm t_{\frac{\alpha}{2}}(n-2)\times \sqrt{S^2 \Bigg(1 + \frac{1}{n} + \frac{(X^* - \overline{X}^*)^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X}^*)^2}\Bigg)}  
 }
@@ -1742,36 +1756,36 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-        fit        lwr        upr
-1 -2.256946 -3.4440775 -1.0698152
-2  1.001001  0.4967625  1.5052399
-3  2.136910  1.3970281  2.8767927
-4 -1.552525 -2.5058100 -0.5992402
-5  1.329225  0.7796736  1.8787762
+         fit         lwr         upr
+1 -1.2807742 -1.89661252 -0.66493587
+2  0.6553159  0.10119936  1.20943238
+3 -0.5112315 -1.03267537  0.01021246
+4  2.8884670  1.86891878  3.90801528
+5  0.5864910  0.04027442  1.13270767
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit         lwr       upr
-1 0.2105494 -0.30184727 0.7229461
-2 0.4442220 -0.04767105 0.9361150
-3 0.6778945  0.19148604 1.1643030
-4 0.9115671  0.41512596 1.4080082
-5 1.1452396  0.62414421 1.6663350
+         fit        lwr       upr
+1 -0.1564990 -0.6638049 0.3508069
+2  0.1368668 -0.3749815 0.6487152
+3  0.4302327 -0.1005203 0.9609857
+4  0.7235986  0.1610247 1.2861725
+5  1.0169645  0.4116872 1.6222417
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit       lwr      upr
-1 0.2105494 -1.741106 2.162205
-2 0.4442220 -1.502151 2.390595
-3 0.6778945 -1.267100 2.622889
-4 0.9115671 -1.035961 2.859095
-5 1.1452396 -0.808718 3.099197
+         fit       lwr      upr
+1 -0.1564990 -2.184684 1.871686
+2  0.1368668 -1.892459 2.166193
+3  0.4302327 -1.603944 2.464409
+4  0.7235986 -1.319111 2.766309
+5  1.0169645 -1.037916 3.071845
 \end{Soutput}
 \end{Schunk}
 
@@ -2059,7 +2073,7 @@ S(\beta) &= \displaystyle\sum_{t=1}^n (Y_t - \hat{Y}_t)^2 \\
 En isolant $\beta$, on obtient l'estimateur suivant :
 \begin{equation}
 \label{eq:betamulti}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \hat{\beta} = (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y}}
 \end{equation}
@@ -2272,7 +2286,7 @@ Or, on a que $\Var(\hat{\mathbb(\beta)}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}
 Ainsi, on peut réécrire l'expression en fonction de l'estimateur $S^2$, 
 \begin{equation}
 \label{eq:varmulti}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \widehat{\Var}(\hat{\mathbb(\beta)}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}S^2}
 \end{equation}
@@ -2280,7 +2294,7 @@ Ainsi, on peut réécrire l'expression en fonction de l'estimateur $S^2$,
 Avec un peu d'algèbre, on transforme ce test d'hypothèse en un intervalle de confiance pour $\beta_i$. L'I.C. marginal est donc le suivant :
 \begin{equation}
 \label{eq:ICmulti}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \hat{\beta}_i \pm t_{\frac{\alpha}{n}}(n - (p+1)) \times \sqrt{[(\mathbb{X}^\intercal\mathbb{X})^{-1}S^2]}_{i+1 \times i+1} }
 \end{equation}
@@ -2323,7 +2337,7 @@ H_1 &: \text{On doit utiliser le modèle \emph{complet}, noté $M_1$ avec les $p
 On utilise la statistique de Fisher partielle suivante,
 \begin{equation}
 \label{eq:fisherpartiel}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 F^* = \frac{\frac{[SSE(M_0) - SSE(M_1)]}{[d.l.(SSE(M_0)) - d.l.(SSE(M_1))]}}{\frac{SSE(M_1)}{d.l.(SSE(M_1))}}
 }
@@ -2385,13 +2399,13 @@ La stratégie la plus simple consiste à examiner tous les modèles possibles, s
 On choisit le modèle ayant le plus grand $R^2_{adj}$, qui correspond à l'une des expressions suivantes :
 
 \begin{equation}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 R^2_{adj} = 1 - \frac{\frac{SSE}{(n-p-1)}}{\frac{SST}{(n-1)}} 
 }
 \end{equation}
 \begin{equation}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 R^2_{adj} = 1 - (1 - R^2) \Big(\frac{n-1}{n-p-1} \Big) 
 }
@@ -2622,7 +2636,8 @@ On remarque que la variable $disp$ et $hp$ n'ont pas été retenue dans le modè
 \end{Schunk}
 \end{lstlisting}
 
-\begin{moreInfo}{\emph{Technique de sélection \& \emph{R}}}
+\begin{moreInfo}{\color{Gray}\emph{Technique de sélection \& \emph{R}}
+     \color{black}}
 	Toutes les techniques présentées à la section \ref{sec:optimal} sont intégrées dans le système de base de \emph{R}. Cette \href{https://cran.r-project.org/web/packages/olsrr/vignettes/variable_selection.html}{vignette} sur la sélection des variables comprend les différentes méthodes ainsi que des exemples utiles.
 \end{moreInfo}
 
@@ -2925,7 +2940,8 @@ On peut conclure que notre modèle prédit assez bien l'âge, par contre pour de
 
 On va maintenant tester une variable modifier pour tenter d'améliorer notre modèle, il s'agit de la variable le log-Fare. En appliquant un log à une valeur numérique, on réduit l'échelle entre les variables. 
 
-\begin{moreInfo}{\emph{Modification des données}}
+\begin{moreInfo}{\color{Gray}\emph{Modification des données}
+     \color{black}}
       La modification des données permet de mieux répondre aux postulats de la régression multiple, en particulier le postulat \ref{post4}. Permettant ainsi d'avoir un modèle plus solide et théoriquement viable.
       
       Parmi les différentes modifications couramment utilisées, il y a entre autres le \emph{Log-Variable}, le \emph{Carré-variable} et le \emph{Cube-variable}.
@@ -3013,7 +3029,8 @@ On cherche maintenant à prédire les âges des passagers à partir d'un second 
 \end{Soutput}
 \end{Schunk}
 
-\begin{moreInfo}{\emph{Segmentation des données}}
+\begin{moreInfo}{\color{Gray}\emph{Segmentation des données}
+     \color{black}}
       En analyse des données, il est primordial de fragmenter les données. On utilise habituellement réduit l'algorithme suivant :
       \begin{enumerate}
       \item 80 \% des données pour l'entraînement (training) et 20 \% pour le test (testing);
@@ -3040,7 +3057,8 @@ Le modèle de régression linéaire multiple étudié lors des derniers chapitre
 \bigskip
 Le modèle linéaire généralisé, parfois appeler GLM pour \emph{Generalized Linear Models}, est une généralisation de la régression linéaire multiple dont l'objectif est de palier aux limitations précédentes.
 
-\begin{moreInfo}{\emph{Reformulation}}
+\begin{moreInfo}{\color{Gray}\emph{Reformulation}
+     \color{black}}
      On peut voir le GLM comme une généralisation souple de la régression linéaire. Cette généralisation de la régression linéaire permet au modèle linéaire d'être relié aux variables réponses via une fonction de lien. De plus, le GLM autorise l'amplitude de la variance de chaque mesure en étant une fonction de sa valeur prévue.
 \end{moreInfo}
 
@@ -3191,14 +3209,15 @@ g(\E[Y_i|X_i]) &= X_i\beta \\
 \end{align*}
 \begin{equation}
 \label{eq:fonctionlien}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \E[Y_i|X_i] = g^{-1}(X_i\beta)
 }
 \end{equation}
 Il est donc nécessaire de choisir une fonction inversible pour la fonction de lien.
 
-\begin{moreInfo}{\emph{Reformulation}}
+\begin{moreInfo}{\color{Gray}\emph{Reformulation}
+     \color{black}}
      La fonction de lien fournit une relation linéaire entre le predicteur linéaire et la moyenne de la fonction de distribution. 
 \end{moreInfo}
 
@@ -3277,7 +3296,7 @@ I^{-1}(\hat{\utilde{\beta}}^{(i)}) S(\utilde{\beta}^{(i)}) &= \hat{\utilde{\beta
 
 \begin{equation}
 \label{eq:glmbeta}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \hat{\utilde{\beta}}^{(i+1)} = \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)}) S(\utilde{\beta}^{(i)})
 }
@@ -3308,7 +3327,7 @@ On remarque que dans le cas de la famille exponentielle, on aura
 
 \begin{equation}
 \label{eq:deviance}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 D(\utilde{\beta}) = 2 \times \displaystyle\sum_{i=1}^n \Big\lbrace y_i \times \big( \theta(y_i) - \theta(\mu_i) \big) - b(\theta(y_i)) + b(\theta(\mu_i)) \Big\rbrace
 }
@@ -3368,14 +3387,14 @@ H_1 &: \text{On doit utiliser le modèle plus \emph{complet}, noté $M_1$.} \\
 \end{align*}
 On utilise la statistique suivante pour tester les hypothèses,
 \begin{equation}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \chi^2_{obs} = D(\utilde{\beta}{}_{H_0}) - D(\utilde{\beta}{}_{H_1})
 }
 \end{equation}
 \begin{equation}
 \label{eq:deviance2}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \chi^2_{obs} = 2 \times \bigg( l(\utilde{\beta}{}_{H_1}) - l(\utilde{\beta}{}_{H_0}) \bigg)
 }
@@ -3383,7 +3402,7 @@ On utilise la statistique suivante pour tester les hypothèses,
 
 On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ si :
 \begin{equation}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \chi^2_{obs} \geq \chi^2_{\alpha} \bigg( \text{Nombre de paramètres dans $M_1$ - Nombre de paramètres dans $M_0$}\bigg)
 }
@@ -3403,7 +3422,7 @@ Qui correspond à la borne inférieure de Cramer-Rao. \newline
 
 Ainsi un intervalle de confiance au niveau $100 \times (1 - \alpha)\%$ pour $\beta_1$ pour $\beta_i$ est donné par :
 \begin{equation}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \beta_i \pm Z_{1 - \frac{\alpha}{2}} \times \sqrt{[\Var(\hat{\utilde{\beta}})]_{i+1, i+1}}
 }
@@ -3556,7 +3575,7 @@ Il est donc possible d'exprimer $\pi_i$ comme suit :
 
 \begin{equation}
 \label{eq:logit}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \pi_i = \frac{\displaystyle{e^{\utilde{X}{}_i\utilde{\beta}}}}{1 +\displaystyle{e^{\utilde{X}{}_i\utilde{\beta}}}}
 }
@@ -3615,7 +3634,7 @@ M(\utilde{X}{}_i\utilde{\beta}) =
 Ainsi, on déduit que
 \begin{equation}
 \label{eq:logits}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 S(\utilde{\beta}) = \mathbb{X}^\intercal(\mathbb{Y} - M(\utilde{X}{}_i\utilde{\beta}))
 }
@@ -3672,7 +3691,7 @@ On obtient ainsi l'algorithme suivant :
 \bigskip
 \begin{equation}
 \label{eq:logbeta}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \hat{\utilde{\beta}}^{(i+1)} = (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{W}Z^{(i)}
 }
@@ -3700,7 +3719,7 @@ $$
 On obtient ainsi l'intervalle de confiance suivant au niveau $100 \times (1 - \alpha)\%$ pour $\beta_i$,
 \begin{equation}
 \label{eq:IClog}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 \hat{\beta_i} = Z_{1 - \frac{\alpha}{2}} \times \sqrt{\big[(\mathbb{X}^\intercal\mathbb{W}\mathbb{X})^{-1}\big]_{(i+1) \times (i+1)}}
 }
@@ -3803,7 +3822,7 @@ et donc,
 
 \begin{equation}
 \label{eq:spoisson}
-\color{blue}
+\color{Blue}
 \boxed{\color{black}
 S(\utilde{\beta}) = \mathbb{X}^\intercal\bigg(\mathbb{Y} -  M(\utilde{X}{}_i\utilde{\beta}) \bigg)
 }
