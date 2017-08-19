@@ -1316,7 +1316,6 @@ Intuitivement,
           \end{itemize}
      \item On définit le coefficient de détermination par
           \begin{itemize}
-          
           \item[]\begin{equation}
           \label{eq:R}
           \color{Blue}
@@ -2505,6 +2504,9 @@ Qui correspond bien à l'estimateur de $\hat{\beta}_0$ (\ref{eq:beta0}) et de $\
 \begin{align*}
 \E[\hat{\beta}] &= \E\big[ (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y} \big] \\
 &\overset{\ref{sec:theo}}{=} (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \E[\mathbb{Y}] \\
+\end{align*}
+
+\begin{align*}
 &= (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal (\mathbb{X}\beta) \\
 &= (\mathbb{X}^\intercal\mathbb{X})^{-1}(\mathbb{X}^\intercal\mathbb{X}) \beta \\
 &= \mathbb{I} \beta \\
@@ -2545,7 +2547,7 @@ Les sommes des carrés du tableau ANOVA sont données par les expressions suivan
 \bullet SSE &= \displaystyle\sum_{t=1}^n(Y_t - \hat{Y})^2 \\
 &= \displaystyle\sum_{t=1}^n\varepsilon_t^2 \\
 &= \mathbb{\varepsilon}^\intercal\mathbb{\varepsilon}\\
-& \text{Avec $(n-(p+1))$ degré de liberté} \\
+& \text{Avec $\big(n-(p+1)\big)$ degré de liberté} \\
 \bullet SSR &= \displaystyle\sum_{t=1}^n(\hat{Y_t} - \hat{Y})^2 \\
 &= \displaystyle\sum_{t=1}^n\hat{Y_t}^2 - n\overline{Y}^2 \\
 &= \mathbb{\hat{Y}}^\intercal\mathbb{\hat{Y}} - n \overline{Y}^2\\
@@ -2592,11 +2594,11 @@ H_1 &: \beta_i \neq \beta_i^* \\
 &\text{On teste l'hypothèse à l'aide de la statistique suivante, } \\
 t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[{\Var}(\hat{\beta})]_{i+1 \times i+1}}} \sim N(0, 1) \\
 &\text{et en remplacant $\sigma^2$ par $S^2$ dans la matrice de la variance, on obtient }\\
-t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[\widehat{\Var}(\hat{\beta})]_{i+1 \times i+1}}} \sim t(n-(p+1)) \\
+t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[\widehat{\Var}(\hat{\beta})]_{i+1 \times i+1}}} \sim t\big(n-(p+1)\big) \\
 \end{align*}
 On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ pour si :
 $$
-|t| > t_{\frac{\alpha}{2}(n-(p+1))}
+|t| > t_{\frac{\alpha}{2}}\big(n-(p+1)\big)
 $$
 Or, on a que $\Var(\hat{\mathbb(\beta)}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}\sigma^2$. \newline
 
@@ -2605,7 +2607,7 @@ Ainsi, on peut réécrire l'expression en fonction de l'estimateur $S^2$,
 \label{eq:varmulti}
 \color{Blue}
 \boxed{\color{black}
-\widehat{\Var}(\hat{\mathbb(\beta)}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}S^2}
+\widehat{\Var}(\hat{\mathbb\beta}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}S^2}
 \end{equation}
 
 Avec un peu d'algèbre, on transforme ce test d'hypothèse en un intervalle de confiance pour $\beta_i$. L'I.C. marginal est donc le suivant :
@@ -2613,7 +2615,7 @@ Avec un peu d'algèbre, on transforme ce test d'hypothèse en un intervalle de c
 \label{eq:ICmulti}
 \color{Blue}
 \boxed{\color{black}
-\hat{\beta}_i \pm t_{\frac{\alpha}{n}}(n - (p+1)) \times \sqrt{[(\mathbb{X}^\intercal\mathbb{X})^{-1}S^2]}_{i+1 \times i+1} }
+\hat{\beta}_i \pm t_{\frac{\alpha}{n}}\big(n - (p+1)\big) \times \sqrt{[(\mathbb{X}^\intercal\mathbb{X})^{-1}S^2]}_{i+1 \times i+1} }
 \end{equation}
 
 \subsection{Test de Fisher pour la validité globale de la régression}
@@ -2626,11 +2628,11 @@ H_1 &: \text{Au moins un coefficient parmi $\beta_1,...,\beta_p$ est $\neq 0$.} 
 On teste l'hypothèse à l'aide de la statistique suivante, \\
 \begin{align*}
 F &= \frac{MSR}{MSE} \sim F(\text{d.l. de SSR, d.l. de SSE}) \\
-F &= \frac{MSR}{MSE} \sim F(p, n - (p+1)) \\
+F &= \frac{MSR}{MSE} \sim F\big(p, n - (p+1)\big) \\
 \end{align*}
 On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ pour si :
 $$
-F > F_{\alpha}(p, n-(p+1))
+F > F_{\alpha}\big(p, n-(p+1)\big)
 $$
 
 \subsubsection*{Remarque importante}
@@ -2656,8 +2658,8 @@ On utilise la statistique de Fisher partielle suivante,
 \label{eq:fisherpartiel}
 \color{Blue}
 \boxed{\color{black}
-F^* = \frac{\frac{[SSE(M_0) - SSE(M_1)]}{[d.l.(SSE(M_0)) - d.l.(SSE(M_1))]}}{\frac{SSE(M_1)}{d.l.(SSE(M_1))}}
-}
+F^* = \displaystyle{\frac{\frac{[SSE(M_0) - SSE(M_1)]}{[d.l.(SSE(M_0)) - d.l.(SSE(M_1))]}}{\frac{SSE(M_1)}{d.l.(SSE(M_1))}}
+}}
 \end{equation}
 
 On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ si :
@@ -2894,8 +2896,9 @@ On poursuit avec un exemple pour assimiler l'information. \newline
 À partir des informations suivantes, on cherche à trouver le meilleur modèle de régression des 20 observations.
 \bigskip
 
-\begin{tabularx}{\linewidth}{|X|c|c|c|c|}
+\begin{tabularx}{\linewidth}{|X|b|c|b|c|}
 \hline
+\rowcolor{codegray}
 Variables dans le modèle & $SSE$ & $SSR$ & $SST$ & $R^2_{adj}$ \\
 \hline
 $\phi$ & 10 & 0 & 10 & 0 \% \\
@@ -3020,8 +3023,9 @@ X_{t,8} &= 1_{\{Emploi_t = GOU\}} \\
 
 \bigskip
 \begin{center}
-\begin{tabular}{|c|c|c|c|}
+\begin{tabular}{|c|b|c|b|}
 \hline
+\rowcolor{codegray}
 $Y_t$ & $Couleur_t$ & $Type_t$ & $Emploi_t$ \\
 \hline
 70 & Bleu & Autres & ETU \\
