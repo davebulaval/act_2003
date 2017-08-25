@@ -116,14 +116,14 @@
 \contentsline {subsubsection}{\numberline {4.8.1.2}Loi Gamma}{112}{subsubsection.4.8.1.2}
 \contentsline {subsection}{\numberline {4.8.2}Algorithme du Scoring}{113}{subsection.4.8.2}
 \contentsline {subsubsection}{\numberline {4.8.2.1}Remarque}{113}{subsubsection.4.8.2.1}
-\contentsline {subsubsection}{\numberline {4.8.2.2}Exemple : Loi g\IeC {\'e}om\IeC {\'e}trique}{114}{subsubsection.4.8.2.2}
+\contentsline {subsubsection}{\numberline {4.8.2.2}Exemple : Loi g\IeC {\'e}om\IeC {\'e}trique}{113}{subsubsection.4.8.2.2}
 \contentsline {subsection}{\numberline {4.8.3}Variable offset}{116}{subsection.4.8.3}
-\contentsline {subsubsection}{\numberline {4.8.3.1}Utilisation en actuariat}{117}{subsubsection.4.8.3.1}
-\contentsline {subsubsection}{\numberline {4.8.3.2}Exemple}{117}{subsubsection.4.8.3.2}
-\contentsline {subsection}{\numberline {4.8.4}Ajout d'une interaction entre deux variables explicatives}{118}{subsection.4.8.4}
+\contentsline {subsubsection}{\numberline {4.8.3.1}Utilisation en actuariat}{116}{subsubsection.4.8.3.1}
+\contentsline {subsubsection}{\numberline {4.8.3.2}Exemple}{116}{subsubsection.4.8.3.2}
+\contentsline {subsection}{\numberline {4.8.4}Ajout d'une interaction entre deux variables explicatives}{117}{subsection.4.8.4}
 \contentsline {subsubsection}{\numberline {4.8.4.1}Exemple}{118}{subsubsection.4.8.4.1}
-\contentsline {subsubsection}{\numberline {4.8.4.2}Remarque importante}{120}{subsubsection.4.8.4.2}
-\contentsline {subsection}{\numberline {4.8.5}Analyse des r\IeC {\'e}sidus}{121}{subsection.4.8.5}
-\contentsline {subsubsection}{\numberline {4.8.5.1}R\IeC {\'e}sidus de la d\IeC {\'e}viance}{121}{subsubsection.4.8.5.1}
-\contentsline {chapter}{\numberline {A}Code source }{122}{appendix.A}
-\contentsline {section}{\numberline {A.1}Exemple du chapitre 3}{122}{section.A.1}
+\contentsline {subsubsection}{\numberline {4.8.4.2}Remarque importante}{119}{subsubsection.4.8.4.2}
+\contentsline {subsection}{\numberline {4.8.5}Analyse des r\IeC {\'e}sidus}{120}{subsection.4.8.5}
+\contentsline {subsubsection}{\numberline {4.8.5.1}R\IeC {\'e}sidus de la d\IeC {\'e}viance}{120}{subsubsection.4.8.5.1}
+\contentsline {chapter}{\numberline {A}Code source }{121}{appendix.A}
+\contentsline {section}{\numberline {A.1}Exemple du chapitre 3}{121}{section.A.1}

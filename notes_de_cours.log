@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.7.10)  19 AUG 2017 12:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.7.10)  25 AUG 2017 15:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1863,7 +1863,12 @@ Overfull \hbox (5.3231pt too wide) in paragraph at lines 1841--1841
 
 [54
 
-] [55] [56] [57]
+]
+Overfull \hbox (0.2306pt too wide) in paragraph at lines 1873--1873
+[] 
+ []
+
+[55] [56] [57]
 Underfull \hbox (badness 10000) in paragraph at lines 2081--2082
 
  []
@@ -2179,42 +2184,41 @@ Package pdftex.def Info: Requested size: 288.0011pt x 288.01624pt on input line
  3736.
  [105] [106 <./notes_de_cours-046.pdf>]
 [107] [108] [109] [110] [111] [112]
-Underfull \hbox (badness 10000) in paragraph at lines 3970--3971
+Underfull \hbox (badness 10000) in paragraph at lines 3972--3973
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3980--3981
+Underfull \hbox (badness 10000) in paragraph at lines 3982--3983
 
  []
 
 [113] [114] [115] [116] [117]
-<notes_de_cours-047.pdf, id=1512, pagebox=cropbox, 433.62pt x 433.62pt>
+<notes_de_cours-047.pdf, id=1513, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-047.pdf Graphic file (type pdf)
 <use notes_de_cours-047.pdf>
-Package pdftex.def Info: notes_de_cours-047.pdf  used on input line 4112. on in
-put line 4112.
+Package pdftex.def Info: notes_de_cours-047.pdf  used on input line 4118. on in
+put line 4118.
 Package pdftex.def Info: Requested size: 288.0011pt x 288.01624pt on input line
- 4112.
- [118]
-<notes_de_cours-048.pdf, id=1518, pagebox=cropbox, 433.62pt x 433.62pt>
+ 4118.
+<notes_de_cours-048.pdf, id=1514, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-048.pdf Graphic file (type pdf)
 <use notes_de_cours-048.pdf>
-Package pdftex.def Info: notes_de_cours-048.pdf  used on input line 4121. on in
-put line 4121.
+Package pdftex.def Info: notes_de_cours-048.pdf  used on input line 4127. on in
+put line 4127.
 Package pdftex.def Info: Requested size: 288.0011pt x 288.01624pt on input line
- 4121.
- [119 <./notes_de_cours-047.pdf>] [120 <./notes_de_cours-048.pdf>] [121]
+ 4127.
+ [118 <./notes_de_cours-047.pdf>] [119 <./notes_de_cours-048.pdf>] [120]
 Annexe A.
-[122
+[121
 
-] [123]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4256.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 4256.
+] [122]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4260.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4260.
  (./notes_de_cours.aux (./section/license.aux)
 (./section/remerciements.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4256.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4256.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4260.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4260.
 
 Package rerunfilecheck Info: File `notes_de_cours.out' has not changed.
 (rerunfilecheck)             Checksum: 0D3372534B8565CCCA6BCEFFADB11391;7509.
@@ -2222,14 +2226,14 @@ Package rerunfilecheck Info: File `notes_de_cours.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4256.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4260.
  ) 
 Here is how much of TeX's memory you used:
- 33392 strings out of 492990
- 598983 string characters out of 6136334
+ 33401 strings out of 492990
+ 599062 string characters out of 6136334
  771915 words of memory out of 5000000
- 35934 multiletter control sequences out of 15000+600000
- 602842 words of font info for 152 fonts, out of 8000000 for 9000
+ 35939 multiletter control sequences out of 15000+600000
+ 610385 words of font info for 157 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,25n,74p,10441b,1948s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
@@ -2268,10 +2272,10 @@ m-super/sfbx1000.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sf
 rm0900.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb
 ><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb><c:/texli
 ve/2017/texmf-dist/fonts/type1/public/cm-super/sfst1000.pfb>
-Output written on notes_de_cours.pdf (124 pages, 1160791 bytes).
+Output written on notes_de_cours.pdf (123 pages, 1160974 bytes).
 PDF statistics:
- 1794 PDF objects out of 2073 (max. 8388607)
- 1533 compressed objects within 16 object streams
- 435 named destinations out of 1000 (max. 500000)
+ 1790 PDF objects out of 2073 (max. 8388607)
+ 1530 compressed objects within 16 object streams
+ 434 named destinations out of 1000 (max. 500000)
  891 words of extra memory for PDF output out of 10000 (max. 10000000)
 

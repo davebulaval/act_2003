@@ -74,8 +74,8 @@
 
 %macro E, Var et Cov
 \newcommand{\E}{{\rm I\kern-.3em E}}
-\newcommand{\Var}{\mathrm{Var}}
-\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Var}{\mathrm{\textbf{V}ar}}
+\newcommand{\Cov}{\mathrm{\textbf{C}ov}}
 
 % macro colonne couleur
 \newcolumntype{b}{>{\columncolor{backcolour}}c}
@@ -1755,36 +1755,36 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-         fit        lwr          upr
-1  1.7129279  0.8430286  2.582827177
-2  1.4619896  0.6661358  2.257843294
-3  0.3074645 -0.3674347  0.982363704
-4 -1.0315239 -2.0565996 -0.006448309
-5 -0.4413983 -1.2674244  0.384627850
+         fit        lwr         upr
+1 -0.6762980 -1.3066074 -0.04598874
+2 -0.1963938 -0.7101557  0.31736812
+3 -0.8060107 -1.4847555 -0.12726594
+4  0.8352651  0.1162629  1.55426736
+5 -0.3877469 -0.9336497  0.15815584
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit         lwr      upr
-1 0.3801909 -0.28899202 1.049374
-2 0.6233572 -0.04038903 1.287103
-3 0.8665234  0.18703453 1.546012
-4 1.1096896  0.39467623 1.824703
-5 1.3528559  0.58527777 2.120434
+          fit         lwr       upr
+1 -0.04906901 -0.55404049 0.4559025
+2  0.19545229 -0.32731989 0.7182245
+3  0.43997359 -0.13705996 1.0170071
+4  0.68449489  0.02568757 1.3433022
+5  0.92901619  0.16976073 1.6882716
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit       lwr      upr
-1 0.3801909 -2.273756 3.034138
-2 0.6233572 -2.029224 3.275938
-3 0.8665234 -1.790041 3.523087
-4 1.1096896 -1.556182 3.775561
-5 1.3528559 -1.327592 4.033304
+          fit       lwr      upr
+1 -0.04906901 -2.068697 1.970559
+2  0.19545229 -1.828700 2.219605
+3  0.43997359 -1.598867 2.478814
+4  0.68449489 -1.378980 2.747970
+5  0.92901619 -1.168690 3.026722
 \end{Soutput}
 \end{Schunk}
 
@@ -3775,7 +3775,7 @@ g(\lambda_i) &=  \utilde{X}{}_i\utilde{\beta} \\
 \end{align*}
 En conclusion, sous cette spécification on a que :
 $$
-(Y_i|\utilde{X}{}_i) \sim \text{Poisson}(e^{\utilde{X}{}_i\utilde{\beta}})
+(Y_i|\utilde{X}{}_i) \sim \text{Poisson}\bigg(e^{\utilde{X}{}_i\utilde{\beta}}\bigg)
 $$
 Puisque $\utilde{X}{}_i\utilde{\beta} = \beta_0 + \beta_1X_{i,1} + ... + \beta_pX_{i,p}$, on a que
 \begin{align*}
@@ -3907,7 +3907,7 @@ De plus, si $\alpha \rightarrow \infty$, alors NegBin $\rightarrow$ Poisson.
 P(Y_i = y_i | \utilde{X}{}_i) &= \int_0^\infty \frac{e^{-\lambda_i\theta}(\lambda_i\theta_i)^{y_i}}{\fact{y_i}} \times \frac{\alpha^\alpha \Theta^{\alpha-1}e^{-\alpha\Theta}}{\Gamma(\alpha)}d\Theta \\
 &= \frac{\alpha^\alpha \lambda^{y_i}}{\Gamma(\alpha)\Gamma(y_i + 1)} \int_0^\infty \Theta^{(y_i + \alpha) - 1}e^{-(\alpha + \lambda_i)\Theta} d\Theta \\
 &= \frac{\alpha^\alpha \lambda^{y_i}}{\Gamma(\alpha)\Gamma(y_i + 1)} \times \frac{\Gamma(y_i+\alpha)}{(\alpha+\lambda_i)^{y_i + \alpha}} \\
-&= \frac{\Gamma(y_i+\alpha)}{\Gamma(\alpha)\Gamma(y_i + 1)} (\frac{\alpha}{\alpha + \lambda_i})^\alpha (\frac{\lambda_i}{\alpha+\lambda_i})^{y_i}
+&= \frac{\Gamma(y_i+\alpha)}{\Gamma(\alpha)\Gamma(y_i + 1)} \bigg(\frac{\alpha}{\alpha + \lambda_i}\bigg)^\alpha \bigg(\frac{\lambda_i}{\alpha+\lambda_i}\bigg)^{y_i}
 \end{align*} 
 
 \item $l(\utilde{\beta}) = \displaystyle\sum_{i=1}^n\ln\big(Pr(Y_i = y_i|\utilde{X}{}_i)\big)$
@@ -3935,7 +3935,7 @@ H_1 &: \text{Il y a de la surdispersion} \\
 \item Obtenir $l_{Poisson}(\utilde{\beta})$ avec une régression Poisson.
 \item Obtenir $l_{NB}(\utilde{\beta})$ avec une régression Binomiale négative.
 \item Calculer $\chi_{obs}^2 = 2 \times \big(l_{NB}(\utilde{\beta}) - l_{Poisson}(\utilde{\beta})\big)$
-\item On rejette $H_0$ au niveau de confiance $100 \times (1 0 \alpha)\%$ si 
+\item On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ si 
 $$
 \chi_{obs}^2 \geq \chi_{1 - 2\times \alpha}^2(1)
 $$
@@ -3955,6 +3955,8 @@ où
 \ln(\mu_i) &= \utilde{X}\utilde{\beta} \\
 \overset{\text{Lien log}}{\Rightarrow} \mu_i &= e^{\utilde{X}\utilde{\beta}} \\
 \frac{1}{\mu_i} &= \utilde{X}\utilde{\beta}\\
+\end{align*}
+\begin{align*}
 \overset{\text{Lien inverse}}{\Rightarrow} \mu_i &= \frac{1}{\utilde{X}\utilde{\beta}} \\
 \E[Y_i|\utilde{X}{}_i] &= \mu_i \\
 &= g^{-1}(\utilde{X}\utilde{\beta}) \\
@@ -3973,7 +3975,7 @@ Pour obtenir l'algorithme du Scoring, il faut simplement remplacer $I(\utilde{\b
 $\hat{\utilde{\beta}}^{(i+1)} = \hat{\utilde{\beta}}^{(i)} + F^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)})$
 où
 $$
-F(\utilde{\beta}) = E_Y(I(\utilde{\beta}^{(i)}))
+F(\utilde{\beta}) = E_Y\big[I(\utilde{\beta}^{(i)})\big]
 $$
 
 \subsubsection{Remarque}
@@ -3999,12 +4001,14 @@ P_i &= \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}
 l(\utilde{\beta}) &= \displaystyle\sum_{i=1}^n\ln\Big(Pr(Y_i|\utilde{X}{}_i)\Big) \\
 &= \displaystyle\sum_{i=1}^n\Bigg\lbrace(y_i - 1) \ln(P_i) + \ln(1 - P_i) \Bigg\rbrace\\
 &= \displaystyle\sum_{i=1}^n\Bigg\lbrace(y_i - 1) \ln\bigg(\frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}\bigg) + \ln\bigg(\frac{1}{1 + e^{\utilde{X}{}_i\beta}}\bigg) \Bigg\rbrace\\
-&= \displaystyle\sum_{i=1}^n\Bigg\lbrace(y_i - 1) \bigg[\utilde{X}{}_i\beta - \ln(1 + e^{\utilde{X}{}_i\beta})\bigg] - \ln(1 + e^{\utilde{X}{}_i\beta}) \Bigg\rbrace\\
-&= \displaystyle\sum_{i=1}^n\Bigg\lbrace(y_i - 1) \utilde{X}{}_i\beta -  y_i\times\ln(1 + e^{\utilde{X}{}_i\beta}) \Bigg\rbrace\\
+&= \displaystyle\sum_{i=1}^n\Bigg\lbrace(y_i - 1) \bigg[\utilde{X}{}_i\beta - \ln\big(1 + e^{\utilde{X}{}_i\beta}\big)\bigg] - \ln(1 + e^{\utilde{X}{}_i\beta}) \Bigg\rbrace\\
+&= \displaystyle\sum_{i=1}^n\Bigg\lbrace(y_i - 1) \utilde{X}{}_i\beta -  y_i\times\ln\big(1 + e^{\utilde{X}{}_i\beta}\big) \Bigg\rbrace\\
 \end{align*}
 \item Vecteur Score
 \begin{align*}
 [S(\hat{\utilde{\beta}})]_j &= \frac{\partial}{\partial\utilde{\beta}} l(\utilde{\beta}) \\
+\end{align*}
+\begin{align*}
 &= \displaystyle\sum_{i=1}^n \Bigg\lbrace  (y_i - 1)X_{i,j} - y_iX_{i,j} \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}\Bigg\rbrace\\
 &= ... \\
 &= \displaystyle\sum_{i=1}^n \Bigg\lbrace \frac{y_i}{1 + e^{\utilde{X}{}_i\beta}}\Bigg\rbrace \times X_{i,j}\\
@@ -4023,6 +4027,8 @@ On remarque qu'il y a des $y_i$ dans la matrice d'information de Fisher.
 &= E_Y\Bigg[ \displaystyle\sum_{i=1}^n\bigg\lbrace y_i \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace \Bigg]\\
 &= \displaystyle\sum_{i=1}^n \bigg\lbrace \E[y_i|\utilde{X}{}_i] \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
 &= \displaystyle\sum_{i=1}^n \bigg\lbrace \frac{1}{1-P_i} \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
+\end{align*}
+\begin{align*}
 &= \displaystyle\sum_{i=1}^n \bigg\lbrace (1 + e^{\utilde{X}{}_i\beta}) \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
 &= \displaystyle\sum_{i=1}^n \bigg\lbrace \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}  \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
 &= \displaystyle\sum_{i=1}^nX_{i,j}\times W_i \times X_{i,k}
@@ -4199,8 +4205,6 @@ Toute la théorie introduite au chapitre 3 reste valide pour les GLM à l'except
 $$
 \hat{\varepsilon}_D = signe(y_i - \hat{\mu_i}) \times \sqrt{2 \times \big( l(\utilde{y}, \utilde{y})_i - l(\utilde{y}, \utilde{\mu})_i \big)}
 $$
-
-%%%%%%%%%%%%%%% Chapitre 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%% Annexe %%%%%%%%%%%%%%%%%%%%%%%%
