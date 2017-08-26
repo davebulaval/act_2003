@@ -169,8 +169,8 @@ On cherche à étudier et déterminer les relations entre des variables mesurabl
 \begin{enumerate}
 \item Bâtir le modèle et estimer les paramètres:
 \begin{itemize}
-\item[ex:] $F = M \times a$ Qui représente un modèle déterministe
-\item[ex:] $Y =3 \times X + 6 + \epsilon_t \text{ ;où} \epsilon_t \sim N(0, 10)$ Qui représente un modèle probabiliste 
+\item[ex:] $F = M \times a$, qui représente un modèle déterministe.
+\item[ex:] $Y =3 \times X + 6 + \epsilon_t \text{ ;où} \epsilon_t \sim N(0, 10)$, qui représente un modèle probabiliste.
 \end{itemize}
 \item Calculer les prévisions à partir du modèle.
 \end{enumerate}
@@ -227,11 +227,8 @@ Voici une illustration du concept de régression linéaire.
 \draw[->, line width=0.5mm] (Y) --  (8, 0.8);
 \end{tikzpicture}
 
-\pagebreak
-
 \subsection{Regression linéaire simple}
 \label{sec:linsimple}
-
 On cherche à prédire l'âge des passagers du Titanic selon le prix du billet à l'aide du modèle linéaire suivant,
 
 \bigskip
@@ -279,8 +276,6 @@ text( x = (data$Fare[17] + data$Fare[17]) / 2, y = (data$Age[17] +  resul$coeffi
 \subsection{Régression linéaire multiple}
 \label{ex:multiple}
 On cherche à prédire l'âge d'un cerisier noir en fonction de la hauteur du cerisier et de la circonférence de son tronc.
-
-\bigskip
 
 %%% fig linéaire multiples
 \begin{center}
@@ -411,7 +406,7 @@ Y &= \beta_0 + \beta_1 \times X_1 + \beta_2 \times X_2 + \varepsilon\\
 \end{align*}
 Soit une régression linéaire multiple.\newline
 
-Dans le cadre du cours, seulement les modèles linéaires seront à l'étude pour les différentes raisons suivantes
+Dans le cadre du cours, seulement les modèles linéaires seront à l'étude pour les différentes raisons suivantes :
 
 \bigskip
 \begin{itemize}
@@ -429,7 +424,7 @@ Le principal problème de la modélisation linéaire est de trouver les différe
 soit minimisé.
 \bigskip
 
-Il existe plusieurs méthodes pour calcul l'erreur. Soit les erreurs suivantes :
+Il existe plusieurs méthodes pour calculer l'erreur. Soit les erreurs suivantes :
 \begin{itemize}
 \item Erreur totale
 \item Erreur absolue
@@ -557,13 +552,13 @@ En réorganisant, on retrouve l'équation \ref{eq:simple}.
 \begin{tikzpicture}[node distance=1.2cm]
 \node (function) at (current page.center) {$Y  = \beta_0 + \beta_1 \times X + \varepsilon$};
 \coordinate[below of=function] (c);
-\node[text width = 2.3cm, left of=c, xshift=-0.5cm]  (Y) {Salaire};
+\node[text width = 2.3cm, left of=c, xshift=-1.2cm]  (Y) {Âge du passager};
 \draw[->, line width=0.5mm] (Y) -- ([xshift=2mm, yshift=-3mm] function.west);
 \node[text width = 2.3cm, left of=c, xshift=0.9cm]  (B) {Ordonnées à l'origine};
 \draw[->, line width=0.5mm] (B) -- ([xshift=1cm, yshift=-3mm] function.west);
-\node[text width = 2.5cm, above of=c, xshift=0.9cm, yshift=1cm]  (B2) {Taux de croissance du salaire};
+\node[text width = 2.5cm, above of=c, xshift=0.9cm, yshift=1cm]  (B2) {Taux de croissance de l'âge};
 \draw[->, line width=0.5mm] (B2) -- ([xshift=2cm, yshift=3mm] function.west);
-\node[text width = 2.3cm, below of=c] (X) {Nombre d'années de scolarité};
+\node[text width = 2.3cm, below of=c] (X) {Prix du billet};
 \draw[->, line width=0.5mm] (X) -- ([xshift=0.9cm, yshift=-3mm] function.center);
 \node[text width = 2.3cm, right of=c, xshift=1.2cm] (E) {Erreur aléatoire};
 \draw[->, line width=0.5mm] (E) -- ([xshift=-0.1cm, yshift=-3mm] function.east);
@@ -577,7 +572,7 @@ Si $\varepsilon_t$ est minimal, cela veut dire que $Y_t \approx \beta_0 + \beta_
 
 \begin{moreInfo}{\color{Gray}\emph{En résumé}
      \color{black}}
-	En résumé, on cherche à minimiser nos résidus en optimisant les paramètres $\beta_i$. 
+	En résumé, on cherche à minimiser nos résidus en optimisant les paramètres $\beta_i$.
 \end{moreInfo}
 
 \subsection{Coefficients de régression}
@@ -2155,7 +2150,10 @@ Y_t &= \beta_0 + \beta_1X_{t,1} + \beta_2X_{t,2} + ... + \beta_pX_{t,p} + \varep
 & \bullet (p+1) \text{ paramètres à estimer} (\beta_0,\beta_1,...,\beta_p)
 \end{align*}
 
-\section*{Quelques éléments d'algèbre matricielle pour les vecteurs et matrices aléatoires}
+\section*{Notions préliminaires}
+Voici quelques éléments d'algèbre matricielle pour les vecteurs et matrices aléatoires importante pour la bonne compréhension des modèles de régression linéaires multiple.
+\newline
+
 Soit $X_1,...X_n$ des variables aléatoires, le vecteur aléatoire X est donc défini de la façon suivante
 \begin{align*}
 \mathbb{X} &=
@@ -2480,6 +2478,8 @@ Ainsi,
 \hat{\beta}_1 \\
 \end{bmatrix} \\
 &= (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y} \\
+\end{align*}
+\begin{align*}
 &= 
 \begin{bmatrix} 
 \frac{n \overline{Y} \displaystyle\sum_{t=1}^n X_t^2 - n \overline{X} \displaystyle\sum_{t=1}^n X_tY_t}{n \displaystyle\sum_{t=1}^n X_t^2 - (n \overline{X})^2} \\
@@ -2504,9 +2504,6 @@ Qui correspond bien à l'estimateur de $\hat{\beta}_0$ (\ref{eq:beta0}) et de $\
 \begin{align*}
 \E[\hat{\beta}] &= \E\big[ (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal\mathbb{Y} \big] \\
 &\overset{\ref{sec:theo}}{=} (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal \E[\mathbb{Y}] \\
-\end{align*}
-
-\begin{align*}
 &= (\mathbb{X}^\intercal\mathbb{X})^{-1}\mathbb{X}^\intercal (\mathbb{X}\beta) \\
 &= (\mathbb{X}^\intercal\mathbb{X})^{-1}(\mathbb{X}^\intercal\mathbb{X}) \beta \\
 &= \mathbb{I} \beta \\
@@ -2578,7 +2575,9 @@ S^2 &= MSE \\
 
 \subsection{Intervalles de confiance et tests d'hypothèses}
 Essentiellement, on a la même chose qu'au chapitre \ref{chap:2} pour les tests $t$ et $F$, sauf qu'il faut adapter les degrés de liberté. \newline
+
 On rappel qu'avec le postulat 4 (\ref{post4}), on suppose que les résidus suivent une loi normale d'espérance nulle et de variance de $\sigma^2$.
+
 \begin{align*}
 \varepsilon_t &\overset{i.i.d.}{\sim} N(0, \sigma^2) \\
 \utilde{\varepsilon}_{n \times 1} &\sim N(\mathbb{O}, \sigma^2\mathbb{I}_{n\times n}) \\
@@ -2600,7 +2599,7 @@ On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ pour si :
 $$
 |t| > t_{\frac{\alpha}{2}}\big(n-(p+1)\big)
 $$
-Or, on a que $\Var(\hat{\mathbb(\beta)}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}\sigma^2$. \newline
+Or, on a que $\Var(\hat{\mathbb{\beta}}) = (\mathbb{X}^\intercal\mathbb{X})^{-1}\sigma^2$. \newline
 
 Ainsi, on peut réécrire l'expression en fonction de l'estimateur $S^2$, 
 \begin{equation}
@@ -2773,13 +2772,13 @@ p & $2^p$ \\
 \label{tech2}
 
 \begin{itemize}
-\item [Étape 1] Débuter avec toutes les variables disponibles dans le modèle.
+\item [\textbf{Étape 1:}] Débuter avec toutes les variables disponibles dans le modèle.
 
-\item [Étape 2] Chercher la variable qui génère la plus faible augmentation de SSE lorsqu'exclue du modèle. Autrement dit, la pire variable.
+\item [\textbf{Étape 2:}] Chercher la variable qui génère la plus faible augmentation de SSE lorsqu'exclue du modèle. Autrement dit, la pire variable.
 
-\item [Étape 3] Utiliser le test de Fisher partiel (\ref{sec:testFpartiel}) pour tester s'il est possible d'exclure la variable de l'étape 2.
+\item [\textbf{Étape 3:}] Utiliser le test de Fisher partiel (\ref{sec:testFpartiel}) pour tester s'il est possible d'exclure la variable de l'étape 2.
 
-\item [Étape 4] Continuer les étapes 2 et 3 jusqu'à ce qu'il n'y ait plus de variables à éliminer selon le test Fisher partiel.
+\item [\textbf{Étape 4:}] Continuer les étapes 2 et 3 jusqu'à ce qu'il n'y ait plus de variables à éliminer selon le test Fisher partiel.
 \end{itemize}
 \bigskip
 
@@ -2810,13 +2809,13 @@ Le principal inconvénient de cette technique est qu'une variable éliminée ne 
 \label{tech3}
 
 \begin{itemize}
-\item [Étape 1] Débuter avec le modèle $Y = \beta_0 + \varepsilon$
+\item [\textbf{Étape 1:}] Débuter avec le modèle $Y = \beta_0 + \varepsilon$
 
-\item [Étape 2] Chercher la variable qui génère la plus grande diminution de SSE lorsqu'incluse dans le modèle. Autrement dit, la meilleure variable.
+\item [\textbf{Étape 2:}] Chercher la variable qui génère la plus grande diminution de SSE lorsqu'incluse dans le modèle. Autrement dit, la meilleure variable.
 
-\item [Étape 3] Utiliser le test de Fisher parties (\ref{sec:testFpartiel}) pour tester s'il est possible d'inclure la variable de l'étape 2.
+\item [\textbf{Étape 3:}] Utiliser le test de Fisher parties (\ref{sec:testFpartiel}) pour tester s'il est possible d'inclure la variable de l'étape 2.
 
-\item [Étape 4] Continuer les étapes 2 et 3 jusqu'à ce qu'il n'y ait plus de variables a inclures selon le test de Fisher partiel.
+\item [\textbf{Étape 4:}] Continuer les étapes 2 et 3 jusqu'à ce qu'il n'y ait plus de variables a inclures selon le test de Fisher partiel.
 \end{itemize}
 \bigskip
 
@@ -2847,17 +2846,17 @@ Le principal inconvénient de cette technique est qu'une variable incluse ne peu
 Il s'agit d'une combinaison de l'élimination régressive et de la sélection progressive.
 
 \begin{itemize}
-\item [Étape 1] Débuter avec le modèle $Y = \beta_0 + \varepsilon$
+\item [\textbf{Étape 1:}] Débuter avec le modèle $Y = \beta_0 + \varepsilon$
 
-\item [Étape 2] Chercher la variable qui génère la plus grande diminution de SSE si incluse dans le modèle. Autrement dit, la meilleure variable.
+\item [\textbf{Étape 2:}] Chercher la variable qui génère la plus grande diminution de SSE si incluse dans le modèle. Autrement dit, la meilleure variable.
 
-\item [Étape 3] Utiliser le test de Fisher partiel (\ref{sec:testFpartiel}) pour tester s'il est possible d'inclure la variable de l'étape 2.
+\item [\textbf{Étape 3:}] Utiliser le test de Fisher partiel (\ref{sec:testFpartiel}) pour tester s'il est possible d'inclure la variable de l'étape 2.
 
-\item [Étape 4] Chercher la variable qui génère la plus faible diminution de SSE si incluse dans le modèle. Autrement dit, la pire variable.
+\item [\textbf{Étape 4:}] Chercher la variable qui génère la plus faible diminution de SSE si incluse dans le modèle. Autrement dit, la pire variable.
 
-\item [Étape 5] Utiliser le test Fisher partiel (\ref{sec:testFpartiel}) pour tester s'il est possible d'exclure la variable de l'étape 4.
+\item [\textbf{Étape 5:}] Utiliser le test Fisher partiel (\ref{sec:testFpartiel}) pour tester s'il est possible d'exclure la variable de l'étape 4.
 
-\item [Étape 6] Continuer les étapes 2 à 5 jusqu'à ce que l'algorithme élimine la variable qui vient d'entrer.
+\item [\textbf{Étape 6:}] Continuer les étapes 2 à 5 jusqu'à ce que l'algorithme élimine la variable qui vient d'entrer.
 \end{itemize}
 \bigskip
 
@@ -2942,8 +2941,6 @@ La prochaine pire variable est la variable $X_1$.
 \begin{align*}
 H_0 &: \text{ Modèle avec $X_3$} \\
 H_1 &: \text{ Modèle avec $X_1$ et $X_3$} \\
-\end{align*}
-\begin{align*}
 F &= \frac{\frac{5 - 3.9}{1}}{\frac{3.9}{17}} \\
 &= 4.79 \\
 F_{5 \%}(1.17) &= 4.49 \\
@@ -2957,18 +2954,22 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_3 + \varepsilon
 $$
 
 \subsubsection*{Exemple en R}
-À l'aide du jeu de donnée \emph{mtcars}\footnote{Voici les \href{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html}{informations} sur les données.} de \emph{R}, construise un modèle pour prédire la consommation en gallon par miles à l'aide de la technique de régression pas à pas. 
-<<eval = TRUE, echo = FALSE>>=
-step(lm(mpg~wt+drat+disp+qsec+hp,data=mtcars),direction="both")
-@
-On remarque que la variable $disp$ et $hp$ n'ont pas été retenue dans le modèle.
-
+À l'aide du jeu de donnée \emph{mtcars}\footnote{Voici les \href{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html}{informations} sur les données.} de \emph{R}, construise un modèle pour prédire la consommation en gallon par miles à l'aide de la technique de régression pas à pas. On utilise le code R suivant :
 %% script R
-\begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false, caption = Code source en R pour l'exemple]
+\begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false]
 <<eval = FALSE>>=
 step(lm(mpg~wt+drat+disp+qsec+hp,data=mtcars),direction="both")
 @
 \end{lstlisting}
+<<eval = TRUE, echo = FALSE>>=
+step(lm(mpg~wt+drat+disp+qsec+hp,data=mtcars),direction="both")
+@
+On remarque que la variable $disp$ et $hp$ n'ont pas été retenue dans le modèle. On obtient le modèle suivant :
+
+\begin{align*}
+Y &= 11.3945 - 4.3978 \times wt + 1.6561 \times drat + 0.9462 \times qsec
+\end{align*}
+
 
 \begin{moreInfo}{\color{Gray}\emph{Technique de sélection \& \emph{R}}
      \color{black}}
@@ -3234,6 +3235,7 @@ embarked & Port d'embarquement \\
 \hline
 \end{tabularx}
 \end{center}
+\subsubsection{Analyse des données}
 
 L'étape suivante consiste à analyser notre jeu de donnée et de retirer les variables inutiles:
 <<echo = FALSE>>=
@@ -3248,7 +3250,7 @@ On remarque que certaines variables ne sont d'aucun intérêt pour estimer l'âg
 \item \emph{PassengerId}, car il s'agit d'un numéro unique pour chaque passager. (Max. : 891 pour 891 observations)
 \item \emph{Name}, dans son état actuel le nom du passager n'est pas très utile, car il s'agit d'observation unique.
 \item \emph{Ticket}, car il s'agit d'un numéro unique pour chaque passager.
-\item \emph{SibSP}, \emph{Parch} et \emph{Cabin} sont retirer pour de fins de simplification. 
+\item \emph{SibSP}, \emph{Parch} et \emph{Cabin} sont retirer pour de fins de simplification.
 \end{itemize}
 
 \bigskip
@@ -3267,24 +3269,28 @@ plot(Age ~ Survived + Pclass + Sex + Fare + Embarked, data)
 @
 \bigskip
 
-On cherche maintenant à transformer une donnée pour en tirer de l'information. On observe que le nom du passager est unique dans son format actuel, mais avec un peu de manipulation de donnée, il est très facile d'extraire son nom de famille.
+\subsubsection{Traitement des données}
+On cherche maintenant à faire un traitement des données pour en tirer de l'information. On observe que le nom du passager est unique dans son format actuel, mais avec un peu de manipulation des données, il est très facile d'extraire son nom de famille à l'aide du code R suivant,
 
-<<echo = FALSE>>=
+<<echo=FALSE>>=
 data$Surname <- as.factor(sapply(as.character(data$Name),  
                        function(x) strsplit(x, split = '[,]')[[1]][1]))
 @
 
+\begin{lstlisting}[linerange=\\begin\{Sinput\}-\\end\{Sinput\},includerangemarker=false]
+<<eval=FALSE>>=
+data$Surname <- as.factor(sapply(as.character(data$Name),  
+                       function(x) strsplit(x, split = '[,]')[[1]][1]))
+@
+\end{lstlisting}
+\bigskip
 <<>>=
 # Visualiser les 6 premières observations par catégorie
 head(summary(data$Surname))
 @
 
-On obtient ainsi le modèle complet suivant :
-\begin{align*}
-\text{Âge}_t = \beta_0 + \beta_1 \times \text{Survived}_t + \beta_2 \times \text{Pclass}_t + \beta_3  \times \text{Sex}_t + \beta_4  \times \text{Fare}_t + \beta_5  \times \text{Embarked}_t + \beta_6  \times \text{Surname}_t + \varepsilon_t
-\end{align*}
-
-On peut maintenant trouver le meilleur modèle,
+\subsubsection{Optimisation du modèle}
+On peut maintenant trouver le meilleur modèle à l'aide de la méthode pas-à-pas,
 
 <<echo = FALSE>>=
 fit <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname, data), 
@@ -3292,11 +3298,17 @@ fit <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname, data),
 fit
 @
 
+On obtient le modèle suivant :
+\begin{align*}
+\text{Âge} &= 67.20295 - 5.42894 \times \text{Survived} - 9.04418 \times \text{Pclass} + 1.64599  \times \text{Sexmale} -0.03412 \times \text{Fare} \\
+&- 11.38268  \times \text{EmbarkedQ} - 14.89563 \times \text{EmbarkedQ}
+\end{align*}
+\subsubsection{Visualisation des résidus}
 \bigskip
 Voici le Q-Q plot ainsi que le graphique de la réparitition des résidus.
 \bigskip
 
-<<echo = FALSE, fig = TRUE, height= 5>>=
+<<echo = FALSE, fig = TRUE>>=
 par(mfrow = c(1,2))
 
 # Q-Q plot 
@@ -3307,18 +3319,20 @@ plot(residuals(fit), main = "Résidus")
 @
 
 \bigskip
-On observe que la droite du Q-Q plot est à $45^\circ$ et que les résidus suivent une répartition Normale. De plus, on observe une répartition uniforme des résidus. \newline
+On observe que la droite du Q-Q plot est à $45^\circ$ et que les résidus suivent une répartition Normale. De plus, on observe une répartition uniforme des résidus.
 
-On peut conclure que notre modèle prédit assez bien l'âge, par contre pour des valeurs extrêmes notre modèle est moins précis. \newline
+\subsubsection{Amélioration du modèle}
+On va maintenant tester une variable modifier pour tenter d'améliorer notre modèle, il s'agit de la variable le log-Fare. En appliquant un log à une valeur numérique, on réduit l'échelle entre les variables. Autrement dit, on normalise les données.
 
-On va maintenant tester une variable modifier pour tenter d'améliorer notre modèle, il s'agit de la variable le log-Fare. En appliquant un log à une valeur numérique, on réduit l'échelle entre les variables. 
-
+\bigskip
 \begin{moreInfo}{\color{Gray}\emph{Modification des données}
      \color{black}}
-      La modification des données permet de mieux répondre aux postulats de la régression multiple, en particulier le postulat \ref{post4}. Permettant ainsi d'avoir un modèle plus solide et théoriquement viable.
-      
+      La modification des données permet de mieux répondre aux postulats de la régression multiple, en particulier le postulat \ref{post4}. Permettant ainsi d'avoir un modèle plus solide et théoriquement viable. 
+\bigskip
+
       Parmi les différentes modifications couramment utilisées, il y a entre autres le \emph{Log-Variable}, le \emph{Carré-variable} et le \emph{Cube-variable}.
 \end{moreInfo}
+\bigskip
 
 <<echo=FALSE>>=
 data$LogFare <- log(data$Fare)
@@ -3329,6 +3343,7 @@ fitL <- step(lm(Age ~ Survived + Pclass + Sex + Fare + Embarked + Surname + LogF
 fitL
 @
 
+\subsubsection{Visualisation des résidus}
 <<echo = FALSE, fig = TRUE>>=
 par(mfrow = c(1,2))
 
@@ -3336,6 +3351,7 @@ par(mfrow = c(1,2))
 plot(fitL, which=2)
 plot(residuals(fitL), main = "Résidus")
 @
+
 
 On obtient une légère amélioration de notre modèle et on retient ce modèle. \newline
 
@@ -3822,7 +3838,7 @@ Tel que vu à la section \ref{sec:sec:normale},
 D(\utilde{\beta}) &= SSE \\
 &= \displaystyle\sum_{i=1}^n \hat{\varepsilon}_i^2 \\
 &= \text{Somme de $N(0,1)$ au carré} \\
-& \sim \chi^2(n -(p+1))
+& \sim \chi^2\big(n -(p+1)\big)
 \end{align*}
 Ainsi, la statistique $\chi_{obs}^2$ est donnée par :
 \begin{align*}
@@ -3831,13 +3847,13 @@ Ainsi, la statistique $\chi_{obs}^2$ est donnée par :
 \end{align*}
 Or, puisque
 \begin{align*}
-SSE(M_0) &\sim \chi^2(n -(P_{H_0}+1)) \\
+SSE(M_0) &\sim \chi^2\big(n -(P_{H_0}+1)\big) \\
 &\text{et} \\
-SSE(M_1) &\sim \chi^2(n -(P_{H_1}+1))
+SSE(M_1) &\sim \chi^2\big(n -(P_{H_1}+1)\big)
 \end{align*}
 On peut ainsi dire que cela revient à tester,
 \begin{align*}
-\chi_{obs}^2 &\geq \chi_{\alpha}^2([n - (P_{H_0}+1)] - [n -(P_{H_1}+1)] \\
+\chi_{obs}^2 &\geq \chi_{\alpha}^2\big([n - (P_{H_0}+1)] - [n -(P_{H_1}+1)]\big) \\
 \Rightarrow \chi_{obs}^2 &\geq \chi_{\alpha}^2( \underbrace{P_{H_1} - P_{H_0}}) \\
 & \text{Différence entre le nombre} \\ 
 & \text{de paramètres entre $M_0$ et $M_1$}
@@ -3926,8 +3942,8 @@ l(\utilde{\beta}) &= \displaystyle\sum_{i=1}^n \ln\bigg( Pr(Y_i = y_i|\utilde{X}
 
 \begin{align*}
 &= \displaystyle\sum_{i=1}^n \Bigg( y_i \times \ln\bigg(\frac{\displaystyle{e^{\utilde{X}{}_i\utilde{\beta}}}}{1 + \displaystyle{e^{\utilde{X}{}_i\utilde{\beta}}}} \bigg) + (1 - y_i)\times\ln\bigg(\frac{1}{1 +\displaystyle{ e^{\utilde{X}{}_i\utilde{\beta}}}}\bigg) \Bigg) \\
-&= \displaystyle\sum_{i=1}^n \Bigg( y_i \times \ln(e^{\utilde{X}{}_i\utilde{\beta}}) - y_i\ln(1 + e^{\utilde{X}{}_i\utilde{\beta}}) - (1 - y_i)\times\ln(1 + e^{\utilde{X}{}_i\utilde{\beta}}) \Bigg) \\
-&= \displaystyle\sum_{i=1}^n \Bigg( y_i \times\utilde{X}{}_i\utilde{\beta} - \ln(1 + e^{\utilde{X}{}_i\utilde{\beta}}) \Bigg) \\
+&= \displaystyle\sum_{i=1}^n \Bigg( y_i \times \ln\bigg(e^{\utilde{X}{}_i\utilde{\beta}}\bigg) - y_i\ln\bigg(1 + e^{\utilde{X}{}_i\utilde{\beta}}\bigg) - (1 - y_i)\times\ln\bigg(1 + e^{\utilde{X}{}_i\utilde{\beta}}\bigg) \Bigg) \\
+&= \displaystyle\sum_{i=1}^n \Bigg( y_i \times\utilde{X}{}_i\utilde{\beta} - \ln\bigg(1 + e^{\utilde{X}{}_i\utilde{\beta}}\bigg) \Bigg) \\
 \end{align*}
 
 Par conséquent,
@@ -3956,7 +3972,7 @@ Ainsi, on déduit que
 \label{eq:logits}
 \color{Blue}
 \boxed{\color{black}
-S(\utilde{\beta}) = \mathbb{X}^\intercal(\mathbb{Y} - M(\utilde{X}{}_i\utilde{\beta}))
+S(\utilde{\beta}) = \mathbb{X}^\intercal\big(\mathbb{Y} - M(\utilde{X}{}_i\utilde{\beta})\big)
 }
 \end{equation}
 On peut maintenant trouver $I(\utilde{\beta})$, 
@@ -3985,6 +4001,7 @@ I(\utilde{\beta}) &= \mathbb{X}^\intercal \mathbb{W} \mathbb{X} \\
 \end{align*}
 avec,
 
+
 \begin{align*}
 \mathbb{W} &= 
 \begin{bmatrix}
@@ -3997,7 +4014,7 @@ w_1 & 0 & \cdots & 0 \\
 \end{align*}
 
 \bigskip
-En appliquant maintenant l'algorithme de Newton-Raphson (section \ref{sec:newtonR}), on a donc
+En appliquant maintenant l'algorithme de Newton-Raphson (section \ref{sec:newtonR}), on a
 \begin{align*}
 \hat{\utilde{\beta}}^{(i+1)} &= \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)}) \\
 &= \hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} \mathbb{X}^\intercal (\mathbb{Y} - M(\utilde{X}{}_i\utilde{\beta})) \\
@@ -4006,6 +4023,7 @@ En appliquant maintenant l'algorithme de Newton-Raphson (section \ref{sec:newton
 &= \big[(\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{W}\big]\underbrace{\big[\mathbb{X}\hat{\utilde{\beta}}^{(i)} + \mathbb{W}^{-1} (\mathbb{Y} - M)\big]}\\
 &\ \ \ \ \ \ \ \ \ \text{\ \ \ $Z^{(i)}$: transformation sur $Y$}
 \end{align*}
+\bigskip
 
 On obtient ainsi l'algorithme suivant :
 \bigskip
@@ -4212,7 +4230,7 @@ Qui peut être simplifié sous la forme suivante,
 $$
 \hat{\utilde{\beta}}^{(i+1)} = (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{W}\mathbb{Z}^{(i)}
 $$
-où $\mathbb{Z}^{(i)} = \mathbb{X}\hat{\beta}^{(i)} + \mathbb{W}^{-1}(\mathbb{Y} - M(\utilde{X},\utilde{\beta})$
+où $\mathbb{Z}^{(i)} = \mathbb{X}\hat{\beta}^{(i)} + \mathbb{W}^{-1}\big(\mathbb{Y} - M(\utilde{X},\utilde{\beta})\big)$
 
 
 \section{Autres notions importantes avec les GLM}
