@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.7.10)  25 AUG 2017 20:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.7.10)  27 AUG 2017 12:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2090,7 +2090,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 3040--3041
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3061--3063
+Underfull \hbox (badness 10000) in paragraph at lines 3061--3062
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3063--3064
 
  []
 
@@ -2099,120 +2104,120 @@ Chapitre 4.
 [86
 
 ] [87] [88] [89]
-Underfull \hbox (badness 10000) in paragraph at lines 3214--3215
+Underfull \hbox (badness 10000) in paragraph at lines 3220--3221
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3226--3227
+Underfull \hbox (badness 10000) in paragraph at lines 3232--3233
 
  []
 
 [90]
-Underfull \hbox (badness 10000) in paragraph at lines 3258--3259
+Underfull \hbox (badness 10000) in paragraph at lines 3264--3265
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3265--3266
+Underfull \hbox (badness 10000) in paragraph at lines 3271--3272
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3267--3268
+Underfull \hbox (badness 10000) in paragraph at lines 3273--3274
 
  []
 
 [91]
-Overfull \hbox (106.71535pt too wide) in paragraph at lines 3330--3330
+Overfull \hbox (106.71535pt too wide) in paragraph at lines 3336--3336
 [] 
  []
 
 [92]
-Underfull \hbox (badness 10000) in paragraph at lines 3369--3370
+Underfull \hbox (badness 10000) in paragraph at lines 3375--3376
 
  []
 
 [93] [94]
-Underfull \hbox (badness 10000) in paragraph at lines 3442--3444
+Underfull \hbox (badness 10000) in paragraph at lines 3448--3450
 
  []
 
 [95]
-Underfull \hbox (badness 10000) in paragraph at lines 3455--3456
+Underfull \hbox (badness 10000) in paragraph at lines 3461--3462
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3464--3466
+Underfull \hbox (badness 10000) in paragraph at lines 3470--3472
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3471--3473
+Underfull \hbox (badness 10000) in paragraph at lines 3477--3479
 
  []
 
 [96] [97] [98]
-Underfull \hbox (badness 10000) in paragraph at lines 3557--3558
+Underfull \hbox (badness 10000) in paragraph at lines 3563--3564
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3565--3566
+Underfull \hbox (badness 10000) in paragraph at lines 3571--3572
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3570--3572
+Underfull \hbox (badness 10000) in paragraph at lines 3576--3578
 
  []
 
 [99] [100] [101] [102] [103] [104]
-<notes_de_cours-047.pdf, id=1440, pagebox=cropbox, 433.62pt x 433.62pt>
+<notes_de_cours-047.pdf, id=1442, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-047.pdf Graphic file (type pdf)
 <use notes_de_cours-047.pdf>
-Package pdftex.def Info: notes_de_cours-047.pdf  used on input line 3756. on in
-put line 3756.
+Package pdftex.def Info: notes_de_cours-047.pdf  used on input line 3762. on in
+put line 3762.
 Package pdftex.def Info: Requested size: 288.0011pt x 288.01624pt on input line
- 3756.
+ 3762.
  [105] [106 <./notes_de_cours-047.pdf>]
 [107] [108] [109] [110] [111] [112]
-Underfull \hbox (badness 10000) in paragraph at lines 3992--3993
+Underfull \hbox (badness 10000) in paragraph at lines 3998--3999
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4002--4003
+Underfull \hbox (badness 10000) in paragraph at lines 4008--4009
 
  []
 
 [113] [114] [115] [116] [117]
-<notes_de_cours-048.pdf, id=1522, pagebox=cropbox, 433.62pt x 433.62pt>
+<notes_de_cours-048.pdf, id=1524, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-048.pdf Graphic file (type pdf)
 <use notes_de_cours-048.pdf>
-Package pdftex.def Info: notes_de_cours-048.pdf  used on input line 4138. on in
-put line 4138.
+Package pdftex.def Info: notes_de_cours-048.pdf  used on input line 4144. on in
+put line 4144.
 Package pdftex.def Info: Requested size: 288.0011pt x 288.01624pt on input line
- 4138.
-<notes_de_cours-049.pdf, id=1523, pagebox=cropbox, 433.62pt x 433.62pt>
+ 4144.
+<notes_de_cours-049.pdf, id=1525, pagebox=cropbox, 433.62pt x 433.62pt>
 File: notes_de_cours-049.pdf Graphic file (type pdf)
 <use notes_de_cours-049.pdf>
-Package pdftex.def Info: notes_de_cours-049.pdf  used on input line 4147. on in
-put line 4147.
+Package pdftex.def Info: notes_de_cours-049.pdf  used on input line 4153. on in
+put line 4153.
 Package pdftex.def Info: Requested size: 288.0011pt x 288.01624pt on input line
- 4147.
+ 4153.
  [118 <./notes_de_cours-048.pdf>] [119 <./notes_de_cours-049.pdf>] [120]
 Annexe A.
 [121
 
 ] [122]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4280.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 4280.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4286.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4286.
  (./notes_de_cours.aux (./section/license.aux)
 (./section/remerciements.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4280.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4280.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4286.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4286.
 
 Package rerunfilecheck Info: File `notes_de_cours.out' has not changed.
 (rerunfilecheck)             Checksum: 0D3372534B8565CCCA6BCEFFADB11391;7509.
@@ -2220,13 +2225,13 @@ Package rerunfilecheck Info: File `notes_de_cours.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4280.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4286.
  ) 
 Here is how much of TeX's memory you used:
- 33411 strings out of 492990
- 599251 string characters out of 6136334
- 771915 words of memory out of 5000000
- 35940 multiletter control sequences out of 15000+600000
+ 33413 strings out of 492990
+ 599294 string characters out of 6136334
+ 772915 words of memory out of 5000000
+ 35942 multiletter control sequences out of 15000+600000
  610385 words of font info for 157 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,25n,74p,10441b,1948s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2266,10 +2271,10 @@ m-super/sfbx1000.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sf
 rm0900.pfb><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb
 ><c:/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb><c:/texli
 ve/2017/texmf-dist/fonts/type1/public/cm-super/sfst1000.pfb>
-Output written on notes_de_cours.pdf (123 pages, 1162185 bytes).
+Output written on notes_de_cours.pdf (123 pages, 1162769 bytes).
 PDF statistics:
- 1800 PDF objects out of 2073 (max. 8388607)
- 1540 compressed objects within 16 object streams
+ 1802 PDF objects out of 2073 (max. 8388607)
+ 1542 compressed objects within 16 object streams
  443 named destinations out of 1000 (max. 500000)
  891 words of extra memory for PDF output out of 10000 (max. 10000000)
 

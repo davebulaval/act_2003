@@ -1750,36 +1750,36 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-         fit        lwr        upr
-1 -1.7113129 -3.0302874 -0.3923384
-2 -0.4935010 -1.3076530  0.3206510
-3  0.5312933 -0.1341912  1.1967778
-4  0.1526186 -0.5190207  0.8242579
-5  0.9305772  0.2046716  1.6564827
+         fit        lwr         upr
+1 -1.7033162 -3.0432546 -0.36337781
+2  0.2742382 -0.4308802  0.97935666
+3 -0.5156943 -1.3671143  0.33572570
+4 -0.9626306 -1.9751270  0.04986572
+5  1.2151425  0.3602414  2.07004366
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-         fit         lwr      upr
-1 0.09882983 -0.57882335 0.776483
-2 0.35059450 -0.30979577 1.010985
-3 0.60235917 -0.06910794 1.273826
-4 0.85412384  0.14456611 1.563682
-5 1.10588851  0.33522154 1.876555
+        fit         lwr      upr
+1 0.5926338 -0.12487008 1.310138
+2 0.8026034  0.05371955 1.551487
+3 1.0125730  0.21621910 1.808927
+4 1.2225426  0.36529739 2.079788
+5 1.4325122  0.50359000 2.361434
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-         fit       lwr      upr
-1 0.09882983 -2.546448 2.744107
-2 0.35059450 -2.290313 2.991502
-3 0.60235917 -2.041340 3.246059
-4 0.85412384 -1.799506 3.507754
-5 1.10588851 -1.564731 3.776508
+        fit       lwr      upr
+1 0.5926338 -2.226929 3.412197
+2 0.8026034 -2.025108 3.630315
+3 1.0125730 -1.828079 3.853225
+4 1.2225426 -1.635777 4.080863
+5 1.4325122 -1.448116 4.313141
 \end{Soutput}
 \end{Schunk}
 
@@ -2171,11 +2171,11 @@ Ainsi,
 &=
 \begin{bmatrix} 
 \frac{\overline{Y} \displaystyle\sum_{t=1}^n X_t^2 - \overline{X} \displaystyle\sum_{t=1}^n X_tY_t + n\overline{X}^2\overline{Y} - n\overline{X}^2\overline{Y}}{n \displaystyle\sum_{t=1}^n X_t^2 - (n \overline{X})^2} \\
-\frac{\displaystyle\sum_{t=1}^n X_tY_t - n\overline{Y}\overline{X}}{\displaystyle\sum_{t=1}^n X_t^2 - n \overline{X}^2} \\
+\frac{\displaystyle\sum_{t=1}^n X_tY_t - n\overline{Y}\ \overline{X}}{\displaystyle\sum_{t=1}^n X_t^2 - n \overline{X}^2} \\
 \end{bmatrix} \\
 &=
 \begin{bmatrix} 
-\overline{Y} - \hat{\beta}_1\overline{X} \\
+\ \displaystyle{\overline{Y}} - \hat{\beta}_1\displaystyle{\overline{X} \ }\\
 \hat{\beta}_1 \\
 \end{bmatrix} \\
 \end{align*}
@@ -2274,9 +2274,9 @@ H_0 &: \beta_i = \beta_i^* \\
 H_1 &: \beta_i \neq \beta_i^* \\
 &\text{Où $\beta_i^*$ est une constante.} \\
 &\text{On teste l'hypothèse à l'aide de la statistique suivante, } \\
-t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[{\Var}(\hat{\beta})]_{i+1 \times i+1}}} \sim N(0, 1) \\
+t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[{\Var}(\hat{\beta})]_{(i+1) \times (i+1)}}} \sim N(0, 1) \\
 &\text{et en remplacant $\sigma^2$ par $S^2$ dans la matrice de la variance, on obtient }\\
-t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[\widehat{\Var}(\hat{\beta})]_{i+1 \times i+1}}} \sim t\big(n-(p+1)\big) \\
+t &= \frac{\hat{\beta}_i - \beta_i^* }{\sqrt{[\widehat{\Var}(\hat{\beta})]_{(i+1) \times (i+1)}}} \sim t\big(n-(p+1)\big) \\
 \end{align*}
 On rejette $H_0$ au niveau de confiance $100 \times (1 - \alpha)\%$ pour si :
 $$
@@ -2297,7 +2297,7 @@ Avec un peu d'algèbre, on transforme ce test d'hypothèse en un intervalle de c
 \label{eq:ICmulti}
 \color{Blue}
 \boxed{\color{black}
-\hat{\beta}_i \pm t_{\frac{\alpha}{n}}\big(n - (p+1)\big) \times \sqrt{[(\mathbb{X}^\intercal\mathbb{X})^{-1}S^2]}_{i+1 \times i+1} }
+\hat{\beta}_i \pm t_{\frac{\alpha}{n}}\big(n - (p+1)\big) \times \sqrt{[(\mathbb{X}^\intercal\mathbb{X})^{-1}S^2]_{(i+1) \times (i+1)}}}
 \end{equation}
 
 \subsection{Test de Fisher pour la validité globale de la régression}
@@ -3058,10 +3058,16 @@ On cherche maintenant à prédire les âges des passagers à partir d'un second 
       \item 80 \% des données pour l'entraînement (training) et 20 \% pour le test (testing);
       \item 80 \% des données de test pour l'entraînement  (training) et 20 \% pour la validation (validation). 
       \end{enumerate}
-      On segmente les données afin d'éviter le surapprentissage (overfitting). Il s'agit de la situation ou toutes les situations possibles sont incluses dans le modèle et celui-ci perd de la qualité prédictive. 
+      On segmente les données afin d'éviter le \href{https://fr.wikipedia.org/wiki/Surapprentissage}{surapprentissage} (overfitting). Il s'agit de la situation ou toutes les situations possibles sont incluses dans le modèle et celui-ci perd de la qualité prédictive sur de nouvelle données. \newline
+      
       Dans le cadre du cours, seulement l'étape 1 est suffisante. \newline
       
       Des méthodes plus \href{https://fr.wikipedia.org/wiki/Validation_croisée}{élaborée} et complexe existent pour les données massives et l'apprentissage automatique.
+\end{moreInfo}
+
+\begin{moreInfo}{\color{Gray}\emph{Augmentation des données}
+     \color{black}}
+     \href{https://www.quora.com/What-does-the-term-data-Augmentation-mean-in-the-context-of-Machine-Learning}{L'augmentation des données} (\emph{data augmentation}) permet d'améliorer la qualité d'un jeu de donnée. En ajoutant des informations à partir de données interne ou externe, on améliore l'information présente dans le modèle. Diverses méthodes telles que le traitement des données, la modification des données et l'ajout de variable permettent d'augmenter les données.
 \end{moreInfo}
 
 %%%%%%%%%%%%%%% Chapitre 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3167,7 +3173,7 @@ En posant,
 
 \subsubsection*{Preuve}
 \begin{align*}
-f_Y(y) &= \exp\Bigg\lbrace \frac{y \times \ln\big(\frac{\pi}{(1 -\pi)}\big) - \ln\big( 1 + e^{\ln\big(\frac{\pi}{(1 -\pi)}\big)}\big)}{1} + 0 \Bigg\rbrace \\
+f_Y(y) &= \exp\Bigg\lbrace \frac{y \times \ln\big(\frac{\pi}{(1 -\pi)}\big) - \ln\bigg( 1 + e^{\ln\big(\frac{\pi}{(1 -\pi)}\big)}\bigg)}{1} + 0 \Bigg\rbrace \\
 &= \exp\Bigg\lbrace y \times \ln(\pi) - y \ln(1 -\pi) + \ln( 1 -\pi) \Bigg\rbrace \\
 &= \exp\Bigg\lbrace y \times \ln(\pi) + (1 - y) \ln(1 -\pi) \Bigg\rbrace \\
 &= \pi^y \times (1 - \pi)^{1 - y}
@@ -3293,12 +3299,12 @@ S(\utilde{\beta}^{(i+1)}) &= S(\utilde{\beta}^{(i)}) + \Bigg[ \frac{\partial}{\p
 \end{align*}
 En substituant cette expression dans l'équation \ref{eq:score}, on obtient le développement suivant:
 \begin{align*}
- S(\utilde{\beta}^{(i)}) + \frac{\partial}{\partial\utilde{\beta}}\big(S(\utilde{\beta}^{(i)})\big) \Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) &= 0
+ S(\utilde{\beta}^{(i)}) + \frac{\partial}{\partial\utilde{\beta}}\Big(S(\utilde{\beta}^{(i)})\Big) \Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) &= 0
 \end{align*}
 
 ou encore,
 \begin{align*}
- S(\utilde{\beta}^{(i)}) + \big(- I(\hat{\utilde{\beta}}^{(i)})\big)\Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) &= 0
+ S(\utilde{\beta}^{(i)}) + \Big(- I(\hat{\utilde{\beta}}^{(i)})\Big)\Big(\hat{\utilde{\beta}}^{(i+1)} - \hat{\utilde{\beta}}^{(i)} \Big) &= 0
 \end{align*}
 
 où $I(\utilde{\beta})$ correspond à la matrice d'information de Fisher et est donnée par :
@@ -3351,7 +3357,7 @@ On remarque que dans le cas de la famille exponentielle, on aura
 \label{eq:deviance}
 \color{Blue}
 \boxed{\color{black}
-D(\utilde{\beta}) = 2 \times \displaystyle\sum_{i=1}^n \Big\lbrace y_i \times \big( \theta(y_i) - \theta(\mu_i) \big) - b(\theta(y_i)) + b(\theta(\mu_i)) \Big\rbrace
+D(\utilde{\beta}) = 2 \times \displaystyle\sum_{i=1}^n \Big\lbrace y_i \times \big( \theta(y_i) - \theta(\mu_i) \big) - b \big(\theta(y_i)\big) + b\big(\theta(\mu_i)\big) \Big\rbrace
 }
 \end{equation}
 
@@ -3479,7 +3485,7 @@ On cherche le jieme élément de ce vecteur $S(\utilde{\beta})$ :
 \begin{align*}
 [S(\utilde{\beta})]_j &= \frac{\partial}{\partial \utilde{\beta}{}_i} l(\utilde{\beta}) \\
 &= \frac{2}{2\sigma^2} \displaystyle\sum_{i =1}^n (Y_i - X_i \beta)^2X_{i,j} \\
-&= \frac{1}{\sigma^2} \Bigg( \displaystyle\sum_{i =1}^nX_{i,j}Y_i -  \big(\displaystyle\sum_{i =1}^n X_i\times X_{i,j} \big)\beta \Bigg) \\
+&= \frac{1}{\sigma^2} \Bigg( \displaystyle\sum_{i =1}^nX_{i,j}Y_i -  \bigg(\displaystyle\sum_{i =1}^n X_i\times X_{i,j} \bigg)\beta \Bigg) \\
 &= \frac{1}{\sigma^2} \Bigg( X_j^\intercal Y_i -   X_j^\intercal X\beta \Bigg) \\
 \end{align*}
 Ainsi, on déduit que 
@@ -3703,8 +3709,8 @@ w_1 & 0 & \cdots & 0 \\
 En appliquant maintenant l'algorithme de Newton-Raphson (section \ref{sec:newtonR}), on a
 \begin{align*}
 \hat{\utilde{\beta}}^{(i+1)} &= \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)}) \\
-&= \hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} \mathbb{X}^\intercal (\mathbb{Y} - M(\utilde{X}{}_i\utilde{\beta})) \\
-&\overset{\times I}{=} I\hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} \mathbb{X}^\intercal I(\mathbb{Y} - M(\utilde{X}{}_i\utilde{\beta})) \\
+&= \hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} \mathbb{X}^\intercal \big(\mathbb{Y} - M(\utilde{X}{}_i\utilde{\beta})\big) \\
+&\overset{\times I}{=} I\hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} \mathbb{X}^\intercal I\big(\mathbb{Y} - M(\utilde{X}{}_i\utilde{\beta})\big) \\
 &= (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}(\mathbb{X}^\intercal \mathbb{W} \mathbb{X})\hat{\utilde{\beta}}^{(i)} + (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} (\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1} (\mathbb{Y} - M)\\
 &= \big[(\mathbb{X}^\intercal \mathbb{W} \mathbb{X})^{-1}\mathbb{X}^\intercal \mathbb{W}\big]\underbrace{\big[\mathbb{X}\hat{\utilde{\beta}}^{(i)} + \mathbb{W}^{-1} (\mathbb{Y} - M)\big]}\\
 &\ \ \ \ \ \ \ \ \ \text{\ \ \ $Z^{(i)}$: transformation sur $Y$}
@@ -3759,7 +3765,7 @@ Voici une représentation d'un modèle linéaire, d'un GLM logistique et d'un GL
 \label{sec:poisson}
 
 \subsection{Contexte motivant l'utilisation de ce modèle}
-Phénomène ou la varaible aléatoire $Y$ est positive et discrète $(Y_i \in \{0, 1, 2,... \})$. Voici quelques exemples de contexte :
+Phénomène ou la varaible aléatoire $Y$ est positive et discrète $\big(Y_i \in \{0, 1, 2,... \}\big)$. Voici quelques exemples de contexte :
 \bigskip
 \begin{itemize}
 \item Nombre de sinistres d'un assuré au cours de la prochaine année.
@@ -3947,7 +3953,7 @@ H_1 &: \text{Il y a de la surdispersion} \\
 \Var(Y) &= \E[\Var(Y|\Theta)] + \Var(\E[Y|\Theta]) \\
 &= \E[\lambda\times \Theta] + \Var(\lambda\times\Theta) \\
 &= \lambda \times 1 + \lambda^2 \times \frac{1}{\alpha} \\
-&= \lambda \times (1 + \frac{\lambda}{\alpha}) \\
+&= \lambda \times \bigg(1 + \frac{\lambda}{\alpha}\bigg) \\
 \end{align*}
 
 \subsubsection*{Procédure}
@@ -3982,7 +3988,7 @@ où
 &= g^{-1}(\utilde{X}\utilde{\beta}) \\
 \Var(Y_i|\utilde{X}{}_i) & = \frac{\mu_i^2}{\alpha} \\
 \end{align*}
-\item $l(\utilde{\beta}) = \displaystyle\sum_{i=1}^n\ln(f_{Y_i|\utilde{X}{}_i}(y_i))$
+\item $l(\utilde{\beta}) = \displaystyle\sum_{i=1}^n\ln\big(f_{Y_i|\utilde{X}{}_i}(y_i)\big)$
 \item $S(\utilde{\beta}) = \frac{\partial}{\partial\utilde{\beta}} l(\utilde{\beta})$
 \item $I(\utilde{\beta}) = \frac{\partial^2}{\partial\utilde{\beta^2}} l(\utilde{\beta})$
 \item $\hat{\utilde{\beta}}^{(i+1)} = \hat{\utilde{\beta}}^{(i)} + I^{-1}(\hat{\utilde{\beta}}^{(i)})S(\hat{\utilde{\beta}}^{(i)})$
@@ -4005,7 +4011,7 @@ Dans le cas de la loi Normale, Logistique et Poisson, il n'y a pas de $y_i$ dans
 
 \subsubsection{Exemple : Loi géométrique}
 \begin{itemize}
-\item $Pr(Y_i = y_i |\utilde{X}{}_i) = P_i^{y_i-1} \times (1 - P_i); y_i \in \{1,2,... \}$
+\item $Pr(Y_i = y_i |\utilde{X}{}_i) = P_i^{y_i-1} \times (1 - P_i);\  y_i \in \{1,2,... \}$
 \item Fonction de lien $g(x) = \ln(x-1)$
 \begin{align*}
 \ln(\E[Y_i|\utilde{X}{}_i] - 1) &= \utilde{X}{}_i\beta \\
@@ -4021,7 +4027,7 @@ P_i &= \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}
 l(\utilde{\beta}) &= \displaystyle\sum_{i=1}^n\ln\Big(Pr(Y_i|\utilde{X}{}_i)\Big) \\
 &= \displaystyle\sum_{i=1}^n\Bigg\lbrace(y_i - 1) \ln(P_i) + \ln(1 - P_i) \Bigg\rbrace\\
 &= \displaystyle\sum_{i=1}^n\Bigg\lbrace(y_i - 1) \ln\bigg(\frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}\bigg) + \ln\bigg(\frac{1}{1 + e^{\utilde{X}{}_i\beta}}\bigg) \Bigg\rbrace\\
-&= \displaystyle\sum_{i=1}^n\Bigg\lbrace(y_i - 1) \bigg[\utilde{X}{}_i\beta - \ln\big(1 + e^{\utilde{X}{}_i\beta}\big)\bigg] - \ln(1 + e^{\utilde{X}{}_i\beta}) \Bigg\rbrace\\
+&= \displaystyle\sum_{i=1}^n\Bigg\lbrace(y_i - 1) \bigg[\utilde{X}{}_i\beta - \ln\big(1 + e^{\utilde{X}{}_i\beta}\big)\bigg] - \ln\big(1 + e^{\utilde{X}{}_i\beta}\big) \Bigg\rbrace\\
 &= \displaystyle\sum_{i=1}^n\Bigg\lbrace(y_i - 1) \utilde{X}{}_i\beta -  y_i\times\ln\big(1 + e^{\utilde{X}{}_i\beta}\big) \Bigg\rbrace\\
 \end{align*}
 \item Vecteur Score
@@ -4044,13 +4050,13 @@ On remarque qu'il y a des $y_i$ dans la matrice d'information de Fisher.
 \item Matrice F
 \begin{align*}
 [F(\beta)]_{j,k} &= E_Y\bigg[ [I(\utilde{\beta})]_{j,k}\bigg] \\
-&= E_Y\Bigg[ \displaystyle\sum_{i=1}^n\bigg\lbrace y_i \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace \Bigg]\\
-&= \displaystyle\sum_{i=1}^n \bigg\lbrace \E[y_i|\utilde{X}{}_i] \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
-&= \displaystyle\sum_{i=1}^n \bigg\lbrace \frac{1}{1-P_i} \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
+&= E_Y\Bigg[ \displaystyle\sum_{i=1}^n\Bigg\lbrace y_i \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \Bigg\rbrace \Bigg]\\
+&= \displaystyle\sum_{i=1}^n \Bigg\lbrace \E[y_i|\utilde{X}{}_i] \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \Bigg\rbrace\\
+&= \displaystyle\sum_{i=1}^n \Bigg\lbrace \frac{1}{1-P_i} \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \Bigg\rbrace\\
 \end{align*}
 \begin{align*}
-&= \displaystyle\sum_{i=1}^n \bigg\lbrace (1 + e^{\utilde{X}{}_i\beta}) \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
-&= \displaystyle\sum_{i=1}^n \bigg\lbrace \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}  \times X_{i,j} \times X_{i,k} \bigg\rbrace\\
+&= \displaystyle\sum_{i=1}^n \Bigg\lbrace (1 + e^{\utilde{X}{}_i\beta}) \times \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}} \times \frac{1}{1 + e^{\utilde{X}{}_i\beta}} \times X_{i,j} \times X_{i,k} \Bigg\rbrace\\
+&= \displaystyle\sum_{i=1}^n \Bigg\lbrace \frac{e^{\utilde{X}{}_i\beta}}{1 + e^{\utilde{X}{}_i\beta}}  \times X_{i,j} \times X_{i,k} \Bigg\rbrace\\
 &= \displaystyle\sum_{i=1}^nX_{i,j}\times W_i \times X_{i,k}
 \end{align*}
 \bigskip
@@ -4132,7 +4138,7 @@ Si on pense que l'effet combiné de deux variables explicatives doit être diff�
 \item $X_2$ : Indicateur que l'assuré est un homme
 \end{itemize}
 
-En pratique, on observe souvent cette tendance suivante :
+En pratique, on observe souvent la tendance suivante :
 
 %% figure interaction
 \includegraphics{notes_de_cours-048}
