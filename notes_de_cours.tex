@@ -189,8 +189,9 @@ De façon générale, en régression, nous avons :
 \begin{tabularx}{\linewidth}{c|X|c}
 \hline
 Y & Variable dépendante, ou de réponse & Output \\
+\rowcolor{backcolour}
 $X_1, X_2, ..., X_n$ & Soit n variables indépendantes ou explicatives, ou exogènes\footnote{Les variables $X_i$ sont indépendantes par rapport à y, mais pas nécessairement entre elles.} & Input \\
-$\beta_0, \beta_1, ... \beta_n$ & Les paramètres à estimer & \\
+$\beta_0, \beta_1, ..., \beta_n$ & Les paramètres à estimer & \\
 \hline
 \end{tabularx}
 
@@ -801,6 +802,8 @@ On rappelle qu'un estimateur est dit sans biais lorsque son espérance est égal
 
 \begin{align*}
 \E[\hat{\beta}_1] &= \E \Bigg[ \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg] \\
+\end{align*}
+\begin{align*}
 &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})\E[Y_t - \overline{Y}]}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(\E[Y_t] - \E[\overline{Y}])}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 \end{align*}
@@ -816,9 +819,9 @@ On applique le même raisonnement pour l'espérance de $\overline{Y}$.
 \begin{align*}
 \E[\hat{\beta}_1] &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(\E[Y_t] - \E[\overline{Y}])}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(\beta_0 + \beta_1\times X_t - \beta_0 - \beta_1\overline{X_t})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})\beta_1 (X_t - \overline{X_t})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 \end{align*}
 \begin{align*}
-&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})\beta_1 (X_t - \overline{X_t})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 &= \beta_1 \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 \E[\hat{\beta}_1] &= \beta_1
 \end{align*}
@@ -840,10 +843,10 @@ On s'intéresse aux variances et aux covariances des estimateurs, cette deuxièm
 \begin{align*}
 \Var(\hat{\beta}_1) &= \Var\Bigg( \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg)\\
 &= \frac{\Var\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t - \displaystyle\sum_{t=1}^n(X_t- \overline{X} \big)\overline{Y}\big)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
+&= \frac{\Var\big( \displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t\big) + \Var\big(\displaystyle\sum_{t=1}^n(X_t- \overline{X})\overline{Y}\big)}{\bigg( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 \end{align*}
 
 \begin{align*}
-&= \frac{\Var\big( \displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t\big) + \Var\big(\displaystyle\sum_{t=1}^n(X_t- \overline{X})\overline{Y}\big)}{\bigg( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 \Var(Y_t) + \Var\big(\overline{Y}(n\overline{X}- n\overline{X})\big)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 \Var(\beta_0 + \beta_1X_t + \varepsilon_t) + 0}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 \end{align*}
@@ -1101,6 +1104,8 @@ Ainsi,
 \boxed{\color{black}
 \text{SST} = \text{SSR} + \text{SSE}}
 \end{equation}
+
+
 Où SSR est la variation expliquée par le modèle de régression linéaire et SSE signifie la variation inexpliquée, ou résiduelle du modèle de régression linéaire.
 \bigskip
 
@@ -1120,6 +1125,7 @@ Intuitivement,
           \boxed{\color{black}
           R^2 = Corr^2(Y, \hat{Y}) = \frac{\text{SSR}}{\text{SST}} \Leftrightarrow 1 - \frac{\text{SSE}}{\text{SST}}}
           \end{equation}
+          
           Par rapport au ratio, $\frac{\text{SSR}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ expliqué par la régression et 
           $1 - \frac{\text{SSR}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ qui n'est pas expliquée par la régression.
           \item $R^2 \in [0,1] $
@@ -1176,6 +1182,7 @@ On appelle couramment le tableau d'analyse de la variance le tableau ANOVA. Ce t
 \bigskip
 \begin{tabularx}{\linewidth}{|X|X|X|X|X|}
 \hline
+\rowcolor{backcolour}
 Source de la variance & Somme des carrés $(SS)$ & Degrés de liberté $(d.l.)$ & Carrés moyens $(MS)$ & Ratio de Fisher $(F)$ \\
 \hline
 Régression & $SSR$ & 1 & $MSR = \frac{SSR}{1}$ & $F = \frac{MSR}{MSE}$ \\
@@ -1193,6 +1200,7 @@ On poursuit avec un exemple pour assimiler l'information, on reprend l'exemple d
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
+\rowcolor{backcolour}
 t & $X_t$ & $Y_t$  & $\hat{Y}_t = \hat{\beta}_0 + \hat{\beta}_1X_t$ & $\hat{\varepsilon}_t$\\
 \hline
 1 & 2 & 2 & 3.1445 & -1.1445\\
@@ -1216,6 +1224,7 @@ SST &= SSE + SSR = 6.8179 +3.9821 = 10.8000 \\
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
+\rowcolor{backcolour}
 Source & $SS$ & $d.l.$ & $MS$ & $F$ \\
 \hline
 Régression & 3.9821 & 1 & 3.9821 & 1.7522 \\
@@ -1565,6 +1574,7 @@ Soit le tableau ANOVA suivant :
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
+\rowcolor{backcolour}
 Source & $SS$ & $d.l.$ & $MS$ & $F$ \\
 \hline
 Régression & 48.845 & 1 & 48.845 & 9.249 \\
@@ -1750,36 +1760,36 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-         fit        lwr         upr
-1 -1.7033162 -3.0432546 -0.36337781
-2  0.2742382 -0.4308802  0.97935666
-3 -0.5156943 -1.3671143  0.33572570
-4 -0.9626306 -1.9751270  0.04986572
-5  1.2151425  0.3602414  2.07004366
+          fit        lwr        upr
+1 -0.58100833 -1.0362116 -0.1258050
+2 -0.27767459 -0.6671563  0.1118071
+3  1.19064187  0.6705238  1.7107600
+4 -0.79654761 -1.3096929 -0.2834024
+5  0.02940157 -0.3219134  0.3807166
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit         lwr      upr
-1 0.5926338 -0.12487008 1.310138
-2 0.8026034  0.05371955 1.551487
-3 1.0125730  0.21621910 1.808927
-4 1.2225426  0.36529739 2.079788
-5 1.4325122  0.50359000 2.361434
+          fit         lwr       upr
+1 -0.06679569 -0.42631941 0.2927280
+2  0.12641111 -0.22047531 0.4732975
+3  0.31961790 -0.03041862 0.6696544
+4  0.51282470  0.14425523 0.8813942
+5  0.70603149  0.30567686 1.1063861
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-        fit       lwr      upr
-1 0.5926338 -2.226929 3.412197
-2 0.8026034 -2.025108 3.630315
-3 1.0125730 -1.828079 3.853225
-4 1.2225426 -1.635777 4.080863
-5 1.4325122 -1.448116 4.313141
+          fit        lwr      upr
+1 -0.06679569 -1.4548053 1.321214
+2  0.12641111 -1.2583790 1.511201
+3  0.31961790 -1.0659647 1.705200
+4  0.51282470 -0.8775554 1.903205
+5  0.70603149 -0.6931102 2.105173
 \end{Soutput}
 \end{Schunk}
 
@@ -2240,6 +2250,7 @@ Dans le cas de régression multiple, le tableau ANOVA est le suivant :
 \bigskip
 \begin{tabularx}{\linewidth}{|X|X|X|X|X|}
 \hline
+\rowcolor{backcolour}
 Source de la variance & Somme des carrés $(SS)$ & Degrés de liberté $(d.l.)$ & Carrés moyens $(MS)$ & Ratio de Fisher $(F)$ \\
 \hline
 Régression & $SSR$ & p & $\frac{SSR}{p}$ & $\frac{MSR}{MSE}$ \\
@@ -2436,6 +2447,7 @@ En pratique cette méthode n'est pas \emph{efficiente}, car le temps d'exécutio
 \begin{center}
 \begin{tabular}{|c|c|}
 \hline
+\rowcolor{backcolour}
 p & $2^p$ \\
 \hline
 1 & 2 \\

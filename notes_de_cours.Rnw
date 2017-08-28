@@ -188,8 +188,9 @@ De façon générale, en régression, nous avons :
 \begin{tabularx}{\linewidth}{c|X|c}
 \hline
 Y & Variable dépendante, ou de réponse & Output \\
+\rowcolor{backcolour}
 $X_1, X_2, ..., X_n$ & Soit n variables indépendantes ou explicatives, ou exogènes\footnote{Les variables $X_i$ sont indépendantes par rapport à y, mais pas nécessairement entre elles.} & Input \\
-$\beta_0, \beta_1, ... \beta_n$ & Les paramètres à estimer & \\
+$\beta_0, \beta_1, ..., \beta_n$ & Les paramètres à estimer & \\
 \hline
 \end{tabularx}
 
@@ -930,6 +931,8 @@ On rappelle qu'un estimateur est dit sans biais lorsque son espérance est égal
 
 \begin{align*}
 \E[\hat{\beta}_1] &= \E \Bigg[ \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg] \\
+\end{align*}
+\begin{align*}
 &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})\E[Y_t - \overline{Y}]}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(\E[Y_t] - \E[\overline{Y}])}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 \end{align*}
@@ -945,9 +948,9 @@ On applique le même raisonnement pour l'espérance de $\overline{Y}$.
 \begin{align*}
 \E[\hat{\beta}_1] &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(\E[Y_t] - \E[\overline{Y}])}{\displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(\beta_0 + \beta_1\times X_t - \beta_0 - \beta_1\overline{X_t})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
+&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})\beta_1 (X_t - \overline{X_t})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 \end{align*}
 \begin{align*}
-&= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})\beta_1 (X_t - \overline{X_t})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 &= \beta_1 \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \\
 \E[\hat{\beta}_1] &= \beta_1
 \end{align*}
@@ -969,10 +972,10 @@ On s'intéresse aux variances et aux covariances des estimateurs, cette deuxièm
 \begin{align*}
 \Var(\hat{\beta}_1) &= \Var\Bigg( \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})(Y_t - \overline{Y})}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2} \Bigg)\\
 &= \frac{\Var\big( \displaystyle\displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t - \displaystyle\sum_{t=1}^n(X_t- \overline{X} \big)\overline{Y}\big)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
+&= \frac{\Var\big( \displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t\big) + \Var\big(\displaystyle\sum_{t=1}^n(X_t- \overline{X})\overline{Y}\big)}{\bigg( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 \end{align*}
 
 \begin{align*}
-&= \frac{\Var\big( \displaystyle\sum_{t=1}^n(X_t- \overline{X})Y_t\big) + \Var\big(\displaystyle\sum_{t=1}^n(X_t- \overline{X})\overline{Y}\big)}{\bigg( \displaystyle\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 \Var(Y_t) + \Var\big(\overline{Y}(n\overline{X}- n\overline{X})\big)}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 &= \frac{\displaystyle\sum_{t=1}^n(X_t- \overline{X})^2 \Var(\beta_0 + \beta_1X_t + \varepsilon_t) + 0}{\bigg( \displaystyle\sum_{t=1}^n(X_t - \overline{X})^2 \bigg)^2} \\
 \end{align*}
@@ -1298,6 +1301,8 @@ Ainsi,
 \boxed{\color{black}
 \text{SST} = \text{SSR} + \text{SSE}}
 \end{equation}
+
+
 Où SSR est la variation expliquée par le modèle de régression linéaire et SSE signifie la variation inexpliquée, ou résiduelle du modèle de régression linéaire.
 \bigskip
 
@@ -1317,6 +1322,7 @@ Intuitivement,
           \boxed{\color{black}
           R^2 = Corr^2(Y, \hat{Y}) = \frac{\text{SSR}}{\text{SST}} \Leftrightarrow 1 - \frac{\text{SSE}}{\text{SST}}}
           \end{equation}
+          
           Par rapport au ratio, $\frac{\text{SSR}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ expliqué par la régression et 
           $1 - \frac{\text{SSR}}{\text{SST}}$ signifie le pourcentage de la variance dans $Y_t$ qui n'est pas expliquée par la régression.
           \item $R^2 \in [0,1] $
@@ -1373,6 +1379,7 @@ On appelle couramment le tableau d'analyse de la variance le tableau ANOVA. Ce t
 \bigskip
 \begin{tabularx}{\linewidth}{|X|X|X|X|X|}
 \hline
+\rowcolor{backcolour}
 Source de la variance & Somme des carrés $(SS)$ & Degrés de liberté $(d.l.)$ & Carrés moyens $(MS)$ & Ratio de Fisher $(F)$ \\
 \hline
 Régression & $SSR$ & 1 & $MSR = \frac{SSR}{1}$ & $F = \frac{MSR}{MSE}$ \\
@@ -1390,6 +1397,7 @@ On poursuit avec un exemple pour assimiler l'information, on reprend l'exemple d
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
+\rowcolor{backcolour}
 t & $X_t$ & $Y_t$  & $\hat{Y}_t = \hat{\beta}_0 + \hat{\beta}_1X_t$ & $\hat{\varepsilon}_t$\\
 \hline
 1 & 2 & 2 & 3.1445 & -1.1445\\
@@ -1413,6 +1421,7 @@ SST &= SSE + SSR = 6.8179 +3.9821 = 10.8000 \\
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
+\rowcolor{backcolour}
 Source & $SS$ & $d.l.$ & $MS$ & $F$ \\
 \hline
 Régression & 3.9821 & 1 & 3.9821 & 1.7522 \\
@@ -1799,6 +1808,7 @@ Soit le tableau ANOVA suivant :
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
+\rowcolor{backcolour}
 Source & $SS$ & $d.l.$ & $MS$ & $F$ \\
 \hline
 Régression & 48.845 & 1 & 48.845 & 9.249 \\
@@ -2557,6 +2567,7 @@ Dans le cas de régression multiple, le tableau ANOVA est le suivant :
 \bigskip
 \begin{tabularx}{\linewidth}{|X|X|X|X|X|}
 \hline
+\rowcolor{backcolour}
 Source de la variance & Somme des carrés $(SS)$ & Degrés de liberté $(d.l.)$ & Carrés moyens $(MS)$ & Ratio de Fisher $(F)$ \\
 \hline
 Régression & $SSR$ & p & $\frac{SSR}{p}$ & $\frac{MSR}{MSE}$ \\
@@ -2753,6 +2764,7 @@ En pratique cette méthode n'est pas \emph{efficiente}, car le temps d'exécutio
 \begin{center}
 \begin{tabular}{|c|c|}
 \hline
+\rowcolor{backcolour}
 p & $2^p$ \\
 \hline
 1 & 2 \\
