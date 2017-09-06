@@ -923,7 +923,7 @@ Finalement, pour la covariance entre $\hat{\beta}_0$ et $\hat{\beta}_1$
 	Les équations \ref{eq:varbeta0} et \ref{eq:varbeta1}  ainsi que le postulat 4 à la section \ref{post4} nous permettent de conclure que 
 	\begin{align*}
 	     \hat{\beta_0} &\sim N\Bigg(\beta_0, \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)\Bigg) \\
-	     \hat{\beta_1} &\sim N\Bigg(\beta_1, \frac{\sigma^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2})\Bigg)
+	     \hat{\beta_1} &\sim N\Bigg(\beta_1, \frac{\sigma^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2}\Bigg)
 	\end{align*}
 
 \end{moreInfo}
@@ -1148,11 +1148,11 @@ Le nombre de \emph{degrés de liberté}\footnote{Couramment l'abréviation $d.l.
 
 Ainsi, 
 \begin{itemize}
-\item $SST = \displaystyle\sum_{t=1}^n(Y_t-\overline{Y})^2 \rightarrow$ n termes - (1 paramètre estimé\footnote{$\overline{Y}$}) $= \color{Blue}\boxed{\color{black} (n-1)d.l.}$
+\item $SST = \displaystyle\sum_{t=1}^n(Y_t-\overline{Y})^2 \rightarrow$ n termes - (1 paramètre estimé\footnote{$\overline{Y}$}) $= \color{Blue}\boxed{\color{black} (n-1) \, d.l.}$
 \item $SSE = \displaystyle\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 $
 $$
 \displaystyle\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 = \displaystyle\sum_{t=1}^n(Y_t - \hat{\beta}_0 - \hat{\beta}_1X_t )^2
-\rightarrow \text{ n termes } - (\text{2 paramètres estimés}\footnote{$\hat{\beta}_0 \text{ et } \hat{\beta}_1$}) = \color{Blue}\boxed{\color{black} (n-2)d.l.}
+\rightarrow \text{ n termes } - (\text{2 paramètres estimés}\footnote{$\hat{\beta}_0 \text{ et } \hat{\beta}_1$}) = \color{Blue}\boxed{\color{black} (n-2) \, d.l.}
 $$
 \item $SSR = \displaystyle\sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 $
 \begin{align*}
@@ -1235,7 +1235,7 @@ Totaux & 10.8000 & 4 & & \\
 \end{tabular}
 \end{center}
 
-\subsubsection*{$R^2$}
+\subsubsection*{\textbf{$R^2$}}
 \begin{align*}
 R^2 &= \frac{SSR}{SST} = \frac{3.9821}{10.8000} = 36.87 \% \\
 R^2 &= 1 - \frac{SSE}{SST} = 1 - \frac{6.8179}{10.8000} = 36.87 \% \\
@@ -1761,35 +1761,35 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \begin{Schunk}
 \begin{Soutput}
           fit        lwr        upr
-1 -0.58100833 -1.0362116 -0.1258050
-2 -0.27767459 -0.6671563  0.1118071
-3  1.19064187  0.6705238  1.7107600
-4 -0.79654761 -1.3096929 -0.2834024
-5  0.02940157 -0.3219134  0.3807166
+1 -0.94090996 -1.6917588 -0.1900611
+2 -1.55488593 -2.6847763 -0.4249956
+3  0.25927758 -0.6019771  1.1205323
+4 -0.06230439 -0.7624058  0.6377971
+5 -1.36730799 -2.3678729 -0.3667430
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-          fit         lwr       upr
-1 -0.06679569 -0.42631941 0.2927280
-2  0.12641111 -0.22047531 0.4732975
-3  0.31961790 -0.03041862 0.6696544
-4  0.51282470  0.14425523 0.8813942
-5  0.70603149  0.30567686 1.1063861
+          fit        lwr       upr
+1 -0.06846237 -0.7661589 0.6292342
+2  0.10895182 -0.6692244 0.8871280
+3  0.28636602 -0.5910003 1.1637323
+4  0.46378022 -0.5258766 1.4534370
+5  0.64119441 -0.4698886 1.7522774
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type II pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-          fit        lwr      upr
-1 -0.06679569 -1.4548053 1.321214
-2  0.12641111 -1.2583790 1.511201
-3  0.31961790 -1.0659647 1.705200
-4  0.51282470 -0.8775554 1.903205
-5  0.70603149 -0.6931102 2.105173
+          fit       lwr      upr
+1 -0.06846237 -2.571524 2.434599
+2  0.10895182 -2.417725 2.635629
+3  0.28636602 -2.272600 2.845332
+4  0.46378022 -2.135827 3.063388
+5  0.64119441 -2.007021 3.289409
 \end{Soutput}
 \end{Schunk}
 

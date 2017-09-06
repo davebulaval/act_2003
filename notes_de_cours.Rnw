@@ -1052,7 +1052,7 @@ Finalement, pour la covariance entre $\hat{\beta}_0$ et $\hat{\beta}_1$
 	Les équations \ref{eq:varbeta0} et \ref{eq:varbeta1}  ainsi que le postulat 4 à la section \ref{post4} nous permettent de conclure que 
 	\begin{align*}
 	     \hat{\beta_0} &\sim N\Bigg(\beta_0, \frac{\sigma^2}{n}  + \overline{X}^2 \bigg(\frac{\sigma^2}{\displaystyle\sum_{t=1}^n (X_t - \overline{X})^2}\bigg)\Bigg) \\
-	     \hat{\beta_1} &\sim N\Bigg(\beta_1, \frac{\sigma^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2})\Bigg)
+	     \hat{\beta_1} &\sim N\Bigg(\beta_1, \frac{\sigma^2}{\displaystyle\sum_{t=1}^n(X_t - \overline{X})^2}\Bigg)
 	\end{align*}
 
 \end{moreInfo}
@@ -1345,11 +1345,11 @@ Le nombre de \emph{degrés de liberté}\footnote{Couramment l'abréviation $d.l.
 
 Ainsi, 
 \begin{itemize}
-\item $SST = \displaystyle\sum_{t=1}^n(Y_t-\overline{Y})^2 \rightarrow$ n termes - (1 paramètre estimé\footnote{$\overline{Y}$}) $= \color{Blue}\boxed{\color{black} (n-1)d.l.}$
+\item $SST = \displaystyle\sum_{t=1}^n(Y_t-\overline{Y})^2 \rightarrow$ n termes - (1 paramètre estimé\footnote{$\overline{Y}$}) $= \color{Blue}\boxed{\color{black} (n-1) \, d.l.}$
 \item $SSE = \displaystyle\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 $
 $$
 \displaystyle\sum_{t=1}^n(Y_t - \hat{Y}_t)^2 = \displaystyle\sum_{t=1}^n(Y_t - \hat{\beta}_0 - \hat{\beta}_1X_t )^2
-\rightarrow \text{ n termes } - (\text{2 paramètres estimés}\footnote{$\hat{\beta}_0 \text{ et } \hat{\beta}_1$}) = \color{Blue}\boxed{\color{black} (n-2)d.l.}
+\rightarrow \text{ n termes } - (\text{2 paramètres estimés}\footnote{$\hat{\beta}_0 \text{ et } \hat{\beta}_1$}) = \color{Blue}\boxed{\color{black} (n-2) \, d.l.}
 $$
 \item $SSR = \displaystyle\sum_{t=1}^n (\hat{Y_t} - \overline{Y})^2 $
 \begin{align*}
@@ -1432,7 +1432,7 @@ Totaux & 10.8000 & 4 & & \\
 \end{tabular}
 \end{center}
 
-\subsubsection*{$R^2$}
+\subsubsection*{\textbf{$R^2$}}
 \begin{align*}
 R^2 &= \frac{SSR}{SST} = \frac{3.9821}{10.8000} = 36.87 \% \\
 R^2 &= 1 - \frac{SSE}{SST} = 1 - \frac{6.8179}{10.8000} = 36.87 \% \\
