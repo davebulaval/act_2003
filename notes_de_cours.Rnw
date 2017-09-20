@@ -136,6 +136,7 @@ $\hfil\tilde{}\hfil$\crcr\noalign{\kern1.0pt}}}}}
 
 %%%%Remerciements %%%%%
 \include{section/remerciements}
+\include{section/correction}
 
 \tableofcontents
 
@@ -662,6 +663,7 @@ En isolant $\hat{\beta}_1$, on obtient la définition suivante
 \end{equation}
 
 \subsubsection{Remarques}
+\label{sec:remarques1}
 
 \begin{enumerate}
 \item On note $\hat{\varepsilon}_t$ les résidus générés par le modèle estimé:
@@ -730,7 +732,7 @@ text( x = 3, y = ybarre + 2, col = "Blue", labels = expression(bar(Y)), pos = 4,
 \item La somme des résidus de tout modèle de régression linéaire est nulle.
 \begin{align*}
 \displaystyle\sum_{t=1}^{n} \hat{\varepsilon}_t &= \displaystyle\sum_{t=1}^{n}\big( Y_t - (\hat{\beta}_0 + \hat{\beta}_1 X_t) \big) \\
-&\overset{\ref{eq:beta0}}{=} \displaystyle\sum_{t=1}^{n}\big( Y_t - (\overline{Y} - \hat{\beta}_1 \overline{X}) \big) \\
+&\overset{\ref{eq:beta0}}{=} \displaystyle\sum_{t=1}^{n}\big( Y_t - (\overline{Y} - \hat{\beta}_1 \overline{X}) - \hat{\beta}_1 X_t \big) \\
 &= \displaystyle\sum_{t=1}^{n} Y_t - \displaystyle\sum_{t=1}^{n}\overline{Y} + \hat{\beta}_1 \displaystyle\sum_{t=1}^{n}\overline{X} - \hat{\beta}_1\displaystyle\sum_{t=1}^{n}X_t \\
 &= n \overline{Y} - n \overline{Y} + \hat{\beta}_1 + n \overline{X} - \hat{\beta}_1 + n \overline{X} \\
 &= 0
