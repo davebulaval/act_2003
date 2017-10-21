@@ -405,7 +405,7 @@ Quel type d'erreur est suffisante pour déterminer $\varepsilon$ ?
 L'erreur quadratique semble donc l'option la plus simple due à la facilité mathématique et à sa fiabilité.
 
 \section{Le modèle de régression linéaire simple}
-Le modèle de régression linéaire simple tente d'expliquer le mieux possible la variable \href{https://fr.wikipedia.org/wiki/Variable_dépendante}{dépendante} \footnote{On appelle parfois la variable dépendante une variable \href{https://fr.wikipedia.org/wiki/Endogène}{endogène}. Cette variable s'interprète comme étant une variable qui est due à une cause interne.}  Y à l'aide d'une variable \href{https://fr.wikipedia.org/wiki/Variable_indépendante}{indépendante}\footnote{On appelle parfois les variables dépendantes des variables \href{https://fr.wikipedia.org/wiki/Exogène}{exogène}. Cette variable s'intreprète comme étant extérieur à un système.} X . 
+Le modèle de régression linéaire simple tente d'expliquer le mieux possible la variable \href{https://fr.wikipedia.org/wiki/Variable_dépendante}{dépendante} \footnote{On appelle parfois la variable dépendante une variable \href{https://fr.wikipedia.org/wiki/Endogène}{endogène}. Cette variable s'interprète comme étant une variable qui est due à une cause interne.}  Y à l'aide d'une variable \href{https://fr.wikipedia.org/wiki/Variable_indépendante}{indépendante}\footnote{On appelle parfois les variables indépendantes des variables \href{https://fr.wikipedia.org/wiki/Exogène}{exogène}. Ces variables s'intreprètent comme étant extérieur à un système.} X . 
 
 Si on dispose de n paires d'observations $(X_1, Y_1), (X_2, Y_2),...,(X_n, Y_n)$ alors, le modèle s'exprime  comme suit :
 \begin{equation}
@@ -603,7 +603,7 @@ Si on reprend (encore) le graphique de la section \ref{fig:linsimp}, on observe 
 \item La somme des résidus de tout modèle de régression linéaire est nulle.
 \begin{align*}
 \displaystyle\sum_{t=1}^{n} \hat{\varepsilon}_t &= \displaystyle\sum_{t=1}^{n}\big( Y_t - (\hat{\beta}_0 + \hat{\beta}_1 X_t) \big) \\
-&\overset{\ref{eq:beta0}}{=} \displaystyle\sum_{t=1}^{n}\big( Y_t - (\overline{Y} - \hat{\beta}_1 \overline{X}) \big) \\
+&\overset{\ref{eq:beta0}}{=} \displaystyle\sum_{t=1}^{n}\big( Y_t - (\overline{Y} - \hat{\beta}_1 \overline{X}) - \hat{\beta}_1 X_t \big) \\
 &= \displaystyle\sum_{t=1}^{n} Y_t - \displaystyle\sum_{t=1}^{n}\overline{Y} + \hat{\beta}_1 \displaystyle\sum_{t=1}^{n}\overline{X} - \hat{\beta}_1\displaystyle\sum_{t=1}^{n}X_t \\
 &= n \overline{Y} - n \overline{Y} + \hat{\beta}_1 + n \overline{X} - \hat{\beta}_1 + n \overline{X} \\
 &= 0
@@ -779,7 +779,7 @@ On peut ainsi formuler les trois postulats \footnote{Le \href{https://fr.wikiped
 \begin{enumerate}
 \item \label{post1} $\E[\varepsilon_t] = 0$, par définition pour que $\E[Y_t] = \E[Y_t|X_t]$. Il s'agit de l'hypothèse de linéarité de la variable explicative. On dit qu'elle est exogène si elle n'est pas corrélée au terme d'erreur.
 \item \label{post2} $Var(\varepsilon_t) = \sigma^2$, la variance des termes d'erreurs est supposée constante. Il s'agit de l'hypothèse d'homoscédasticité.
-\item \label{post3} $\Cov(\varepsilon_t, \varepsilon_s) = 0$, pour $t \neq s$,il n'y a pas de corrélation entre les termes d'erreurs. Il s'agit de l'hypothèse d'indépendance des erreurs.
+\item \label{post3} $\Cov(\varepsilon_t, \varepsilon_s) = 0$, pour $t \neq s$, il n'y a pas de corrélation entre les termes d'erreurs. Il s'agit de l'hypothèse d'indépendance des erreurs.
 \end{enumerate}
 
 \bigskip
@@ -1760,24 +1760,24 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \subsubsection*{I.C. de type I pour tous les X dans les observations}
 \begin{Schunk}
 \begin{Soutput}
-          fit        lwr        upr
-1 -0.94090996 -1.6917588 -0.1900611
-2 -1.55488593 -2.6847763 -0.4249956
-3  0.25927758 -0.6019771  1.1205323
-4 -0.06230439 -0.7624058  0.6377971
-5 -1.36730799 -2.3678729 -0.3667430
+         fit        lwr        upr
+1  0.1832267 -0.3255481  0.6920014
+2  0.8889279  0.2988983  1.4789575
+3  1.3126056  0.6370494  1.9881617
+4  0.3662580 -0.1543997  0.8869157
+5 -2.0085025 -2.8491605 -1.1678445
 \end{Soutput}
 \end{Schunk}
 
 \subsubsection*{I.C. de type I pour un vecteur $X^*$}
 \begin{Schunk}
 \begin{Soutput}
-          fit        lwr       upr
-1 -0.06846237 -0.7661589 0.6292342
-2  0.10895182 -0.6692244 0.8871280
-3  0.28636602 -0.5910003 1.1637323
-4  0.46378022 -0.5258766 1.4534370
-5  0.64119441 -0.4698886 1.7522774
+          fit         lwr       upr
+1 -0.30417506 -0.81758567 0.2092356
+2 -0.04179195 -0.54607124 0.4624873
+3  0.22059116 -0.29002360 0.7312059
+4  0.48297428 -0.04889033 1.0148389
+5  0.74535739  0.17900487 1.3117099
 \end{Soutput}
 \end{Schunk}
 
@@ -1785,11 +1785,11 @@ Il est possible d'obtenir le résultat des formules des sections \ref{sec:type1}
 \begin{Schunk}
 \begin{Soutput}
           fit       lwr      upr
-1 -0.06846237 -2.571524 2.434599
-2  0.10895182 -2.417725 2.635629
-3  0.28636602 -2.272600 2.845332
-4  0.46378022 -2.135827 3.063388
-5  0.64119441 -2.007021 3.289409
+1 -0.30417506 -2.323352 1.715002
+2 -0.04179195 -2.058667 1.975083
+3  0.22059116 -1.797877 2.239059
+4  0.48297428 -1.540974 2.506923
+5  0.74535739 -1.287926 2.778641
 \end{Soutput}
 \end{Schunk}
 
