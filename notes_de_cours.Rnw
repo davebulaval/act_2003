@@ -1229,8 +1229,8 @@ $$
 \begin{center}
 \begin{tabularx}{\textwidth}{XXX}
 $\underbrace{(Y_t - \overline{Y}) =} $ & $\underbrace{(Y_t - \hat{Y}_t) \  +}$ & $\underbrace{(\hat{Y}_t - \overline{Y})}$ \\
-Variation totale de $Y_t$ & Variation de $\hat{Y}_t$ & Résidu \\
-& Variation expliquée \newline par la régression & Variation inexpliquée \newline par la régression \\
+Variation totale de $Y_t$  & Résidu & Variation de $\hat{Y}_t$\\
+& Variation inexpliquée \newline par la régression & Variation expliquée \newline par la régression \\
 \end{tabularx}
 \end{center}
 
