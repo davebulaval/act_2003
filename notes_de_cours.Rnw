@@ -136,7 +136,7 @@ $\hfil\tilde{}\hfil$\crcr\noalign{\kern1.0pt}}}}}
 
 %%%%Remerciements %%%%%
 \include{section/remerciements}
-\include{section/correction}
+\include{section/corrections}
 
 \tableofcontents
 
@@ -1214,6 +1214,7 @@ Autrement dit, la variable X explique bien la variable Y.
 Noter que les modèles précédents  ont été ajustés pour mieux représenter le concept, un modèle avec un fit parfait n'est pas réaliste dans la réalité.
 
 \subsection{Notions préliminaires : Somme des carrés}
+\label{NotionPrelim}
 La variance totale de $Y_t$ est décomposable sous le modèle de régression linéaire, cette décomposition permet d'analyser l'ajustement du modèle. On la représente ainsi :
 $$
 SST = \displaystyle\sum_{t=1}^n(Y_t-\overline{Y})^2
@@ -1228,7 +1229,7 @@ $$
 \begin{center}
 \begin{tabularx}{\textwidth}{XXX}
 $\underbrace{(Y_t - \overline{Y}) =} $ & $\underbrace{(Y_t - \hat{Y}_t) \  +}$ & $\underbrace{(\hat{Y}_t - \overline{Y})}$ \\
-Variation totale de $Y_t$ & Variation de $Y_t$ & Résidu \\
+Variation totale de $Y_t$ & Variation de $\hat{Y}_t$ & Résidu \\
 & Variation expliquée \newline par la régression & Variation inexpliquée \newline par la régression \\
 \end{tabularx}
 \end{center}
@@ -1512,6 +1513,7 @@ MSE &= \frac{SSE}{d.l.(SSE)} \\
 \end{enumerate}
 
 \subsection{Intervalle de confiance pour $\beta_1$}
+\label{ICBeta1}
 \emph{Attention de ne pas confondre avec $\hat{\beta}_1$.}
 
 \bigskip
@@ -1530,7 +1532,7 @@ $$
 $$
 Alors, on peut conclure que :
 $$
-\Bigg(\frac{\hat{\beta}_1 - \beta_1}{\sqrt{\Var(\hat{\beta}_1)}}\Bigg) \sim t(n-2)
+\Bigg(\frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{\Var}(\hat{\beta}_1)}}\Bigg) \sim t(n-2)
 $$
 
 On obtient ainsi l'intervalle de confiance suivant au niveau $100 \times (1 - \alpha)\%$ pour $\beta_1$, soit :
@@ -1553,6 +1555,7 @@ De manière similaire, un intervalle de confiance au niveau $100 \times (1 - \al
 \end{equation}
 
 \subsection{Tests d'hypothèses sur les paramètres}
+\label{TestHypo}
 Principales questions auxquelles on aimerait répondre :
 \begin{enumerate}
 \item \label{hyp1} L'ordonnée à l'origine $(\beta_0)$ est-elle significativement différente de 0 ? \newline
@@ -1678,7 +1681,7 @@ On utilise la statistique suivante,
 t &= \frac{\hat{\beta}_0 - 0 }{\sqrt{\widehat{\Var}(\hat{\beta}_0)}} \\
 &= \frac{68.494 - 0}{\sqrt{66.8511}}\\
 &= 8.38\\
-t_{\frac{0.05}{2}(14-2)} &= 2.18 \\
+t_{\frac{0.05}{2}}(14-2) &= 2.18 \\
 \end{align*}
 Étant donné que $|8.38| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, l'ordonnée à l'origine est significative.
 
@@ -1694,23 +1697,7 @@ On utilise la statistique suivante,
 t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{\Var}(\hat{\beta}_1)}} \\
 &= \frac{-0.468 - 0}{\sqrt{0.0237}}\\
 &= -3.040\\
-t_{\frac{0.05}{2}(14-2)} &= 2.18\\
-\end{align*}
-Étant donné que $|-3.040| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, il y a 95 \% de chance que la régression soit utile.
-
-\subsubsection*{Question 2}
-Tester si $\beta_1$ est significativement différent de 0 à un taux de confiance de 95 \%.
-
-\begin{align*}
-H_0 &: \beta_1 = 0\\
-H_1 &: \beta_1 \neq 0 \\
-\end{align*}
-On utilise la statistique suivante,
-\begin{align*}
-t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{\Var}(\hat{\beta}_1)}} \\
-&= \frac{-0.468 - 0}{\sqrt{0.0237}}\\
-&= -3.040\\
-t_{\frac{0.05}{2}(14-2)} &= 2.18\\
+t_{\frac{0.05}{2}}(14-2) &= 2.18\\
 \end{align*}
 Étant donné que $|-3.040| > 2.18$, on rejette $H_0$ au niveau de confiance de 95 \%. Autrement dit, il y a 95 \% de chance que la régression soit utile.
 
@@ -1726,7 +1713,7 @@ On utilise la statistique suivante,
 t &= \frac{\hat{\beta}_1 - 0 }{\sqrt{\widehat{\Var}(\hat{\beta}_1)}} \\
 &= \frac{-0.468 - 0}{\sqrt{0.0237}} \\
 &= -3.040 \\
--t_{\frac{0.05}{2}(14-2)} &= -1.78 \\
+-t_{0.05}(14-2) &= -1.78 \\
 \end{align*}
 Il s'agit d'un test unilatéral, la zone de rejet est la suivante
 
@@ -2735,12 +2722,13 @@ La stratégie la plus simple consiste à examiner tous les modèles possibles, s
 
 On choisit le modèle ayant le plus grand $R^2_{adj}$, qui correspond à l'une des expressions suivantes :
 
-\begin{equation}
-\color{Blue}
-\boxed{\color{black}
-R^2_{adj} = 1 - \frac{\frac{SSE}{(n-p-1)}}{\frac{SST}{(n-1)}} 
-}
-\end{equation}
+
+\begin{align*}
+R^2_{adj} &= 1 - \frac{\frac{SSE}{(n-p-1)}}{\frac{SST}{(n-1)}} \\
+&= 1 - (1 - R^2) \Big(\frac{n-1}{n-p-1} \Big) \\
+\end{align*}
+
+
 \begin{equation}
 \color{Blue}
 \boxed{\color{black}
@@ -2833,7 +2821,7 @@ Le principal inconvénient de cette technique est qu'une variable éliminée ne 
 
 \item [\textbf{Étape 2:}] Chercher la variable qui génère la plus grande diminution de SSE lorsqu'incluse dans le modèle. Autrement dit, la meilleure variable.
 
-\item [\textbf{Étape 3:}] Utiliser le test de Fisher parties (\ref{sec:testFpartiel}) pour tester s'il est possible d'inclure la variable de l'étape 2.
+\item [\textbf{Étape 3:}] Utiliser le test de Fisher partiel (\ref{sec:testFpartiel}) pour tester s'il est possible d'inclure la variable de l'étape 2.
 
 \item [\textbf{Étape 4:}] Continuer les étapes 2 et 3 jusqu'à ce qu'il n'y ait plus de variables a inclures selon le test de Fisher partiel.
 \end{itemize}
@@ -2911,6 +2899,7 @@ p
 
 \bigskip
 \subsubsection*{Exemple}
+\label{exempleTechn}
 On poursuit avec un exemple pour assimiler l'information. \newline
 À partir des informations suivantes, on cherche à trouver le meilleur modèle de régression des 20 observations.
 \bigskip
@@ -2934,7 +2923,7 @@ $X_1, X_2, X_3$ & 3.8 & 6.2 & 10 & 54.9 \% \\
 \subsubsection*{Technique 1}
 Avec la technique 1 (\ref{tech1}), on trouve le modèle suivant :
 $$
-Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \varepsilon
+Y = \beta_0 + \beta_1X_1 + \beta_2X_3 + \varepsilon
 $$
 
 \subsubsection*{Technique 2}
