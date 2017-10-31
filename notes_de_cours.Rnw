@@ -2112,7 +2112,7 @@ y <- x + rnorm(15)
 xStar <- data.frame(x = seq(0, 2, by = 0.2)) 
 
 # Modele de regression
-fit <- lm(y ~x)
+fit <- lm(y ~ x)
 
 # I.C. de type 1
 predict(fit, interval = "confidence") # I.C. pour tous les X dans les observations
